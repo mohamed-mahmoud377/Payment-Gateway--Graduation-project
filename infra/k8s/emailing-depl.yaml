@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailing-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emailing
+  template:
+    metadata:
+      labels:
+        app: emailing
+    spec:
+      containers:
+        - name: emailing
+          image: jerry377/emailing
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+## note that we did not say the type of the service because the default is clusterIp and that's what we want
+## to remember that the clusterIP service is only responsible for communication between pods inside the cluster it does not
+## allow you to communicate with the outer world you could use load balancer for this or node port
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailing-srv
+spec:
+  selector:
+    app: emailing
+  ports:
+    - name: emailing
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
