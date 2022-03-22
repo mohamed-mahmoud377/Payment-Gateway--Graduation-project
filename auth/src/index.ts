@@ -4,7 +4,7 @@ import express ,{Request,Response} from 'express';
 import 'express-async-errors'
 const app  = express();
 
-app.get('/jerry', (req:Request, res:Response)=>{
+app.get('/api/users/jerry', (req:Request, res:Response)=>{
     res.send('hello feysl')
 })
 
