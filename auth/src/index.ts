@@ -8,6 +8,6 @@ app.get('/api/users/jerry', (req:Request, res:Response)=>{
     res.send('hello feysl')
 })
 
-app.listen(4444,()=>{
+app.listen(3000,()=>{
     console.log("listening on port 4444....    ")
 })
