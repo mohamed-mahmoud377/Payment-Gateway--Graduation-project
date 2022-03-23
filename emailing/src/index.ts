@@ -5,4 +5,4 @@ const app = express();
 app.listen(3000);
 
 
-console.log('emailing srv is running update       ')
+console.log('emailing srv is running updat  e       ')
