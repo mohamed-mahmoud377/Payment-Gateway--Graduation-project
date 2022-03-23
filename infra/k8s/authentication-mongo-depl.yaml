@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication-mongo
+  template:
+    metadata:
+      labels:
+        app: authentication-mongo
+    spec:
+      containers:
+        - name: authentication-mongo
+          image: mongo # the name of the image from docker hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication-mongo-srv
+spec:
+  selector:
+    app: authentication-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+
