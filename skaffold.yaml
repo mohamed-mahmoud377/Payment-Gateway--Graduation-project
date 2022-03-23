@@ -1,0 +1,27 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*  # all the file we want to apply
+      - ./infra/k8s-dev/*
+build:
+  local:  # when we build an image do not push to docker hub which is the default behavior
+    push: false
+  artifacts:  ## all the things that are going to be build
+    - image: jerry377/authentication
+      context: auth # the name of the folder that contains all the code for the image
+      docker: # telling skaffold what docker file to use
+        dockerfile: docker/Dockerfile
+      sync:  # to tell skaffold how to handle any change of a file inside auth dir
+        manual:
+          - src: 'src/**/*.ts' #to watch for all the files that ends with .ts
+            dest: . # dest is where to sync the changed files and . means take from you found and put in the corresponding path inside the container
+    - image: jerry377/emailing
+      context: emailing
+      docker:
+        dockerfile: docker/Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
