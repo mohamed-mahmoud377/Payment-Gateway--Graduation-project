@@ -1,8 +1,5 @@
 import {app} from './app'
 
-
-
-
 const start = async ()=>{
     console.log('Starting up ...')
     app.listen(3000,()=>{
