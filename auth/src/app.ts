@@ -5,12 +5,13 @@ import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
 import {errorHandler} from "./middlewares/errorHandler";
 import {signupRoute} from "./routes/signup";
+const  cors = require('cors')
 const app= express();
 
 app.set('trust proxy',true);
 
 app.use(bodyParser.json());
-
+app.use(cors())
 app.use(cookieSession({
     signed:false,
     secure: false// note that even in production you will have to disable it
