@@ -1,5 +1,4 @@
-import express, {Request,Response} from "express";
-import * as assert from "assert";
+import express, {Request, Response} from "express";
 import {Merchant} from "../models/merchant";
 import {body} from "express-validator";
 import validator from "validator";
@@ -11,6 +10,9 @@ import {Subjects} from "../events/Subjects";
 import mongoose from "mongoose";
 import {otpGenerator} from "../utils/otpGenerator";
 import {MerchantCreatedPublisher} from "../events/publishers/merchantCreatedPublisher";
+import {natsWrapper} from "../nats/nats-wrapper";
+import {MerchantCreatedEvent} from "../events/eventTypes/merchantCreatedEvent";
+import {sendSuccess} from "../utils/sendSuccess";
 
 
 const router = express.Router();
@@ -30,14 +32,15 @@ router.post('/signup', [
 
 ],validateRequest,async (req:Request,res:Response)=>{
     const {email, name ,password} = req.body
+    let eventId:string;
     //check if email is valid
     if (!validator.isEmail(email))
         throw new BadRequestError(['Email is not valid'],ErrorCodes.invalidEmail);
 
     //checking if email already exist
-    let merchant = await Merchant.findOne({email});
-    console.log(merchant)
-    if (merchant)
+    let pevMerchant = await Merchant.findOne({email});
+    // console.log(pevMerchant)
+    if (pevMerchant)
         throw new BadRequestError(['Email is already in use '],ErrorCodes.invalidEmail)
 
     // checking if the full name is valid
@@ -48,48 +51,47 @@ router.post('/signup', [
     if (password.length<10)
         throw new BadRequestError(['Password must be more than 10 letters'],ErrorCodes.badRequest)
 
-    const otp =otpGenerator()
+        const otp =otpGenerator()
 
-    const session = await mongoose.startSession();
-    let eventId ;
+        let pubEvent:MerchantCreatedEvent ;
 
-    // add the merchant and event in the database with a Transaction to make sure that where ever we save a doc
-    // we must send its event no matter what
-    await session.withTransaction(async ()=>{
-
-        const merchant  = Merchant.build({email,name,password});
+         const merchant  = Merchant.build({email,name,password});
          merchant.set(
              {otpNumber:otp,
              otpExpiryDate:Date.now()+ 10 * 60 * 1000})
 
            await merchant.save();
+        pubEvent = {
+            subject:Subjects.merchantCreated,
+            data:{
+                email,
+                name,
+                otp,
+                merchantId:merchant!.id
+            }
+        }
         const  event = Event.build({
             subject: Subjects.merchantCreated,
             sent: false,
-            data: {
-                email,
-                name,
-                otp
-            }
+            data:pubEvent["data"]
         })
         event.save()
-        eventId  = event.id;
+        eventId= event.id;
+
+        sendSuccess(res,201,{
+            merchantId: merchant.id
+        })
+
+        await new MerchantCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
+         const savedEvent = await Event.findById(eventId);
+        if (savedEvent){
+             savedEvent.set({sent:true});
+            await savedEvent.save();
+        }
+
 
     })
 
-    session.endSession();
 
-    // await MerchantCreatedPublisher.publish({
-    //     email,
-    //     name,
-    //     otp,
-    //     merchantId:merchant.id
-    // })
-
-    res.sendStatus(201).send({
-        status:"success",
-    });
-
-})
 
 export {router as signupRoute}

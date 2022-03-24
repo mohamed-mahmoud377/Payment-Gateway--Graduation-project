@@ -17,6 +17,8 @@ interface MerchantDoc extends mongoose.Document{
     isActive:true;
     createdAt:Date;
     updatedAt:Date;
+    otpNumber:Number;
+    otpExpiryDate:Date;
 
 }
 
@@ -53,4 +55,4 @@ merchantScheme.statics.build=(attrs:MerchantAttrs)=>{
 }
 const Merchant = mongoose.model<MerchantDoc,MerchantModel>('Merchant',merchantScheme);
 
-export {Merchant}
+export {Merchant,MerchantDoc}
