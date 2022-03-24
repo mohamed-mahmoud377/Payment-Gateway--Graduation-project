@@ -86,7 +86,9 @@ router.post('/signup', [
     //     merchantId:merchant.id
     // })
 
-    res.send(201);
+    res.sendStatus(201).send({
+        status:"success",
+    });
 
 })
 
