@@ -1,10 +1,5 @@
-import {stringify} from "ts-jest";
 
-const dev= {
-    mongoURL: process.env.MONGO_URI,
-
-}
-
-export   {
-    dev
-}
+// export enum Dev {
+//     mongoURI = process.env.MONGO_URI!
+//
+// }

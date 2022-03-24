@@ -8,7 +8,7 @@ const sendErrorDev= (err:Error,req:Request,res:Response)=>{
             status:"fail",
             errorCode:err.errorCode,
             errors: err.errorMessages,
-            stack:err.stack,
+
         })
     }
     return res.status(500).send({
@@ -36,8 +36,14 @@ const sendErrorProd = (err:Error,req:Request,res:Response)=>{
     })
 }
 export const errorHandler = (err: Error ,req: Request, res:Response ,next:NextFunction)=>{
-    console.log(err.message)
-    console.log(err.stack)
+    if (err instanceof  CustomError){
+        console.log(err.message)
+        // console.log(err.stack)
+    }else{
+        console.log(err.message)
+        console.log(err.stack)
+    }
+
    if (process.env.NODE_ENV==='production'){
        sendErrorProd(err,req,res);
    }else{

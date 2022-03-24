@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
 import {errorHandler} from "./middlewares/errorHandler";
+import {signupRoute} from "./routes/signup";
 const app= express();
 
 app.set('trust proxy',true);
@@ -17,7 +18,7 @@ app.use(cookieSession({
 
 
 app.use("/api/users",checkPasswordRoute);
-
+app.use("/api/users",signupRoute);
 
 app.use(errorHandler)
 
