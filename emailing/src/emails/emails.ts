@@ -15,7 +15,7 @@ export  class Email{
         this.to = email;
         this.name =name.split(' ')[0];
         this.url = url;
-        this.from = `Jerry <${process.env.EMAIL_FROM}>`;
+        this.from = `hash cash <${process.env.EMAIL_FROM}>`;
     }
 
     newTransport(){

@@ -31,11 +31,19 @@ const merchantScheme = new mongoose.Schema({
     email:{
         required:true,
         type:String,
-        unique:true
+        unique:true,
+        trim:true,
     },
     password:{
         required:true,
-        type:String
+        type:String,
+        trim:true,
+
+    },
+    name:{
+        required:true,
+        type:String,
+        trim:true
     },
     isEmailVerified:{
         type:Boolean,

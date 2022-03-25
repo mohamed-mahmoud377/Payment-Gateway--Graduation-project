@@ -1,6 +1,7 @@
 import express, {Request,Response} from "express";
 import {body, CustomValidator} from "express-validator";
 import {validateRequest} from "../middlewares/validateRequest";
+import {sendSuccess} from "../utils/sendSuccess";
 
 
 const router =express.Router();
@@ -15,10 +16,7 @@ router.post('/check-password',[
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
-    console.log('fuck')
-    console.log(req.body)
-    res.send('hsd      fi')
-
+ sendSuccess(res,200,{});
 })
 
 

@@ -21,11 +21,14 @@ const router = express.Router();
 router.post('/signup', [
     body("email")
         .notEmpty()
+        .trim()
         .withMessage("email is not provided")
         ,body("name")
+        .trim()
         .notEmpty()
         .withMessage("name is not provided")
     ,body("password")
+        .trim()
         .notEmpty()
         .withMessage("password is not provided")
 
@@ -44,7 +47,7 @@ router.post('/signup', [
         throw new BadRequestError(['Email is already in use '],ErrorCodes.invalidEmail)
 
     // checking if the full name is valid
-    if(!validator.isAscii(name))
+    if(!validator.isAlpha(name,undefined,{ignore:' _'}))
         throw new BadRequestError(['Name must be only letters'],ErrorCodes.invalidUserName)
 
     //check if password valid
