@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import {Merchant} from "../models/merchant";
+import {User} from '../models/user';
 import {body} from "express-validator";
 import validator from "validator";
 import {BadRequestError} from "../errors/badRequestError";
@@ -9,9 +9,9 @@ import {Event} from "../models/events";
 import {Subjects} from "../events/Subjects";
 import mongoose from "mongoose";
 import {otpGenerator} from "../utils/otpGenerator";
-import {MerchantCreatedPublisher} from "../events/publishers/merchantCreatedPublisher";
+import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
-import {MerchantCreatedEvent} from "../events/eventTypes/merchantCreatedEvent";
+import {UserCreatedEvent} from "../events/eventTypes/userCreatedEvent";
 import {sendSuccess} from "../utils/sendSuccess";
 
 
@@ -41,9 +41,9 @@ router.post('/signup', [
         throw new BadRequestError(['Email is not valid'],ErrorCodes.invalidEmail);
 
     //checking if email already exist
-    let pevMerchant = await Merchant.findOne({email});
-    // console.log(pevMerchant)
-    if (pevMerchant)
+    let pevUser = await User.findOne({email});
+    // console.log(pevUser)
+    if (pevUser)
         throw new BadRequestError(['Email is already in use '],ErrorCodes.invalidEmail)
 
     // checking if the full name is valid
@@ -56,25 +56,25 @@ router.post('/signup', [
 
         const otp =otpGenerator()
 
-        let pubEvent:MerchantCreatedEvent ;
+        let pubEvent:UserCreatedEvent ;
 
-         const merchant  = Merchant.build({email,name,password});
-         merchant.set(
+         const user  = User.build({email,name,password});
+         user.set(
              {otpNumber:otp,
-             otpExpiryDate:Date.now()+ 10 * 60 * 1000})
+             otpExpiryDate:Date.now()+ 1 * 60 * 1000})
 
-           await merchant.save();
+           await user.save();
         pubEvent = {
-            subject:Subjects.merchantCreated,
+            subject:Subjects.userCreated,
             data:{
                 email,
                 name,
                 otp,
-                merchantId:merchant!.id
+                userId:user!.id
             }
         }
         const  event = Event.build({
-            subject: Subjects.merchantCreated,
+            subject: Subjects.userCreated,
             sent: false,
             data:pubEvent["data"]
         })
@@ -82,10 +82,10 @@ router.post('/signup', [
         eventId= event.id;
 
         sendSuccess(res,201,{
-            merchantId: merchant.id
+            userId: user.id
         })
 
-        await new MerchantCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
+        await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
          const savedEvent = await Event.findById(eventId);
         if (savedEvent){
              savedEvent.set({sent:true});

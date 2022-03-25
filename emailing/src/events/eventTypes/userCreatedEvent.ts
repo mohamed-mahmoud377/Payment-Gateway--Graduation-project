@@ -1,7 +1,7 @@
 import {Subjects} from "../Subjects";
 
-export interface MerchantCreatedEvent{
-    subject:Subjects.merchantCreated;
+export interface UserCreatedEvent{
+    subject:Subjects.userCreated;
     data:{
         email:string,
         merchantId:string,

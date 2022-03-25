@@ -1,3 +1,3 @@
 export enum Subjects{
-    merchantCreated= 'merchant:created'
+    userCreated= 'user:created'
 }

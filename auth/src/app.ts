@@ -5,6 +5,7 @@ import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
 import {errorHandler} from "./middlewares/errorHandler";
 import {signupRoute} from "./routes/signup";
+import {otpRegister} from "./routes/otpRegister";
 const  cors = require('cors')
 const app= express();
 
@@ -20,6 +21,8 @@ app.use(cookieSession({
 
 app.use("/api/users",checkPasswordRoute);
 app.use("/api/users",signupRoute);
+app.use("/api/users",otpRegister);
+
 
 app.use(errorHandler)
 

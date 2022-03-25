@@ -1,6 +1,6 @@
 import request from "supertest";
 import {app} from "../../app";
-import {Merchant} from "../../models/merchant";
+import {User} from "../../models/user";
 import {ErrorCodes} from "../../errors/types/errorCodes";
 import {natsWrapper} from "../../nats/nats-wrapper";
 
@@ -22,10 +22,10 @@ it('should sign up if all conditionals are right and return 201', async function
 
 it('should return a 400 if email was in use or invalid with invalid email error code',async ()=>{
     const email = "test@test.com";
-    const merchant = Merchant.build({
+    const user = User.build({
         email, name: "test", password: "test123456"
     })
-    await merchant.save();
+    await user.save();
 
     const response = await request(app)
         .post(url)
@@ -69,9 +69,9 @@ it('should return 400 status code and invalid username error code if the user na
     expect(response.body.errorCode).toEqual(ErrorCodes.invalidUserName);
 });
 
-it('should creates a new merchant in database in case of 201 ', async function () {
-    let merchants = await Merchant.find({}); // making sure the database id empty now
-    expect(merchants.length).toEqual(0);
+it('should creates a new user in database in case of 201 ', async function () {
+    let users = await User.find({}); // making sure the database id empty now
+    expect(users.length).toEqual(0);
 
     await request(app)
         .post(url)
@@ -81,14 +81,14 @@ it('should creates a new merchant in database in case of 201 ', async function (
             password:"123455665sdasf"
         }).expect(201)
 
-     merchants = await Merchant.find({});
-    expect(merchants.length).toEqual(1);
-    expect(merchants[0].email).toEqual("test@test.com")
+     users = await User.find({});
+    expect(users.length).toEqual(1);
+    expect(users[0].email).toEqual("test@test.com")
 
 
 });
 
-it('should should publish an event of merchant created ', async function () {
+it('should should publish an event of user created ', async function () {
     await request(app)
         .post(url)
         .send({
