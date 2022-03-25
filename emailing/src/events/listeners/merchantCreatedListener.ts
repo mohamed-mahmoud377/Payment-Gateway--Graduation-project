@@ -11,7 +11,7 @@ export class MerchantCreatedListener extends Listener<MerchantCreatedEvent>{
 
     async onMessage(data: MerchantCreatedEvent["data"], msg: Message){
 
-         await new Email(data.email,data.name).sendOtp(data.otp)
+         await new Email(data.email,data.name).sendOtpSignup(data.otp)
         msg.ack();
     }
 

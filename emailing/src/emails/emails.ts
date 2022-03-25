@@ -42,13 +42,26 @@ export  class Email{
 
     }
 
-    async send(templateName:string,subject:string){  // templateName which is a put we send a nice formatted email
+    async send(templateName:string,subject:string,otp?:string){  // templateName which is a put we send a nice formatted email
         //1 Render HTML based on a pug template
-        const html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
-            firstName: this.name,
-            url: this.url,
-            subject
-        })
+        let html;
+        if (templateName==='otp-signup'){
+             html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
+                firstName: this.name,
+                url: this.url,
+                subject,
+                otp
+            })
+        }
+
+        if (templateName==='otp-login'){
+             html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
+                firstName: this.name,
+                url: this.url,
+                subject
+            })
+        }
+
 
         //2 define email options
         const emailOptions = { // we have to give this option to the email transporter so it could be sent
@@ -63,8 +76,8 @@ export  class Email{
 
 
     }
-    async sendOtp(opt:number){
-        await this.send('welcome' , `this is your otp Password valid for 10 min ${opt}`)
+    async sendOtpSignup(opt:number){
+        await this.send('otp-signup' , `Email verification code`,String(opt))
     }
     async sendWelcome(){
         await this.send('welcome' , 'Welcome to the natours Family')

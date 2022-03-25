@@ -1,11 +1,5 @@
-import {stringify} from "ts-jest";
-
-const prod= {
+export const prod = {
     mongoURL: process.env.MONGO_URI,
+    jwtSecret: process.env.JWT_KEY,
 
-
-}
-
-export   {
-    prod
 }
