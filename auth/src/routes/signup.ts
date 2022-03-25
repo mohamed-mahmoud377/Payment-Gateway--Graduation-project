@@ -61,7 +61,7 @@ router.post('/signup', [
          const user  = User.build({email,name,password});
          user.set(
              {otpNumber:otp,
-             otpExpiryDate:Date.now()+ 1 * 60 * 1000})
+             otpExpiryDate:Date.now()+ 2 * 60 * 1000})
 
            await user.save();
         pubEvent = {
