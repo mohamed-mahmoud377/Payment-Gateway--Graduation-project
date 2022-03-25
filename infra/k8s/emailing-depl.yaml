@@ -23,3 +23,40 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: EMAIL_USERNAME
+              value: '9df67e3c386b8a'
+            - name: EMAIL_HOST
+              value: 'smtp.mailtrap.io'
+            - name: EMAIL_PORT
+              value: '587'
+            - name: EMAIL_FROM
+              value: 'mohamedpop.9559@gmail.com'
+            - name: SENDGRID_USERNAME
+              value: 'apikey'
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mailtrappassword
+                  key: EMAIL_PASSWORD
+            - name: SENDGRID_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sendgridpassword
+                  key: SENDGRID_PASSWORD
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: hashCash
+
+
+
+
+
+
+
+
+
