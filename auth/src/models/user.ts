@@ -1,11 +1,12 @@
 import * as mongoose from "mongoose";
 import {PasswordManger} from "../utils/passwordManger";
-
+import {LoginSession, LoginSessionAttrs, LoginSessionDoc, loginSessionSchema} from "./loginSession";
 
 interface UserAttrs {
     email:string;
     name:string;
     password:string;
+
 
 }
 
@@ -18,9 +19,11 @@ interface UserDoc extends mongoose.Document{
     isActive:true;
     createdAt:Date;
     updatedAt:Date;
-    otpNumber:Number;
-    otpExpiryDate:Date;
+    otpNumber?:Number;
+    otpExpiryDate?:Date;
     role:string;
+    loginSession:[LoginSessionAttrs];
+
 
 }
 
@@ -62,6 +65,7 @@ const UserScheme = new mongoose.Schema({
     },
     otpNumber:Number,
     otpExpiryDate:Date,
+    loginSession:[loginSessionSchema]
 
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})

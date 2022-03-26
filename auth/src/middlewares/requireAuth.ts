@@ -2,6 +2,8 @@ import {NextFunction, Request, Response} from "express";
 import jwt from 'jsonwebtoken';
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {ErrorCodes} from "../errors/types/errorCodes";
+import parser from "ua-parser-js";
+
 
 interface UserPayload{
     id:string;
@@ -17,12 +19,7 @@ declare global{ // this let me modify the Request interface and add more prop to
 }
 
 export const requireAuth = (req:Request,res:Response,next:NextFunction)=>{
-    console.log(req.ip)
-    console.log(req.ips)
-    console.log(req.hostname)
-    console.log(req.path)
-    console.log(req.protocol)
-    console.log(req.headers)
+
     if (!req.session?.jwt){ /// first check if there is req.session then check if there is req.session.jwt
         throw new NotAuthorizedError()
     }
