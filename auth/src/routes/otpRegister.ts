@@ -2,11 +2,11 @@ import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import mongoose from "mongoose";
 import {BadRequestError} from "../errors/badRequestError";
-import {ErrorCodes} from "../errors/types/errorCodes";
 import {sendSuccess} from "../utils/sendSuccess";
 import {User} from "../models/user";
-import jwt from 'jsonwebtoken'
+import {jwtGenerator} from "../utils/jwtGenerator";
 const router  = express.Router();
+
 
 router.post('/otp-registration',[
     body('otp')
@@ -22,7 +22,7 @@ router.post('/otp-registration',[
     const {otp,userId}= req.body;
     // checking first if the user id is valid before going to database
     if (!mongoose.isValidObjectId( userId)){
-        throw new  BadRequestError(['OTP password is wrong'],ErrorCodes.badRequest);
+        throw new  BadRequestError(['OTP password is wrong']);
     }
     const user = await User.findOne({
         id:userId,
@@ -30,26 +30,23 @@ router.post('/otp-registration',[
         otpExpiryDate:{$gt:Date.now()}
     })
     if (!user){
-        throw new  BadRequestError(['OTP is wrong try again or resend it'],ErrorCodes.badRequest);
+        throw new  BadRequestError(['OTP is wrong try again or resend it']);
 
     }
+    const payload = {
+        id:user.id,
+        role:user.role,
+        email:user.email
+    }
 
-    const accessToken = jwt.sign({
-        userId:user.id,
-        role:user.role
-    },process.env.JWT_KEY!,{
-        expiresIn:60*2
+
+    const {accessToken,refreshToken} = jwtGenerator(payload);
+
+    req.session= {jwt:accessToken};
+    sendSuccess(res,200,{
+        accessToken,
+        refreshToken,
     })
-    const refreshToken = jwt.sign({
-        userId:user.id,
-        role:user.role
-    },process.env.JWT_KEY!,{
-        expiresIn:'7d'
-    })
-
-
-
-    sendSuccess(res,200,{})
 
 })
 

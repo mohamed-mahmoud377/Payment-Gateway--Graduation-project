@@ -1,13 +1,13 @@
 import {CustomError} from "./customError";
 import {ErrorCodes} from "./types/errorCodes";
 
-export class NotAuthorizedError extends CustomError{
+export class ForbiddenError extends CustomError{
     errorCode: number;
     statusCode: number;
     errorMessages:string [];
-    constructor(errorMessages:string[]=['Authentication is required to access this route.'],codeError:number=ErrorCodes.unauthorized) {
+    constructor(errorMessages:string[]=['Forbidden request'],codeError:number=ErrorCodes.unauthorized) {
         super(errorMessages[0]);
-        this.statusCode = 401;
+        this.statusCode = 403;
         this.errorCode = codeError;
         this.errorMessages = errorMessages;
 

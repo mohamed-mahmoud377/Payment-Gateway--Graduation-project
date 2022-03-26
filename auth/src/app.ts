@@ -6,6 +6,7 @@ import {checkPasswordRoute} from "./routes/checkPassword";
 import {errorHandler} from "./middlewares/errorHandler";
 import {signupRoute} from "./routes/signup";
 import {otpRegister} from "./routes/otpRegister";
+import {currentUser} from "./routes/currentUser";
 const  cors = require('cors')
 const app= express();
 
@@ -18,7 +19,7 @@ app.use(cookieSession({
     secure: false// note that even in production you will have to disable it
 }))
 
-
+app.use("/api/users",currentUser)
 app.use("/api/users",checkPasswordRoute);
 app.use("/api/users",signupRoute);
 app.use("/api/users",otpRegister);

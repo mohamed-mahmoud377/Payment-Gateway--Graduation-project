@@ -1,10 +1,11 @@
 import {CustomError} from "./customError";
+import {ErrorCodes} from "./types/errorCodes";
 
 export class BadRequestError extends CustomError{
     errorCode: number;
     errorMessages: string[];
     statusCode: number;
-    constructor(errorMessages:string[]= ['invalid input '],errorCode:number) {
+    constructor(errorMessages:string[]= ['invalid input '],errorCode:number=ErrorCodes.badRequest) {
         super(errorMessages[0]);
         this.statusCode = 400;
         this.errorCode= errorCode;

@@ -16,6 +16,12 @@ router.post('/check-password',[
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
+    console.log(req.ip)
+    console.log(req.ips)
+    console.log(req.hostname)
+    console.log(req.path)
+    console.log(req.protocol)
+    console.log(req.headers)
  sendSuccess(res,200,{});
 })
 
