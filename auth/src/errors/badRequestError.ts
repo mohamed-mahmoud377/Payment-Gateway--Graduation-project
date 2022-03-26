@@ -5,7 +5,7 @@ export class BadRequestError extends CustomError{
     errorCode: number;
     errorMessages: string[];
     statusCode: number;
-    constructor(errorMessages:string[]= ['invalid input '],errorCode:number=ErrorCodes.badRequest) {
+    constructor(errorMessages:string[]= ['Invalid input'],errorCode:number=ErrorCodes.badRequest) {
         super(errorMessages[0]);
         this.statusCode = 400;
         this.errorCode= errorCode;

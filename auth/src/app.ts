@@ -7,6 +7,8 @@ import {errorHandler} from "./middlewares/errorHandler";
 import {signupRoute} from "./routes/signup";
 import {otpRegister} from "./routes/otpRegister";
 import {currentUser} from "./routes/currentUser";
+import {loginRoute} from "./routes/login";
+import {forgotPassword} from "./routes/forgotPassword";
 const  cors = require('cors')
 const app= express();
 
@@ -20,6 +22,8 @@ app.use(cookieSession({
 }))
 
 app.use("/api/users",currentUser)
+app.use("/api/users",forgotPassword)
+app.use("/api/users",loginRoute)
 app.use("/api/users",checkPasswordRoute);
 app.use("/api/users",signupRoute);
 app.use("/api/users",otpRegister);

@@ -34,6 +34,8 @@ spec:
             - name: JWT_ACCESS_EXPIRES_IN
               value: "300"
             - name: JWT_REFERSH_EXPIRES_IN
+              value: "3h"
+            - name: JWT_REFERSH_EXPIRES_IN_REMEMBER
               value: "7d"
 ---
 ## note that we did not say the type of the service because the default is clusterIp and that's what we want

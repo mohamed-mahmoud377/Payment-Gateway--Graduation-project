@@ -54,7 +54,7 @@ export  class Email{
             })
         }
 
-        if (templateName==='otp-login'){
+        if (templateName==='passwordReset'){
              html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
                 firstName: this.name,
                 url: this.url,

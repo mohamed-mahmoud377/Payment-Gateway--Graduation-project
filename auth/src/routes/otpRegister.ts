@@ -21,12 +21,13 @@ router.post('/otp-registration',[
         .withMessage("userId must be provided.")
 
 ],async (req:Request,res:Response)=>{
-
+    //get the data from the body
     const {otp,userId}= req.body;
     // checking first if the user id is valid before going to database
     if (!mongoose.isValidObjectId( userId)){
         throw new  BadRequestError(['OTP password is wrong']);
     }
+    //we if the user is existed if the id is right and the otp is right and it does not expire
     const user = await User.findOne({
         id:userId,
         otpNumber:otp,
@@ -36,15 +37,15 @@ router.post('/otp-registration',[
         throw new  BadRequestError(['OTP is wrong try again or resend it']);
 
     }
-
+    // now that the otp is right lets create the access and refresh token
     const payload = {
         id:user.id,
         role:user.role,
         email:user.email
     }
 
-    const {accessToken,refreshToken} = jwtGenerator(payload);
-
+    const {accessToken,refreshToken} = jwtGenerator(payload,false);
+    //create a login session for the user
     let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
     if (device)
         os= os +" - "+device
@@ -55,11 +56,12 @@ router.post('/otp-registration',[
             device:os,
 
     })
+    // setting the email to be verified
     user.otpNumber=undefined;
     user.otpExpiryDate=undefined;
     user.isEmailVerified= true;
     user.save();
-
+    // send the access token as a cookie too
     req.session= {jwt:accessToken};
     sendSuccess(res,200,{
         accessToken,

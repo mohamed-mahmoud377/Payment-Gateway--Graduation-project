@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 import {PasswordManger} from "../utils/passwordManger";
 import {LoginSession, LoginSessionAttrs, LoginSessionDoc, loginSessionSchema} from "./loginSession";
+import crypto from "crypto";
 
 interface UserAttrs {
     email:string;
@@ -23,6 +24,11 @@ interface UserDoc extends mongoose.Document{
     otpExpiryDate?:Date;
     role:string;
     loginSession:[LoginSessionAttrs];
+    lastLogin:Date;
+    passwordRestToken?:string;
+    passwordResetExpires?:Date;
+    createAndAssignPasswordResetToken():string;
+
 
 
 }
@@ -65,12 +71,28 @@ const UserScheme = new mongoose.Schema({
     },
     otpNumber:Number,
     otpExpiryDate:Date,
-    loginSession:[loginSessionSchema]
+    loginSession:[loginSessionSchema],
+    lastLogin:{
+        Date,
+    },
+    passwordResetExpires:Date,
+    passwordRestToken:String
+
 
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 
 
+
+UserScheme.methods.createAndAssignPasswordResetToken = function () {
+    const restToken = crypto.randomBytes(32).toString("hex"); // generate rest token
+    //hash it and save it to the database
+    this.passwordRestToken = crypto.createHash('sha256').update(restToken).digest('hex');
+    //set expiry time to 10 min
+    this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+    return restToken; // sending the not hashed or encrypted one but the saving the encrypted to the database
+}
 
 
 
