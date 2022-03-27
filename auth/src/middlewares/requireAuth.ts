@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import jwt from 'jsonwebtoken';
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {ErrorCodes} from "../errors/types/errorCodes";
-import parser from "ua-parser-js";
+
 
 
 interface UserPayload{

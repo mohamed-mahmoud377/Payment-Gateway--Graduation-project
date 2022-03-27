@@ -7,6 +7,7 @@ import {PasswordManger} from "../utils/passwordManger";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {sendSuccess} from "../utils/sendSuccess";
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
+import {userAgentParser} from "../utils/userAgentParser";
 
 const router = express.Router();
 
@@ -44,6 +45,17 @@ router.post('/login',[
     }
 
     const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);
+    let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
+    if (device)
+        os= os +" - "+device
+    existingUser.loginSession.push({
+        token:refreshToken,
+        ip:req.ip,
+        browser:browser,
+        device:os,
+
+    })
+    existingUser.save();
 
     req.session= {jwt:accessToken};
     sendSuccess(res,200,{

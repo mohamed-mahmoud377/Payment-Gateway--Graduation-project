@@ -10,6 +10,7 @@ import {currentUser} from "./routes/currentUser";
 import {loginRoute} from "./routes/login";
 import {forgotPassword} from "./routes/forgotPassword";
 import {resetPassword} from "./routes/resetPassword";
+import {refreshAccessRoute} from "./routes/refreshAccess";
 const  cors = require('cors')
 const app= express();
 
@@ -24,7 +25,7 @@ app.use(cookieSession({
 
 app.use("/api/users",currentUser)
 app.use("/api/users",resetPassword)
-
+app.use("/api/users",refreshAccessRoute)
 app.use("/api/users",forgotPassword)
 app.use("/api/users",loginRoute)
 app.use("/api/users",checkPasswordRoute);
