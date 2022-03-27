@@ -2,15 +2,10 @@ import express, {Request, Response} from 'express';
 import {body} from "express-validator";
 import {validateRequest} from "../middlewares/validateRequest";
 import {User} from "../models/user";
-
-import {PasswordManger} from "../utils/passwordManger";
-import {jwtGenerator} from "../utils/jwtGenerator";
 import {sendSuccess} from "../utils/sendSuccess";
-import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {BadRequestError} from "../errors/badRequestError";
 import {Subjects} from "../events/Subjects";
 import {Event} from "../models/events";
-import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserForgotPasswordPublisher} from "../events/publishers/userForgotPasswordPublisher";
 
