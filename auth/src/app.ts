@@ -24,6 +24,7 @@ app.use(cookieSession({
 }))
 
 app.use("/api/users",currentUser)
+
 app.use("/api/users",resetPassword)
 app.use("/api/users",refreshAccessRoute)
 app.use("/api/users",forgotPassword)
