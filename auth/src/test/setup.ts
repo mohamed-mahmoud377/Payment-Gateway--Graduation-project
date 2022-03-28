@@ -6,8 +6,11 @@ let mongo:MongoMemoryServer
 jest.mock('../nats/nats-wrapper') // to make use of the mock file
 
 jest.setTimeout(100000)
-beforeAll(async ()=>{
 
+beforeAll(async ()=>{
+    process.env.JWT_REFERSH_EXPIRES_IN_REMEMBER = '7d'
+    process.env.JWT_REFERSH_EXPIRES_IN = '3h'
+    process.env.JWT_ACCESS_EXPIRES_IN='6000'
     process.env.JWT_KEY = 'aververysecureskeysonfobtich' // because now we run outside the cluster, and the key is not defined
     mongo = await MongoMemoryServer.create();
     const mongoUri = mongo.getUri();
