@@ -23,8 +23,6 @@ router.post('/signup', [
         .notEmpty()
         .trim()
         .withMessage("email is not provided")
-        .isEmail()
-        .withMessage("email is not valid")
         ,body("name")
         .trim()
         .notEmpty()
