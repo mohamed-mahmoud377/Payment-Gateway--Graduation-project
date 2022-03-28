@@ -25,9 +25,9 @@ interface LoginSessionAttrs {
 
 const loginSessionSchema = new mongoose.Schema({
     token:{
-       
+        required:true,
         type:String,
-        unique:true,
+
         trim:true,
     },
     device:{
