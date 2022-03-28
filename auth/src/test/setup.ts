@@ -5,7 +5,7 @@ let mongo:MongoMemoryServer
 
 jest.mock('../nats/nats-wrapper') // to make use of the mock file
 
-
+jest.setTimeout(100000)
 beforeAll(async ()=>{
 
     process.env.JWT_KEY = 'aververysecureskeysonfobtich' // because now we run outside the cluster, and the key is not defined

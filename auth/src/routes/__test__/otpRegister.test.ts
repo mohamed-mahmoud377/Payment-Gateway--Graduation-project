@@ -85,3 +85,15 @@ it('should sets a cookie after successful valid data  with the access token ', a
 
     expect(response.get('Set-Cookie')).toBeDefined();
 });
+
+it('should sets login session of the user ',async function () {
+    const {user,otp} = await  setup(Date.now()+60*1000*10) // this will expire within 10 min
+    const response = await request(app)
+        .post(url)
+        .send({
+            userId:user.id,
+            otp               // note that this the right userId and the right otp number
+        }).expect(200)
+    const sameUser = await User.findById(user.id);
+    expect(sameUser!.loginSession[0]).toBeDefined();
+});
