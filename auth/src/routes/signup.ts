@@ -36,6 +36,9 @@ router.post('/signup', [
 ],validateRequest,async (req:Request,res:Response)=>{
     const {email, name ,password} = req.body
     let eventId:string;
+    // checking if the full name is valid
+    if(!validator.isAlpha(name,undefined,{ignore:' _'}))
+        throw new BadRequestError(['Name must be only letters'],ErrorCodes.invalidUserName)
     //check if email is valid
     if (!validator.isEmail(email))
         throw new BadRequestError(['Email is not valid'],ErrorCodes.invalidEmail);
@@ -46,9 +49,7 @@ router.post('/signup', [
     if (pevUser)
         throw new BadRequestError(['Email is already in use '],ErrorCodes.invalidEmail)
 
-    // checking if the full name is valid
-    if(!validator.isAlpha(name,undefined,{ignore:' _'}))
-        throw new BadRequestError(['Name must be only letters'],ErrorCodes.invalidUserName)
+
 
     //check if password valid
     if (password.length<10)
