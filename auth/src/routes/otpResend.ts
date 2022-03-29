@@ -1,0 +1,113 @@
+import express, {Request, Response} from "express";
+import {body, param, query} from "express-validator";
+import {sendSuccess} from "../utils/sendSuccess";
+import {validateRequest} from "../middlewares/validateRequest";
+import {User} from "../models/user";
+import mongoose from "mongoose";
+import {BadRequestError} from "../errors/badRequestError";
+import {Subjects} from "../events/Subjects";
+import {Event} from "../models/events";
+import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
+import {natsWrapper} from "../nats/nats-wrapper";
+import {UserCreatedEvent} from "../events/eventTypes/userCreatedEvent";
+import {otpGenerator} from "../utils/otpGenerator";
+import {UserLoggingInEvent} from "../events/eventTypes/userLoggingInEvent";
+import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
+
+const router  = express.Router()
+
+
+router.get('/resend-otp/:userId/',[
+
+    query('sendFor')
+        .notEmpty()
+        .withMessage("sendFor must be provided.")
+
+],validateRequest,async (req:Request,res:Response)=>{
+   const  {userId} = req.params;
+   const  {sendFor} = req.query
+    if (sendFor!=='signup'&& sendFor!=='login'){
+        throw new  BadRequestError(['sendFor query is wrong']);
+    }
+   if (!mongoose.isValidObjectId( userId)){
+        throw new  BadRequestError(['invalid input']);
+    }
+   const user = await User.findById(userId);
+   if (!user){
+       throw new  BadRequestError(['invalid input']);
+   }
+   let eventId ;
+
+   const otp = otpGenerator()
+
+
+    user.set({otpNumber:otp, otpExpiryDate:Date.now()+ 5 * 60 * 1000})
+    user.save()
+   if (sendFor==='signup'){
+     const   pubEvent :UserCreatedEvent= {
+           subject:Subjects.userCreated,
+           data:{
+               email:user.email,
+               name:user.name,
+               otp,
+               userId:user.id
+           }
+       }
+       const  event = Event.build({
+           subject: Subjects.userCreated,
+           sent: false,
+           data:pubEvent["data"]
+       })
+       event.save()
+       eventId= event.id;
+
+
+       sendSuccess(res)
+
+
+       await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
+       const savedEvent = await Event.findById(eventId);
+       if (savedEvent){
+           savedEvent.set({sent:true});
+           await savedEvent.save();
+       }
+       return;
+
+   }
+   if (sendFor==='login'){
+
+      const  pubEvent:UserLoggingInEvent = {
+           subject:Subjects.userLoggingIn,
+           data:{
+               email:user.email,
+               name:user.name,
+               otp,
+               userId:user.id
+           }
+       }
+       const  event = Event.build({
+           subject: Subjects.userLoggingIn,
+           sent: false,
+           data:pubEvent["data"]
+       })
+       event.save()
+       eventId= event.id;
+
+
+       sendSuccess(res)
+
+       await new UserLoggingInPublisher(natsWrapper.client).publish(pubEvent['data'])
+       const savedEvent = await Event.findById(eventId);
+       if (savedEvent){
+           savedEvent.set({sent:true});
+           await savedEvent.save();
+       }
+       return;
+   }
+
+     throw new BadRequestError();
+
+})
+
+
+export {router as otpResendRoute}

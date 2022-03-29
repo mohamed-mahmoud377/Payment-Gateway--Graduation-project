@@ -61,7 +61,6 @@ router.post('/signup', [
          user.set(
              {otpNumber:otp,
              otpExpiryDate:Date.now()+ 2 * 60 * 1000})
-         user.twoWayAuth=true;
 
 
     await user.save();

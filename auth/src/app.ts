@@ -12,6 +12,7 @@ import {loginRoute} from "./routes/login";
 import {forgotPassword} from "./routes/forgotPassword";
 import {resetPassword} from "./routes/resetPassword";
 import {refreshAccessRoute} from "./routes/refreshAccess";
+import {otpResendRoute} from "./routes/otpResend";
 
 const  cors = require('cors')
 const app= express();
@@ -30,7 +31,7 @@ app.use(cookieSession({
 
 
 app.use("/api/users",currentUser)
-
+app.use('/api/users',otpResendRoute)
 app.use("/api/users",resetPassword)
 app.use("/api/users",refreshAccessRoute)
 app.use("/api/users",forgotPassword)
