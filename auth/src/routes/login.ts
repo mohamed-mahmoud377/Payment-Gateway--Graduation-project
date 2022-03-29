@@ -8,6 +8,7 @@ import {jwtGenerator} from "../utils/jwtGenerator";
 import {sendSuccess} from "../utils/sendSuccess";
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {userAgentParser} from "../utils/userAgentParser";
+import {twoWayAuth} from "../middlewares/twoWayAuth";
 
 const router = express.Router();
 
@@ -25,12 +26,13 @@ router.post('/login',[
         .notEmpty()
         .withMessage('Invalid credentials.')
 
-],validateRequest,async (req:Request ,res:Response)=>{
+],validateRequest,twoWayAuth,async (req:Request ,res:Response)=>{
     const {email,password,rememberMe} = req.body;
     const existingUser = await User.findOne({email});
     if (!existingUser) {
         throw new NotAuthorizedError(["Invalid credentials"]);
     }
+
     const passwordMatch = await PasswordManger.compare(existingUser.password,password);
     if (!passwordMatch){
         throw new NotAuthorizedError(["Invalid Credentials"]);
@@ -41,7 +43,8 @@ router.post('/login',[
     const payload = {
         id:existingUser.id,
         role:existingUser.role,
-        email:existingUser.email
+        email:existingUser.email,
+        isEmailVerified:existingUser.isEmailVerified
     }
 
     const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);

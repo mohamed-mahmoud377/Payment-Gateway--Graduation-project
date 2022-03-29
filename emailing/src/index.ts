@@ -2,6 +2,7 @@
 import {natsWrapper} from "./nats/nats-wrapper";
 import {MerchantCreatedListener} from "./events/listeners/merchantCreatedListener";
 import {MerchantForgotPasswordListener} from "./events/listeners/merchantForgotPasswordListener";
+import {UserLoggingInListener} from "./events/listeners/userLoggingInListener";
 
 
 const startUp = async ()=>{
@@ -25,6 +26,8 @@ const startUp = async ()=>{
 
         new MerchantCreatedListener(natsWrapper.client).listen();
         new MerchantForgotPasswordListener(natsWrapper.client).listen();
+        new UserLoggingInListener(natsWrapper.client).listen();
+
         // why are we doing this ?
         // because when the program close NATS still try to reach it but we closed ! like on purpose
         // so in the closing process we tell NATS that we want to close the connection immediately

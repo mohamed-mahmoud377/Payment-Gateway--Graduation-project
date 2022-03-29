@@ -1,4 +1,5 @@
 export enum Subjects{
     userCreated= 'user:created',
-    userForgotPassword="userForgotPassword"
+    userForgotPassword="user:ForgotPassword",
+    userLoggingIn ='user:loggingIn'
 }

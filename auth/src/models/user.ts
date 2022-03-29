@@ -17,11 +17,12 @@ interface UserDoc extends mongoose.Document{
     name:string;
     password:string;
     isEmailVerified :boolean;
-    isActive:true;
+    isActive:boolean;
     createdAt:Date;
     updatedAt:Date;
-    otpNumber?:Number;
+    otpNumber?:number;
     otpExpiryDate?:Date;
+    twoWayAuth:boolean
     role:string;
     loginSession:[LoginSessionAttrs];
     lastLogin:Date;
@@ -76,7 +77,11 @@ const UserScheme = new mongoose.Schema({
         Date,
     },
     passwordResetExpires:Date,
-    passwordRestToken:String
+    passwordRestToken:String,
+    twoWayAuth:{
+        type:Boolean,
+        default:false
+    }
 
 
 

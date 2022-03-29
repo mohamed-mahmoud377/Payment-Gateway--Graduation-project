@@ -49,8 +49,6 @@ router.post('/signup', [
     if (pevUser)
         throw new BadRequestError(['Email is already in use '],ErrorCodes.invalidEmail)
 
-
-
     //check if password valid
     if (password.length<10)
         throw new BadRequestError(['Password must be more than 10 letters'],ErrorCodes.badRequest)
@@ -63,8 +61,11 @@ router.post('/signup', [
          user.set(
              {otpNumber:otp,
              otpExpiryDate:Date.now()+ 2 * 60 * 1000})
+         user.twoWayAuth=true;
 
-           await user.save();
+
+    await user.save();
+
         pubEvent = {
             subject:Subjects.userCreated,
             data:{
@@ -81,6 +82,7 @@ router.post('/signup', [
         })
         event.save()
         eventId= event.id;
+
 
         sendSuccess(res,201,{
             userId: user.id

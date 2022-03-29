@@ -1,5 +1,6 @@
 import express from "express";
 import 'express-async-errors'
+// import PinoHttp from "express-pino-logger";
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
@@ -11,6 +12,7 @@ import {loginRoute} from "./routes/login";
 import {forgotPassword} from "./routes/forgotPassword";
 import {resetPassword} from "./routes/resetPassword";
 import {refreshAccessRoute} from "./routes/refreshAccess";
+
 const  cors = require('cors')
 const app= express();
 
@@ -23,6 +25,10 @@ app.use(cookieSession({
     secure: false// note that even in production you will have to disable it
 }))
 
+// app.use(PinoHttp)
+
+
+
 app.use("/api/users",currentUser)
 
 app.use("/api/users",resetPassword)
@@ -32,7 +38,6 @@ app.use("/api/users",loginRoute)
 app.use("/api/users",checkPasswordRoute);
 app.use("/api/users",signupRoute);
 app.use("/api/users",otpRegister);
-
 
 app.use(errorHandler)
 

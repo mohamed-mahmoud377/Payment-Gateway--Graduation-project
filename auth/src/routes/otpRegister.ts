@@ -1,5 +1,4 @@
 import express, {Request, Response} from "express";
-import parser from 'ua-parser-js'
 import {body} from "express-validator";
 import mongoose from "mongoose";
 import {BadRequestError} from "../errors/badRequestError";
@@ -21,8 +20,9 @@ router.post('/otp-registration',[
         .withMessage("userId must be provided.")
 
 ],async (req:Request,res:Response)=>{
+    let access,refresh:string;
     //get the data from the body
-    const {otp,userId}= req.body;
+    const {otp,userId,rememberMe}= req.body;
     // checking first if the user id is valid before going to database
     if (!mongoose.isValidObjectId( userId)){
         throw new  BadRequestError(['OTP password is wrong']);
@@ -41,16 +41,25 @@ router.post('/otp-registration',[
     const payload = {
         id:user.id,
         role:user.role,
-        email:user.email
+        email:user.email,
+        isEmailVerified:true
+    }
+    if (rememberMe===undefined){
+        const {accessToken,refreshToken} = jwtGenerator(payload,false);
+        access = accessToken;
+        refresh = refreshToken
+    }else{
+        const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);
+        access = accessToken;
+        refresh = refreshToken
     }
 
-    const {accessToken,refreshToken} = jwtGenerator(payload,false);
     //create a login session for the user
     let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
     if (device)
         os= os +" - "+device
     user.loginSession.push({
-            token:refreshToken,
+            token:refresh!,
             ip:req.ip,
             browser:browser,
             device:os,
@@ -62,10 +71,10 @@ router.post('/otp-registration',[
     user.isEmailVerified= true;
     user.save();
     // send the access token as a cookie too
-    req.session= {jwt:accessToken};
+    req.session= {jwt:access};
     sendSuccess(res,200,{
-        accessToken,
-        refreshToken,
+        accessToken:access,
+        refreshToken:refresh,
     })
 
 })

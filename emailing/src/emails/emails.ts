@@ -45,6 +45,14 @@ export  class Email{
     async send(templateName:string,subject:string,otp?:string){  // templateName which is a put we send a nice formatted email
         //1 Render HTML based on a pug template
         let html;
+        if (templateName==='otp-login'){
+            html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
+                firstName: this.name,
+                url: this.url,
+                subject,
+                otp
+            })
+        }
         if (templateName==='otp-signup'){
              html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
                 firstName: this.name,
@@ -78,6 +86,9 @@ export  class Email{
     }
     async sendOtpSignup(opt:number){
         await this.send('otp-signup' , `Email verification code`,String(opt))
+    }
+    async sendOtpLogin(opt:number){
+        await this.send('otp-login' , `Your OTP password`,String(opt))
     }
     async sendWelcome(){
         await this.send('welcome' , 'Welcome to the natours Family')
