@@ -17,7 +17,7 @@ interface UserDoc extends mongoose.Document{
     name:string;
     password:string;
     isEmailVerified :boolean;
-    isActive:boolean;
+    isActive?:boolean;
     createdAt:Date;
     updatedAt:Date;
     otpNumber?:number;
@@ -29,15 +29,12 @@ interface UserDoc extends mongoose.Document{
     passwordRestToken?:string;
     passwordResetExpires?:Date;
     createAndAssignPasswordResetToken():string;
-
-
-
 }
 
 interface UserModel extends mongoose.Model<UserDoc>{
      build(attrs:UserAttrs):UserDoc;
+     showProfile(id:string):UserDoc;
 }
-
 
 const UserScheme = new mongoose.Schema({
     email:{
@@ -87,8 +84,6 @@ const UserScheme = new mongoose.Schema({
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 
-
-
 UserScheme.methods.createAndAssignPasswordResetToken = function () {
     const restToken = crypto.randomBytes(32).toString("hex"); // generate rest token
     //hash it and save it to the database
@@ -99,6 +94,23 @@ UserScheme.methods.createAndAssignPasswordResetToken = function () {
     return restToken; // sending the not hashed or encrypted one but the saving the encrypted to the database
 }
 
+
+UserScheme.statics.showProfile=async function (id:string){
+     const user = await this.findById(id).select({
+        email:1,
+        name:1,
+        loginSession:1,
+        twoWayAuth:1,
+        isEmailVerified:1,
+        createdAt:1,
+         _id:0,
+         isActive:1,
+
+    })
+
+    return user;
+
+}
 
 
 UserScheme.pre("save", async function (next) {

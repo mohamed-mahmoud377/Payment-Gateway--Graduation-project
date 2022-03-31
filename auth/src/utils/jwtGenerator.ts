@@ -12,8 +12,8 @@ export const jwtGenerator=(payload:any,rememberMe:boolean=false)=>{
         accessOptions = {expiresIn:Number(process.env.JWT_ACCESS_EXPIRES_IN)}
 
     }else{
-        accessOptions = {expiresIn:30}
-        refreshOptions = {expiresIn:1*60}
+        accessOptions = {expiresIn:30 *60}
+        refreshOptions = {expiresIn:'1h'}
     }
 
     const accessToken = jwt.sign(payload,process.env.JWT_KEY!,accessOptions)
