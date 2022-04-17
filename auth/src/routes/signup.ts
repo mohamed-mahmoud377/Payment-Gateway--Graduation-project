@@ -2,17 +2,17 @@ import express, {Request, Response} from "express";
 import {User} from '../models/user';
 import {body} from "express-validator";
 import validator from "validator";
-import {BadRequestError} from "../errors/badRequestError";
-import {ErrorCodes} from "../errors/types/errorCodes";
-import {validateRequest} from "../middlewares/validateRequest";
+import {BadRequestError} from "@hashcash/common";
+import {ErrorCodes} from  "@hashcash/common";
+import {validateRequest} from  "@hashcash/common";
 import {Event} from "../models/events";
-import {Subjects} from "../events/Subjects";
-import mongoose from "mongoose";
+import {Subjects} from  "@hashcash/common";
+
 import {otpGenerator} from "../utils/otpGenerator";
 import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
-import {UserCreatedEvent} from "../events/eventTypes/userCreatedEvent";
-import {sendSuccess} from "../utils/sendSuccess";
+import {UserCreatedEvent} from  "@hashcash/common";
+import {sendSuccess} from  "@hashcash/common";
 
 
 const router = express.Router();

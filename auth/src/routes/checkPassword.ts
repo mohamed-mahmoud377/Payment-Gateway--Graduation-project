@@ -1,7 +1,7 @@
 import express, {Request,Response} from "express";
 import {body, CustomValidator} from "express-validator";
-import {validateRequest} from "../middlewares/validateRequest";
-import {sendSuccess} from "../utils/sendSuccess";
+import {validateRequest} from  "@hashcash/common";
+import {sendSuccess} from "@hashcash/common";
 
 
 const router =express.Router();

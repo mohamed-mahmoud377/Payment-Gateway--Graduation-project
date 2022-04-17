@@ -1,21 +1,16 @@
 import express, {NextFunction, Request, Response} from "express";
 
-import mongoose from "mongoose";
-import {BadRequestError} from "../errors/badRequestError";
-import {sendSuccess} from "../utils/sendSuccess";
+
+import {sendSuccess} from "@hashcash/common";
 import {User} from "../models/user";
-import {jwtGenerator} from "../utils/jwtGenerator";
-import {userAgentParser} from "../utils/userAgentParser";
-import {NotAuthorizedError} from "../errors/notAuthorizedError";
+import {NotAuthorizedError} from "@hashcash/common";
 import {PasswordManger} from "../utils/passwordManger";
-import {Subjects} from "../events/Subjects";
+import {Subjects} from  "@hashcash/common";
 import {Event} from "../models/events";
-import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
-import {UserCreatedEvent} from "../events/eventTypes/userCreatedEvent";
 import {otpGenerator} from "../utils/otpGenerator";
 import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
-import {UserLoggingInEvent} from "../events/eventTypes/userLoggingInEvent";
+import {UserLoggingInEvent} from  "@hashcash/common";
 
 
 

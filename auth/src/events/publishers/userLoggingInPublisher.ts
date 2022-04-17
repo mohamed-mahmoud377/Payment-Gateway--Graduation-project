@@ -1,7 +1,7 @@
-import {Publisher} from "./publisher";
-import {Subjects} from "../Subjects";
-import {UserCreatedEvent} from "../eventTypes/userCreatedEvent";
-import {UserLoggingInEvent} from "../eventTypes/userLoggingInEvent";
+import {Publisher} from  "@hashcash/common";
+import {Subjects} from  "@hashcash/common";
+
+import {UserLoggingInEvent} from  "@hashcash/common";
 
 export class UserLoggingInPublisher extends Publisher<UserLoggingInEvent>{
     subject: UserLoggingInEvent["subject"]=Subjects.userLoggingIn;

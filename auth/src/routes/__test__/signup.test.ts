@@ -1,7 +1,7 @@
 import request from "supertest";
 import {app} from "../../app";
 import {User} from "../../models/user";
-import {ErrorCodes} from "../../errors/types/errorCodes";
+import {ErrorCodes} from  "@hashcash/common";
 import {natsWrapper} from "../../nats/nats-wrapper";
 
 

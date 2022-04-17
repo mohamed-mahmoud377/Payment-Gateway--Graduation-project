@@ -1,15 +1,11 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from "../middlewares/validateRequest";
+import {validateRequest} from  "@hashcash/common";
 import {User} from "../models/user";
-import {sendSuccess} from "../utils/sendSuccess";
-import {BadRequestError} from "../errors/badRequestError";
-import {Subjects} from "../events/Subjects";
-import {Event} from "../models/events";
-import {natsWrapper} from "../nats/nats-wrapper";
-import {UserForgotPasswordPublisher} from "../events/publishers/userForgotPasswordPublisher";
+import {sendSuccess} from  "@hashcash/common";
+
 import crypto from "crypto";
-import {NotAuthorizedError} from "../errors/notAuthorizedError";
+import {NotAuthorizedError} from  "@hashcash/common";
 
 const router = express.Router();
 

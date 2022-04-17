@@ -1,8 +1,8 @@
 import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import mongoose from "mongoose";
-import {BadRequestError} from "../errors/badRequestError";
-import {sendSuccess} from "../utils/sendSuccess";
+import {BadRequestError} from  "@hashcash/common";
+import {sendSuccess} from  "@hashcash/common";
 import {User} from "../models/user";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {userAgentParser} from "../utils/userAgentParser";

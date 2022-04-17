@@ -4,7 +4,7 @@ import 'express-async-errors'
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
-import {errorHandler} from "./middlewares/errorHandler";
+import {errorHandler} from  "@hashcash/common";
 import {signupRoute} from "./routes/signup";
 import {otpRegisterRoute} from "./routes/otpRegister";
 import {currentUserRoute} from "./routes/currentUser";

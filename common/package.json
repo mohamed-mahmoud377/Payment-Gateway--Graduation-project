@@ -10,7 +10,8 @@
   "scripts": {
     "clean": "del build/*",
     "build": " npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && tsc && npm publish"
+    "pub": "git add . && git commit -m \"Updates\" && npm version patch && tsc && npm publish",
+
   },
   "keywords": [],
   "author": "",

@@ -2,12 +2,12 @@ import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import {User, UserDoc} from "../models/user";
 import jwt from "jsonwebtoken";
-import {NotAuthorizedError} from "../errors/notAuthorizedError";
+import {NotAuthorizedError} from  "@hashcash/common";
 import {jwtGenerator} from "../utils/jwtGenerator";
-import {sendSuccess} from "../utils/sendSuccess";
-import {validateRequest} from "../middlewares/validateRequest";
+import {sendSuccess} from  "@hashcash/common";
+import {validateRequest} from  "@hashcash/common";
 import crypto from "crypto";
-import {BadRequestError} from "../errors/badRequestError";
+import {BadRequestError} from "@hashcash/common";
 
 interface UserPayload {
     sessionId:string,

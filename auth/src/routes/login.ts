@@ -1,12 +1,12 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from "../middlewares/validateRequest";
+import {validateRequest} from  "@hashcash/common";
 import {User} from "../models/user";
 
 import {PasswordManger} from "../utils/passwordManger";
 import {jwtGenerator} from "../utils/jwtGenerator";
-import {sendSuccess} from "../utils/sendSuccess";
-import {NotAuthorizedError} from "../errors/notAuthorizedError";
+import {sendSuccess} from  "@hashcash/common";
+import {NotAuthorizedError} from  "@hashcash/common";
 import {userAgentParser} from "../utils/userAgentParser";
 import {twoWayAuth} from "../middlewares/twoWayAuth";
 import mongoose from "mongoose";

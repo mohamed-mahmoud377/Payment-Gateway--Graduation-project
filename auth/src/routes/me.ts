@@ -1,8 +1,8 @@
 import express, {Request, Response} from "express";
-import {requireAuth} from "../middlewares/requireAuth";
+import {requireAuth} from  "@hashcash/common";
 import {User} from "../models/user";
-import {sendSuccess} from "../utils/sendSuccess";
-import {NotFoundError} from "../errors/notFoundError";
+import {sendSuccess} from  "@hashcash/common";
+import {NotFoundError} from  "@hashcash/common";
 
 
 

@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import {requireAuth} from "../middlewares/requireAuth";
+import {requireAuth} from  "@hashcash/common";
 
 
 

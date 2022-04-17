@@ -1,10 +1,10 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from "../middlewares/validateRequest";
+import {validateRequest} from  "@hashcash/common";
 import {User} from "../models/user";
-import {sendSuccess} from "../utils/sendSuccess";
-import {BadRequestError} from "../errors/badRequestError";
-import {Subjects} from "../events/Subjects";
+import {sendSuccess} from  "@hashcash/common";
+import {BadRequestError} from  "@hashcash/common";
+import {Subjects} from  "@hashcash/common";
 import {Event} from "../models/events";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserForgotPasswordPublisher} from "../events/publishers/userForgotPasswordPublisher";

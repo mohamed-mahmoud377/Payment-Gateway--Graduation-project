@@ -1,4 +1,4 @@
-import {Subjects} from "../events/Subjects";
+import {Subjects} from  "@hashcash/common";
 import mongoose from "mongoose";
 const dataScheme = new mongoose.Schema({},{strict:false})
 interface EventAttr{
