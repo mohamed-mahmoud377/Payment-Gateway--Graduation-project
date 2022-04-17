@@ -10,6 +10,8 @@ import crypto from "crypto";
 import {BadRequestError} from "../errors/badRequestError";
 
 interface UserPayload {
+    sessionId:string,
+    isEmailVerified:boolean,
     id: string;
     role: string;
     email: string
@@ -42,6 +44,7 @@ router.post('/refresh-access', [
     }
 
     hashedRefreshToken = crypto.createHash('sha256').update(refreshToken).digest('hex');
+    console.log(hashedRefreshToken);
     try{
         payload =await  jwt.verify(refreshToken,process.env.JWT_KEY!) as UserPayload;
 
@@ -53,23 +56,28 @@ router.post('/refresh-access', [
             })
             await user!.save()
         }
+        console.log(e)
 
         throw new NotAuthorizedError()
     }
 
         user!.loginSession.forEach(val => {
             if (val.token===hashedRefreshToken){
+                console.log('fuck')
                 if (val.expired===false){
+                    console.log('a7a')
                     isValid=true
                 }
             }
         })
 
+
         if (!isValid){
+            console.log('here')
             throw new NotAuthorizedError();
         }
 
-        const {accessToken} =jwtGenerator({email:payload.email,id:payload.id,role:payload.role},false);
+        const {accessToken} =jwtGenerator({sessionId:payload.sessionId,id:payload.id,role:payload.role,isEmailVerified:payload.isEmailVerified,email:payload.email},false);
 
         req.session = {jwt:accessToken}
         return sendSuccess(res,200,{});

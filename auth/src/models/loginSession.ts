@@ -13,6 +13,7 @@ interface LoginSessionDoc extends mongoose.Document{
 
 }
 interface LoginSessionAttrs {
+    _id?:mongoose.Types.ObjectId;
     token:string;
     device?:string;
     browser?:string
@@ -49,8 +50,10 @@ const loginSessionSchema = new mongoose.Schema({
 
 },{timestamps:{createdAt:'createdAt',updatedAt:false}})
 
-loginSessionSchema.pre('save',function (){
+loginSessionSchema.pre('save',function (next:mongoose.CallbackWithoutResultAndOptionalError){
+    if (!this.isModified('token')) return next();
     this.token= crypto.createHash('sha256').update(this.token).digest('hex');
+    next();
 })
 const LoginSession = mongoose.model<LoginSessionDoc>('LoginSession',loginSessionSchema);
 

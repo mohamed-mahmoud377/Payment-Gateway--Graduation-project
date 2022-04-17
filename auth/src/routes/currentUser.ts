@@ -13,4 +13,4 @@ router.get('/current-user',requireAuth,(req:Request ,res:Response)=>{
 
 })
 
-export { router as currentUser}
+export { router as currentUserRoute}

@@ -3,9 +3,15 @@ import jwt from 'jsonwebtoken';
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {ErrorCodes} from "../errors/types/errorCodes";
 
-
+// sessionId:sessionId.toHexString(),
+//     id:user.id,
+//     role:user.role,
+//     email:user.email,
+//     isEmailVerified:true
 
 interface UserPayload{
+    sessionId:string,
+    isEmailVerified:boolean,
     id:string;
     role:string;
     email:string

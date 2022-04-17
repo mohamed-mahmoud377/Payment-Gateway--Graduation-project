@@ -48,4 +48,4 @@ router.patch('/reset-password/:token',[
 
 })
 
-export { router as resetPassword}
+export { router as resetPasswordRoute}

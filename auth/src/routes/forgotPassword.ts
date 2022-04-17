@@ -59,4 +59,4 @@ router.post('/forgot-password',[
 
 })
 
-export { router as forgotPassword}
+export { router as forgotPasswordRoute}

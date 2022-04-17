@@ -37,13 +37,19 @@ router.post('/otp-registration',[
         throw new  BadRequestError(['OTP is wrong try again or resend it']);
 
     }
+    //creating the sessionId manually so I can send it with the payload
+    const sessionId = new mongoose.Types.ObjectId();
+
     // now that the otp is right lets create the access and refresh token
     const payload = {
+        sessionId:sessionId.toHexString(),
         id:user.id,
         role:user.role,
         email:user.email,
         isEmailVerified:true
     }
+    console.log(payload);
+
     if (rememberMe===undefined){
         const {accessToken,refreshToken} = jwtGenerator(payload,false);
         access = accessToken;
@@ -54,22 +60,29 @@ router.post('/otp-registration',[
         refresh = refreshToken
     }
 
+
+
+
     //create a login session for the user
     let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
     if (device)
         os= os +" - "+device
     user.loginSession.push({
+            _id:sessionId,
             token:refresh!,
             ip:req.ip,
             browser:browser,
             device:os,
 
     })
+
     // setting the email to be verified
     user.otpNumber=undefined;
     user.otpExpiryDate=undefined;
     user.isEmailVerified= true;
-    user.save();
+    await user.save();
+
+    console.log(user.loginSession)
     // send the access token as a cookie too
     req.session= {jwt:access};
     sendSuccess(res,200,{
@@ -80,4 +93,4 @@ router.post('/otp-registration',[
 })
 
 
-export {router as otpRegister}
+export {router as otpRegisterRoute}

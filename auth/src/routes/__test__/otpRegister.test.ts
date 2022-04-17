@@ -97,3 +97,4 @@ it('should sets login session of the user ',async function () {
     const sameUser = await User.findById(user.id);
     expect(sameUser!.loginSession[0]).toBeDefined();
 });
+

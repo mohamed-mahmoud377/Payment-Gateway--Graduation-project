@@ -9,6 +9,7 @@ import {sendSuccess} from "../utils/sendSuccess";
 import {NotAuthorizedError} from "../errors/notAuthorizedError";
 import {userAgentParser} from "../utils/userAgentParser";
 import {twoWayAuth} from "../middlewares/twoWayAuth";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -45,7 +46,11 @@ router.post('/login',[
     existingUser.set({
         lastLogin:Date.now()
     })
+
+    //creating the sessionId manually so I can send it with the payload
+    const sessionId = new mongoose.Types.ObjectId();
     const payload = {
+        sessionId:sessionId.toHexString(),
         id:existingUser.id,
         role:existingUser.role,
         email:existingUser.email,
@@ -57,6 +62,7 @@ router.post('/login',[
     if (device)
         os= os +" - "+device
     existingUser.loginSession.push({
+        _id:sessionId,
         token:refreshToken,
         ip:req.ip,
         browser:browser,
