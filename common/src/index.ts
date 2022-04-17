@@ -19,3 +19,4 @@ export * from './middlewares/validateRequest'
 export * from './middlewares/restrictTo'
 
 export * from './utils/sendSuccess'
+export * from './utils/security'

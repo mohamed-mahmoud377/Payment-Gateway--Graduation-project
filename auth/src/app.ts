@@ -40,9 +40,6 @@ app.use(cookieSession({
     secure: false// note that even in production you will have to disable it
 }))
 
-// app.use(PinoHttp)
-
-
 
 app.use("/api/users",currentUserRoute)
 app.use("/api/users",signoutRoute)
