@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tokenization-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tokenization
+  template:
+    metadata:
+      labels:
+        app: tokenization
+    spec:
+      containers:
+        - name: tokenization
+          image: jerry377/tokenization
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://authentication-mongo-srv:27017/tokenization'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: hashCash
+            - name: JWT_ACCESS_EXPIRES_IN
+              value: "300"
+            - name: JWT_REFERSH_EXPIRES_IN
+              value: "3h"
+            - name: JWT_REFERSH_EXPIRES_IN_REMEMBER
+              value: "7d"
+---
+## note that we did not say the type of the service because the default is clusterIp and that's what we want
+## to remember that the clusterIP service is only responsible for communication between pods inside the cluster it does not
+## allow you to communicate with the outer world you could use load balancer for this or node port
+apiVersion: v1
+kind: Service
+metadata:
+  name: tokenization-srv
+spec:
+  selector:
+    app: tokenization
+  ports:
+    - name: tokenization
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+

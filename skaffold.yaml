@@ -25,3 +25,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: jerry377/tokenization
+      context: tokenization
+      docker:
+        dockerfile: docker/Dockerfile-dev
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
