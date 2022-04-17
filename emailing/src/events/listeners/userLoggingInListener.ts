@@ -1,9 +1,9 @@
-import {Listener} from "./listener";
+import {Listener} from  "@hashcash/common";
 import {Message} from "node-nats-streaming";
 
-import {Subjects} from "../Subjects";
+import {Subjects} from "@hashcash/common";
 import {Email} from "../../emails/emails";
-import {UserLoggingInEvent} from "../eventTypes/userLoggingInEvent";
+import {UserLoggingInEvent} from  "@hashcash/common";
 export class UserLoggingInListener extends Listener<UserLoggingInEvent>{
     queueGroupName: string= "emailing-srv";
 
