@@ -4,7 +4,7 @@ import 'express-async-errors'
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {checkPasswordRoute} from "./routes/checkPassword";
-import {errorHandler} from  "@hashcash/common";
+import {errorHandler, secure} from "@hashcash/common";
 import {signupRoute} from "./routes/signup";
 import {otpRegisterRoute} from "./routes/otpRegister";
 import {currentUserRoute} from "./routes/currentUser";
@@ -17,13 +17,24 @@ import {meRoute} from "./routes/me";
 import {clearSessionsRoute} from "./routes/clearSessions";
 import {signoutRoute} from "./routes/signout";
 
-const  cors = require('cors')
+
 const app= express();
 
 app.set('trust proxy',true);
 
 app.use(bodyParser.json());
-app.use(cors())
+
+
+secure(app,{
+    bodyLimiting: true,
+    compression: true,
+    cors: true,
+    helmet: true,
+    noSQLInjectionSanitization: true,
+    rateLimiter: true,
+    xss: true
+})
+
 app.use(cookieSession({
     signed:false,
     secure: false// note that even in production you will have to disable it

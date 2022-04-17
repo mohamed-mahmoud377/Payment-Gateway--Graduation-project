@@ -63,9 +63,7 @@ router.post('/refresh-access', [
 
         user!.loginSession.forEach(val => {
             if (val.token===hashedRefreshToken){
-                console.log('fuck')
                 if (val.expired===false){
-                    console.log('a7a')
                     isValid=true
                 }
             }
