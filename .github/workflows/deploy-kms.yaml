@@ -1,0 +1,25 @@
+name: deploy-kms
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'kms/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd kms && docker build -t jerry377/kms -f docker/Dockerfile-prod .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push jerry377/kms
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save hashcash
+      - run: kubectl rollout restart deployment kms-depl
