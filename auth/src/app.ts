@@ -36,8 +36,10 @@ secure(app,{
 })
 
 app.use(cookieSession({
+    sameSite:"lax",
     signed:false,
-    secure: false// note that even in production you will have to disable it
+    httpOnly:true, // to prevent xss and means it can never be accessed by JS
+    secure: false// note that even in production you will have to disable it because we are not https in prod yet
 }))
 
 

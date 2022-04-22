@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kms-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kms-mongo
+  template:
+    metadata:
+      labels:
+        app: kms-mongo
+    spec:
+      containers:
+        - name: kms-mongo
+          image: mongo # the name of the image from docker hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kms-mongo-srv
+spec:
+  selector:
+    app: kms-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
