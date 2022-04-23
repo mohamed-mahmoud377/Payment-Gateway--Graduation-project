@@ -34,7 +34,7 @@ router.post('/login',[
         throw new NotAuthorizedError(["Invalid credentials"]);
     }
 
-    if(!existingUser.isActive){
+    if(!existingUser.isActive && existingUser.role!=='admin'){
         throw new NotAuthorizedError(["Invalid credentials"]);
 
     }
