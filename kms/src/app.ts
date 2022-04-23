@@ -9,6 +9,7 @@ import {otpRegisterRoute} from "./routes/otpRegister";
 import {generateMasterRoute} from "./routes/generateMaster";
 import {getKeyRoute} from "./routes/getKey";
 import {getKeysRoute} from "./routes/getKeys";
+import {deleteKeyRoute} from "./routes/deleteKey";
 
 
 const app= express();
@@ -35,6 +36,7 @@ app.use(cookieSession({
 
 
 app.use('/api/kms',loginRoute)
+app.use('/api/kms',deleteKeyRoute)
 app.use('/api/kms',getKeyRoute)
 app.use('/api/kms',getKeysRoute)
 app.use('/api/kms',otpRegisterRoute)
