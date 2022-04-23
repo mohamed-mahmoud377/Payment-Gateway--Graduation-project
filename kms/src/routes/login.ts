@@ -19,7 +19,7 @@ router.post('/login',[ body('email')
         .withMessage('Invalid credentials.'),
 ],async (req:Request,res:Response)=>{
       const add  = new Admin({
-          email:"admin@admin.hashcash",
+          email:"mohamedmahmoud3776@gmail.com",
           password:'admin'
       })
    await add.save();
