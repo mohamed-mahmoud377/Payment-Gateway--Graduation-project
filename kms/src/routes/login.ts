@@ -1,7 +1,14 @@
 import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import {Admin} from "../models/admin";
-import {NotAuthorizedError, PasswordManger, sendSuccess, Subjects, UserLoggingInEvent} from "@hashcash/common";
+import {
+    NotAuthorizedError,
+    PasswordManger,
+    sendSuccess,
+    Subjects,
+    UserLoggingInEvent,
+    validateRequest
+} from "@hashcash/common";
 import {otpGenerator} from "../utils/otpGenerator";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
@@ -17,7 +24,7 @@ router.post('/login',[ body('email')
     body('password')
         .notEmpty()
         .withMessage('Invalid credentials.'),
-],async (req:Request,res:Response)=>{
+],validateRequest,async (req:Request,res:Response)=>{
    //    const add  = new Admin({
    //        email:"mohamedmahmoud3776@gmail.com",
    //        password:'admin'
@@ -80,5 +87,5 @@ router.post('/login',[ body('email')
 })
 
 export {
-    router as logRoute
+    router as loginRoute
 }

@@ -24,7 +24,7 @@ spec:
             - name: MONGO_URI
               value: 'mongodb://kms-mongo-srv:27017/kms'
             - name: JWT_ADMIN_EXPIRES_IN
-              value: "900"
+              value: "1h"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

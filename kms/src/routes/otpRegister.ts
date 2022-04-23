@@ -1,7 +1,7 @@
 import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import mongoose from "mongoose";
-import {BadRequestError} from  "@hashcash/common";
+import {BadRequestError, validateRequest} from "@hashcash/common";
 import {sendSuccess} from  "@hashcash/common";
 import {Admin} from "../models/admin";
 import {jwtGenerator} from "../utils/jwtGenerator";
@@ -19,7 +19,7 @@ router.post('/otp-registration',[
         .notEmpty()
         .withMessage("userId must be provided.")
 
-],async (req:Request,res:Response)=>{
+],validateRequest,async (req:Request,res:Response)=>{
 
     //get the data from the body
     const {otp,userId}= req.body;

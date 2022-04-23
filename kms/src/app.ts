@@ -4,8 +4,11 @@ import 'express-async-errors'
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {errorHandler, secure} from "@hashcash/common";
-import {logRoute} from "./routes/login";
+import {loginRoute} from "./routes/login";
 import {otpRegisterRoute} from "./routes/otpRegister";
+import {generateMasterRoute} from "./routes/generateMaster";
+import {getKeyRoute} from "./routes/getKey";
+import {getKeysRoute} from "./routes/getKeys";
 
 
 const app= express();
@@ -31,8 +34,11 @@ app.use(cookieSession({
 }))
 
 
-app.use('/api/kms',logRoute)
+app.use('/api/kms',loginRoute)
+app.use('/api/kms',getKeyRoute)
+app.use('/api/kms',getKeysRoute)
 app.use('/api/kms',otpRegisterRoute)
+app.use('/api/kms',generateMasterRoute)
 app.use(errorHandler)
 
  export {app}
