@@ -53,7 +53,7 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
     event.save()
     eventId= event.id;
 
-    sendSuccess(res,201,{
+    sendSuccess(res,200,{
         userId: existingUser.id
     })
 

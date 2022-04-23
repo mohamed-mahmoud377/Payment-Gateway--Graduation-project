@@ -4,6 +4,8 @@ import 'express-async-errors'
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {errorHandler, secure} from "@hashcash/common";
+import {logRoute} from "./routes/login";
+import {otpRegisterRoute} from "./routes/otpRegister";
 
 
 const app= express();
@@ -29,7 +31,8 @@ app.use(cookieSession({
 }))
 
 
-
+app.use('/api/kms',logRoute)
+app.use('/api/kms',otpRegisterRoute)
 app.use(errorHandler)
 
  export {app}

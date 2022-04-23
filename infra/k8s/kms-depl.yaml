@@ -16,8 +16,15 @@ spec:
         - name: kms
           image: jerry377/kms
           env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret-admin
+                  key: JWT_KEY
             - name: MONGO_URI
-              value: 'mongodb://authentication-mongo-srv:27017/kms'
+              value: 'mongodb://kms-mongo-srv:27017/kms'
+            - name: JWT_ADMIN_EXPIRES_IN
+              value: "900"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

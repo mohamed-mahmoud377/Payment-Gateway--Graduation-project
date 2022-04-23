@@ -20,3 +20,4 @@ export * from './middlewares/restrictTo'
 
 export * from './utils/sendSuccess'
 export * from './utils/security'
+export * from './utils/passwordManger'

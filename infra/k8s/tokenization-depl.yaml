@@ -17,7 +17,7 @@ spec:
           image: jerry377/tokenization
           env:
             - name: MONGO_URI
-              value: 'mongodb://authentication-mongo-srv:27017/tokenization'
+              value: 'mongodb://tokenization-mongo-srv:27017/tokenization'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

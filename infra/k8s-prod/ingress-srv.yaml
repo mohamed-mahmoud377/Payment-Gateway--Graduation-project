@@ -17,7 +17,13 @@ spec:
                 name: authentication-srv
                 port:
                   number: 3000
-
+          - path: /api/kms/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kms-srv
+                port:
+                  number: 3000
 ---
 apiVersion: v1
 kind: Service
