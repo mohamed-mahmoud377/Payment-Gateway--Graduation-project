@@ -16,6 +16,8 @@ import {otpResendRoute} from "./routes/otpResend";
 import {meRoute} from "./routes/me";
 import {clearSessionsRoute} from "./routes/clearSessions";
 import {signoutRoute} from "./routes/signout";
+import {getUsersRoute} from "./routes/getUsers";
+import {getUserRoute} from "./routes/getUser";
 
 
 const app= express();
@@ -42,7 +44,9 @@ app.use(cookieSession({
     secure: false// note that even in production you will have to disable it because we are not https in prod yet
 }))
 
+app.use('/api/users',getUsersRoute)
 
+app.use('/api/users',getUserRoute)
 app.use("/api/users",currentUserRoute)
 app.use("/api/users",signoutRoute)
 app.use("/api/users",clearSessionsRoute)

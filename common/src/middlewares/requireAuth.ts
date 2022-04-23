@@ -30,7 +30,9 @@ export const requireAuth = (req:Request,res:Response,next:NextFunction)=>{
         throw new NotAuthorizedError()
     }
     try{
+
         req.currentUser = jwt.verify(req.session.jwt, process.env.JWT_KEY!) as UserPayload;
+      
     }catch (e) {
         if (e instanceof  jwt.TokenExpiredError){
             throw new NotAuthorizedError(['Invalid access token.'],ErrorCodes.expiredToken);
