@@ -1,12 +1,12 @@
-<h1 align="center"> Hashcash - Payment Gateway  
-  <img width="30" hight="30" src="/Images/Logo/icon 10.svg" />
- </h1>
+<p align="center">
+  <img width="150" hight="150" src="/Images/Logo/Asset logo 1 2.svg" />
+<p/>
+
+<!-- <h1 align="center"> Hashcash</h1> -->
  
  
 <!-- 
-<p align="center">
-  <img width="50" hight="50" src="/Images/Logo/icon 10.svg" />
-<p/>
+
  -->
 
 
