@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="150" hight="150" src="/Images/Logo/Asset logo 1 2.svg" />
+  <img width="130" hight="130" src="/Images/Logo/Asset logo 2 2.svg" />
 <p/>
 
-<!-- <h1 align="center"> Hashcash</h1> -->
+<h1 align="center"> Hashcash</h1>
  
  
 <!-- 
