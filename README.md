@@ -5,9 +5,6 @@
 <h1 align="center"> Hashcash</h1>
  
  
-<!-- 
-
- -->
 
 
 
