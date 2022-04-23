@@ -42,5 +42,4 @@ app.use('/api/kms',getKeysRoute)
 app.use('/api/kms',otpRegisterRoute)
 app.use('/api/kms',generateMasterRoute)
 app.use(errorHandler)
-
  export {app}
