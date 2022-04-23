@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 
-router.get('/get-keys',requireAuth,
+router.get('/keys',requireAuth,
     async (req:Request,res:Response)=>{
 
         const key = await Key.find({});

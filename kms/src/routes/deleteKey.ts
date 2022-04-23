@@ -9,22 +9,20 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 
-router.get('/keys/:id',requireAuth,
+router.delete('/keys/:id',requireAuth,
     async (req:Request,res:Response)=>{
         const {id} = req.params;
         // checking first if the user id is valid before going to database
         if (!mongoose.isValidObjectId( id)){
             throw new  NotFoundError(['key not found']);
         }
-        const key = await Key.findById(id);
+        const key = await Key.findByIdAndDelete(id);
         if (!key){
             throw new NotFoundError(['key not found'])
         }
 
 
-        sendSuccess(res,200,{
-            key
-        })
+        sendSuccess(res,204)
     })
 
-export {router as getKeyRoute};
+export {router as deleteKeyRoute};
