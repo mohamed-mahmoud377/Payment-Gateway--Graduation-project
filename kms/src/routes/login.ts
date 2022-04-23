@@ -18,11 +18,11 @@ router.post('/login',[ body('email')
         .notEmpty()
         .withMessage('Invalid credentials.'),
 ],async (req:Request,res:Response)=>{
-      const add  = new Admin({
-          email:"mohamedmahmoud3776@gmail.com",
-          password:'admin'
-      })
-   await add.save();
+   //    const add  = new Admin({
+   //        email:"mohamedmahmoud3776@gmail.com",
+   //        password:'admin'
+   //    })
+   // await add.save();
         let eventId:string;
         // getting email and password out for body
         const {email,password}= req.body;
