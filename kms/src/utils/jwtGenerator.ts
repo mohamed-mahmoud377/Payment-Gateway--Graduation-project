@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 
-export const jwtGenerator=(payload:any)=>{
+export const jwtGenerator=(payload:any,expiresIn:string)=>{
 
     const tokenOption = {
-        expiresIn: process.env.JWT_ADMIN_EXPIRES_IN
+        expiresIn: expiresIn
     }
 
     const accessToken = jwt.sign(payload,process.env.JWT_KEY!,tokenOption)

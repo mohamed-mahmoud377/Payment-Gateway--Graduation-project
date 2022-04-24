@@ -10,6 +10,7 @@ import {generateMasterRoute} from "./routes/generateMaster";
 import {getKeyRoute} from "./routes/getKey";
 import {getKeysRoute} from "./routes/getKeys";
 import {deleteKeyRoute} from "./routes/deleteKey";
+import {getServiceAccessToken} from "./routes/getServiceAccessToken";
 
 
 const app= express();
@@ -41,5 +42,6 @@ app.use('/api/kms',getKeyRoute)
 app.use('/api/kms',getKeysRoute)
 app.use('/api/kms',otpRegisterRoute)
 app.use('/api/kms',generateMasterRoute)
+app.use('/api/kms',getServiceAccessToken);
 app.use(errorHandler)
  export {app}

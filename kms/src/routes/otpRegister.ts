@@ -45,7 +45,7 @@ router.post('/otp-registration',[
     console.log(payload);
 
 
-    const {accessToken} = jwtGenerator(payload);
+    const {accessToken} = jwtGenerator(payload,process.env.JWT_ADMIN_EXPIRES_IN!);
 
 
 
