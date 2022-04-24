@@ -12,7 +12,7 @@ import {
 import {otpGenerator} from "../utils/otpGenerator";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
-import {Event} from "../models/events";
+import {EventModel} from "@hashcash/common";
 
 const router = express.Router();
 
@@ -64,7 +64,7 @@ router.post('/login',[ body('email')
         }
     }
     //build the event and saving it to database
-    const  event = Event.build({
+    const  event = EventModel.build({
         subject: Subjects.userLoggingIn,
         sent: false,
         data:pubEvent["data"]
@@ -77,7 +77,7 @@ router.post('/login',[ body('email')
     // sending the event via nats
     await new UserLoggingInPublisher(natsWrapper.client).publish(pubEvent['data'])
     // here we are sure that the event has been published
-    const savedEvent = await Event.findById(eventId);
+    const savedEvent = await EventModel.findById(eventId);
     // let's mark it as sent
     if (savedEvent){
         savedEvent.set({sent:true});
