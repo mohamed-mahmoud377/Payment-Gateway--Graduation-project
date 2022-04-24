@@ -12,7 +12,7 @@ const router = express.Router();
 // of course only admins are allowed to generate this token
 router.get('/service-access-token',[query('service_name')
         .notEmpty()
-        .withMessage('service name must be provided')
+        .withMessage('service_name must be provided as query param')
     ],validateRequest,
     requireAuth,(req:Request,res:Response)=>{
     const { service_name} = req.query;
