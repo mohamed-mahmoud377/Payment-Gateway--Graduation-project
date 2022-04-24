@@ -28,6 +28,6 @@ const tokensScheme = new mongoose.Schema({
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}});
 
-const Token = mongoose.model<tokensDoc>('Key',tokensScheme);
+const Token = mongoose.model<tokensDoc>('Tokens',tokensScheme);
 
 export {Token}

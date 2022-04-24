@@ -13,9 +13,7 @@ router.get('/tokens',
 
     const tokens =await  Token.find({});
 
-    sendSuccess(res,200,tokens)
-
-
+    sendSuccess(res,200,tokens);
 
     })
 
