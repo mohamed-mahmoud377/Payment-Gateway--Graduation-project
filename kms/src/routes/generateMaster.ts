@@ -23,7 +23,9 @@ router.post('/generate-master',[
             .withMessage('IVBytes must be a number')
     ],validateRequest,requireAuth,
     async (req:Request,res:Response)=>{
-    const key = generateKey(32,16);
+
+        const {keyBytes,IVBytes} = req.body;
+    const key = generateKey(keyBytes,IVBytes);
     let  keyDb =  new Key({
         key
     })
