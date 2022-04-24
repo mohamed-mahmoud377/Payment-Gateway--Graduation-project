@@ -24,10 +24,7 @@ const tokensScheme = new mongoose.Schema({
         type:String,
         default:'access'
     },
-    expiresAt:{
-        type:Date,
-        default:new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-    },
+
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}});
 

@@ -11,6 +11,7 @@ import {getKeyRoute} from "./routes/getKey";
 import {getKeysRoute} from "./routes/getKeys";
 import {deleteKeyRoute} from "./routes/deleteKey";
 import {getServiceAccessToken} from "./routes/getServiceAccessToken";
+import {getTokens} from "./routes/getTokens";
 
 
 const app= express();
@@ -37,6 +38,7 @@ app.use(cookieSession({
 
 
 app.use('/api/kms',loginRoute)
+app.use('/api/kms',getTokens)
 app.use('/api/kms',deleteKeyRoute)
 app.use('/api/kms',getKeyRoute)
 app.use('/api/kms',getKeysRoute)
