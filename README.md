@@ -18,5 +18,5 @@
 - [Jest](https://jestjs.io/) for testing 
 ### You can view all the services endpoints  docs from [postman workspace](https://www.postman.com/planetary-water-344318/workspace/payment-gateway-gp)
 #### To test these endpoints you should run it in the production env 
-**Note that** we are deploying all of our services on a [digitalOcean](https://www.digitalocean.com/) cluster that may not be available at any point of time in the future <br>
+**Note that** we are deploying all of our services on a [digitalOcean](https://www.digitalocean.com/) cluster that may not be available at any point of time in the future
 which means that may need to run the code locally to test it.
