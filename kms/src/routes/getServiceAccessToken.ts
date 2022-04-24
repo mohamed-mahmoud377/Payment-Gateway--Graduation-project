@@ -19,7 +19,7 @@ router.get('/service-access-token',[query('service_name')
     const { service_name} = req.query;
 
     // creating a service token valid for 100 day
-    const accessToken = jwtGenerator({service_name},'100d');
+    const {accessToken} = jwtGenerator({service_name},'100d');
 
     const token =  new Token({
         token:accessToken,
