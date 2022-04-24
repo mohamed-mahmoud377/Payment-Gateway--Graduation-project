@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const jwtGenerator=(payload:any,expiresIn:string)=>{
+export const jwtGenerator=(payload:any,expiresIn:string |number)=>{
 
     const tokenOption = {
         expiresIn: expiresIn
