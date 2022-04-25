@@ -5,7 +5,7 @@ import validator from "validator";
 import {BadRequestError} from "@hashcash/common";
 import {ErrorCodes} from  "@hashcash/common";
 import {validateRequest} from  "@hashcash/common";
-import {Event} from "../models/events";
+import {Event} from "@hashcash/common";
 import {Subjects} from  "@hashcash/common";
 
 import {otpGenerator} from "../utils/otpGenerator";
