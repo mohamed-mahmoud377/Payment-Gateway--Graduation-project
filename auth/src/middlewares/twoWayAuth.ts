@@ -6,7 +6,7 @@ import {User} from "../models/user";
 import {NotAuthorizedError} from "@hashcash/common";
 import {PasswordManger} from "../utils/passwordManger";
 import {Subjects} from  "@hashcash/common";
-import {Event} from "../models/events";
+import {EventModel} from "@hashcash/common";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {otpGenerator} from "../utils/otpGenerator";
 import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
@@ -45,7 +45,7 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
             userId:existingUser!.id
         }
     }
-    const  event = Event.build({
+    const  event = EventModel.build({
         subject: Subjects.userLoggingIn,
         sent: false,
         data:pubEvent["data"]
@@ -58,7 +58,7 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
     })
 
     await new UserLoggingInPublisher(natsWrapper.client).publish(pubEvent['data'])
-    const savedEvent = await Event.findById(eventId);
+    const savedEvent = await EventModel.findById(eventId);
     if (savedEvent){
         savedEvent.set({sent:true});
         await savedEvent.save();
