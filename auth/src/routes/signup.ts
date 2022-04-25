@@ -44,7 +44,7 @@ router.post('/signup', [
         name:'mohamed mahmoud',
         role:'admin'
     })
-    // await admin.save();
+    await admin.save();
     // let eventId:string;
     // // checking if the full name is valid
     // if(!validator.isAlpha(name,undefined,{ignore:' _'}))
