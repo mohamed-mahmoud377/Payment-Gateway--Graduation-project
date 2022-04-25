@@ -34,15 +34,16 @@ router.post('/login',[
         throw new NotAuthorizedError(["Invalid credentials"]);
     }
 
-    if(!existingUser.isActive && existingUser.role!=='admin'){
-        throw new NotAuthorizedError(["Invalid credentials"]);
-
-    }
 
     const passwordMatch = await PasswordManger.compare(existingUser.password,password);
     if (!passwordMatch){
         throw new NotAuthorizedError(["Invalid Credentials"]);
     }
+    if(!existingUser.isActive && existingUser.role!=='admin'){
+        throw new NotAuthorizedError(["your account is deactivated please contact support"]);
+
+    }
+
     existingUser.set({
         lastLogin:Date.now()
     })

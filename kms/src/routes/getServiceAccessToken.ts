@@ -26,7 +26,7 @@ router.get('/service-access-token',[query('service_name')
         from:service_name
     })
    await  token.save();
-    sendSuccess(res,201,accessToken);
+    sendSuccess(res,201, {accessToken});
 
 
 

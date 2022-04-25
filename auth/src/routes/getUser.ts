@@ -1,8 +1,6 @@
 import express, {Request, Response} from "express";
-import {BadRequestError, requireAuth, restrictTo} from "@hashcash/common";
+import {NotFoundError, requireAuth, restrictTo, sendSuccess} from "@hashcash/common";
 import {User} from "../models/user";
-import {NotFoundError} from  "@hashcash/common";
-import {sendSuccess} from "@hashcash/common";
 import {Roles} from "../types/roles";
 import mongoose from "mongoose";
 
