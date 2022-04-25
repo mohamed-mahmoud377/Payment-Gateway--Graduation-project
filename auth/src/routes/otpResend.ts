@@ -6,7 +6,7 @@ import {User} from "../models/user";
 import mongoose from "mongoose";
 import {BadRequestError} from "@hashcash/common";
 import {Subjects} from "@hashcash/common";
-import {Event} from "../models/events";
+import {EventModel} from "@hashcash/common";
 import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserCreatedEvent} from  "@hashcash/common";
@@ -53,7 +53,7 @@ router.get('/resend-otp/:userId/',[
                userId:user.id
            }
        }
-       const  event = Event.build({
+       const  event =EventModel.build({
            subject: Subjects.userCreated,
            sent: false,
            data:pubEvent["data"]
@@ -66,7 +66,7 @@ router.get('/resend-otp/:userId/',[
 
 
        await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
-       const savedEvent = await Event.findById(eventId);
+       const savedEvent = await EventModel.findById(eventId);
        if (savedEvent){
            savedEvent.set({sent:true});
            await savedEvent.save();
@@ -85,7 +85,7 @@ router.get('/resend-otp/:userId/',[
                userId:user.id
            }
        }
-       const  event = Event.build({
+       const  event =EventModel.build({
            subject: Subjects.userLoggingIn,
            sent: false,
            data:pubEvent["data"]
@@ -97,7 +97,7 @@ router.get('/resend-otp/:userId/',[
        sendSuccess(res)
 
        await new UserLoggingInPublisher(natsWrapper.client).publish(pubEvent['data'])
-       const savedEvent = await Event.findById(eventId);
+       const savedEvent = await EventModel.findById(eventId);
        if (savedEvent){
            savedEvent.set({sent:true});
            await savedEvent.save();

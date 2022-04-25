@@ -5,7 +5,7 @@ import {User} from "../models/user";
 import {sendSuccess} from  "@hashcash/common";
 import {BadRequestError} from  "@hashcash/common";
 import {Subjects} from  "@hashcash/common";
-import {Event} from "../models/events";
+import {EventModel} from "@hashcash/common";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserForgotPasswordPublisher} from "../events/publishers/userForgotPasswordPublisher";
 
@@ -41,7 +41,7 @@ router.post('/forgot-password',[
         }
     }
     // save the event to database
-    const  event = Event.build({
+    const  event = EventModel.build({
         subject: Subjects.userForgotPassword,
         sent: false,
         data:pubEvent["data"]
@@ -51,7 +51,7 @@ router.post('/forgot-password',[
     sendSuccess(res,200,{})
 
     await new UserForgotPasswordPublisher(natsWrapper.client).publish(pubEvent['data'])
-    const savedEvent = await Event.findById(event.id);
+    const savedEvent = await EventModel.findById(event.id);
     if (savedEvent){
         savedEvent.set({sent:true});
         await savedEvent.save();

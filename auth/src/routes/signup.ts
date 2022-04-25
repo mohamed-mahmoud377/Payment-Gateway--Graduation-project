@@ -5,7 +5,7 @@ import validator from "validator";
 import {BadRequestError} from "@hashcash/common";
 import {ErrorCodes} from  "@hashcash/common";
 import {validateRequest} from  "@hashcash/common";
-import {Event} from "@hashcash/common";
+import {EventModel} from "@hashcash/common";
 import {Subjects} from  "@hashcash/common";
 
 import {otpGenerator} from "../utils/otpGenerator";
@@ -84,7 +84,7 @@ router.post('/signup', [
     //             userId:user!.id
     //         }
     //     }
-    //     const  event = Event.build({
+    //     const  event = EventModel.build({
     //         subject: Subjects.userCreated,
     //         sent: false,
     //         data:pubEvent["data"]
@@ -98,7 +98,7 @@ router.post('/signup', [
     //     })
     //
     //     await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
-    //      const savedEvent = await Event.findById(eventId);
+    //      const savedEvent = await EventModel.findById(eventId);
     //     if (savedEvent){
     //          savedEvent.set({sent:true});
     //         await savedEvent.save();
