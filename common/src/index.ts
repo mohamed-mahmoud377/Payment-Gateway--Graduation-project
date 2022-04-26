@@ -21,3 +21,7 @@ export * from './middlewares/restrictTo'
 export * from './utils/sendSuccess'
 export * from './utils/security'
 export * from './utils/passwordManger'
+export * from './utils/APIFilter'
+
+
+export * from './models/events'

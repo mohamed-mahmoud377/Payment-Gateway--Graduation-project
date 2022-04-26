@@ -2,6 +2,8 @@ import express, {Request,Response} from "express";
 import {body, CustomValidator} from "express-validator";
 import {validateRequest} from  "@hashcash/common";
 import {sendSuccess} from "@hashcash/common";
+import {generateFackUsers} from "../utils/generateFackUsers";
+import {User} from "../models/user";
 
 
 const router =express.Router();
@@ -16,12 +18,9 @@ router.post('/check-password',[
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
-    console.log(req.ip)
-    console.log(req.ips)
-    console.log(req.hostname)
-    console.log(req.path)
-    console.log(req.protocol)
-    console.log(req.headers)
+    console.log('generating users')
+    await generateFackUsers(User);
+
  sendSuccess(res,200,{});
 })
 

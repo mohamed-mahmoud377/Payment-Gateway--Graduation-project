@@ -34,7 +34,7 @@ router.post('/signup', [
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
-    
+
     const {email, name ,password} = req.body
     // const admin= new User({
     //     email,password,isEmailVerified:true,

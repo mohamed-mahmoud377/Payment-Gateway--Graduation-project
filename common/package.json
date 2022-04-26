@@ -1,6 +1,6 @@
 {
   "name": "@hashcash/common",
-  "version": "1.0.2",
+  "version": "1.0.10",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -37,6 +37,7 @@
     "express-validator": "^6.14.0",
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.8",
     "node-nats-streaming": "^0.3.2",
     "xss-clean": "^0.1.1"
   }
