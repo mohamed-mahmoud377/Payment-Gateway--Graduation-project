@@ -14,10 +14,11 @@ router.get('/',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Resp
 
     const filters  = new APIFilter(User.find({}),req.query).filter().sort().limitFields().paginate();
 
-    const users = await filters.query;
+    const merchants = await filters.query;
+    const merchantsNumber= await User.countDocuments();
 
 
-    sendSuccess(res,200, {users},users.length);
+    sendSuccess(res,200, {merchantsNumber,merchants},merchants.length);
 
 })
 

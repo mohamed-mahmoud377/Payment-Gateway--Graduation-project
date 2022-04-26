@@ -12,6 +12,7 @@ import {getKeysRoute} from "./routes/getKeys";
 import {deleteKeyRoute} from "./routes/deleteKey";
 import {getServiceAccessToken} from "./routes/getServiceAccessToken";
 import {getTokens} from "./routes/getTokens";
+import {dataEncryptKey} from "./routes/dataEncryptKey";
 
 
 const app= express();
@@ -36,7 +37,7 @@ app.use(cookieSession({
     secure: false// note that even in production you will have to disable it
 }))
 
-
+app.use('/api/kms',dataEncryptKey)
 app.use('/api/kms',loginRoute)
 app.use('/api/kms',getTokens)
 app.use('/api/kms',deleteKeyRoute)

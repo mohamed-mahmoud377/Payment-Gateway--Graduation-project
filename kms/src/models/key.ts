@@ -7,7 +7,8 @@ interface KeyDoc extends mongoose.Document {
     encryptNumber:number,
     decryptNumber:number,
     createdAt:Date,
-    updatedAt:Date
+    updatedAt:Date,
+    hashedId:string
 
 }
 
@@ -33,6 +34,11 @@ const keyScheme = new mongoose.Schema({
         type:Number,
         default:0
     },
+    hashedId:{
+        type:String,
+        default:'none'
+
+    }
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}});
 
 const Key = mongoose.model<KeyDoc>('Key',keyScheme);
