@@ -5,7 +5,8 @@ export const encrypt = (data:any, key:string) => {
          const [actualKey,iv] = key.split('.');
     console.log(actualKey , iv);
          const ivBuffer = Buffer.from(iv,"hex")
-    const cipher = createCipheriv('aes256',actualKey,ivBuffer);
+        const keyBuffer = Buffer.from(iv,"hex")
+    const cipher = createCipheriv('aes256',keyBuffer,ivBuffer);
 
     return cipher.update(JSON.stringify(data),'utf8','hex')+cipher.final('hex')
 }
