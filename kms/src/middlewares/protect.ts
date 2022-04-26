@@ -17,7 +17,7 @@ declare global{ // this let me modify the Request interface and add more prop to
 }
 
 
-export const protect = (req:Request,res:Response,next:NextFunction) => {
+export const protect =async (req:Request,res:Response,next:NextFunction) => {
     //get the access token from the header
     if (!req.headers.authorization){
         throw  new NotAuthorizedError();
@@ -33,7 +33,7 @@ export const protect = (req:Request,res:Response,next:NextFunction) => {
         const hashedToken =crypto.createHash('sha256').update(token).digest('hex');
 
         // trying to find the token in the database
-        const existingToken = Token.findOne({token:hashedToken});
+        const existingToken = await Token.findOne({token:hashedToken});
         if (!existingToken){
             throw new Error('invalid access token');
         }
