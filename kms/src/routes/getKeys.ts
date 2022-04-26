@@ -18,7 +18,7 @@ router.get('/keys',requireAuth,
 
         sendSuccess(res,200,{
             key
-        })
+        },key.length)
     })
 
 export {router as getKeysRoute};
