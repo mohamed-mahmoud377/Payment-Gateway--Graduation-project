@@ -26,6 +26,8 @@ try {
 
     //encrypt the dataEncryption key with the master-key
     const encryptedDataEncryptKey = encrypt(dataEncryptKey,masterKey.key);
+    masterKey.encryptNumber = masterKey.encryptNumber +1;
+    await  masterKey.save();
 
     // send them both plaint text and encrypted dataEncryption key\
 

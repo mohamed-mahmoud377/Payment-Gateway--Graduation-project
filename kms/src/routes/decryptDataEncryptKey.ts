@@ -32,6 +32,9 @@ router.post('/decrypt-key',[
         //encrypt the dataEncryption key with the master-key
         const decryptedDataEncryptKey = decrypt(encryptedKey,masterKey.key);
 
+        masterKey.decryptNumber = masterKey.decryptNumber +1;
+        await  masterKey.save();
+
         // send them both plaint text and encrypted dataEncryption key\
 
         sendSuccess(res,201,{dataEncryptKey:decryptedDataEncryptKey});
