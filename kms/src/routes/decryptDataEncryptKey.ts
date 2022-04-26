@@ -6,12 +6,19 @@ import * as assert from "assert";
 import {Key} from "../models/key";
 import {NotFoundError, sendSuccess} from "@hashcash/common";
 import {encrypt} from "../utils/encrypt";
+import {body} from "express-validator";
+import {decrypt} from "../utils/decrypt";
 
 
 const router = express.Router();
 
 
-router.get('/data-encrypt-key',protect,(async (req:Request, res:Response) =>{
+router.post('/decrypt-key',[
+    body("encryptedKey")
+        .notEmpty()
+        .withMessage('encrypted data encryption key must be provided to decrypt')
+],protect,(async (req:Request, res:Response) =>{
+    const {encryptedKey} = req.body;
 
     //get the master key for this token
     const hashedMasterId =  crypto.createHash('sha256').update(req.payload?.masterId!).digest('hex');
@@ -21,18 +28,15 @@ router.get('/data-encrypt-key',protect,(async (req:Request, res:Response) =>{
         throw new NotFoundError(['There not masterKey associated with you token'])
     }
 
-    //generate a data-encryption-key for this user
-    const dataEncryptKey = generateKey(32,16);
-
     //encrypt the dataEncryption key with the master-key
-    const encryptedDataEncryptKey = encrypt(dataEncryptKey,masterKey.key);
+    const decryptedDataEncryptKey = decrypt(encryptedKey,masterKey.key);
 
     // send them both plaint text and encrypted dataEncryption key\
 
-    sendSuccess(res,201,{dataEncryptKey,encryptedDataEncryptKey});
+    sendSuccess(res,201,{dataEncryptKey:decryptedDataEncryptKey});
 
 } ))
 
 export {
-    router as dataEncryptKey
+    router as decryptDataEncryptKey
 }
