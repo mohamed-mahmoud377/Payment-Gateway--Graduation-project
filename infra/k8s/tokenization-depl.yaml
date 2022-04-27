@@ -23,6 +23,11 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: JWT_KEY_SERVICE_ACCESS
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret-service-access
+                  key: JWT_KEY_SERVICE_ACCESS
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

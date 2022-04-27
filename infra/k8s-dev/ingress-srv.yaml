@@ -27,3 +27,10 @@ spec:
                 name: kms-srv
                 port:
                   number: 3000
+          - path: /api/tokenization/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: tokenization-srv
+                port:
+                  number: 3000

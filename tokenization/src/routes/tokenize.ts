@@ -18,3 +18,7 @@ router.post('/tokenize',(req:Request,res:Response)=>{
 
 })
 
+export {
+    router as tokenizeRouter
+}
+
