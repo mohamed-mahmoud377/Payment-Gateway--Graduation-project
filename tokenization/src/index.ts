@@ -4,7 +4,7 @@ import {natsWrapper} from "./nats/nats-wrapper";
 
 
 const start = async ()=>{
-    console.log('Starting up ...')
+    console.log('Starting up tokenization ...')
 
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
