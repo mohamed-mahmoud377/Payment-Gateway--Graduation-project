@@ -1,4 +1,6 @@
 import express, {Request, Response} from "express";
+import {protect} from "../middlewares/protect";
+import {sendSuccess} from "@hashcash/common";
 
 
 
@@ -11,11 +13,11 @@ import express, {Request, Response} from "express";
 
 const router = express.Router();
 
-router.post('/tokenize',(req:Request,res:Response)=>{
+router.post('/tokenize',protect,(req:Request,res:Response)=>{
 
 
 
-
+sendSuccess(res,200);
 })
 
 export {
