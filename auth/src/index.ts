@@ -4,7 +4,7 @@ import {natsWrapper} from "./nats/nats-wrapper";
 
 
 const start = async ()=>{
-    console.log('Starting up ...')
+    console.log('Starting up auth...')
     if (!process.env.JWT_KEY_REFRESH){
         throw new Error('JWT_KEY_REFRESH must be defined')
     }
