@@ -10,6 +10,7 @@ import {NotAuthorizedError} from  "@hashcash/common";
 import {userAgentParser} from "../utils/userAgentParser";
 import {twoWayAuth} from "../middlewares/twoWayAuth";
 import mongoose from "mongoose";
+import {Roles} from "../types/roles";
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ router.post('/login',[
     if (!passwordMatch){
         throw new NotAuthorizedError(["Invalid Credentials"]);
     }
-    if(!existingUser.isActive && existingUser.role!=='admin'){
+    if(!existingUser.isActive ){
         throw new NotAuthorizedError(["your account is deactivated please contact support"]);
 
     }
@@ -73,6 +74,13 @@ router.post('/login',[
     existingUser.save();
 
     req.session= {jwt:accessToken};
+
+    // if admin only make him logged in for 15 min do not give him the refresh token
+    if (existingUser.role===Roles.ADMIN){
+        return sendSuccess(res,200,{
+            accessToken,
+        })
+    }
     sendSuccess(res,200,{
         accessToken,
         refreshToken,

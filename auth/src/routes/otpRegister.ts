@@ -6,6 +6,7 @@ import {sendSuccess} from  "@hashcash/common";
 import {User} from "../models/user";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {userAgentParser} from "../utils/userAgentParser";
+import {Roles} from "../types/roles";
 const router  = express.Router();
 
 
@@ -85,6 +86,12 @@ router.post('/otp-registration',[
     console.log(user.loginSession)
     // send the access token as a cookie too
     req.session= {jwt:access};
+// if admin only make him logged in for 15 min do not give him the refresh token
+    if (user.role===Roles.ADMIN){
+        return sendSuccess(res,200,{
+            accessToken:access,
+        })
+    }
     sendSuccess(res,200,{
         accessToken:access,
         refreshToken:refresh,

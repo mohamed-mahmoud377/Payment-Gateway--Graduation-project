@@ -17,6 +17,6 @@ export const jwtGenerator=(payload:any,rememberMe:boolean=false)=>{
     }
 
     const accessToken = jwt.sign(payload,process.env.JWT_KEY!,accessOptions)
-    const refreshToken = jwt.sign(payload,process.env.JWT_KEY!,refreshOptions)
+    const refreshToken = jwt.sign(payload,process.env.JWT_KEY_REFRESH!,refreshOptions)
     return {accessToken,refreshToken }
 }

@@ -46,7 +46,7 @@ router.post('/refresh-access', [
     hashedRefreshToken = crypto.createHash('sha256').update(refreshToken).digest('hex');
     console.log(hashedRefreshToken);
     try{
-        payload =await  jwt.verify(refreshToken,process.env.JWT_KEY!) as UserPayload;
+        payload =await  jwt.verify(refreshToken,process.env.JWT_KEY_REFRESH!) as UserPayload;
 
     }catch (e) {
         if (e instanceof  jwt.TokenExpiredError){
