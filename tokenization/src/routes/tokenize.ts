@@ -75,7 +75,7 @@ router.post('/tokenize',protect,[
     const response = await axios.get('http://kms-srv:3000/api/kms/data-encrypt-key',{
         timeout: 3000,
         headers:{
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InRva2VuaXphdGlvbiIsIm1hc3RlcklkIjoiODQ2ZWI2MTE3NDE3OWVmODZhNGFiMzE2ZWY1NzFhOTNlMzljNjljODE1NTdlNDNjNGIwMmEzNDM0YmExY2Q4ZSIsImlhdCI6MTY1MTExMjI5NiwiZXhwIjoxNjU5NzUyMjk2fQ.OoR9-rQDJw5MrA5B0UJMLAJG9OzWrrirGTFGeM1GdC0
+            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InRva2VuaXphdGlvbiIsIm1hc3RlcklkIjoiODQ2ZWI2MTE3NDE3OWVmODZhNGFiMzE2ZWY1NzFhOTNlMzljNjljODE1NTdlNDNjNGIwMmEzNDM0YmExY2Q4ZSIsImlhdCI6MTY1MTExMjI5NiwiZXhwIjoxNjU5NzUyMjk2fQ.OoR9-rQDJw5MrA5B0UJMLAJG9OzWrrirGTFGeM1GdC0`
         }
     });
     const dataEncryptKey = response.data.data.dataEncryptKey;
