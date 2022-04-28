@@ -27,6 +27,7 @@
     "@types/express-pino-logger": "^4.0.3",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/validator": "^13.7.1",
+    "axios": "^0.27.2",
     "cookie-session": "^2.0.0",
     "cross-env": "^7.0.3",
     "express": "^4.17.3",

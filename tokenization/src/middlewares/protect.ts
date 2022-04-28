@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import {NotAuthorizedError} from "@hashcash/common";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import {Token} from "../models/tokens";
+import {AccessToken} from "../models/accessToken";
 interface Payload{
     serviceName :string,
     masterId:string
@@ -33,7 +33,7 @@ export const protect =async (req:Request,res:Response,next:NextFunction) => {
         const hashedToken =crypto.createHash('sha256').update(token).digest('hex');
 
         // trying to find the token in the database
-        const existingToken = await Token.findOne({token:hashedToken});
+        const existingToken = await AccessToken.findOne({token:hashedToken});
         if (!existingToken){
             throw new Error('invalid access token');
         }

@@ -32,6 +32,8 @@ router.post('/generate-master',[
     })
      keyDb = await keyDb.save();
 
+
+    // this should be moved to keyDoc and be done there you
     // this first hash is going to be sent for the user because we will not send the real ID
     const hashedId  =crypto.createHash('sha256').update(keyDb.id).digest('hex');
     // but this is going to be saved in the database because this will our only way to know the user by hashing the hash

@@ -1,6 +1,7 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
+import {runInDevelopment} from "./helpers/runInDevelopment";
 
 
 const start = async ()=>{
@@ -40,11 +41,13 @@ const start = async ()=>{
         // setInterval(function(){
         //     //this code runs every second
         // }, 10000);
+        await runInDevelopment();
 
     }catch (e) {
 
         console.log(e)
     }
+
 
 
     app.listen(3000,()=>{

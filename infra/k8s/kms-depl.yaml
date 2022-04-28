@@ -24,7 +24,7 @@ spec:
             - name: JWT_KEY_SERVICE_ACCESS
               valueFrom:
                 secretKeyRef:
-                  name: jwt-secret-service-access
+                  name: jwt-secret-service-access-kms
                   key: JWT_KEY_SERVICE_ACCESS
             - name: MONGO_URI
               value: 'mongodb://kms-mongo-srv:27017/kms'

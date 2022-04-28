@@ -1,6 +1,7 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
+import {runInDevelopment} from "./helpers/runInDevelopment";
 
 
 const start = async ()=>{
@@ -39,6 +40,10 @@ const start = async ()=>{
 
         await mongoose.connect(process.env.MONGO_URI!);
         console.log("connected to database successfully")
+
+        await  runInDevelopment();
+
+
         // setInterval(function(){
         //     //this code runs every second
         // }, 10000);

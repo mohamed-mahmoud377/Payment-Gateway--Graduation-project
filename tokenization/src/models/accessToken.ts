@@ -28,6 +28,6 @@ const tokensScheme = new mongoose.Schema({
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}});
 
-const Token = mongoose.model<tokensDoc>('Tokens',tokensScheme);
+const AccessToken = mongoose.model<tokensDoc>('AccessToken',tokensScheme);
 
-export {Token}
+export {AccessToken}

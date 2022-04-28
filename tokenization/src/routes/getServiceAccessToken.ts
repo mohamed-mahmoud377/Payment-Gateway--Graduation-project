@@ -2,7 +2,7 @@ import express, { Request, Response} from "express";
 import {NotFoundError, requireAuth, restrictTo, sendSuccess, validateRequest} from "@hashcash/common";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {body, query} from "express-validator";
-import {Token} from "../models/tokens";
+import {AccessToken} from "../models/accessToken";
 import {Roles} from '@hashcash/common'
 
 import crypto from "crypto";
@@ -26,7 +26,7 @@ router.get('/service-token',[query('service_name')
 
     const hashedToken = crypto.createHash('sha256').update(accessToken).digest('hex');
 
-    const token =  new Token({
+    const token =  new AccessToken({
         token:hashedToken,
         from:service_name,
     })

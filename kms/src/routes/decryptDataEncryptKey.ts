@@ -13,11 +13,11 @@ import {decrypt} from "../utils/decrypt";
 const router = express.Router();
 
 
-router.post('/decrypt-key',[
+router.post('/decrypt-key',protect,[
     body("encryptedKey")
         .notEmpty()
         .withMessage('encrypted data encryption key must be provided to decrypt')
-],protect,(async (req:Request, res:Response) =>{
+],(async (req:Request, res:Response) =>{
     try{
         const {encryptedKey} = req.body;
 

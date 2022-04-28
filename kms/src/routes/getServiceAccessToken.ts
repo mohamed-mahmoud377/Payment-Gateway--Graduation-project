@@ -14,11 +14,11 @@ const router = express.Router();
 // to send this token via every request to know which service is sending me this request and to know if
 // this service is acutely authored or not
 // of course only admins are allowed to generate this token
-router.get('/service-access-token',[query('service_name')
+router.get('/service-access-token',
+    requireAuth,[query('service_name')
         .notEmpty()
         .withMessage('service_name must be provided as query param')
-    ],validateRequest,
-    requireAuth,async (req:Request,res:Response)=>{
+    ],validateRequest,async (req:Request,res:Response)=>{
     const { service_name} = req.query;
 
 
