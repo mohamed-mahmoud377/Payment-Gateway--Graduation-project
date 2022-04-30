@@ -22,7 +22,7 @@ export const protect =async (req:Request,res:Response,next:NextFunction) => {
     if (!req.headers.authorization){
         throw  new NotAuthorizedError();
     }
-
+    // console.log(req.headers.authorization)
     const token = req.headers.authorization;
 
     try{

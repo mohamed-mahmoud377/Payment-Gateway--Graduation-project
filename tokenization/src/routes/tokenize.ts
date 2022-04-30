@@ -72,12 +72,14 @@ router.post('/tokenize',protect,[
         })
     }
     // now that we know that this pan number is new lets as kms service for a key to encrypt the data with
+    // console.log(`${process.env.SERVICE_ACCESS_TOKEN}`)
     const response = await axios.get('http://kms-srv:3000/api/kms/data-encrypt-key',{
         timeout: 3000,
         headers:{
-            'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InRva2VuaXphdGlvbiIsIm1hc3RlcklkIjoiODQ2ZWI2MTE3NDE3OWVmODZhNGFiMzE2ZWY1NzFhOTNlMzljNjljODE1NTdlNDNjNGIwMmEzNDM0YmExY2Q4ZSIsImlhdCI6MTY1MTExMjI5NiwiZXhwIjoxNjU5NzUyMjk2fQ.OoR9-rQDJw5MrA5B0UJMLAJG9OzWrrirGTFGeM1GdC0`
+            'Authorization':process.env.SERVICE_ACCESS_TOKEN!
         }
     });
+
     const dataEncryptKey = response.data.data.dataEncryptKey;
     const encryptedDataEncryptKey = response.data.data.encryptedDataEncryptKey;
 

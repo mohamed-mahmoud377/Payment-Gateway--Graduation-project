@@ -13,6 +13,8 @@ import {otpGenerator} from "../utils/otpGenerator";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
 import {EventModel} from "@hashcash/common";
+import {jwtGenerator} from "../utils/jwtGenerator";
+import {userAgentParser} from "../utils/userAgentParser";
 
 const router = express.Router();
 
@@ -35,16 +37,49 @@ router.post('/login',[ body('email')
         const {email,password}= req.body;
         //checking if email actually there
         const existingAdmin = await Admin.findOne({email})
-        console.log('fuckyeah')
+
         if (!existingAdmin){
             throw new NotAuthorizedError(['Invalid credentials']);
         }
-    console.log('here')
         //seeing if password is matching
     const passwordMatch = await PasswordManger.compare(existingAdmin.password,password);
     if (!passwordMatch){
         throw new NotAuthorizedError(["Invalid Credentials"]);
     }
+
+    if (process.env.NODE_ENV==='development'){
+        // now that the otp is right lets create the access and refresh token
+        const payload = {
+            id:existingAdmin.id,
+            role:'admin',
+        }
+
+        const {accessToken} = jwtGenerator(payload,Number(process.env.JWT_ADMIN_EXPIRES_IN!)); //number because jwt lib if it was string it will be in milli sec
+
+
+        //create a login session for the user
+        let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
+        if (device)
+            os= os +" - "+device
+        existingAdmin.loginSession.push({
+            ip:req.ip,
+            browser:browser,
+            device:os,
+
+        })
+
+        await existingAdmin.save();
+
+
+        // send the access token as a cookie too
+        req.session= {jwt:accessToken};
+         return sendSuccess(res,200,{
+            accessToken,
+        })
+
+    }
+
+
     let pubEvent:UserLoggingInEvent ;
     const otp =otpGenerator()
     // setting the otp in the admin doc

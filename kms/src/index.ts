@@ -41,7 +41,11 @@ const start = async ()=>{
         // setInterval(function(){
         //     //this code runs every second
         // }, 10000);
-        await runInDevelopment();
+        await runInDevelopment({  // there default values is true but this just to know exactly what it is doing
+            generateMasterKey: true,
+            generateAdminUser:true,
+            generateAccessToken: true,
+        });
 
     }catch (e) {
 

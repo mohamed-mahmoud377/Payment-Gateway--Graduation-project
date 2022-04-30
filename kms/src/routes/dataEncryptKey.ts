@@ -34,7 +34,8 @@ try {
     sendSuccess(res,201,{dataEncryptKey,encryptedDataEncryptKey});
 
 }catch (e) {
-    throw new BadRequestError(['Unable to get the key'],500)
+    console.log(e);
+    throw new BadRequestError(['Unable to get the key'],500);
 }
 
 } ))
