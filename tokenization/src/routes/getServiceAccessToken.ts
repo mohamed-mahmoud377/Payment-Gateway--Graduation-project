@@ -1,6 +1,6 @@
 import express, { Request, Response} from "express";
 import {NotFoundError, requireAuth, restrictTo, sendSuccess, validateRequest} from "@hashcash/common";
-import {jwtGenerator} from "../utils/jwtGenerator";
+import {jwtGenerator} from "@hashcash/common";
 import {body, query} from "express-validator";
 import {AccessToken} from "../models/accessToken";
 import {Roles} from '@hashcash/common'
@@ -21,7 +21,7 @@ router.get('/service-token',[query('service_name')
     requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const { service_name} = req.query;
         // creating a service token valid for 100 day
-        const {accessToken} = jwtGenerator({serviceName:service_name},'100d');
+        const accessToken= jwtGenerator({serviceName:service_name},'100d',process.env.SERVICE_ACCESS_TOKEN!);
 
 
     const hashedToken = crypto.createHash('sha256').update(accessToken).digest('hex');

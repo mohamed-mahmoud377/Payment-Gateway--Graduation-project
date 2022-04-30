@@ -4,7 +4,7 @@ import {generateKey} from "../utils/generateKey";
 import crypto from "crypto";
 import * as assert from "assert";
 import {Key} from "../models/key";
-import {BadRequestError, CustomError, NotFoundError, sendSuccess} from "@hashcash/common";
+import {BadRequestError,  NotFoundError, sendSuccess} from "@hashcash/common";
 import {encrypt} from "../utils/encrypt";
 
 

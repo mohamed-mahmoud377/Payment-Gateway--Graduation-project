@@ -1,3 +1,3 @@
 export const otpGenerator= ()=>{
-   return Math.floor(Math.random() *133432)
+   return Math.floor(Math.random() *100000)
 }
