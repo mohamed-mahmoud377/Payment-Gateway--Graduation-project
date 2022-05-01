@@ -37,7 +37,7 @@ router.post('/decrypt-key',protect,[
 
         // send them both plaint text and encrypted dataEncryption key\
 
-        sendSuccess(res,201,{dataEncryptKey:decryptedDataEncryptKey});
+        sendSuccess(res,200,{dataEncryptKey:decryptedDataEncryptKey});
 
     }catch (e) {
         throw  new BadRequestError(['unable to decrypt your key'])
