@@ -6,6 +6,7 @@ import cookieSession from "cookie-session";
 import {errorHandler, secure} from "@hashcash/common";
 import {getServiceAccessToken} from "./routes/getServiceAccessToken";
 import {tokenizeRouter} from "./routes/tokenize";
+import {deTokenizeRoute} from "./routes/deTokenize";
 
 
 const app= express();
@@ -33,6 +34,7 @@ app.use(cookieSession({
 
 
 app.use('/api/tokenization',tokenizeRouter)
+app.use('/api/tokenization',deTokenizeRoute)
 app.use('/api/tokenization',getServiceAccessToken);
 
 app.use(errorHandler)
