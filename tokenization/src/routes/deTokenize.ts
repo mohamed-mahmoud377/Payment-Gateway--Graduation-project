@@ -4,7 +4,7 @@ import {sendSuccess} from "@hashcash/common";
 const router = express.Router();
 
 
-router.post('de-tokenize',((req:Request, res:Response) =>{
+router.post('/de-tokenize',((req:Request, res:Response) =>{
 
 
 sendSuccess(res)
