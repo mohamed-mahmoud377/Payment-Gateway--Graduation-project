@@ -32,8 +32,8 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
     let pubEvent:UserLoggingInEvent ;
     const otp =otpGenerator()
     existingUser.set(
-        {otpNumber:otp,
-            otpExpiryDate:Date.now()+ 2 * 60 * 1000})
+        {otpResister:otp,
+            otpExpiryDate:Date.now()+ 10 * 60 * 1000})
     existingUser.save();
 
     pubEvent = {

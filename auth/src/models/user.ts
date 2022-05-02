@@ -20,7 +20,8 @@ interface UserDoc extends mongoose.Document{
     isActive?:boolean;
     createdAt:Date;
     updatedAt:Date;
-    otpNumber?:number;
+    otpResister?:number;
+    otpVerify?:number;
     otpExpiryDate?:Date;
     twoWayAuth:boolean
     role:string;
@@ -67,7 +68,8 @@ const UserScheme = new mongoose.Schema({
         default:'merchant',
         enum:['admin','merchant','developer']
     },
-    otpNumber:Number,
+    otpVerify:Number,
+    otpResister:Number,
     otpExpiryDate:Date,
     loginSession:[loginSessionSchema],
     lastLogin:{

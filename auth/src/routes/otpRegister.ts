@@ -18,7 +18,10 @@ router.post('/otp-registration',[
     body('userId')
         .trim()
         .notEmpty()
-        .withMessage("userId must be provided.")
+        .withMessage("userId must be provided."),
+    body('rememberMe')
+        .notEmpty()
+        .withMessage('rememberMe must be provided')
 
 ],async (req:Request,res:Response)=>{
     let access,refresh:string;
@@ -30,8 +33,8 @@ router.post('/otp-registration',[
     }
     //we if the user is existed if the id is right and the otp is right and it does not expire
     const user = await User.findOne({
-        id:userId,
-        otpNumber:otp,
+        _id:userId,
+        otpResister:otp,
         otpExpiryDate:{$gt:Date.now()}
     })
     if (!user){
@@ -47,22 +50,12 @@ router.post('/otp-registration',[
         id:user.id,
         role:user.role,
         email:user.email,
-        isEmailVerified:true
+        isEmailVerified:user.isEmailVerified
     }
-    console.log(payload);
 
-    if (rememberMe===undefined){
-        const {accessToken,refreshToken} = jwtGenerator(payload,false);
-        access = accessToken;
-        refresh = refreshToken
-    }else{
         const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);
         access = accessToken;
         refresh = refreshToken
-    }
-
-
-
 
     //create a login session for the user
     let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
@@ -74,17 +67,13 @@ router.post('/otp-registration',[
             ip:req.ip,
             browser:browser,
             device:os,
-
     })
 
-    // setting the email to be verified
-    user.otpNumber=undefined;
+    // setting otpNumber and otpExpiryDate to null
+    user.otpResister=undefined;
     user.otpExpiryDate=undefined;
-    user.isEmailVerified= true;
     await user.save();
 
-    console.log(user.loginSession)
-    // send the access token as a cookie too
     req.session= {jwt:access};
 // if admin only make him logged in for 15 min do not give him the refresh token
     if (user.role===Roles.ADMIN){

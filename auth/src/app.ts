@@ -19,6 +19,7 @@ import {signoutRoute} from "./routes/signout";
 import {getUsersRoute} from "./routes/getUsers";
 import {getUserRoute} from "./routes/getUser";
 import {deactivateMerchantRoute} from "./routes/deactivateMerchant";
+import {verifyEmailRoute} from "./routes/verifyEmail";
 
 
 const app= express();
@@ -52,7 +53,7 @@ app.use('/api/users/admin/merchants',getUserRoute)
 app.use('/api/users/admin/merchants',deactivateMerchantRoute)
 
 
-
+app.use("/api/users",verifyEmailRoute)
 app.use("/api/users",currentUserRoute)
 app.use("/api/users",signoutRoute)
 app.use("/api/users",clearSessionsRoute)
