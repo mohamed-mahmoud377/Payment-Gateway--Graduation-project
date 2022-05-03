@@ -20,6 +20,7 @@ import {getUsersRoute} from "./routes/getUsers";
 import {getUserRoute} from "./routes/getUser";
 import {deactivateMerchantRoute} from "./routes/deactivateMerchant";
 import {verifyEmailRoute} from "./routes/verifyEmail";
+import {enableTwoFactorAuthRoute} from "./routes/enableTwoFactorAuth";
 
 
 const app= express();
@@ -59,6 +60,7 @@ app.use("/api/users",signoutRoute)
 app.use("/api/users",clearSessionsRoute)
 app.use("/api/users",meRoute)
 app.use('/api/users',otpResendRoute)
+app.use('/api/users',enableTwoFactorAuthRoute)
 app.use("/api/users",resetPasswordRoute)
 app.use("/api/users",refreshAccessRoute)
 app.use("/api/users",forgotPasswordRoute)
