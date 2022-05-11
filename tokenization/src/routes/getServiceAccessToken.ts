@@ -21,7 +21,7 @@ router.get('/service-token',[query('service_name')
     requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const { service_name} = req.query;
         // creating a service token valid for 100 day
-        const accessToken= jwtGenerator({serviceName:service_name},'100d',process.env.SERVICE_ACCESS_TOKEN!);
+        const accessToken= jwtGenerator({serviceName:service_name},'100d',process.env.JWT_KEY_SERVICE_ACCESS!);
 
 
     const hashedToken = crypto.createHash('sha256').update(accessToken).digest('hex');

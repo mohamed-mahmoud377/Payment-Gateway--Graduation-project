@@ -10,7 +10,7 @@ const generateAccessToken =async ()=>{
     const tokens = await Token.find({});
     if (tokens.length>0)
         return;
-    let  accessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InRva2VuaXphdGlvbiIsIm1hc3RlcklkIjoiODQ2ZWI2MTE3NDE3OWVmODZhNGFiMzE2ZWY1NzFhOTNlMzljNjljODE1NTdlNDNjNGIwMmEzNDM0YmExY2Q4ZSIsImlhdCI6MTY1MTM0NzE1NSwiZXhwIjoxNjU5OTg3MTU1fQ.FUqMgTQB9yxU0zTAMfB6bZo2XQj0XjNawnmmpP2PgyQ";
+    let  accessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InRva2VuaXphdGlvbiIsIm1hc3RlcklkIjoiMDViZjNmODZhN2RlNWViM2Q5MTdhZWNlZWU4MmMyNGNjNmI5NGZjZDgyNTkwZTNkMjM1YjdmNjIyM2E2NWRhNCIsImlhdCI6MTY1MjIyODY0NCwiZXhwIjoxNjYwODY4NjQ0fQ.llSCI8yU42PsRx8L6iOcatFRKg6EANyCUCS1pIeIbJs";
     accessToken = crypto.createHash('sha256').update(accessToken).digest('hex');
 
     // created an admin to be able to access any protected route in development
@@ -41,8 +41,8 @@ const generateMasterKey = async ()=>{
     if (keys.length>0)
         return;
     let key = new Key({
-        _id:"62677e0bcbe6b872c7c6214a",
-        key:"2dc38ac4b55db784ff0afa28e82394391b29fcf28ddffdb03a25e7071097a725.1b374c8c203a563cd589175a024e6649"
+        _id:"627b01f80a2341696785de85",
+        key:"84882661c1afc0247d645524b9dc3f9bc8d3828d0af4b9319d21d6a725b54beb.0ea052957387ac3979328d4357fc2257"
     })
     key =await key.save();
 
