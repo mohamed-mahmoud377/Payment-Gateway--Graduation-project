@@ -29,7 +29,8 @@ secure(app,{
 
 app.use(cookieSession({
     signed:false,
-    secure: false// note that even in production you will have to disable it
+    secure: false,// note that even in production you will have to disable it because we are not https yet
+    httpOnly:true
 }))
 
 

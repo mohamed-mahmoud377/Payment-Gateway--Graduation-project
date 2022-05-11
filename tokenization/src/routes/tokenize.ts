@@ -75,7 +75,7 @@ router.post('/tokenize',protect,[
     const  existingToken= await Token.findOne({dataHash:hashedData});
     // if so, so we will just send the tokenValue as the token and that's it
     if (existingToken){
-        return sendSuccess(res,201,{
+        return sendSuccess(res,200,{
             token:existingToken.tokenValue
         })
     }
