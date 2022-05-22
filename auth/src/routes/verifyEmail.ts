@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import {BadRequestError, sendSuccess, validateRequest} from "@hashcash/common";
 import {User} from "../models/user";
 import {body} from "express-validator";
+import {EmailVerifiedPublisher} from "../events/publishers/emailVerifiedPublisher";
+import {natsWrapper} from "../nats/nats-wrapper";
 
 const router = express.Router();
 
@@ -40,7 +42,14 @@ router.post('/verify-email' ,[
     user.isEmailVerified= true;
     await user.save();
 
-    sendSuccess(res,200,undefined)
+    sendSuccess(res,200,undefined);
+
+    await new EmailVerifiedPublisher(natsWrapper.client).publish({
+        email: user.email, name: user.name, userId: user.id
+
+    })
+
+
 
 }))
 

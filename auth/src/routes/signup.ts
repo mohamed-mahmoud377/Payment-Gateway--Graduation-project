@@ -13,6 +13,8 @@ import {UserCreatedPublisher} from "../events/publishers/userCreatedPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {UserCreatedEvent} from  "@hashcash/common";
 import {sendSuccess} from  "@hashcash/common";
+import mongoose from "mongoose";
+import {UserLoggingInPublisher} from "../events/publishers/userLoggingInPublisher";
 
 
 const router = express.Router();
@@ -65,14 +67,12 @@ router.post('/signup', [
 
         let pubEvent:UserCreatedEvent ;
 
-         const user  = User.build({email,name,password});
-         user.set(
-             {otpVerify:otp,
-             otpExpiryDate:Date.now()+ 10 * 60 * 1000})
 
-
-    await user.save();
-
+        const user  = User.build({email,name,password});
+        user.set(
+            {otpVerify:otp,
+                otpExpiryDate:Date.now()+ 10 * 60 * 1000})
+        await user.save();
         pubEvent = {
             subject:Subjects.userCreated,
             data:{
@@ -82,28 +82,14 @@ router.post('/signup', [
                 userId:user!.id
             }
         }
-        const  event = EventModel.build({
-            subject: Subjects.userCreated,
-            sent: false,
-            data:pubEvent["data"]
-        })
-        event.save()
-        eventId= event.id;
-
 
         sendSuccess(res,201,{
             userId: user.id
         })
-
-        await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
-         const savedEvent = await EventModel.findById(eventId);
-        if (savedEvent){
-             savedEvent.set({sent:true});
-            await savedEvent.save();
-        }
+    await new UserCreatedPublisher(natsWrapper.client).publish(pubEvent['data'])
 
 
-        // sendSuccess(res,200,{created:true})
+
     })
 
 

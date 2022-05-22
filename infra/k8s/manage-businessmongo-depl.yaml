@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manage-business-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manage-business-mongo
+  template:
+    metadata:
+      labels:
+        app: manage-business-mongo
+    spec:
+      containers:
+        - name: manage-business-mongo
+          image: mongo # the name of the image from docker hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manage-business-mongo-srv
+spec:
+  selector:
+    app: manage-business-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

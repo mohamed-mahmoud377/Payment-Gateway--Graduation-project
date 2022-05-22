@@ -56,7 +56,9 @@ router.post('/login',[
         id:existingUser.id,
         role:existingUser.role,
         email:existingUser.email,
-        isEmailVerified:existingUser.isEmailVerified
+        isEmailVerified:existingUser.isEmailVerified,
+        verifiedMerchant:existingUser.verifiedMerchant
+
     }
 
     const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);

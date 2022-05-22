@@ -40,22 +40,10 @@ router.post('/forgot-password',[
             url:resetURL
         }
     }
-    // save the event to database
-    const  event = EventModel.build({
-        subject: Subjects.userForgotPassword,
-        sent: false,
-        data:pubEvent["data"]
-    })
-    event.save()
 
     sendSuccess(res,200,{})
 
     await new UserForgotPasswordPublisher(natsWrapper.client).publish(pubEvent['data'])
-    const savedEvent = await EventModel.findById(event.id);
-    if (savedEvent){
-        savedEvent.set({sent:true});
-        await savedEvent.save();
-    }
 
 })
 

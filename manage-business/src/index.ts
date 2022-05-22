@@ -1,17 +1,13 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
-import {runInDevelopment} from "./helpers/runInDevelopment";
-import {EventModel, Subjects} from "@hashcash/common";
-import {UserCreatedPublisher} from "./events/publishers/userCreatedPublisher";
+import {EmailVerifiedListener} from "./events/listeners/emailVerifiedListener";
 
 
 
 const start = async ()=>{
     console.log('Starting up auth...')
-    if (!process.env.JWT_KEY_REFRESH){
-        throw new Error('JWT_KEY_REFRESH must be defined')
-    }
+
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
     }
@@ -44,7 +40,10 @@ const start = async ()=>{
         await mongoose.connect(process.env.MONGO_URI!);
         console.log("connected to database successfully")
 
-        await  runInDevelopment();
+
+
+         new EmailVerifiedListener(natsWrapper.client).listen();
+
 
 
 
@@ -55,7 +54,7 @@ const start = async ()=>{
     }
 
     app.listen(3000,()=>{
-        console.log('authentication srv is up and running on port 3000  ')
+        console.log('manage-business srv is up and running on port 3000  ')
     })
 }
 

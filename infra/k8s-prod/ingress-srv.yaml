@@ -34,6 +34,13 @@ spec:
                 name: tokenization-srv
                 port:
                   number: 3000
+          - path: /api/manage-business/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: manage-business-srv
+                port:
+                  number: 3000
 ---
 apiVersion: v1
 kind: Service

@@ -50,7 +50,9 @@ router.post('/otp-registration',[
         id:user.id,
         role:user.role,
         email:user.email,
-        isEmailVerified:user.isEmailVerified
+        isEmailVerified:user.isEmailVerified,
+        verifiedMerchant:user.verifiedMerchant
+
     }
 
         const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);

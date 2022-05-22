@@ -25,6 +25,7 @@ interface UserDoc extends mongoose.Document{
     otpExpiryDate?:Date;
     twoWayAuth:boolean
     role:string;
+    verifiedMerchant:boolean;
     loginSession:[LoginSessionAttrs];
     lastLogin:Date;
     passwordRestToken?:string;
@@ -67,6 +68,10 @@ const UserScheme = new mongoose.Schema({
         type:String,
         default:'merchant',
         enum:['admin','merchant','developer']
+    },
+    verifiedMerchant: {
+        type:Boolean,
+        default:false,
     },
     otpVerify:Number,
     otpResister:Number,

@@ -16,7 +16,7 @@ import {UserLoggingInEvent} from  "@hashcash/common";
 
 export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
     const {email,password,rememberMe} = req.body;
-    let eventId:string;
+
     const existingUser = await User.findOne({email});
     if (!existingUser) {
         throw new NotAuthorizedError(["Invalid credentials"]);
@@ -28,6 +28,10 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
     }
     if (!existingUser.twoWayAuth){
         return next()
+    }
+    if(!existingUser.isActive ){
+        throw new NotAuthorizedError(["your account is deactivated please contact support"]);
+
     }
     let pubEvent:UserLoggingInEvent ;
     const otp =otpGenerator()
@@ -45,24 +49,13 @@ export const twoWayAuth = async (req:Request,res:Response,next:NextFunction)=>{
             userId:existingUser!.id
         }
     }
-    const  event = EventModel.build({
-        subject: Subjects.userLoggingIn,
-        sent: false,
-        data:pubEvent["data"]
-    })
-    event.save()
-    eventId= event.id;
+
 
     sendSuccess(res,200,{
         userId: existingUser.id
     })
 
     await new UserLoggingInPublisher(natsWrapper.client).publish(pubEvent['data'])
-    const savedEvent = await EventModel.findById(eventId);
-    if (savedEvent){
-        savedEvent.set({sent:true});
-        await savedEvent.save();
-    }
 
 }
 

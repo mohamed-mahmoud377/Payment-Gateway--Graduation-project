@@ -9,7 +9,7 @@ const generateServiceAccessToken =async ()=>{
     const tokens = await AccessToken.find({});
     if (tokens.length>0)
         return;
-    let  accessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InByb2Nlc3NQYXltZW50IiwiaWF0IjoxNjUyMjI5MzgyLCJleHAiOjE2NjA4NjkzODJ9.rHnp6ckCCDvGdraXiKfmNVRGidL5y0vzPOPgHgZoRIw";
+    let  accessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXJ2aWNlTmFtZSI6InByb2Nlc3NQYXltZW50IiwiaWF0IjoxNjUyMjMwMDc4LCJleHAiOjE2NjA4NzAwNzh9.SYo5uI-FG-tNdqLTtX2IaG198zI6AmST84bE6BLzmUk";
     accessToken = crypto.createHash('sha256').update(accessToken).digest('hex');
     // created an admin to be able to access any protected route in development
     const token =  new AccessToken({

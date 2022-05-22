@@ -14,7 +14,8 @@ interface UserPayload {
     isEmailVerified:boolean,
     id: string;
     role: string;
-    email: string
+    email: string;
+    verifiedMerchant:string;
 }
 
 const router = express.Router();
@@ -75,10 +76,14 @@ router.post('/refresh-access', [
             throw new NotAuthorizedError();
         }
 
-        const {accessToken} =jwtGenerator({sessionId:payload.sessionId,id:payload.id,role:payload.role,isEmailVerified:payload.isEmailVerified,email:payload.email},false);
+        const {accessToken} =jwtGenerator({sessionId:payload.sessionId,
+            id:payload.id,role:payload.role,
+            isEmailVerified:payload.isEmailVerified,
+            email:payload.email,
+            verifiedMerchant:payload.verifiedMerchant},false);
 
         req.session = {jwt:accessToken}
-        return sendSuccess(res,200,{});
+        return sendSuccess(res,200,{accessToken});
 
 })
 
