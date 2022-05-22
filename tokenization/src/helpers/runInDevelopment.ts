@@ -24,7 +24,7 @@ const generateServiceAccessToken =async ()=>{
 export const runInDevelopment =async (options={
     generateServiceAccessToken:true
 }) => {
-    if (process.env.NODE_ENV==='production'){
+    if (process.env.NODE_ENV==='development'){
         if (options.generateServiceAccessToken)
             await generateServiceAccessToken();
 
