@@ -8,9 +8,6 @@ import {User} from "../models/user";
 
 const router =express.Router();
 
-
-
-
 router.post('/check-password',[
     body('password').trim().notEmpty().withMessage("password field can not be empty").bail()
         .isLength({min:10,max:100}).withMessage('Password must be more than 10 characters.')
