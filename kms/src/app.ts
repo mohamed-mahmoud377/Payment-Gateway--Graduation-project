@@ -15,8 +15,6 @@ import {getTokens} from "./routes/getTokens";
 import {dataEncryptKey} from "./routes/dataEncryptKey";
 import {decryptDataEncryptKey} from "./routes/decryptDataEncryptKey";
 import {deleteToken} from "./routes/deleteToken";
-
-
 const app= express();
 
 app.set('trust proxy',true);
