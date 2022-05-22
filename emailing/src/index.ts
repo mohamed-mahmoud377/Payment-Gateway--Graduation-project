@@ -6,7 +6,6 @@ import {UserLoggingInListener} from "./events/listeners/userLoggingInListener";
 
 
 const startUp = async ()=>{
-
     console.log('starting up ')
     if (!process.env.NATS_CLIENT_ID){
         throw new Error("NATS_CLIENT_ID must be defined !")
