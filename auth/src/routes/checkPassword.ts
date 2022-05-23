@@ -15,8 +15,8 @@ router.post('/check-password',[
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
-    console.log('generating users')
-    await generateFackUsers(User);
+    // console.log('generating users')
+    // await generateFackUsers(User);
 
  sendSuccess(res,200,{});
 })
