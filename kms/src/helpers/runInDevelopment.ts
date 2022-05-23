@@ -64,7 +64,7 @@ export const runInDevelopment =async (options={
     generateMasterKey:true,
 
 }) => {
-    if (process.env.NODE_ENV==='development'){
+    if (process.env.NODE_ENV==='production'){
         if(options.generateMasterKey)
             await generateMasterKey();
         if (options.generateAdminUser)
