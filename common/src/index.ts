@@ -9,6 +9,7 @@ export * from './errors/requestValidationError'
 export * from './events/eventTypes/userCreatedEvent'
 export * from './events/eventTypes/forgotPasswordEvent'
 export * from './events/eventTypes/userLoggingInEvent'
+export  * from './events/eventTypes/emailVerifiedEvent'
 export * from './events/Subjects'
 export * from  './events/publishers/publisher'
 export * from './events/listeners/listener'
@@ -22,6 +23,12 @@ export * from './utils/sendSuccess'
 export * from './utils/security'
 export * from './utils/passwordManger'
 export * from './utils/APIFilter'
+export * from './utils/encrypt'
+export * from './utils/decrypt'
+export * from './utils/jwtGenerator'
 
 
 export * from './models/events'
+
+
+export * from './types/roles'

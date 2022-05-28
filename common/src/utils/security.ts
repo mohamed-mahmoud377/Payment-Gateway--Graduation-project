@@ -21,8 +21,7 @@ export const secure = (app:Express,options={
     const limiter = rateLimit({
         max: 400, // max 400 request
         windowMs: 60 * 60 * 1000, // in one hour
-        message: "Too many requests",
-
+        message: "Too many requests"
     });
 
     //puts some really important  headers

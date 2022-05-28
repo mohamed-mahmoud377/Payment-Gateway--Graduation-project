@@ -4,7 +4,8 @@ export enum ErrorCodes {
     invalidUserName= 102,
     unauthorized=151,
     expiredToken=152,
-    notFound=201
+    notFound=404,
+    internalServer= 500
 
 }
 

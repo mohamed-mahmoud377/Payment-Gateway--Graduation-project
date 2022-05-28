@@ -1,13 +1,11 @@
 import jwt from "jsonwebtoken";
 
-export const jwtGenerator=(payload:any,expiresIn:string |number)=>{
+export const jwtGenerator=(payload:any,expiresIn:string |number,secret:string)=>{
 
     const tokenOption = {
         expiresIn: expiresIn
     }
 
 
-    const accessToken = jwt.sign(payload,process.env.JWT_KEY_SERVICE_ACCESS!,tokenOption)
-
-    return {accessToken }
+    return jwt.sign(payload, secret, tokenOption)
 }
