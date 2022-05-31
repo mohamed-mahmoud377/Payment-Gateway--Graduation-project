@@ -4,6 +4,7 @@ import {body} from "express-validator";
 import {validateBankAccount, validateBusinessInfo, validateBusinessOwner} from "../utils/validator";
 import {BusinessActivationRequest} from "../models/businessActivationRequest";
 import {businessInfoAttrs} from "../models/businessInfo";
+import {RequestStatus} from "../types/RequestStatus";
 
 const router = express.Router();
 
@@ -35,11 +36,12 @@ router.post("/submit-activation-request",requireAuth,restrictTo([Roles.MERCHANT]
         throw  new BadRequestError(["You have already submitted you application"])
     }
     const businessActivationRequest  =  BusinessActivationRequest.build({
+        userEmail: req.currentUser?.email!,
         BusinessApplication: {
             businessInfo,
             businessOwner,
             bankAccount
-        }, status: "pending", userId: req.currentUser?.id!
+        }, status: RequestStatus.PENDING, userId: req.currentUser?.id!
 
     })
 

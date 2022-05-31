@@ -8,6 +8,8 @@ interface BusinessActivationRequestAttrs{
     DeclineReason?:string;
     reviewedBy?:string;
     reviewDate?:Date;
+    userEmail:string;
+
 
 }
 
@@ -20,6 +22,7 @@ interface BusinessActivationRequestDoc extends  mongoose.Document{
     reviewDate:Date;
     createdAt:Date;
     updatedAt:Date;
+    userEmail:string;
 
 }
 
@@ -37,6 +40,11 @@ const businessActivationRequestScheme = new mongoose.Schema({
         enum:["pending","approved","declined"]
     },
     userId:{
+        type:String,
+        required:true,
+        unique:true,
+    },
+    userEmail:{
         type:String,
         required:true,
         unique:true,

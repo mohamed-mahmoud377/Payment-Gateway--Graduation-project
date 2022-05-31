@@ -16,6 +16,13 @@ export const runInDevelopment =async () => {
             password:'admin12345',
             isEmailVerified:true,
         })
+        await User.create({
+            name:'jerry',
+            role:Roles.MERCHANT,
+            email:'mohamedmahmoud37766@gmail.com',
+            password:'admin12345',
+            isEmailVerified:true,
+        })
 
     }
 }

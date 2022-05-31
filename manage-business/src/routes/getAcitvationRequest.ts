@@ -10,7 +10,7 @@ router.get('/activation-requests/:id',requireAuth,restrictTo([Roles.ADMIN]),asyn
     const {id} = req.params;
     if (!mongoose.isValidObjectId(id))
         throw new NotFoundError(["This activation request does not exists"])
-    
+
     const activationRequest = await BusinessActivationRequest.findById(id);
 
     if (!activationRequest)

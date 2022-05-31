@@ -7,6 +7,7 @@ import {submitActivationRequestRoute} from "./routes/submitActivationRequest";
 import {getMyActivationRequestRoute} from "./routes/MyActivationRequest";
 import {getAllActivationRequestsRoute} from "./routes/AllActivationsRequests";
 import {getActivationRequestRoute} from "./routes/getAcitvationRequest";
+import {approveActivationRequestRoute} from "./routes/approveActivationRequest";
 
 
 
@@ -39,6 +40,7 @@ app.use("/api/manage-business",submitActivationRequestRoute
     ,getMyActivationRequestRoute
     ,getAllActivationRequestsRoute
     ,getActivationRequestRoute
+    ,approveActivationRequestRoute
 )
 
 
