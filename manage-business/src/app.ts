@@ -3,6 +3,8 @@ import 'express-async-errors'
 import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {errorHandler, secure} from "@hashcash/common";
+import {submitActivationRequestRoute} from "./routes/submitActivationRequest";
+import {getMyActivationRequestRoute} from "./routes/getMyActivationRequest";
 
 
 
@@ -31,6 +33,9 @@ app.use(cookieSession({
 }))
 
 
+app.use("/api/manage-business",submitActivationRequestRoute
+,getMyActivationRequestRoute
+)
 
 
 
