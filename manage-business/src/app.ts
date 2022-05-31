@@ -4,7 +4,9 @@ import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 import {errorHandler, secure} from "@hashcash/common";
 import {submitActivationRequestRoute} from "./routes/submitActivationRequest";
-import {getMyActivationRequestRoute} from "./routes/getMyActivationRequest";
+import {getMyActivationRequestRoute} from "./routes/MyActivationRequest";
+import {getAllActivationRequestsRoute} from "./routes/AllActivationsRequests";
+import {getActivationRequestRoute} from "./routes/getAcitvationRequest";
 
 
 
@@ -34,7 +36,9 @@ app.use(cookieSession({
 
 
 app.use("/api/manage-business",submitActivationRequestRoute
-,getMyActivationRequestRoute
+    ,getMyActivationRequestRoute
+    ,getAllActivationRequestsRoute
+    ,getActivationRequestRoute
 )
 
 
