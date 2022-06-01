@@ -30,6 +30,7 @@ interface UserDoc extends mongoose.Document{
     lastLogin:Date;
     passwordRestToken?:string;
     passwordResetExpires?:Date;
+    activationRequestId?:string;
     createAndAssignPasswordResetToken():string;
 }
 
@@ -85,6 +86,9 @@ const UserScheme = new mongoose.Schema({
     twoWayAuth:{
         type:Boolean,
         default:false
+    },
+    activationRequestId:{
+        type:String
     }
 
 
@@ -112,7 +116,7 @@ UserScheme.statics.showProfile=async function (id:string){
         createdAt:1,
          _id:0,
          isActive:1,
-
+         verifiedMerchant:1
     })
 
     return user;

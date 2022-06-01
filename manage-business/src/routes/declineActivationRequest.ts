@@ -26,7 +26,7 @@ router.patch('/activation-requests/decline/:id',requireAuth,restrictTo([Roles.AD
     await activationRequest.save();
 
     await new  merchantActivatedPublisher(natsWrapper.client).publish({
-        activated: false, activationRequestId: "", reason,
+        activated: false, activationRequestId: activationRequest.id, reason,
         activatedBy:req.currentUser!.id!,
         userId:activationRequest.userId,
         userEmail:activationRequest.userEmail

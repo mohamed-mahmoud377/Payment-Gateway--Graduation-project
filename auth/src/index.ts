@@ -4,6 +4,7 @@ import {natsWrapper} from "./nats/nats-wrapper";
 import {runInDevelopment} from "./helpers/runInDevelopment";
 import {EventModel, Subjects} from "@hashcash/common";
 import {UserCreatedPublisher} from "./events/publishers/userCreatedPublisher";
+import {MerchantActivationListener} from "./events/listeners/merchantActivationListener";
 
 
 
@@ -33,6 +34,7 @@ const start = async ()=>{
             console.log("NATS connection closed !")
             process.exit();
         })
+         new MerchantActivationListener(natsWrapper.client).listen();
         // why are we doing this ?
         // because when the program close NATS still try to reach it but we closed ! like on purpose
         // so in the closing process we tell NATS that we want to close the connection immediately
