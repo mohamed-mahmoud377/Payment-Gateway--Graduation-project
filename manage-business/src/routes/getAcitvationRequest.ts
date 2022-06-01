@@ -16,7 +16,6 @@ router.get('/activation-requests/:id',requireAuth,restrictTo([Roles.ADMIN]),asyn
     if (!activationRequest)
         throw new NotFoundError(["This activation request does not exists"])
 
-
     sendSuccess(res,200,activationRequest)
 
 })
