@@ -1,6 +1,6 @@
-import {MerchantActivatedEvent, Publisher, Subjects} from "@hashcash/common";
+import {MerchantActivationEvent, Publisher, Subjects} from "@hashcash/common";
 
-export class merchantActivatedPublisher extends  Publisher<MerchantActivatedEvent>{
+export class merchantActivatedPublisher extends  Publisher<MerchantActivationEvent>{
 
-    subject: MerchantActivatedEvent["subject"]=Subjects.MerchantActivated;
+    subject: MerchantActivationEvent["subject"]=Subjects.MerchantActivation;
 }

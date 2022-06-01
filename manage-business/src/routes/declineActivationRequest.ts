@@ -9,8 +9,9 @@ import {natsWrapper} from "../nats/nats-wrapper";
 const router = express.Router();
 
 
-router.patch('/activation-requests/approve/:id',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
+router.patch('/activation-requests/decline/:id',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const {id} = req.params;
+    const {reason}= req.body;
     if (!mongoose.isValidObjectId(id))
         throw new NotFoundError(["This activation request does not exists"])
 
@@ -19,13 +20,13 @@ router.patch('/activation-requests/approve/:id',requireAuth,restrictTo([Roles.AD
     if (!activationRequest)
         throw new NotFoundError(["This activation request does not exists"])
 
-    activationRequest.status= RequestStatus.APPROVED;
+    activationRequest.status= RequestStatus.DECLINED;
     activationRequest.reviewedBy= req.currentUser?.id!;
     activationRequest.reviewDate= new Date(Date.now());
     await activationRequest.save();
 
     await new  merchantActivatedPublisher(natsWrapper.client).publish({
-        activated: true, activationRequestId: activationRequest.id,
+        activated: false, activationRequestId: "", reason,
         activatedBy:req.currentUser!.id!,
         userId:activationRequest.userId,
         userEmail:activationRequest.userEmail
@@ -37,5 +38,5 @@ router.patch('/activation-requests/approve/:id',requireAuth,restrictTo([Roles.AD
 })
 
 export {
-    router as approveActivationRequestRoute
+    router as declineActivationRequestRoute
 }

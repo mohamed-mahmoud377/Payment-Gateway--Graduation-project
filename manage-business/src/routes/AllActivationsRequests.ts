@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import {NotFoundError, requireAuth, restrictTo, Roles, sendSuccess} from "@hashcash/common";
+import {APIFilter, NotFoundError, requireAuth, restrictTo, Roles, sendSuccess} from "@hashcash/common";
 import {BusinessActivationRequest} from "../models/businessActivationRequest";
 
 const router = express.Router();
@@ -7,9 +7,12 @@ const router = express.Router();
 
 router.get('/activation-requests',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
 
-    const activationRequest = await BusinessActivationRequest.find();
+    const filters  = new APIFilter(BusinessActivationRequest.find({}),req.query).filter().sort().limitFields().paginate();
 
-    sendSuccess(res,200,activationRequest)
+    const activationRequest = await filters.query;
+    const activationRequestNumber= await BusinessActivationRequest.countDocuments();
+
+    sendSuccess(res,200,activationRequest,activationRequestNumber)
 
 })
 
