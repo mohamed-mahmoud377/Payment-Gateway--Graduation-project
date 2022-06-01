@@ -1,0 +1,25 @@
+name: deploy-apikey-manager
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'apikey-manager/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd apikey-manager && docker build -t jerry377/apikey-manager -f docker/Dockerfile-prod .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push jerry377/apikey-manager
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save hashcash2
+      - run: kubectl rollout restart deployment apikey-manager-depl
