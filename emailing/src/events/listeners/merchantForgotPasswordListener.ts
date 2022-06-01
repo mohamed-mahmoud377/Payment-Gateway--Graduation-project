@@ -3,8 +3,9 @@ import {Message} from "node-nats-streaming";
 import {Subjects} from  "@hashcash/common";
 import {Email} from "../../emails/emails";
 import {UserForgotPasswordEvent} from "@hashcash/common";
+import {queueGroupName} from "../../types/queueGroupName";
 export class MerchantForgotPasswordListener extends Listener<UserForgotPasswordEvent>{
-    queueGroupName: string= "emailing-srv";
+    queueGroupName: string= queueGroupName;
 
     subject: UserForgotPasswordEvent["subject"]= Subjects.userForgotPassword;
 

@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import {NotFoundError, requireAuth, restrictTo, Roles, sendSuccess} from "@hashcash/common";
+import {BadRequestError, NotFoundError, requireAuth, restrictTo, Roles, sendSuccess} from "@hashcash/common";
 import {BusinessActivationRequest} from "../models/businessActivationRequest";
 import {RequestStatus} from "../types/RequestStatus";
 import mongoose from "mongoose";
@@ -18,7 +18,9 @@ router.patch('/activation-requests/approve/:id',requireAuth,restrictTo([Roles.AD
 
     if (!activationRequest)
         throw new NotFoundError(["This activation request does not exists"])
-
+    if (activationRequest.status!==RequestStatus.PENDING){
+        throw new BadRequestError(['You are trying to approved an application that has been already reviewed']);
+    }
     activationRequest.status= RequestStatus.APPROVED;
     activationRequest.reviewedBy= req.currentUser?.id!;
     activationRequest.reviewDate= new Date(Date.now());

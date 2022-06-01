@@ -2,20 +2,27 @@ const nodemailer = require("nodemailer");
 const pug = require('pug')
 const path = require('path')
 const htmlToText = require('html-to-text')
-// this is just beautiful
+
+
+
+// this email class is really poorly designed and this really tills you that you have to consider that you extend you class
+// and add more features
+//  you will have to get back to this and refactor the hell aut of it
 export  class Email{
     to: string;
     name:string;
     url?:string;
     from:string;
+    reason?:string;
 
 
 
-    constructor(email:string,name:string,url?:string) {
+    constructor(email:string,name:string,url?:string, reason?:string) {
         this.to = email;
         this.name =name.split(' ')[0];
         this.url = url;
         this.from = `hash cash <${process.env.EMAIL_FROM}>`;
+        this.reason = reason;
     }
 
     newTransport(){
@@ -42,7 +49,7 @@ export  class Email{
 
     }
 
-    async send(templateName:string,subject:string,otp?:string){  // templateName which is a put we send a nice formatted email
+    async send(templateName:string,subject:string,otp?:string,reason?:string){  // templateName which is a put we send a nice formatted email
         //1 Render HTML based on a pug template
         let html;
         if (templateName==='otp-login'){
@@ -69,6 +76,15 @@ export  class Email{
                 subject
             })
         }
+        if(templateName==='applicationApproved'){
+            html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`))
+        }
+
+        if (templateName==='applicationDeclined'){
+            html =pug.renderFile(path.join(__dirname,`../views/emails/${templateName}.pug`),{
+                reason
+            })
+        }
 
 
         //2 define email options
@@ -90,8 +106,14 @@ export  class Email{
     async sendOtpLogin(opt:number){
         await this.send('otp-login' , `Your OTP password`,String(opt))
     }
-    async sendWelcome(){
-        await this.send('welcome' , 'Welcome to the natours Family')
+    // async sendWelcome(){
+    //     await this.send('welcome' , 'Welcome to the hashcash Family')
+    // }
+    async sendApprovedApplicationMsg(){
+        await this.send('applicationApproved',"You application has been approved")
+    }
+    async sendDeclinedApplicationMsg(reason:string){
+        await this.send('applicationDeclined',"You application has been declined",undefined,String(reason))
     }
 
     async sendPasswordRest(){

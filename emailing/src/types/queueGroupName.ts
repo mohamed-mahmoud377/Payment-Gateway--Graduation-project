@@ -1,0 +1,1 @@
+export const queueGroupName = "emailing-srv"
