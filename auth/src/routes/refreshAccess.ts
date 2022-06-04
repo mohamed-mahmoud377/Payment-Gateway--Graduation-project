@@ -82,7 +82,7 @@ router.post('/refresh-access', [
             email:payload.email,
             verifiedMerchant:payload.verifiedMerchant},false);
 
-        req.session = {jwt:accessToken}
+        res.cookie("jwt",accessToken);
         return sendSuccess(res,200,{accessToken});
 
 })

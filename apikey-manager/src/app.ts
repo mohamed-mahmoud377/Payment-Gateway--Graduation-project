@@ -8,6 +8,7 @@ import {errorHandler, secure} from "@hashcash/common";
 import {getModeRoute} from "./routes/getMode";
 import {changeModeRoute} from "./routes/changeMode";
 import cookieParser from "cookie-parser";
+import {getKeyRoute} from "./routes/getKey";
 
 
 
@@ -41,7 +42,8 @@ app.use(cookieParser())
 
 app.use('/api/apikey',
     getModeRoute
-    ,changeModeRoute)
+    ,changeModeRoute
+,getKeyRoute)
 
 app.use(errorHandler)
 

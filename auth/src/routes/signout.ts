@@ -19,7 +19,7 @@ router.post('/signout',requireAuth,async (req:Request,res:Response)=>{
     })
 
     await user.save();
-    req.session= {jwt:null};
+    res.cookie('jwt',undefined);
 
     sendSuccess(res);
 
