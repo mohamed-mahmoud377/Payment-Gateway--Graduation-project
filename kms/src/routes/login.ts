@@ -72,7 +72,7 @@ router.post('/login',[ body('email')
 
 
         // send the access token as a cookie too
-        req.session= {jwt:accessToken};
+        res.cookie("jwt",accessToken)
          return sendSuccess(res,200,{
             accessToken,
         })

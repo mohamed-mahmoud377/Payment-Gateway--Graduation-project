@@ -6,6 +6,8 @@ interface keysAttrs{
     testCreatedAt:Date;
     liveCreatedAt?:Date;
     mode:string;
+    userId:string;
+    verifiedMerchant:boolean;
 
 }
 
@@ -18,6 +20,9 @@ interface KeyDoc extends  mongoose.Document{
     createdAt:Date;
     updatedAt:Date;
     mode:string;
+    userId:string;
+    verifiedMerchant:boolean;
+
 
 }
 

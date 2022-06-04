@@ -67,7 +67,7 @@ router.post('/otp-registration',[
 
 
     // send the access token as a cookie too
-    req.session= {jwt:accessToken};
+    res.cookie('jwt',accessToken)
     sendSuccess(res,200,{
         accessToken,
     })

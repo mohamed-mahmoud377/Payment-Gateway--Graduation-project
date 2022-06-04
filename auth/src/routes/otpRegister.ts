@@ -76,7 +76,8 @@ router.post('/otp-registration',[
     user.otpExpiryDate=undefined;
     await user.save();
 
-    req.session= {jwt:access};
+    res.cookie('jwt',access)
+
 // if admin only make him logged in for 15 min do not give him the refresh token
     if (user.role===Roles.ADMIN){
         return sendSuccess(res,200,{

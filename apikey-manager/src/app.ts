@@ -5,6 +5,9 @@ import bodyParser from 'body-parser'
 import cookieSession from "cookie-session";
 
 import {errorHandler, secure} from "@hashcash/common";
+import {getModeRoute} from "./routes/getMode";
+import {changeModeRoute} from "./routes/changeMode";
+import cookieParser from "cookie-parser";
 
 
 
@@ -24,16 +27,21 @@ secure(app,{
     xss: true
 })
 
-app.use(cookieSession({
-    sameSite:"lax",
-    signed:false,
-    httpOnly:true, // to prevent xss and means it can never be accessed by JS
-    secure: false// note that even in production you will have to disable it because we are not https in prod yet
-}))
+// app.use(cookieSession({
+//     sameSite:"lax",
+//     signed:false,
+//     httpOnly:false,
+//     secure: false,// note that even in production you will have to disable it because we are not https in prod yet
+//
+// }))
+
+app.use(cookieParser())
 
 
 
-
+app.use('/api/apikey',
+    getModeRoute
+    ,changeModeRoute)
 
 app.use(errorHandler)
 

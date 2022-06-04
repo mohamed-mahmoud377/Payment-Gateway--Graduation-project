@@ -21,6 +21,7 @@ import {getUserRoute} from "./routes/getUser";
 import {deactivateMerchantRoute} from "./routes/deactivateMerchant";
 import {verifyEmailRoute} from "./routes/verifyEmail";
 import {enableTwoFactorAuthRoute} from "./routes/enableTwoFactorAuth";
+import cookieParser from "cookie-parser";
 
 
 const app= express();
@@ -40,12 +41,14 @@ secure(app,{
     xss: true
 })
 
-app.use(cookieSession({
-    sameSite:"lax",
-    signed:false,
-    httpOnly:true, // to prevent xss and means it can never be accessed by JS
-    secure: false// note that even in production you will have to disable it because we are not https in prod yet
-}))
+// app.use(cookieSession({
+//     sameSite:"lax",
+//     signed:false,
+//     httpOnly:true, // to prevent xss and means it can never be accessed by JS
+//     secure: false// note that even in production you will have to disable it because we are not https in prod yet
+// }))
+
+app.use(cookieParser());
 
 app.use('/api/users/admin/merchants',getUsersRoute)
 

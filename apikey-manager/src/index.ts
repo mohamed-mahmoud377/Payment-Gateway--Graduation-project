@@ -1,6 +1,7 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
+import {EmailVerifiedListener} from "./events/listeners/emailVerifiedListener";
 
 
 
@@ -34,12 +35,15 @@ const start = async ()=>{
         // because when the program close NATS still try to reach it but we closed ! like on purpose
         // so in the closing process we tell NATS that we want to close the connection immediately
         // so we don't waste time trying  to reach it
+
         process.on('SIGINT',()=>natsWrapper.client.close()); // this for when you close the program with ctrl z
         process.on('SIGTERM',()=>natsWrapper.client.close()); // this when docker tries to kill the process gracefully
 
 
         await mongoose.connect(process.env.MONGO_URI!);
         console.log("connected to database successfully")
+
+        new EmailVerifiedListener(natsWrapper.client).listen();
 
 
 

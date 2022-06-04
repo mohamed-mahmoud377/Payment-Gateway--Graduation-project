@@ -2,7 +2,7 @@ import express from "express";
 import 'express-async-errors'
 
 import bodyParser from 'body-parser'
-import cookieSession from "cookie-session";
+import cookieParser from "cookie-parser";
 import {errorHandler, secure} from "@hashcash/common";
 import {loginRoute} from "./routes/login";
 import {otpRegisterRoute} from "./routes/otpRegister";
@@ -32,10 +32,11 @@ secure(app,{
     xss: true
 })
 
-app.use(cookieSession({
-    signed:false,
-    secure: false// note that even in production you will have to disable it
-}))
+// app.use(cookieSession({
+//     signed:false,
+//     secure: false// note that even in production you will have to disable it
+// }))
+app.use(cookieParser());
 
 app.use('/api/kms',deleteToken)
 app.use('/api/kms',decryptDataEncryptKey);
