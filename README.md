@@ -1,8 +1,31 @@
 <p align="center">
-  <img width="130" hight="130" src="/Images/Logo/Asset logo 2 2.svg" />
+  <img align="center" width="130" hight="130" src="/Images/Logo/Asset logo 2 2.svg" />
+  </br>
+  <img align="right" src="https://badges.pufler.dev/visits/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=9D3480"/>
 <p/>
-<h1 align="center"> HashCash</h1>
 
+</br></br>
+
+<!-- shields -->
+
+<p align="center">
+  <img src="https://img.shields.io/github/license/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=deeppink">
+  </br>
+  <img src="https://img.shields.io/badge/Maintained%3F-Yes-purple?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
+  </br>
+  <img src="https://img.shields.io/github/stars/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=purple">
+  <img src="https://img.shields.io/github/forks/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
+  <img src="https://img.shields.io/github/repo-size/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
+  </br>
+  <img src="https://img.shields.io/github/languages/count/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=purple&style=for-the-badge">
+  <img src="https://img.shields.io/github/languages/code-size/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
+  <img src="https://img.shields.io/github/last-commit/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
+</p>
+
+</br></br>
+
+<!-- shields -->
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
 #### We are focusing on implementing the actual service and APIs the merchant is going to use and the PCI requirements that comes with it not focusing on the system as a whole.
 ## How did we build it ?
