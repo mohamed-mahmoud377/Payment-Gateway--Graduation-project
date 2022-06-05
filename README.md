@@ -23,7 +23,7 @@
   <img src="https://img.shields.io/github/last-commit/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
 </p>
 
-</br></br>
+</br>
 
 <!-- shields -->
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
