@@ -49,7 +49,17 @@
 |    ├── tests-emailing.yml             
 |    └──  tests-kms.yaml               
 |    
-└── apikey-manager            
+├── Images
+|  |
+|  └── Logo
+|     |
+|     ├── Asset 22.svg
+|     ├── Asset 23.svg
+|     ├── Asset logo 1 2.svg
+|     ├── Asset logo 2 2.svg
+|     └── icon 10.svg
+|  
+├── apikey-manager            
 |   | 
 |   ├── docker               
 |   |   |
@@ -94,7 +104,7 @@
 |   ├── package.json         
 |   └── tsconfig.json        
 |   
-└── auth
+├── auth
 |   |
 |   ├── config
 |   |  |
@@ -126,15 +136,15 @@
 |   ├── package.json
 |   └── tsconfig.json
 |
-└── common              
-└── emailing           
-└── infra               
-└── kms                 
-└── manage-business    
-└── tokenization
-└── .gitignore  
-└── LICENSE  
-└── README.md  
+├── common              
+├── emailing           
+├── infra               
+├── kms                 
+├── manage-business    
+├── tokenization
+├── .gitignore  
+├── LICENSE  
+├── README.md  
 └── skaffold.yaml
 
 ```
