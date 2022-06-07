@@ -24,8 +24,85 @@
 </p>
 
 <!-- shields -->
+
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
 #### We are focusing on implementing the actual service and APIs the merchant is going to use and the PCI requirements that comes with it not focusing on the system as a whole.
+
+<!-- Code Structure -->
+
+```
+/Payment--
+├── .github/workflows                   : <add a description >
+|    |
+|    ├── deploy-apikey-manager.yaml     : <add a description >
+|    ├── deploy-auth.yml                : <add a description >
+|    ├── deploy-emailing.yaml           : <add a description >
+|    ├── deploy-kms.yaml                : <add a description >
+|    ├── deploy-manage-business.yaml    : <add a description >
+|    ├── deploy-manifests.yml           : <add a description >
+|    ├── deploy-tokenizatin.yaml        : <add a description >
+|    ├── test-tokenization.yaml         : <add a description >
+|    ├── tests-auth.yml                 : <add a description >
+|    ├── tests-emailing.yml             : <add a description >
+|    └──  tests-kms.yaml                : <add a description >
+|    
+└── apikey-manager            : <add a description >
+|   | 
+|   ├── docker                : <add a description >
+|   |   |
+|   |   ├── Dockerfile-dev    : <add a description >
+|   |   └── Dockerfile-prod   : <add a description >
+|   |
+|   ├── src                   : <add a description >
+|   |   |
+|   |   ├── events                                        : <add a description >
+|   |   |  |
+|   |   |  └── listeners                                  : <add a description >
+|   |   |      |
+|   |   |      ├── emailVerifiedListener.ts               : <add a description >
+|   |   |      └── merchantActivationListener.ts          : <add a description >
+|   |   |
+|   |   ├── models         : <add a description >
+|   |   |   |
+|   |   |   └── keys.ts    : <add a description >
+|   |   |
+|   |   ├── nats                  : <add a description >
+|   |   |   |
+|   |   |   └── nats-wrapper.ts   : <add a description >
+|   |   |   
+|   |   ├── routes                : <add a description >
+|   |   |   |
+|   |   |   ├── changeMode.ts     : <add a description >
+|   |   |   ├── getKey.ts         : <add a description >
+|   |   |   └── getMode.ts        : <add a description >
+|   |   |
+|   |   ├── types                   : <add a description >
+|   |   |  |
+|   |   |  └── queueGroupName.ts    : <add a description >
+|   |   |
+|   |   ├── utils               : <add a description >
+|   |   |  |
+|   |   |  └── generateKey.ts   : <add a description >
+|   |   ├── app.ts    : <add a description >
+|   |   └── index.ts  : <add a description >
+|   |
+|   ├── .dockerignore         : <add a description >
+|   ├── package-lock.json     : <add a description >
+|   ├── package.json          : <add a description >
+|   └── tsconfig.json         : <add a description >
+|   
+└── auth                : <add a description >
+└── common              : <add a description >
+└── emailing            : <add a description >
+└── infra               : <add a description >
+└── kms                 : <add a description >
+└── manage-business     : <add a description >
+└── tokenization        : <add a description >
+
+```
+
+<!-- Code Structure -->
+
 ## How did we build it ?
 #### We are using event driven microservices' architecture. 
 ## our technology stack:
