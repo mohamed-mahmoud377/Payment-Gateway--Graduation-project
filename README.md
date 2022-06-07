@@ -28,9 +28,9 @@
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
 #### We are focusing on implementing the actual service and APIs the merchant is going to use and the PCI requirements that comes with it not focusing on the system as a whole.
 
-<!-- Code Structure -->
+<!-- Code Tree (files structure) -->
 
-<h2 align="center"> Code Structure </h3>
+<h2 align="center"> Code Tree (files structure) </h3>
 
 ```
 /Payment--
@@ -94,17 +94,52 @@
 |   ├── package.json         
 |   └── tsconfig.json        
 |   
-└── auth                
+└── auth
+|   |
+|   ├── config
+|   |  |
+|   |  ├── dev.ts
+|   |  ├── keys.ts
+|   |  └── prod.ts
+|   |
+|   ├── docker
+|   |  |
+|   |  ├── Dockerfile-dev
+|   |  └── Dockerfile-prod
+|   |
+|   ├── src
+|   |   |
+|   |   ├── events
+|   |   ├── helpers
+|   |   ├── middlewares
+|   |   ├── models
+|   |   ├── nats
+|   |   ├── routes
+|   |   ├── test
+|   |   ├── types
+|   |   ├── utils
+|   |   ├── app.ts
+|   |   └── index.ts
+|   |    
+|   ├── .dockerignore
+|   ├── package-lock.json
+|   ├── package.json
+|   └── tsconfig.json
+|
 └── common              
 └── emailing           
 └── infra               
 └── kms                 
 └── manage-business    
-└── tokenization      
+└── tokenization
+└── .gitignore  
+└── LICENSE  
+└── README.md  
+└── skaffold.yaml
 
 ```
 
-<!-- Code Structure -->
+<!-- Code Tree (files structure) -->
 
 ## How did we build it ?
 #### We are using event driven microservices' architecture. 
