@@ -30,6 +30,8 @@
 
 <!-- Code Structure -->
 
+<h2 align="center"> Code Structure </h3>
+
 ```
 /Payment--
 ├── .github/workflows                   : <add a description >
