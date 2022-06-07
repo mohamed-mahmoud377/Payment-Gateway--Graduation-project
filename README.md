@@ -34,72 +34,73 @@
 
 ```
 /Payment--
-├── .github/workflows                   : <add a description >
+|
+├── .github/workflows                   
 |    |
-|    ├── deploy-apikey-manager.yaml     : <add a description >
-|    ├── deploy-auth.yml                : <add a description >
-|    ├── deploy-emailing.yaml           : <add a description >
-|    ├── deploy-kms.yaml                : <add a description >
-|    ├── deploy-manage-business.yaml    : <add a description >
-|    ├── deploy-manifests.yml           : <add a description >
-|    ├── deploy-tokenizatin.yaml        : <add a description >
-|    ├── test-tokenization.yaml         : <add a description >
-|    ├── tests-auth.yml                 : <add a description >
-|    ├── tests-emailing.yml             : <add a description >
-|    └──  tests-kms.yaml                : <add a description >
+|    ├── deploy-apikey-manager.yaml     
+|    ├── deploy-auth.yml                
+|    ├── deploy-emailing.yaml           
+|    ├── deploy-kms.yaml                
+|    ├── deploy-manage-business.yaml   
+|    ├── deploy-manifests.yml         
+|    ├── deploy-tokenizatin.yaml        
+|    ├── test-tokenization.yaml        
+|    ├── tests-auth.yml                 
+|    ├── tests-emailing.yml             
+|    └──  tests-kms.yaml               
 |    
-└── apikey-manager            : <add a description >
+└── apikey-manager            
 |   | 
-|   ├── docker                : <add a description >
+|   ├── docker               
 |   |   |
-|   |   ├── Dockerfile-dev    : <add a description >
-|   |   └── Dockerfile-prod   : <add a description >
+|   |   ├── Dockerfile-dev    
+|   |   └── Dockerfile-prod   
 |   |
-|   ├── src                   : <add a description >
+|   ├── src                
 |   |   |
-|   |   ├── events                                        : <add a description >
+|   |   ├── events                                        
 |   |   |  |
-|   |   |  └── listeners                                  : <add a description >
+|   |   |  └── listeners                                 
 |   |   |      |
-|   |   |      ├── emailVerifiedListener.ts               : <add a description >
-|   |   |      └── merchantActivationListener.ts          : <add a description >
+|   |   |      ├── emailVerifiedListener.ts              
+|   |   |      └── merchantActivationListener.ts         
 |   |   |
-|   |   ├── models         : <add a description >
+|   |   ├── models         
 |   |   |   |
-|   |   |   └── keys.ts    : <add a description >
+|   |   |   └── keys.ts    
 |   |   |
-|   |   ├── nats                  : <add a description >
+|   |   ├── nats                  
 |   |   |   |
-|   |   |   └── nats-wrapper.ts   : <add a description >
+|   |   |   └── nats-wrapper.ts   
 |   |   |   
-|   |   ├── routes                : <add a description >
+|   |   ├── routes                
 |   |   |   |
-|   |   |   ├── changeMode.ts     : <add a description >
-|   |   |   ├── getKey.ts         : <add a description >
-|   |   |   └── getMode.ts        : <add a description >
+|   |   |   ├── changeMode.ts     
+|   |   |   ├── getKey.ts        
+|   |   |   └── getMode.ts       
 |   |   |
-|   |   ├── types                   : <add a description >
+|   |   ├── types                   
 |   |   |  |
-|   |   |  └── queueGroupName.ts    : <add a description >
+|   |   |  └── queueGroupName.ts   
 |   |   |
-|   |   ├── utils               : <add a description >
+|   |   ├── utils               
 |   |   |  |
-|   |   |  └── generateKey.ts   : <add a description >
-|   |   ├── app.ts    : <add a description >
-|   |   └── index.ts  : <add a description >
+|   |   |  └── generateKey.ts   
+|   |   ├── app.ts   
+|   |   └── index.ts 
 |   |
-|   ├── .dockerignore         : <add a description >
-|   ├── package-lock.json     : <add a description >
-|   ├── package.json          : <add a description >
-|   └── tsconfig.json         : <add a description >
+|   ├── .dockerignore        
+|   ├── package-lock.json     
+|   ├── package.json         
+|   └── tsconfig.json        
 |   
-└── auth                : <add a description >
-└── common              : <add a description >
-└── emailing            : <add a description >
-└── infra               : <add a description >
-└── kms                 : <add a description >
-└── manage-business     : <add a description >
-└── tokenization        : <add a description >
+└── auth                
+└── common              
+└── emailing           
+└── infra               
+└── kms                 
+└── manage-business    
+└── tokenization      
 
 ```
 
