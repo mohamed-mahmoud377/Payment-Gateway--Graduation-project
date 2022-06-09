@@ -30,7 +30,9 @@
 
 <!-- Code Tree (files structure) -->
 
-<h2 align="center"> Code Tree (files structure) </h3>
+<details>
+   <summary><h2> Code Tree (files structure) </h2></summary>
+
 
 ```bash
 Payment-Gateway--Graduation-project
@@ -347,6 +349,8 @@ Payment-Gateway--Graduation-project
 
 
 ```
+
+</details>
 
 <!-- Code Tree (files structure) -->
 
