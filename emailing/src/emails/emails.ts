@@ -29,10 +29,10 @@ export  class Email{
         if (process.env.NODE_ENV==='production'){
 
             return  nodemailer.createTransport({
-                service:'SendGrid', // because it is all ready defined not like above with mailTrap and note that gmail is also defined
+                service:'gmail', // because it is all ready defined not like above with mailTrap and note that gmail is also defined
                 auth: {
-                    user: process.env.SENDGRID_USERNAME,
-                    pass: process.env.SENDGRID_PASSWORD
+                    user: process.env.GMAIL_EMAIL,
+                    pass: process.env.GMAIL_PASSWORD
                 }
             })
         }else{

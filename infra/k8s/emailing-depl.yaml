@@ -31,18 +31,18 @@ spec:
               value: '587'
             - name: EMAIL_FROM
               value: 'mohamedpop.9559@gmail.com'
-            - name: SENDGRID_USERNAME
-              value: 'apikey'
+            - name: GMAIL_EMAIL
+              value: 'hashcash.mail@gmail.com'
             - name: EMAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mailtrappassword
                   key: EMAIL_PASSWORD
-            - name: SENDGRID_PASSWORD
+            - name: GMAIL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: sendgridpassword
-                  key: SENDGRID_PASSWORD
+                  name: gmailpassword
+                  key: GMAIL_PASSWORD
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
