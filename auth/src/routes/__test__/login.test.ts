@@ -13,14 +13,17 @@ const setup = async ()=>{
     return {user,password}
 }
 
-interface Payload {
-    email:string,
-    role:string,
-    id:string,
+
+interface Payload{
+    sessionId:string,
+    isEmailVerified:boolean,
+    id:string;
+    role:string;
+    email:string
+    verifiedMerchant:boolean;
     exp:number,
     iat:number
 }
-
 it('should return 400 if you did not provide rememberMe field  ', async function () {
     const  {user,password} = await setup();
     await request(app)

@@ -15,6 +15,7 @@ interface UserPayload{
     id:string;
     role:string;
     email:string
+    verifiedMerchant:boolean;
 }
 declare global{ // this let me modify the Request interface and add more prop to it
     namespace Express{

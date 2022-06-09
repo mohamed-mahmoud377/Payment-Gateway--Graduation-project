@@ -7,7 +7,7 @@ const url = '/api/users/otp-registration'
 const setup =async (expriesAtMilie:number)=>{
     const otp = 12345
   const user = User.build({email:"test@test.com",password:"strongPassword",name:"jerry"})
-    user.otpNumber = otp;
+    user.otpResister = otp;
     user.otpExpiryDate= new Date(expriesAtMilie)
     await user.save();
     return {otp,user}

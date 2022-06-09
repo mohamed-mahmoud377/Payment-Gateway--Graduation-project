@@ -43,7 +43,7 @@ app.use(cookieParser())
 app.use('/api/apikey',
     getModeRoute
     ,changeModeRoute
-,getKeyRoute)
+    ,getKeyRoute)
 
 app.use(errorHandler)
 
