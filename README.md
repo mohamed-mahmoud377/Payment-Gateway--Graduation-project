@@ -32,120 +32,319 @@
 
 <h2 align="center"> Code Tree (files structure) </h3>
 
-```
-/Payment--
-|
-├── .github/workflows                   
-|    |
-|    ├── deploy-apikey-manager.yaml     
-|    ├── deploy-auth.yml                
-|    ├── deploy-emailing.yaml           
-|    ├── deploy-kms.yaml                
-|    ├── deploy-manage-business.yaml   
-|    ├── deploy-manifests.yml         
-|    ├── deploy-tokenizatin.yaml        
-|    ├── test-tokenization.yaml        
-|    ├── tests-auth.yml                 
-|    ├── tests-emailing.yml             
-|    └──  tests-kms.yaml               
-|    
-├── Images
-|  |
-|  └── Logo
-|     |
-|     ├── Asset 22.svg
-|     ├── Asset 23.svg
-|     ├── Asset logo 1 2.svg
-|     ├── Asset logo 2 2.svg
-|     └── icon 10.svg
-|  
-├── apikey-manager            
-|   | 
-|   ├── docker               
-|   |   |
-|   |   ├── Dockerfile-dev    
-|   |   └── Dockerfile-prod   
-|   |
-|   ├── src                
-|   |   |
-|   |   ├── events                                        
-|   |   |  |
-|   |   |  └── listeners                                 
-|   |   |      |
-|   |   |      ├── emailVerifiedListener.ts              
-|   |   |      └── merchantActivationListener.ts         
-|   |   |
-|   |   ├── models         
-|   |   |   |
-|   |   |   └── keys.ts    
-|   |   |
-|   |   ├── nats                  
-|   |   |   |
-|   |   |   └── nats-wrapper.ts   
-|   |   |   
-|   |   ├── routes                
-|   |   |   |
-|   |   |   ├── changeMode.ts     
-|   |   |   ├── getKey.ts        
-|   |   |   └── getMode.ts       
-|   |   |
-|   |   ├── types                   
-|   |   |  |
-|   |   |  └── queueGroupName.ts   
-|   |   |
-|   |   ├── utils               
-|   |   |  |
-|   |   |  └── generateKey.ts   
-|   |   ├── app.ts   
-|   |   └── index.ts 
-|   |
-|   ├── .dockerignore        
-|   ├── package-lock.json     
-|   ├── package.json         
-|   └── tsconfig.json        
-|   
+```bash
+Payment-Gateway--Graduation-project
+├── apikey-manager
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   └── listeners
+│   │   │       ├── emailVerifiedListener.ts
+│   │   │       └── merchantActivationListener.ts
+│   │   ├── index.ts
+│   │   ├── models
+│   │   │   └── keys.ts
+│   │   ├── nats
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── changeMode.ts
+│   │   │   ├── getKey.ts
+│   │   │   └── getMode.ts
+│   │   ├── types
+│   │   │   └── queueGroupName.ts
+│   │   └── utils
+│   │       └── generateKey.ts
+│   └── tsconfig.json
 ├── auth
-|   |
-|   ├── config
-|   |  |
-|   |  ├── dev.ts
-|   |  ├── keys.ts
-|   |  └── prod.ts
-|   |
-|   ├── docker
-|   |  |
-|   |  ├── Dockerfile-dev
-|   |  └── Dockerfile-prod
-|   |
-|   ├── src
-|   |   |
-|   |   ├── events
-|   |   ├── helpers
-|   |   ├── middlewares
-|   |   ├── models
-|   |   ├── nats
-|   |   ├── routes
-|   |   ├── test
-|   |   ├── types
-|   |   ├── utils
-|   |   ├── app.ts
-|   |   └── index.ts
-|   |    
-|   ├── .dockerignore
-|   ├── package-lock.json
-|   ├── package.json
-|   └── tsconfig.json
-|
-├── common              
-├── emailing           
-├── infra               
-├── kms                 
-├── manage-business    
-├── tokenization
-├── .gitignore  
-├── LICENSE  
-├── README.md  
-└── skaffold.yaml
+│   ├── config
+│   │   ├── dev.ts
+│   │   ├── keys.ts
+│   │   └── prod.ts
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   ├── listeners
+│   │   │   │   └── merchantActivationListener.ts
+│   │   │   └── publishers
+│   │   │       ├── emailVerifiedPublisher.ts
+│   │   │       ├── userCreatedPublisher.ts
+│   │   │       ├── userForgotPasswordPublisher.ts
+│   │   │       └── userLoggingInPublisher.ts
+│   │   ├── helpers
+│   │   │   └── runInDevelopment.ts
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   └── twoWayAuth.ts
+│   │   ├── models
+│   │   │   ├── loginSession.ts
+│   │   │   └── user.ts
+│   │   ├── nats
+│   │   │   ├── __mocks__
+│   │   │   │   └── nats-wrapper.ts
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── checkPassword.ts
+│   │   │   ├── clearSessions.ts
+│   │   │   ├── currentUser.ts
+│   │   │   ├── deactivateMerchant.ts
+│   │   │   ├── enableTwoFactorAuth.ts
+│   │   │   ├── forgotPassword.ts
+│   │   │   ├── getUsers.ts
+│   │   │   ├── getUser.ts
+│   │   │   ├── login.ts
+│   │   │   ├── me.ts
+│   │   │   ├── otpRegister.ts
+│   │   │   ├── otpResend.ts
+│   │   │   ├── refreshAccess.ts
+│   │   │   ├── resetPassword.ts
+│   │   │   ├── signout.ts
+│   │   │   ├── signup.ts
+│   │   │   ├── __test__
+│   │   │   │   ├── checkPassword.test.ts
+│   │   │   │   ├── login.test.ts
+│   │   │   │   ├── otpRegister.test.ts.old
+│   │   │   │   └── signup.test.ts
+│   │   │   └── verifyEmail.ts
+│   │   ├── test
+│   │   │   └── setup.ts
+│   │   ├── types
+│   │   │   ├── queueGroupName.ts
+│   │   │   └── roles.ts
+│   │   └── utils
+│   │       ├── generateFackUsers.ts
+│   │       ├── jwtGenerator.ts
+│   │       ├── otpGenerator.ts
+│   │       ├── passwordManger.ts
+│   │       └── userAgentParser.ts
+│   └── tsconfig.json
+├── common
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── errors
+│   │   │   ├── badRequestError.ts
+│   │   │   ├── customError.ts
+│   │   │   ├── forbiddenError.ts
+│   │   │   ├── InternalServerError.ts
+│   │   │   ├── notAuthorizedError.ts
+│   │   │   ├── notFoundError.ts
+│   │   │   ├── requestValidationError.ts
+│   │   │   └── types
+│   │   │       └── errorCodes.ts
+│   │   ├── events
+│   │   │   ├── eventTypes
+│   │   │   │   ├── emailVerifiedEvent.ts
+│   │   │   │   ├── forgotPasswordEvent.ts
+│   │   │   │   ├── userCreatedEvent.ts
+│   │   │   │   └── userLoggingInEvent.ts
+│   │   │   ├── listeners
+│   │   │   │   └── listener.ts
+│   │   │   ├── publishers
+│   │   │   │   └── publisher.ts
+│   │   │   └── Subjects.ts
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   ├── errorHandler.ts
+│   │   │   ├── requireAuth.ts
+│   │   │   ├── restrictTo.ts
+│   │   │   └── validateRequest.ts
+│   │   ├── models
+│   │   │   └── events.ts
+│   │   ├── types
+│   │   │   └── roles.ts
+│   │   └── utils
+│   │       ├── APIFilter.ts
+│   │       ├── decrypt.ts
+│   │       ├── encrypt.ts
+│   │       ├── jwtGenerator.ts
+│   │       ├── passwordManger.ts
+│   │       ├── security.ts
+│   │       └── sendSuccess.ts
+│   └── tsconfig.json
+├── emailing
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── emails
+│   │   │   └── emails.ts
+│   │   ├── events
+│   │   │   └── listeners
+│   │   │       ├── merchantActivationListener.ts
+│   │   │       ├── merchantCreatedListener.ts
+│   │   │       ├── merchantForgotPasswordListener.ts
+│   │   │       └── userLoggingInListener.ts
+│   │   ├── index.ts
+│   │   ├── nats
+│   │   │   └── nats-wrapper.ts
+│   │   ├── types
+│   │   │   └── queueGroupName.ts
+│   │   └── views
+│   │       └── emails
+│   │           ├── applicationApproved.pug
+│   │           ├── applicationDeclined.pug
+│   │           ├── baseEmail.pug
+│   │           ├── otp-login.pug
+│   │           ├── otp-signup.pug
+│   │           ├── passwordReset.pug
+│   │           ├── _style.pug
+│   │           └── welcome.pug
+│   └── tsconfig.json
+├── Images
+│   └── Logo
+│       ├── Asset 22.svg
+│       ├── Asset 23.svg
+│       ├── Asset logo 1 2.svg
+│       ├── Asset logo 2 2.svg
+│       └── icon 10.svg
+├── infra
+│   ├── k8s
+│   │   ├── apikey-manager-depl.yaml
+│   │   ├── apikey-manager-mongo-depl.yaml
+│   │   ├── authentication-depl.yaml
+│   │   ├── authentication-mongo-depl.yaml
+│   │   ├── emailing-depl.yaml
+│   │   ├── kms-depl.yaml
+│   │   ├── kms-mongo-depl.yaml
+│   │   ├── manage-business-depl.yaml
+│   │   ├── manage-businessmongo-depl.yaml
+│   │   ├── nats-depl.yaml
+│   │   ├── tokenization-depl.yaml
+│   │   └── tokenization-mongo-depl.yaml
+│   ├── k8s-accounts
+│   │   └── admin.yaml
+│   ├── k8s-dev
+│   │   ├── ingress-srv.yaml
+│   │   ├── mongo-authentication-nodePort.yaml
+│   │   └── mongo-kms-nodeport.yaml
+│   └── k8s-prod
+│       └── ingress-srv.yaml
+├── kms
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   └── publishers
+│   │   │       └── userLoggingInPublisher.ts
+│   │   ├── helpers
+│   │   │   └── runInDevelopment.ts
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   └── protect.ts
+│   │   ├── models
+│   │   │   ├── admin.ts
+│   │   │   ├── events.ts.old
+│   │   │   ├── key.ts
+│   │   │   ├── loginSession.ts
+│   │   │   └── tokens.ts
+│   │   ├── nats
+│   │   │   ├── __mocks__
+│   │   │   │   └── nats-wrapper.ts
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── dataEncryptKey.ts
+│   │   │   ├── decryptDataEncryptKey.ts
+│   │   │   ├── deleteKey.ts
+│   │   │   ├── deleteToken.ts
+│   │   │   ├── generateMaster.ts
+│   │   │   ├── getKeys.ts
+│   │   │   ├── getKey.ts
+│   │   │   ├── getServiceAccessToken.ts
+│   │   │   ├── getTokens.ts
+│   │   │   ├── login.ts
+│   │   │   └── otpRegister.ts
+│   │   └── utils
+│   │       ├── decrypt.ts
+│   │       ├── encrypt.ts
+│   │       ├── generateKey.ts
+│   │       ├── jwtGenerator.ts
+│   │       ├── otpGenerator.ts
+│   │       └── userAgentParser.ts
+│   └── tsconfig.json
+├── LICENSE
+├── manage-business
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   ├── listeners
+│   │   │   │   ├── emailVerifiedListener.ts
+│   │   │   │   └── queueGroupName.ts
+│   │   │   └── publishers
+│   │   │       └── merchantActivatedPublisher.ts
+│   │   ├── index.ts
+│   │   ├── models
+│   │   │   ├── bankAccount.ts
+│   │   │   ├── businessActivationRequest.ts
+│   │   │   ├── businessApplication.ts
+│   │   │   ├── businessInfo.ts
+│   │   │   └── businessOwner.ts
+│   │   ├── nats
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── AllActivationsRequests.ts
+│   │   │   ├── approveActivationRequest.ts
+│   │   │   ├── declineActivationRequest.ts
+│   │   │   ├── getAcitvationRequest.ts
+│   │   │   ├── MyActivationRequest.ts
+│   │   │   └── submitActivationRequest.ts
+│   │   ├── types
+│   │   │   └── RequestStatus.ts
+│   │   └── utils
+│   │       └── validator.ts
+│   └── tsconfig.json
+├── README.md
+├── skaffold.yaml
+└── tokenization
+    ├── docker
+    │   ├── Dockerfile-dev
+    │   └── Dockerfile-prod
+    ├── package.json
+    ├── package-lock.json
+    ├── src
+    │   ├── app.ts
+    │   ├── helpers
+    │   │   └── runInDevelopment.ts
+    │   ├── index.ts
+    │   ├── middlewares
+    │   │   └── protect.ts
+    │   ├── models
+    │   │   ├── accessToken.ts
+    │   │   └── token.ts
+    │   ├── nats
+    │   │   ├── __mocks__
+    │   │   │   └── nats-wrapper.ts
+    │   │   └── nats-wrapper.ts
+    │   ├── routes
+    │   │   ├── deTokenize.ts
+    │   │   ├── getServiceAccessToken.ts
+    │   │   └── tokenize.ts
+    │   └── utils
+    │       └── generateToken.ts
+    └── tsconfig.json
+
+89 directories, 219 files
+
 
 ```
 
