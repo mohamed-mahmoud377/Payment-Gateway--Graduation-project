@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - 'infra/k8s/**'
-      - 'infra/k8s/prod/**'
+      - 'infra/k8s/k8s-prod/**'
         
 jobs:
   build:
