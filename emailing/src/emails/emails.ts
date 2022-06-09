@@ -21,7 +21,7 @@ export  class Email{
         this.to = email;
         this.name =name.split(' ')[0];
         this.url = url;
-        this.from = `hash cash <${process.env.EMAIL_FROM}>`;
+        this.from = `hash cash <${process.env.GMAIL_EMAIL}>`;
         this.reason = reason;
     }
 
