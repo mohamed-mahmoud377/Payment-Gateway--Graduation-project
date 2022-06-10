@@ -3,7 +3,7 @@ import {Roles} from "../types/roles";
 
 //will run only in development mode
 export const runInDevelopment =async () => {
-    if (process.env.NODE_ENV==='development'){
+    if (process.env.NODE_ENV==='production'){
         const users =await User.find({});
         if (users.length>0)
             return;
