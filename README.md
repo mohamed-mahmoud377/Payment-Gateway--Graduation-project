@@ -9,18 +9,10 @@
 <!-- shields -->
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=deeppink">
-  </br>
   <img src="https://img.shields.io/badge/Maintained%3F-Yes-purple?style=for-the-badge">
   <img src="https://img.shields.io/github/issues/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
-  </br>
   <img src="https://img.shields.io/github/stars/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/forks/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
-  <img src="https://img.shields.io/github/repo-size/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
-  </br>
-  <img src="https://img.shields.io/github/languages/count/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=purple&style=for-the-badge">
-  <img src="https://img.shields.io/github/languages/code-size/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
-  <img src="https://img.shields.io/github/last-commit/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
 </p>
 
 <!-- shields -->
