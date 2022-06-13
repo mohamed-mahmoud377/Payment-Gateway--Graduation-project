@@ -9,7 +9,7 @@ import {User} from "../models/user";
 const router =express.Router();
 
 router.post('/check-password',[
-    body('password').trim().notEmpty().withMessage("password field can not be empty")
+    body('password').trim().exists().withMessage("password field can not be empty")
 
 
 ],validateRequest,async (req:Request,res:Response)=>{
