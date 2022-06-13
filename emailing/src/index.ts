@@ -23,7 +23,6 @@ const startUp = async ()=>{
             console.log("NATS connection closed !")
             process.exit();
         })
-
         new MerchantCreatedListener(natsWrapper.client).listen();
         new MerchantForgotPasswordListener(natsWrapper.client).listen();
         new UserLoggingInListener(natsWrapper.client).listen();
