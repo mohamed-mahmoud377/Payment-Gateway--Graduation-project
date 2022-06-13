@@ -8,11 +8,7 @@ import {User} from "../models/user";
 
 const router =express.Router();
 
-router.post('/check-password',[
-    body('password').trim().not().exists().withMessage("password field can not be empty")
-
-
-],validateRequest,async (req:Request,res:Response)=>{
+router.post('/check-password',async (req:Request,res:Response)=>{
   const {password} =req.body;
   if (password.length<11)
       return res.status(200).send({
