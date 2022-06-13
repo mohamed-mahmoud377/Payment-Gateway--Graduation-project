@@ -8,8 +8,15 @@ import {User} from "../models/user";
 
 const router =express.Router();
 
-router.post('/check-password',async (req:Request,res:Response)=>{
+router.post('/check-password',[
+
+
+
+],validateRequest,async (req:Request,res:Response)=>{
   const {password} =req.body;
+    if (!password){
+        throw new BadRequestError(["Password field must be provided"]);
+    }
   if (password.length<11)
       return res.status(200).send({
           status:"fail",
