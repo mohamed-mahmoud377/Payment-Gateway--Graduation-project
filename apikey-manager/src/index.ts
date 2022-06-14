@@ -5,8 +5,6 @@ import {EmailVerifiedListener} from "./events/listeners/emailVerifiedListener";
 import {MerchantActivationListener} from "./events/listeners/merchantActivationListener";
 
 
-
-
 const start = async ()=>{
     console.log('Starting up apiKey manager service...')
 
