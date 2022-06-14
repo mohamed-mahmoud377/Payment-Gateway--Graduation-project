@@ -17,7 +17,7 @@ router.post('/check-password',[
     if (!password){
         throw new BadRequestError(["Password field must be provided"]);
     }
-  if (password.length<11)
+  if (password.length<10)
       return res.status(200).send({
           status:"fail",
           errorCode:ErrorCodes.badRequest,
