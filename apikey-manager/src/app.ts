@@ -10,8 +10,6 @@ import {changeModeRoute} from "./routes/changeMode";
 import cookieParser from "cookie-parser";
 import {getKeyRoute} from "./routes/getKey";
 
-
-
 const app= express();
 
 app.set('trust proxy',true);
