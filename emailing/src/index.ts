@@ -6,6 +6,7 @@ import {UserLoggingInListener} from "./events/listeners/userLoggingInListener";
 import {MerchantActivationListener} from "./events/listeners/merchantActivationListener";
 
 
+
 const startUp = async ()=>{
     console.log('starting up ')
     if (!process.env.NATS_CLIENT_ID){
