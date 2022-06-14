@@ -23,7 +23,6 @@ import {verifyEmailRoute} from "./routes/verifyEmail";
 import {enableTwoFactorAuthRoute} from "./routes/enableTwoFactorAuth";
 import cookieParser from "cookie-parser";
 
-
 const app= express();
 
 app.set('trust proxy',true);
