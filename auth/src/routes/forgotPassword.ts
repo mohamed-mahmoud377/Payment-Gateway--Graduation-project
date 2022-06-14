@@ -32,7 +32,7 @@ router.post('/forgot-password',[
     //create the event
 
     const pubEvent = {
-        subject:Subjects.userCreated,
+        subject:Subjects.userForgotPassword,
         data:{
             email:existingUser.email,
             userId:existingUser.id,

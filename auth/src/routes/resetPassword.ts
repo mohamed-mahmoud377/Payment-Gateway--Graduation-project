@@ -37,6 +37,8 @@ router.patch('/reset-password/:token',[
     }
 
     user.set({password:newPassword})
+    user.passwordRestToken=undefined;
+    user.passwordResetExpires=undefined;
     await user.save();
 
 
