@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from  "@hashcash/common";
+import {BadRequestError, validateRequest} from "@hashcash/common";
 import {User} from "../models/user";
 import {sendSuccess} from  "@hashcash/common";
 
@@ -33,7 +33,7 @@ router.patch('/reset-password/:token',[
     }); // the only thing we know about the user at this moment
 
     if (!user){
-        throw new NotAuthorizedError();
+        throw new BadRequestError(["Invalid or expired token"]);
     }
 
     user.set({password:newPassword})
