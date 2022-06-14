@@ -44,7 +44,7 @@ router.get('/resend-otp/:userId/',[
 
     user.save()
    if (sendFor==='signup'){
-       user.set({otpVerify:otp, otpExpiryDate:Date.now()+ 5 * 60 * 1000})
+       user.set({otpVerify:otp, otpExpiryDate:Date.now()+ 10 * 60 * 1000})
      const   pubEvent :UserCreatedEvent= {
            subject:Subjects.userCreated,
            data:{
@@ -76,7 +76,7 @@ router.get('/resend-otp/:userId/',[
 
    }
    if (sendFor==='login'){
-       user.set({otpResister:otp, otpExpiryDate:Date.now()+ 5 * 60 * 1000})
+       user.set({otpResister:otp, otpExpiryDate:Date.now()+ 10 * 60 * 1000})
       const  pubEvent:UserLoggingInEvent = {
            subject:Subjects.userLoggingIn,
            data:{

@@ -26,6 +26,7 @@ router.post('/verify-email' ,[
     if (!mongoose.isValidObjectId( userId)){
         throw new  BadRequestError(['OTP password is wrong']);
     }
+
     //we if the user is existed if the id is right and the otp is right and it does not expire
     const user = await User.findOne({
         _id:userId,
@@ -35,6 +36,9 @@ router.post('/verify-email' ,[
     if (!user){
         throw new  BadRequestError(['OTP is wrong try again or resend it']);
 
+    }
+    if (user.isEmailVerified){
+        throw new BadRequestError(["Email is already verified"])
     }
     // setting the email to be verified
     user.otpVerify=undefined;
