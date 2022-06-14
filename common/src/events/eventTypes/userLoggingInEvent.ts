@@ -7,5 +7,6 @@ export interface UserLoggingInEvent{
         userId:string,
         name:string;
         otp:number;
+
     }
 }

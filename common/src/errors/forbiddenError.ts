@@ -5,7 +5,7 @@ export class ForbiddenError extends CustomError{
     errorCode: number;
     statusCode: number;
     errorMessages:string [];
-    constructor(errorMessages:string[]=['Forbidden request, You are not authorized to access the route'],codeError:number=ErrorCodes.unauthorized) {
+    constructor(errorMessages:string[]=['Forbidden request, You are not authorized to access this route'],codeError:number=ErrorCodes.unauthorized) {
         super(errorMessages[0]);
         this.statusCode = 403;
         this.errorCode = codeError;

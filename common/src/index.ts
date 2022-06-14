@@ -10,6 +10,8 @@ export * from './events/eventTypes/userCreatedEvent'
 export * from './events/eventTypes/forgotPasswordEvent'
 export * from './events/eventTypes/userLoggingInEvent'
 export  * from './events/eventTypes/emailVerifiedEvent'
+export * from './events/eventTypes/merchantActivationEvent'
+
 export * from './events/Subjects'
 export * from  './events/publishers/publisher'
 export * from './events/listeners/listener'
@@ -32,3 +34,4 @@ export * from './models/events'
 
 
 export * from './types/roles'
+export * from "./types/modes"
