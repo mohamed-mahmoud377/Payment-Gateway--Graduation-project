@@ -54,7 +54,7 @@ spec:
               service:
                 name: client-srv
                 port:
-                  number: 3000
+                  number: 4200
 ---
 apiVersion: v1
 kind: Service
