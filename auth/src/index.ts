@@ -8,6 +8,8 @@ import {MerchantActivationListener} from "./events/listeners/merchantActivationL
 
 
 
+
+
 const start = async ()=>{
     console.log('Starting up auth...')
     if (!process.env.JWT_KEY_REFRESH){

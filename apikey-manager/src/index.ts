@@ -6,6 +6,7 @@ import {MerchantActivationListener} from "./events/listeners/merchantActivationL
 
 
 
+
 const start = async ()=>{
     console.log('Starting up apiKey manager service...')
 

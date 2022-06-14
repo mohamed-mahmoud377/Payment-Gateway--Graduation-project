@@ -4,7 +4,6 @@ import {natsWrapper} from "./nats/nats-wrapper";
 import {EmailVerifiedListener} from "./events/listeners/emailVerifiedListener";
 
 
-
 const start = async ()=>{
     console.log('Starting up auth...')
 
