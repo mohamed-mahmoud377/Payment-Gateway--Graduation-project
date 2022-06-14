@@ -37,6 +37,7 @@ router.patch('/reset-password/:token',[
     }
 
     user.set({password:newPassword})
+    await user.save();
 
 
     sendSuccess(res,200,{});
