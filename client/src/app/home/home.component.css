@@ -1,0 +1,22 @@
+.header {
+  padding: 20px 0px;
+}
+
+.header .logo img {
+  width: 100px;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70vh;
+}
+h1 {
+  font-weight: 600;
+}
+
+h1 span {
+  background: -webkit-linear-gradient(#dc2170, #863d87);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

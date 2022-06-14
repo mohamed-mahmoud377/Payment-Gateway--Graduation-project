@@ -1,0 +1,168 @@
+.container {
+  height: 100vh;
+}
+.content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  padding: 56px 48px;
+  font-size: 14px;
+  width: 85%;
+}
+.card label {
+  font-weight: 600;
+}
+.card h3 {
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+.input-container input {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.policy {
+  display: flex;
+  font-size: 13px;
+}
+p-checkbox {
+  display: block;
+  margin-right: 5px;
+}
+.p-checkbox .p-checkbox-box {
+  width: 15px;
+  height: 15px;
+}
+.policy p {
+  color: rgb(105, 115, 134);
+}
+.policy a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.sign-in {
+  text-align: center;
+}
+.sign-in a {
+  color: var(--primary-color);
+}
+
+.left-side {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 80%;
+}
+.logo {
+  margin-bottom: 30px;
+}
+.logo img {
+  width: 100px;
+}
+.content .logo {
+  text-align: center;
+}
+
+.left-content i {
+  color: var(--primary-color);
+  font-size: 17px;
+}
+.instruction {
+  display: flex;
+}
+.instruction .text {
+  padding: 0px 10px;
+}
+.instruction h5 {
+  font-weight: 600;
+  line-height: 24px;
+  font-size: 16px;
+}
+.instruction p {
+  font-size: 14px;
+  color: rgb(105, 115, 134);
+}
+.footer {
+  margin-top: 50px;
+  font-size: 14px;
+  color: rgb(105, 115, 134);
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  left: -35px;
+  top: -8px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  margin: 8px;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--primary-color) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1399.98px) {
+  .form-container .card {
+    width: 100%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .form-container .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card {
+    width: 100%;
+  }
+}

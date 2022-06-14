@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+:root {
+  --primary-color: #863d87;
+  --error: rgb(234, 11, 11);
+}
+
+body {
+  background-color: #f7fafc !important;
+}
+a {
+  text-decoration: none !important;
+}
+.error {
+  color: var(--error);
+}
+
+.policy .p-checkbox .p-checkbox-box {
+  width: 15px;
+  height: 15px;
+}
+
+.policy .p-checkbox .p-checkbox-box .p-checkbox-icon {
+  font-size: 8px;
+}
+p-password {
+  border: none !important;
+}
+p-password.p-inputtext {
+  width: 100% !important;
+  padding: 0.5rem 0.25rem !important;
+}
+.p-password {
+  width: 100%;
+}
+.p-password input {
+  width: 100%;
+}

@@ -1,0 +1,27 @@
+.img-container {
+  height: 100vh;
+}
+.content-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 56px 48px;
+  font-size: 14px;
+  width: 85%;
+}
+.card h1 {
+  color: var(--primary-color);
+}
+
+.resend-otp span {
+  font-weight: 600;
+  color: var(--primary-color);
+  cursor: pointer;
+}

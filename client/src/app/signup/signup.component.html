@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 d-lg-block d-none">
+      <div class="left-side">
+        <div>
+          <div class="logo">
+            <img src="../../assets/images/logo.png" />
+          </div>
+          <div class="left-content">
+            <div class="instruction">
+              <div class="icon">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <h5>Get started quickly</h5>
+                <p>
+                  Integrate with developer-friendly APIs or choose low-code
+                  or<br />
+                  pre-built solutions.
+                </p>
+              </div>
+            </div>
+
+            <div class="instruction mt-4">
+              <div class="icon">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <h5>Support any business model</h5>
+                <p>
+                  E-commerce, subscriptions, SaaS platforms, marketplaces, and
+                  <br />
+                  more—all within a unified platform.
+                </p>
+              </div>
+            </div>
+            <div class="instruction mt-4">
+              <div class="icon">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+              </div>
+              <div class="text">
+                <h5>Join millions of businesses</h5>
+                <p>
+                  Stripe is trusted by ambitious startups and enterprises of
+                  every size.
+                </p>
+              </div>
+            </div>
+            <div class="footer">© HashCash · <a>Privacy & terms</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 content">
+      <div>
+        <div class="logo d-block d-lg-none">
+          <img src="../../assets/images/logo.png" />
+        </div>
+        <div class="card">
+          <h3>Create your HashCash account</h3>
+
+          <form [formGroup]="signUpCtr" (ngSubmit)="onSubmit()">
+            <div class="input-container mt-4">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                pInputText
+                formControlName="email"
+              />
+            </div>
+            <small
+              class="p-1 error"
+              *ngIf="emailCtr.invalid && (emailCtr.dirty || emailCtr.touched)"
+            >
+              Please Enter a valid email
+            </small>
+            <div class="input-container mt-4">
+              <label for="fullName">Full Name</label>
+              <input
+                id="fullName"
+                type="text"
+                pInputText
+                formControlName="name"
+              />
+            </div>
+            <small
+              class="p-1 error"
+              *ngIf="nameCtr.invalid && (nameCtr.dirty || nameCtr.touched)"
+            >
+              name is required
+            </small>
+
+            <div class="input-container mt-4">
+              <label for="password">Password</label>
+              <p-password
+                id="password"
+                type="password"
+                pInputText
+                formControlName="password"
+                [toggleMask]="true"
+                (onBlur)="checkPassword()"
+              ></p-password>
+            </div>
+            <small
+              class="p-1 error"
+              *ngIf="
+                passwordCtr.invalid &&
+                (passwordCtr.dirty || passwordCtr.touched) &&
+                !passwordError
+              "
+            >
+              Password is required
+            </small>
+            <small class="d-flex justify-content-end p-2" *ngIf="verifyLoading">
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              Verifying password
+            </small>
+            <small class="p-1 error" *ngIf="passwordError">
+              {{ passwordError }}
+            </small>
+            <div class="policy mt-3">
+              <p-checkbox value="true"></p-checkbox>
+              <p>
+                Get emails from Stripe about product updates, industry news, and
+                events. If you change your mind, you can unsubscribe at any
+                time.
+                <a>Privacy Policy</a>
+              </p>
+            </div>
+
+            <div class="btn w-100">
+              <button
+                [loading]="loading"
+                pButton
+                type="submit"
+                label="Create Account"
+                class="w-100"
+                [disabled]="signUpCtr.invalid || verifyLoading || passwordError"
+              ></button>
+            </div>
+          </form>
+          <div class="sign-in mt-3">
+            <span>Have an account? <a routerLink="/signin">Sign in</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
