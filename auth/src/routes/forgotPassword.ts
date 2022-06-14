@@ -23,7 +23,7 @@ router.post('/forgot-password',[
     // making sure that the email is valid and exists
     const existingUser = await User.findOne({email});
     if (!existingUser) {
-        throw new BadRequestError()
+        throw new BadRequestError(["The email you entered is not correct"])
     }
     //generate a rest token
     const resetToken = existingUser.createAndAssignPasswordResetToken();
