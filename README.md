@@ -1,7 +1,5 @@
 <p align="center">
   <img align="center" width="130" hight="130" src="/Images/Logo/Asset logo 2 2.svg" />
-  </br>
-  <img align="right" src="https://badges.pufler.dev/visits/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=9D3480"/>
 <p/>
 
 </br></br>
@@ -13,6 +11,7 @@
   <img src="https://img.shields.io/github/issues/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
   <img src="https://img.shields.io/github/stars/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/forks/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
+  <img src="https://badges.pufler.dev/visits/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=9D3480"/>
 </p>
 
 <!-- shields -->
@@ -27,6 +26,7 @@
 
 
 ```bash
+
 Payment-Gateway--Graduation-project
 ├── apikey-manager
 │   ├── docker
@@ -121,6 +121,87 @@ Payment-Gateway--Graduation-project
 │   │       ├── passwordManger.ts
 │   │       └── userAgentParser.ts
 │   └── tsconfig.json
+├── client
+│   ├── angular.json
+│   ├── Dockerfile
+│   ├── karma.conf.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   ├── src
+│   │   ├── app
+│   │   │   ├── app.component.css
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── checkout
+│   │   │   │   ├── checkout.component.css
+│   │   │   │   ├── checkout.component.html
+│   │   │   │   ├── checkout.component.spec.ts
+│   │   │   │   └── checkout.component.ts
+│   │   │   ├── forget-password
+│   │   │   │   ├── forget-password.component.css
+│   │   │   │   ├── forget-password.component.html
+│   │   │   │   ├── forget-password.component.spec.ts
+│   │   │   │   └── forget-password.component.ts
+│   │   │   ├── guards
+│   │   │   │   ├── auth.guard.ts
+│   │   │   │   ├── login.guard.ts
+│   │   │   │   └── verify-email.guard.ts
+│   │   │   ├── home
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.spec.ts
+│   │   │   │   └── home.component.ts
+│   │   │   ├── login
+│   │   │   │   ├── login.component.css
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.spec.ts
+│   │   │   │   └── login.component.ts
+│   │   │   ├── Models
+│   │   │   │   └── types.ts
+│   │   │   ├── primeng
+│   │   │   │   └── primeng.module.ts
+│   │   │   ├── reset-password
+│   │   │   │   ├── reset-password.component.css
+│   │   │   │   ├── reset-password.component.html
+│   │   │   │   ├── reset-password.component.spec.ts
+│   │   │   │   └── reset-password.component.ts
+│   │   │   ├── Services
+│   │   │   │   ├── auth.service.spec.ts
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   └── shared
+│   │   │   │       └── handel-error.service.ts
+│   │   │   ├── signup
+│   │   │   │   ├── signup.component.css
+│   │   │   │   ├── signup.component.html
+│   │   │   │   ├── signup.component.spec.ts
+│   │   │   │   └── signup.component.ts
+│   │   │   └── verify-email
+│   │   │       ├── verify-email.component.css
+│   │   │       ├── verify-email.component.html
+│   │   │       ├── verify-email.component.spec.ts
+│   │   │       └── verify-email.component.ts
+│   │   ├── assets
+│   │   │   └── images
+│   │   │       ├── haeder.png
+│   │   │       ├── logo.png
+│   │   │       ├── otp.jpg
+│   │   │       └── otp.png
+│   │   ├── environments
+│   │   │   ├── environment.prod.ts
+│   │   │   └── environment.ts
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── main.ts
+│   │   ├── polyfills.ts
+│   │   ├── styles.css
+│   │   └── test.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   └── tsconfig.spec.json
 ├── common
 │   ├── package.json
 │   ├── package-lock.json
@@ -139,6 +220,7 @@ Payment-Gateway--Graduation-project
 │   │   │   ├── eventTypes
 │   │   │   │   ├── emailVerifiedEvent.ts
 │   │   │   │   ├── forgotPasswordEvent.ts
+│   │   │   │   ├── merchantActivationEvent.ts
 │   │   │   │   ├── userCreatedEvent.ts
 │   │   │   │   └── userLoggingInEvent.ts
 │   │   │   ├── listeners
@@ -155,6 +237,7 @@ Payment-Gateway--Graduation-project
 │   │   ├── models
 │   │   │   └── events.ts
 │   │   ├── types
+│   │   │   ├── modes.ts
 │   │   │   └── roles.ts
 │   │   └── utils
 │   │       ├── APIFilter.ts
@@ -209,6 +292,7 @@ Payment-Gateway--Graduation-project
 │   │   ├── apikey-manager-mongo-depl.yaml
 │   │   ├── authentication-depl.yaml
 │   │   ├── authentication-mongo-depl.yaml
+│   │   ├── client-deply.yaml
 │   │   ├── emailing-depl.yaml
 │   │   ├── kms-depl.yaml
 │   │   ├── kms-mongo-depl.yaml
@@ -307,6 +391,7 @@ Payment-Gateway--Graduation-project
 │   │   └── utils
 │   │       └── validator.ts
 │   └── tsconfig.json
+├── push.sh
 ├── README.md
 ├── skaffold.yaml
 └── tokenization
@@ -337,7 +422,7 @@ Payment-Gateway--Graduation-project
     │       └── generateToken.ts
     └── tsconfig.json
 
-89 directories, 219 files
+107 directories, 286 files
 
 
 ```
