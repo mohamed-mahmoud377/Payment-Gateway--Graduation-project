@@ -64,13 +64,11 @@ export class SignupComponent implements OnInit {
           this.verifyLoading = false;
           if (res.status === 'success') {
             this.passwordError = null;
-          } else {
-            this.passwordError = res.errors[0];
           }
         },
         ({ error }) => {
           this.verifyLoading = false;
-          this.handleErrorService.handleErrors(error, this.messageService);
+          this.passwordError = error.errors[0];
         }
       );
   }
