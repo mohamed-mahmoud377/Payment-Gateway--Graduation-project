@@ -6,7 +6,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../Services/auth.service';
 
@@ -21,16 +21,29 @@ export class LoginComponent implements OnInit {
   public passwordError!: string | null;
   public loading = false;
   public verifyLoading = false;
+  public isEmailVerified = false;
+  public verifiedMsg = [
+    {
+      severity: 'success',
+      detail: 'Email has been verified successfully you can login now',
+    },
+  ];
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private messageService: MessageService,
     private handleErrorService: HandelErrorService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.initializeSignUpForm();
+    this.route.queryParams.subscribe((params: any) => {
+      if (params.isVerified == 'true') {
+        this.isEmailVerified = true;
+      }
+    });
+    this, this.initializeSignUpForm();
   }
   checkboxChange(event: any) {
     console.log(event);

@@ -23,7 +23,6 @@ export class VerifyEmailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.userId = params.userId;
-      console.log(this.userId);
     });
   }
 
@@ -39,8 +38,12 @@ export class VerifyEmailComponent implements OnInit {
     };
     this.authService.OTPRegistration(inputs as any).subscribe(
       ({ data }) => {
-        console.log(data);
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin'], {
+          queryParams: {
+            isVerified: 'true',
+          },
+          queryParamsHandling: 'merge',
+        });
       },
       ({ error }) => {
         this.messageService.add({
