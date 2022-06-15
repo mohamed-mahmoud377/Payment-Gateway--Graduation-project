@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'signin', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   {
-    path: 'verify-email',
+    path: 'verify-email/:userId',
     component: VerifyEmailComponent,
-    canActivate: [VerifyEmailGuard, LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'forget-password',

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from './../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,10 +16,16 @@ export class VerifyEmailComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      this.userId = params.userId;
+      console.log(this.userId);
+    });
+  }
 
   codeCompletedHandler(event: any) {
     this.disabled = false;

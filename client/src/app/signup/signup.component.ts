@@ -46,8 +46,7 @@ export class SignupComponent implements OnInit {
     this.authService.signUp(this.signUpCtr.value).subscribe(
       ({ data }) => {
         this.loading = false;
-        localStorage.setItem('userId', data.userId);
-        this.router.navigate(['/verify-email']);
+        this.router.navigate([`/verify-email/${data.userId}`]);
       },
       ({ error }) => {
         this.loading = false;
