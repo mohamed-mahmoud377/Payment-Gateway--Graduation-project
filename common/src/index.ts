@@ -12,6 +12,7 @@ export * from './events/eventTypes/userLoggingInEvent'
 export  * from './events/eventTypes/emailVerifiedEvent'
 export * from './events/eventTypes/merchantActivationEvent'
 
+
 export * from './events/Subjects'
 export * from  './events/publishers/publisher'
 export * from './events/listeners/listener'
