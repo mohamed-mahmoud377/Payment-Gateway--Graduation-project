@@ -1,3 +1,4 @@
+import { HandelErrorService } from './../Services/shared/handel-error.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private messageService: MessageService,
+    private handleErrorService: HandelErrorService,
     private router: Router
   ) {}
 
@@ -57,12 +59,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       ({ error }) => {
-        this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error!',
-          detail: error.errors[0],
-        });
+        this.handleErrorService.handleErrors(error, this.messageService);
       }
     );
   }

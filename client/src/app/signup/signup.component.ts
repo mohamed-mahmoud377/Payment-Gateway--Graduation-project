@@ -1,3 +1,4 @@
+import { HandelErrorService } from './../Services/shared/handel-error.service';
 import { AuthService } from './../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private messageService: MessageService,
+    private handleErrorService: HandelErrorService,
     private router: Router
   ) {}
 
@@ -49,11 +51,7 @@ export class SignupComponent implements OnInit {
       },
       ({ error }) => {
         this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error!',
-          detail: error.errors[0],
-        });
+        this.handleErrorService.handleErrors(error, this.messageService);
       }
     );
   }
@@ -72,7 +70,7 @@ export class SignupComponent implements OnInit {
         },
         ({ error }) => {
           this.verifyLoading = false;
-          this.passwordError = error.errors[0];
+          this.handleErrorService.handleErrors(error, this.messageService);
         }
       );
   }
