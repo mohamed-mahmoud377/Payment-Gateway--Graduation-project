@@ -40,4 +40,5 @@ p-password.p-inputtext {
 }
 .p-password input {
   width: 100%;
+  padding: 5px;
 }

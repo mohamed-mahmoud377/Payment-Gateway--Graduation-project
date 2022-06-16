@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from './../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,10 +16,15 @@ export class VerifyEmailComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      this.userId = params.userId;
+    });
+  }
 
   codeCompletedHandler(event: any) {
     this.disabled = false;
@@ -33,8 +38,12 @@ export class VerifyEmailComponent implements OnInit {
     };
     this.authService.OTPRegistration(inputs as any).subscribe(
       ({ data }) => {
-        console.log(data);
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/signin'], {
+          queryParams: {
+            isVerified: 'true',
+          },
+          queryParamsHandling: 'merge',
+        });
       },
       ({ error }) => {
         this.messageService.add({

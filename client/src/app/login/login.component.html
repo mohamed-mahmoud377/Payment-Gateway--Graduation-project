@@ -4,6 +4,9 @@
       <div class="logo">
         <img src="../../assets/images/logo.png" />
       </div>
+      <div *ngIf="isEmailVerified">
+        <p-messages [value]="verifiedMsg"></p-messages>
+      </div>
       <h4>Sign In</h4>
       <p>It's not long before you embark on this journey !</p>
       <form [formGroup]="signInCtr" (ngSubmit)="onSubmit()">
