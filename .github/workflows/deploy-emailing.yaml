@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd emailing && docker build -t jerry377/emailing -f docker/Dockerfile-dev .
+      - run: cd emailing && docker build -t jerry377/emailing -f docker/Dockerfile-prod .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
