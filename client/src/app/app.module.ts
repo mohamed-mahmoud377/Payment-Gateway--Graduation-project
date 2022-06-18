@@ -15,6 +15,7 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CodeInputModule } from 'angular-code-input';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NavbarComponent } from './home/Components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     VerifyEmailComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

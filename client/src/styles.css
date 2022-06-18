@@ -3,6 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 * {
   font-family: "Josefin Sans", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 :root {
@@ -41,4 +44,23 @@ p-password.p-inputtext {
 .p-password input {
   width: 100%;
   padding: 5px;
+}
+.top-navbar .p-button-label {
+  font-size: 12px;
+}
+.top-navbar .p-button .p-button-icon-left {
+  font-size: 12px;
+}
+
+.top-navbar .p-inputtext {
+  padding: 0px;
+  border-radius: 10px;
+}
+.p-tooltip {
+  font-size: 12px;
+  padding: 0px;
+}
+.p-tooltip-text {
+  font-size: 14px !important;
+  padding: 5px !important;
 }
