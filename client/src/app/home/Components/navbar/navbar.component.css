@@ -1,11 +1,13 @@
 .top-navbar {
   background-color: #f6f8fa;
   font-size: 14px;
+  border-bottom: 1px solid #dbdfe2;
 }
 .top-navbar .right {
   display: flex;
   justify-content: end;
 }
+
 .top-navbar i {
   color: #565c6b;
   font-weight: 500;
@@ -40,4 +42,21 @@
 .top-navbar a i {
   color: var(--primary-color);
   font-size: 12px;
+}
+
+.bottom-nav {
+  font-size: 14px;
+  border-bottom: 1px solid #dfe2e4;
+}
+
+.links li a.active {
+  background-color: var(--primary-500);
+  padding: 10px 15px;
+  border-radius: 23px;
+  color: #fff;
+}
+.links li a:active {
+  padding: 10px 15px;
+  border-radius: 23px;
+  color: #000;
 }
