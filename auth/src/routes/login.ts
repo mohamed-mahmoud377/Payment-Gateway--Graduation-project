@@ -77,8 +77,9 @@ router.post('/login',[
 
     // req.session= {jwt:accessToken};
     res.cookie("jwt",accessToken,{
-        // sameSite:"lax",
-        // httpOnly:true
+        sameSite:"none",
+        // httpOnly:true,
+
     })
 
     // if admin only make him logged in for 15 min do not give him the refresh token
