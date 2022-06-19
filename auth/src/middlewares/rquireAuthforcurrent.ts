@@ -26,7 +26,13 @@ declare global{ // this let me modify the Request interface and add more prop to
 
 export const requireAuthForCurrent = (req:Request,res:Response,next:NextFunction)=>{
 
-    if (!req.cookies?.jwt){ /// first check if there is req.session then check if there is req.session.jwt
+    let token;
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(' ')[1];
+    }else if (req.cookies.jwt){
+        token = req.cookies.jwt; // to be able to authenticate via cookie too
+    }
+    if (!token){ /// first check if there is req.session then check if there is req.session.jwt
         throw new NotAuthorizedError()
     }
     try{
