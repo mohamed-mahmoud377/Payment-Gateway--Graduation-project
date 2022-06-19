@@ -8,6 +8,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [],
@@ -22,6 +24,8 @@ import { PasswordModule } from 'primeng/password';
     MessagesModule,
     ToastModule,
     PasswordModule,
+    TooltipModule,
+    InputSwitchModule,
   ],
 })
 export class PrimengModule {}

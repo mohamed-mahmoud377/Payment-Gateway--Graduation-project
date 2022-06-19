@@ -3,6 +3,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 * {
   font-family: "Josefin Sans", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+ul {
+  margin: 0px !important;
+}
+ul li {
+  list-style: none;
 }
 
 :root {
@@ -41,4 +50,46 @@ p-password.p-inputtext {
 .p-password input {
   width: 100%;
   padding: 5px;
+}
+.top-navbar .p-button-label {
+  font-size: 12px;
+}
+.top-navbar .p-button .p-button-icon-left {
+  font-size: 12px;
+}
+
+.top-navbar .p-inputtext {
+  padding: 0px;
+  border-radius: 10px;
+}
+.p-tooltip {
+  font-size: 12px;
+  padding: 0px;
+}
+.p-tooltip-text {
+  font-size: 14px !important;
+  padding: 5px !important;
+}
+.p-inputswitch {
+  width: 32px !important;
+  height: 17px !important;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+  transform: translateX(11px) !important;
+}
+.p-inputswitch-slider:before {
+  top: 68% !important;
+}
+
+.p-inputswitch .p-inputswitch-slider:before {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.bottom-nav .p-button-label {
+  flex: 1 1 auto;
+  font-size: 14px !important;
+  color: #000 !important;
+  font-weight: 100 !important;
 }
