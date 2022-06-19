@@ -72,15 +72,15 @@ router.post('/refresh-access', [
 
 
         if (!isValid){
-            console.log('here')
+            // console.log('here')
             throw new NotAuthorizedError();
         }
 
         const {accessToken} =jwtGenerator({sessionId:payload.sessionId,
-            id:payload.id,role:payload.role,
-            isEmailVerified:payload.isEmailVerified,
-            email:payload.email,
-            verifiedMerchant:payload.verifiedMerchant},false);
+            id:payload.id,role:user.role,
+            isEmailVerified:user.isEmailVerified,
+            email:user.email,
+            verifiedMerchant:user.verifiedMerchant},false);
 
         res.cookie("jwt",accessToken);
         return sendSuccess(res,200,{accessToken});
