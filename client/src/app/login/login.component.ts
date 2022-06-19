@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { HandelErrorService } from './../Services/shared/handel-error.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit {
     private messageService: MessageService,
     private handleErrorService: HandelErrorService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -66,12 +68,18 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.signInCtr.value).subscribe(
       ({ data }) => {
+        console.log(data);
+
         this.loading = false;
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
+
         this.router.navigate(['/']);
       },
       ({ error }) => {
+        this.loading = false;
+        console.log(error);
+
         this.handleErrorService.handleErrors(error, this.messageService);
       }
     );

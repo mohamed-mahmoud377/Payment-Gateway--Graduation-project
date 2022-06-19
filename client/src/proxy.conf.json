@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://www.mohamed-ticketing.xyz'",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -16,6 +16,7 @@ import { CodeInputModule } from 'angular-code-input';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NavbarComponent } from './home/Components/navbar/navbar.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { NavbarComponent } from './home/Components/navbar/navbar.component';
     BrowserAnimationsModule,
     CodeInputModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
