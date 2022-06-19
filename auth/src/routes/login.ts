@@ -78,6 +78,8 @@ router.post('/login',[
     // req.session= {jwt:accessToken};
     res.cookie("jwt",accessToken,{
         sameSite:"none",
+        domain:".app.localhost"
+
         // httpOnly:true,
 
     })
