@@ -36,7 +36,7 @@ export const requireAuthForCurrent = (req:Request,res:Response,next:NextFunction
         throw new NotAuthorizedError()
     }
     try{
-        req.currentUser = jwt.verify(req.cookies.jwt, process.env.JWT_KEY!) as UserPayload;
+        req.currentUser = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;
 
     }catch (e) {
         if (e instanceof  jwt.TokenExpiredError){

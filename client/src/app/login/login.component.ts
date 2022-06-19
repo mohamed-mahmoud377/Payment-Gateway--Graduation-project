@@ -73,7 +73,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-        this.cookieService.set('jwt',data.accessToken);
 
         this.router.navigate(['/']);
       },
