@@ -10,6 +10,7 @@ import {query} from "express-validator";
 const router = express.Router();
 
 
+
 router.patch('/deactivate/:id',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const {id} = req.params;
 
