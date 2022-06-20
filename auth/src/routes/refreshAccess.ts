@@ -2,7 +2,7 @@ import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import {User, UserDoc} from "../models/user";
 import jwt from "jsonwebtoken";
-import {NotAuthorizedError} from  "@hashcash/common";
+import {ErrorCodes, NotAuthorizedError} from "@hashcash/common";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {sendSuccess} from  "@hashcash/common";
 import {validateRequest} from  "@hashcash/common";
@@ -37,7 +37,7 @@ router.post('/refresh-access', [
     const userId = (jwt.decode(refreshToken) as UserPayload).id;
 
    if (!userId){
-       throw new NotAuthorizedError();
+       throw new NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
    }
     const user = await User.findById(userId!);
     if (!user){
@@ -59,7 +59,7 @@ router.post('/refresh-access', [
         }
         console.log(e)
 
-        throw new NotAuthorizedError()
+        throw new  NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
     }
 
         user!.loginSession.forEach(val => {
@@ -73,7 +73,7 @@ router.post('/refresh-access', [
 
         if (!isValid){
             // console.log('here')
-            throw new NotAuthorizedError();
+            throw new  NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
         }
 
         const {accessToken} =jwtGenerator({sessionId:payload.sessionId,
