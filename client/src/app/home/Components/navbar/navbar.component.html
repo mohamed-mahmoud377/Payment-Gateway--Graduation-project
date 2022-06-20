@@ -35,7 +35,7 @@
         </div>
         <div class="mode d-flex align-items-center">
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch></p-inputSwitch>
+          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isTest"></p-inputSwitch>
         </div>
       </div>
     </div>
