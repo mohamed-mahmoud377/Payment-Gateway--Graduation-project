@@ -60,7 +60,6 @@ router.post('/login',[
         verifiedMerchant:existingUser.verifiedMerchant
 
     }
-
     const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);
     let  {browser,os,device} = userAgentParser(req.get('user-agent')!);
     if (device)

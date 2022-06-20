@@ -45,10 +45,10 @@ export const requireAuthForCurrent = (req:Request,res:Response,next:NextFunction
         if (e instanceof  CustomError){
             throw new NotAuthorizedError(['You can not access this route until you activate you account"'])
         }
-        throw new NotAuthorizedError(['Invalid access token'],ErrorCodes.unauthorized);
+        throw new NotAuthorizedError(['Invalid access token'],ErrorCodes.invalidToken);
     }
     if (!req.currentUser)
-        throw new NotAuthorizedError()
+        throw new NotAuthorizedError(['Invalid access token'],ErrorCodes.invalidToken)
 
 
     next();
