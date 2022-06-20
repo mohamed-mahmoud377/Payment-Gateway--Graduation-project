@@ -37,7 +37,7 @@ router.post('/refresh-access', [
     const userId = (jwt.decode(refreshToken) as UserPayload).id;
 
    if (!userId){
-       throw new BadRequestError()
+       throw new NotAuthorizedError();
    }
     const user = await User.findById(userId!);
     if (!user){
