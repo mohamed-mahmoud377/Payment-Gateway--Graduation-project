@@ -17,6 +17,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NavbarComponent } from './home/Components/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     NavbarComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

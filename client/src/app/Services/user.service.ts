@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { GetModeOutput } from '../Models/types';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,17 @@ export class UserService {
 
     return this.httpClient.get<any>(
       `${environment.Url}/api/users/current-user`,
+      { headers }
+    );
+  }
+
+  getMode(): Observable<GetModeOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this.httpClient.get<GetModeOutput>(
+      `${environment.Url}/api/apikey/mode`,
       { headers }
     );
   }

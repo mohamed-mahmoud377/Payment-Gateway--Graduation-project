@@ -3,11 +3,11 @@ export interface signUpInputs {
   email: string;
   password: string;
 }
-export interface generalOutput {
+export interface GeneralOutput {
   status: string;
   result: number;
 }
-export interface signUpOutput extends generalOutput {
+export interface signUpOutput extends GeneralOutput {
   data: {
     userId: string;
   };
@@ -21,7 +21,7 @@ export interface OTPRegistrationInputs {
   userId: string;
   otp: string;
 }
-export interface OTPRegistrationOutput extends generalOutput {
+export interface OTPRegistrationOutput extends GeneralOutput {
   data: any;
 }
 export interface loginInputs {
@@ -35,4 +35,21 @@ export interface forgotPasswordInputs {
 
 export interface resetPasswordInputs {
   newPassword: string;
+}
+
+export interface GetModeOutput extends GeneralOutput {
+  data: {
+    mode: string;
+  };
+}
+
+export interface currentUser {
+  email: string;
+  exp: number;
+  iat: number;
+  id: string;
+  isEmailVerified: boolean;
+  role: string;
+  sessionId: string;
+  verifiedMerchant: true;
 }
