@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HandelErrorService } from '../Services/shared/handel-error.service';
 import { MessageService } from 'primeng/api';
 import { currentUser } from '../Models/types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +31,10 @@ export class HomeComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.currentUser = data.currentUser;
+
+        // check if the email is verified
+        this.isEmailVerified();
+
         if (data.currentUser.verifiedMerchant) {
           this.getMode();
         } else {
@@ -51,5 +57,11 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  isEmailVerified() {
+    if (!this.currentUser.isEmailVerified) {
+      this.router.navigate([`/verify-email/${this.currentUser.id}`]);
+    }
   }
 }

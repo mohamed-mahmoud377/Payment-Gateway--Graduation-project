@@ -13,6 +13,7 @@ export class VerifyEmailComponent implements OnInit {
   public disabled = true;
   public OTP!: string;
   private userId = localStorage.getItem('userId');
+  public isLoggedIn = false;
   constructor(
     public authService: AuthService,
     private messageService: MessageService,
@@ -24,6 +25,7 @@ export class VerifyEmailComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.userId = params.userId;
     });
+    this.isLoggedIn = localStorage.getItem('token') ? true : false;
   }
 
   codeCompletedHandler(event: any) {
@@ -72,5 +74,14 @@ export class VerifyEmailComponent implements OnInit {
         });
       }
     );
+  }
+  goBackToSignUp() {
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
+      this.router.navigate(['/signup']);
+    } else {
+      this.router.navigate(['/signup']);
+    }
   }
 }
