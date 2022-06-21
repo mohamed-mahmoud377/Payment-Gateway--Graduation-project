@@ -50,7 +50,6 @@ export class ForgetPasswordComponent implements OnInit {
         });
       }
     );
-    console.log(this.forgotPasswordForm.value);
   }
 
   get emailCtr() {

@@ -35,9 +35,9 @@
         </div>
         <div class="mode d-flex align-items-center">
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch [pTooltip]="'You have to activate your account to change mode'" [disabled]="true"
-            *ngIf="!isVerified"></p-inputSwitch>
-          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isTest"></p-inputSwitch>
+          <p-inputSwitch tooltipPosition="bottom" [pTooltip]="'You have to activate your account to change mode'"
+            [disabled]="true" *ngIf="!isVerified"></p-inputSwitch>
+          <p-inputSwitch *ngIf="isVerified" (onChange)="handleChange($event)" [(ngModel)]="isTest"></p-inputSwitch>
         </div>
       </div>
     </div>

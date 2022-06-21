@@ -6,16 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  public isTest = false;
+  @Input() isTest!: boolean | undefined;
   @Input() isVerified!: boolean | undefined;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {
-    console.log(this.isVerified);
-  }
+  ngOnChanges(): void {}
 
   handleChange(event: any) {
     if (event) {

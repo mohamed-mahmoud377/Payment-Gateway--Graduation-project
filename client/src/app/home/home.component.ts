@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public currentUser!: currentUser;
   public loading = false;
+  public isTest!: boolean | undefined;
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,
@@ -39,7 +40,6 @@ export class HomeComponent implements OnInit {
           this.getMode();
         } else {
         }
-        console.log(data);
       },
       ({ error }) => {
         this.loading = false;
@@ -50,11 +50,15 @@ export class HomeComponent implements OnInit {
 
   getMode() {
     this.userService.getMode().subscribe(
-      (data) => {
-        console.log(data);
+      ({ data }) => {
+        if (data.mode == 'test') {
+          this.isTest = true;
+        } else {
+          this.isTest = false;
+        }
       },
       (error) => {
-        console.log(error);
+        this.errorService.handleErrors(error, this.messageService);
       }
     );
   }

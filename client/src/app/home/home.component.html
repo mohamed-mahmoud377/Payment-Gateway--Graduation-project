@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-navbar [isVerified]="currentUser?.isEmailVerified"></app-navbar>
+  <app-navbar [isVerified]="currentUser?.isEmailVerified" [isTest]="isTest"></app-navbar>
 </div>
 <app-loading *ngIf="loading"></app-loading>
 <p-toast></p-toast>

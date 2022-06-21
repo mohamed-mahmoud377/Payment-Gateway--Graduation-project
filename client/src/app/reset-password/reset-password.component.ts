@@ -56,7 +56,6 @@ export class ResetPasswordComponent implements OnInit {
           });
         }
       );
-    console.log(this.resetPasswordForm.value);
   }
 
   checkPassword() {

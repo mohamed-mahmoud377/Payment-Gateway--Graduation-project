@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
     this, this.initializeSignUpForm();
   }
   checkboxChange(event: any) {
-    console.log(event);
     if (event.checked[0]) {
       this.rememberMeCtr.setValue(true);
     } else {
@@ -68,8 +67,6 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.signInCtr.value).subscribe(
       ({ data }) => {
-        console.log(data);
-
         this.loading = false;
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
@@ -78,7 +75,6 @@ export class LoginComponent implements OnInit {
       },
       ({ error }) => {
         this.loading = false;
-        console.log(error);
 
         this.handleErrorService.handleErrors(error, this.messageService);
       }
