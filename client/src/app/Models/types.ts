@@ -53,3 +53,11 @@ export interface currentUser {
   sessionId: string;
   verifiedMerchant: true;
 }
+
+export interface changeModeInputs {
+  mode: string;
+}
+
+export interface changeModeOutput extends GeneralOutput {
+  data: any;
+}
