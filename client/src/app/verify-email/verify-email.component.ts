@@ -40,6 +40,10 @@ export class VerifyEmailComponent implements OnInit {
     };
     this.authService.OTPRegistration(inputs as any).subscribe(
       ({ data }) => {
+        if (localStorage.getItem('token')) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('accessToken');
+        }
         this.router.navigate(['/signin'], {
           queryParams: {
             isVerified: 'true',
