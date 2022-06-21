@@ -40,7 +40,7 @@
         <div class="mode d-flex align-items-center" *ngIf="!isVerified" tooltipPosition="bottom"
           [pTooltip]="'You have to activate your account to change mode'">
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch [disabled]="true"></p-inputSwitch>
+          <p-inputSwitch [(ngModel)]="isTest" [readonly]="true"></p-inputSwitch>
         </div>
       </div>
     </div>

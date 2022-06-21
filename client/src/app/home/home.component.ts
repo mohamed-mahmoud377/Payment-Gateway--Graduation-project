@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public currentUser!: currentUser;
   public loading = false;
-  public isTest!: boolean | undefined;
+  public isTest: boolean | undefined = true;
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,
@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
 
         if (data.currentUser.verifiedMerchant) {
           this.getMode();
-        } else {
         }
       },
       ({ error }) => {
