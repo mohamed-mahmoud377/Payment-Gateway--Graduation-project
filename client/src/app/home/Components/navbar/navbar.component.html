@@ -1,4 +1,4 @@
-<div class="container-fluid ">
+<div class="container ">
   <div class="row p-2 top-navbar">
     <div class="col-6">
       <a *ngIf="!isVerified">
@@ -33,11 +33,14 @@
         <div>
           <button pButton pRipple type="button" label="Developers" class="p-button-text"></button>
         </div>
-        <div class="mode d-flex align-items-center">
+        <div class="mode d-flex align-items-center" *ngIf="isVerified">
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch tooltipPosition="bottom" [pTooltip]="'You have to activate your account to change mode'"
-            [disabled]="true" *ngIf="!isVerified"></p-inputSwitch>
-          <p-inputSwitch *ngIf="isVerified" (onChange)="handleChange($event)" [(ngModel)]="isTest"></p-inputSwitch>
+          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="isTest"></p-inputSwitch>
+        </div>
+        <div class="mode d-flex align-items-center" *ngIf="!isVerified" tooltipPosition="bottom"
+          [pTooltip]="'You have to activate your account to change mode'">
+          <label class="me-2">Test Mode</label>
+          <p-inputSwitch [disabled]="true"></p-inputSwitch>
         </div>
       </div>
     </div>
