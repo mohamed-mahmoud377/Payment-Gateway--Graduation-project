@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   @Input() isTest!: boolean | undefined;
   @Input() isVerified!: boolean | undefined;
+  public testValue!: boolean | undefined;
 
   constructor(
     private userService: UserService,
@@ -23,7 +24,9 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.testValue = this.isTest;
+  }
 
   ngOnChanges(): void {}
 
@@ -37,9 +40,10 @@ export class NavbarComponent implements OnInit {
   changeMode(mode: string) {
     this.userService.changeMode({ mode }).subscribe(
       ({ data }) => {
-        this.isTest = data.mode == 'test';
+        this.testValue = data.mode == 'test';
       },
       ({ error }) => {
+        this.testValue = this.isTest;
         this.errorService.handleErrors(error, this.messageService);
       }
     );
@@ -53,8 +57,6 @@ export class NavbarComponent implements OnInit {
         this.router.navigate(['/signin']);
       },
       ({ error }) => {
-        console.log(error);
-
         this.errorService.handleErrors(error, this.messageService);
       }
     );
