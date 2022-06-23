@@ -1,6 +1,6 @@
 import { UserService } from './../Services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { HandelErrorService } from '../Services/shared/handel-error.service';
+import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { MessageService } from 'primeng/api';
 import { currentUser } from '../Models/types';
 import { Router } from '@angular/router';

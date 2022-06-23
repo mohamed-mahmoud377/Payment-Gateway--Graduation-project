@@ -1,4 +1,4 @@
-import { HandelErrorService } from './../Services/shared/handel-error.service';
+import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { AuthService } from './../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -50,7 +50,11 @@ export class SignupComponent implements OnInit {
       },
       ({ error }) => {
         this.loading = false;
-        this.handleErrorService.handleErrors(error, this.messageService);
+        this.handleErrorService.handleErrors(
+          error,
+          this.messageService,
+          this.signUpCtr
+        );
       }
     );
   }

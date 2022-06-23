@@ -13,9 +13,7 @@
               </div>
               <div class="text">
                 <h5>Get started quickly</h5>
-                <p>
-                  Integrate with developer-friendly APIs
-                </p>
+                <p>Integrate with developer-friendly APIs</p>
               </div>
             </div>
 
@@ -72,6 +70,9 @@
               *ngIf="emailCtr.invalid && (emailCtr.dirty || emailCtr.touched)"
             >
               Please Enter a valid email
+            </small>
+            <small class="p-1 error" *ngIf="emailCtr.errors">
+              {{ emailCtr.errors["api"] }}
             </small>
             <div class="input-container mt-4">
               <label for="fullName">Full Name</label>

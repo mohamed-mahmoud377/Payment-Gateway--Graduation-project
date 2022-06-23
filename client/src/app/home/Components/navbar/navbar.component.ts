@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { HandelErrorService } from 'src/app/Services/shared/handel-error.service';
+import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
@@ -41,6 +41,10 @@ export class NavbarComponent implements OnInit {
     this.userService.changeMode({ mode }).subscribe(
       ({ data }) => {
         this.testValue = data.mode == 'test';
+        this.messageService.add({
+          severity: 'success',
+          summary: `You are in ${data.mode} mode now`,
+        });
       },
       ({ error }) => {
         this.testValue = this.isTest;

@@ -1,5 +1,5 @@
 import { CookieService } from 'ngx-cookie-service';
-import { HandelErrorService } from './../Services/shared/handel-error.service';
+import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -57,8 +57,8 @@ export class LoginComponent implements OnInit {
 
   initializeSignUpForm() {
     this.signInCtr = this.fb.group({
-      email: this.fb.control('', [Validators.required, Validators.email]),
-      password: this.fb.control('', [Validators.required, Validators.min(6)]),
+      email: this.fb.control(null, [Validators.required, Validators.email]),
+      password: this.fb.control(null, [Validators.required, Validators.min(6)]),
       rememberMe: this.fb.control(false),
     });
   }
@@ -75,8 +75,11 @@ export class LoginComponent implements OnInit {
       },
       ({ error }) => {
         this.loading = false;
-
-        this.handleErrorService.handleErrors(error, this.messageService);
+        this.handleErrorService.handleErrors(
+          error,
+          this.messageService,
+          this.signInCtr
+        );
       }
     );
   }
