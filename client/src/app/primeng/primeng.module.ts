@@ -10,6 +10,9 @@ import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ListboxModule } from 'primeng/listbox';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [],
@@ -26,6 +29,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     PasswordModule,
     TooltipModule,
     InputSwitchModule,
+    OverlayPanelModule,
+    ListboxModule,
+    DividerModule,
   ],
 })
 export class PrimengModule {}

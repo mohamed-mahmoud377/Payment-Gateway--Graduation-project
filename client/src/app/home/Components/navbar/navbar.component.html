@@ -13,7 +13,7 @@
       <div class="ms-4 settings" pTooltip="Settings" tooltipPosition="bottom">
         <i class="pi pi-cog"></i>
       </div>
-      <div class="ms-4 user" pTooltip="Profile" tooltipPosition="bottom">
+      <div class="ms-4 user" pTooltip="Profile" tooltipPosition="bottom" (click)="profile.toggle($event)">
         <i class="pi pi-user"></i>
       </div>
     </div>
@@ -46,3 +46,21 @@
     </div>
   </div>
 </div>
+
+
+<p-overlayPanel #profile>
+  <ng-template pTemplate>
+    <div class="profile-overlay">
+      <div>Salma Yasser</div>
+      <p-divider></p-divider>
+      <div>
+        <a routerLink="/">Profile</a>
+      </div>
+      <div class="mt-2">
+        <a routerLink="/">Logout</a>
+
+      </div>
+    </div>
+
+  </ng-template>
+</p-overlayPanel>

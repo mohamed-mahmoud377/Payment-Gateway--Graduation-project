@@ -93,3 +93,6 @@ p-password.p-inputtext {
   color: #000 !important;
   font-weight: 100 !important;
 }
+.p-divider.p-divider-horizontal {
+  margin: 10px 0px !important;
+}

@@ -60,3 +60,9 @@
   border-radius: 23px;
   color: #000;
 }
+.profile-overlay {
+  font-size: 14px;
+}
+.profile-overlay a {
+  color: var(--primary-color);
+}
