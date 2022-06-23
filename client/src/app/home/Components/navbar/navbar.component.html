@@ -57,10 +57,11 @@
         <a routerLink="/">Profile</a>
       </div>
       <div class="mt-2">
-        <a routerLink="/">Logout</a>
+        <a (click)="signOut()">Logout</a>
 
       </div>
     </div>
 
   </ng-template>
 </p-overlayPanel>
+<p-toast></p-toast>

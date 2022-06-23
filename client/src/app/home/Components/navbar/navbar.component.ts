@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handel-error.service';
 import { UserService } from 'src/app/Services/user.service';
+import { AuthService } from 'src/app/Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +18,9 @@ export class NavbarComponent implements OnInit {
   constructor(
     private userService: UserService,
     public messageService: MessageService,
-    private errorService: HandelErrorService
+    private errorService: HandelErrorService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -36,6 +40,21 @@ export class NavbarComponent implements OnInit {
         this.isTest = data.mode == 'test';
       },
       ({ error }) => {
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
+  }
+
+  signOut() {
+    this.authService.signOut().subscribe(
+      () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        this.router.navigate(['/signin']);
+      },
+      ({ error }) => {
+        console.log(error);
+
         this.errorService.handleErrors(error, this.messageService);
       }
     );

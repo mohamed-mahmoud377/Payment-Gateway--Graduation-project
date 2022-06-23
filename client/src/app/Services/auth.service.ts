@@ -79,7 +79,7 @@ export class AuthService {
       'authorization',
       `Bearer ${localStorage.getItem('token')}`
     );
-    return this.httpClient.post<any>(`${environment.Url}api/users/signout`, {
+    return this.httpClient.post<any>(`${environment.Url}/api/users/signout`, {
       headers,
     });
   }
