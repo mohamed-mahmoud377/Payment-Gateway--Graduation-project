@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public currentUser!: currentUser;
   public loading = false;
-  public isTest: boolean | undefined = true;
+  public isTest = true;
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,

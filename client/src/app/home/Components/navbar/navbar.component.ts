@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   providers: [MessageService],
 })
 export class NavbarComponent implements OnInit {
-  @Input() isTest!: boolean | undefined;
+  @Input() isTest!: boolean;
   @Input() isVerified!: boolean | undefined;
   public testValue!: boolean | undefined;
 
@@ -28,7 +28,9 @@ export class NavbarComponent implements OnInit {
     this.testValue = this.isTest;
   }
 
-  ngOnChanges(): void {}
+  ngOnChanges(): void {
+    this.testValue = this.isTest;
+  }
 
   handleChange(event: any) {
     if (event) {
@@ -48,7 +50,12 @@ export class NavbarComponent implements OnInit {
       },
       ({ error }) => {
         this.testValue = this.isTest;
-        this.errorService.handleErrors(error, this.messageService);
+        this.errorService.handleErrors(
+          error,
+          this.messageService,
+          null,
+          this.userService.changeMode
+        );
       }
     );
   }
