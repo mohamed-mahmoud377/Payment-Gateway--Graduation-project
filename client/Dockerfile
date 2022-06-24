@@ -18,7 +18,7 @@ RUN apt-get install curl -y
 
 COPY package.json .
 
-RUN npm install --only=prod
+RUN npm install
 
 COPY . .
 CMD ["npm","run", "build"]
