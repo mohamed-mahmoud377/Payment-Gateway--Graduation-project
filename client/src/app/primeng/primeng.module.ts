@@ -13,6 +13,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ListboxModule } from 'primeng/listbox';
 import { DividerModule } from 'primeng/divider';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import { DividerModule } from 'primeng/divider';
     OverlayPanelModule,
     ListboxModule,
     DividerModule,
+    TableModule,
   ],
 })
 export class PrimengModule {}
