@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  Url: 'http://www.mohamed-ticketing.xyz',
+  Url: 'http://www.hashcash.digital',
 };
 
 /*
