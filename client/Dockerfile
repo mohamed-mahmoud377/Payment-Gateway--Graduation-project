@@ -48,7 +48,7 @@ COPY . .
 
 #RUN #ls && cd ../ && ls
 
-RUN pwd && ls && cp -r /dist/hash-pay ../usr/share/nginx/html
+RUN pwd && ls && cp /dist/hash-pay ../usr/share/nginx/html
 
 
 
