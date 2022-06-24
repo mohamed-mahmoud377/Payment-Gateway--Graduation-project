@@ -18,7 +18,7 @@ RUN apt-get install curl -y
 
 COPY package.json /
 
-RUN npm install
+RUN cd /app && npm install
 RUN ls && cd .. && ls
 COPY . .
 RUN pwd
