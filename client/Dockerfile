@@ -11,7 +11,7 @@ RUN    apt-get update -yq \
 
 Run npm install
 
-Run npm run build
+CMD ["npm","run", "build"]
 
 COPY dist/hash-pay /usr/share/nginx/html
 
