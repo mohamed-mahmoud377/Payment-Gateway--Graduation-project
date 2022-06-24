@@ -1,19 +1,19 @@
 FROM nginx:1.15.9
-WORKDIR /app
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY package.json .
+#COPY package.json .
 
-RUN apt-get update -yq \
-        && apt-get install curl gnupg -yq \
-        && curl -sL https://deb.nodesource.com/setup_16.x | bash \
-        && apt-get install nodejs -yq
+#RUN apt-get update -yq \
+#        && apt-get install curl gnupg -yq \
+#        && curl -sL https://deb.nodesource.com/setup_16.x | bash \
+#        && apt-get install nodejs -yq
 
-COPY . .
+#COPY . .
+#
+#CMD ["npm","run", "build"]
 
-CMD ["npm","run", "build"]
-
-COPY /dist/hash-pay ./app/usr/share/nginx/html
+COPY /dist/hash-pay /usr/share/nginx/html
 
 RUN ls -laR .
 
