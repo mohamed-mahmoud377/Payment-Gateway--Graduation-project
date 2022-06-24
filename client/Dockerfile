@@ -44,7 +44,7 @@ COPY nginx.conf ../etc/nginx/nginx.conf
 COPY . .
 
 RUN npm run build
-COPY . .
+#COPY . .
 
 #RUN #ls && cd ../ && ls
 RUN ls /dist
