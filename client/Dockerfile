@@ -48,7 +48,8 @@ RUN npm run build
 
 RUN ls
 #RUN cd dist && ls dist
-RUN cp -r /app/dist/hash-pay/ /usr/share/nginx/html
+RUN cp -r /app/dist/hash-pay/* /usr/share/nginx/html
 
-
+RUN ls -laR .
+EXPOSE 80
 
