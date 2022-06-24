@@ -16,23 +16,34 @@ RUN apt-get update -y
 RUN apt-get install nginx -y
 RUN apt-get install curl -y
 
-COPY package.json /
+#COPY package.json /
+#
+#RUN cd /app && npm install
+#RUN ls && cd .. && ls
+#COPY . .
+#RUN pwd
+#
+#RUN ls && pwd && npm run build
+#
+#COPY nginx.conf ../etc/nginx/nginx.conf
+#RUN ls
+#RUN cp -r /dist/hash-pay/* ../usr/share/nginx/html
+#
+#RUN ls -laR .
+#
+#EXPOSE 80
 
-RUN cd /app && npm install
-RUN ls && cd .. && ls
+
+#WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
 COPY . .
-RUN pwd
 
-RUN ls && pwd && npm run build
+CMD ["npm","run", "build"]
 
 COPY nginx.conf ../etc/nginx/nginx.conf
 RUN ls
 RUN cp -r /dist/hash-pay/* ../usr/share/nginx/html
-
-RUN ls -laR .
-
-EXPOSE 80
-
-
-
-
