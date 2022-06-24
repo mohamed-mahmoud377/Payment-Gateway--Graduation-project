@@ -23,7 +23,7 @@ RUN npm install
 COPY . .
 RUN pwd
 
-RUN npm run build
+RUN ls && pwd && npm run build
 
 COPY nginx.conf ../etc/nginx/nginx.conf
 RUN ls
