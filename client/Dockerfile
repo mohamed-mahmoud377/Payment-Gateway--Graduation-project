@@ -1,5 +1,5 @@
 FROM nginx:1.15.9
-
+WORKDIR /app
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY package.json .
@@ -9,11 +9,11 @@ RUN apt-get update -yq \
         && curl -sL https://deb.nodesource.com/setup_16.x | bash \
         && apt-get install nodejs -yq \
 
-COPY . /
+COPY . .
 
 CMD ["npm","run", "build"]
 
-COPY dist/hash-pay /usr/share/nginx/html
+COPY /dist/hash-pay ./app/usr/share/nginx/html
 
 #RUN ls -laR .
 
