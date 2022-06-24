@@ -103,3 +103,10 @@ p-password.p-inputtext {
 .profile p-button button {
   padding: 6px 12px !important;
 }
+
+.p-overlaypanel:after {
+  margin-left: -24px !important;
+}
+.p-overlaypanel:before {
+  display: none;
+}

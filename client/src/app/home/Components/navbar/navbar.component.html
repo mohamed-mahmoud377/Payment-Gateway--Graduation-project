@@ -79,11 +79,11 @@
     <div class="profile-overlay">
       <div>Salma Yasser</div>
       <p-divider></p-divider>
-      <div>
-        <a routerLink="/">Profile</a>
+      <div routerLink="/profile" class="profile-links">
+        <a>Profile</a>
       </div>
-      <div class="mt-2">
-        <a style="cursor: pointer" (click)="signOut()">Logout</a>
+      <div (click)="signOut()" class="mt-2 profile-links">
+        <a>Logout</a>
       </div>
     </div>
   </ng-template>
