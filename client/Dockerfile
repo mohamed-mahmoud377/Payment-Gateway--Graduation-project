@@ -38,7 +38,6 @@ RUN apt-get install curl -y
 
 COPY package.json .
 
-WORKING_DIR=$(pwd)
 
 RUN npm install
 COPY nginx.conf ../etc/nginx/nginx.conf
