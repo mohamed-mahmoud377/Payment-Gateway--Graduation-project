@@ -92,4 +92,11 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('accessToken');
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
 }

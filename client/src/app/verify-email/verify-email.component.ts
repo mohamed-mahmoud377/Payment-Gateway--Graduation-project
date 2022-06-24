@@ -51,7 +51,7 @@ export class VerifyEmailComponent implements OnInit {
           queryParamsHandling: 'merge',
         });
       },
-      ({ error }) => {
+      (error) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error!',
@@ -70,7 +70,7 @@ export class VerifyEmailComponent implements OnInit {
           detail: 'OTP has been sent successfully to your email!',
         });
       },
-      ({ error }) => {
+      (error) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error!',
@@ -81,8 +81,7 @@ export class VerifyEmailComponent implements OnInit {
   }
   goBackToSignUp() {
     if (localStorage.getItem('token')) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
+      this.authService.removeTokens();
       this.router.navigate(['/signup']);
     } else {
       this.router.navigate(['/signup']);

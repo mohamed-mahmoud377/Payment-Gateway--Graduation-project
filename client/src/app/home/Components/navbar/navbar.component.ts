@@ -48,14 +48,9 @@ export class NavbarComponent implements OnInit {
           summary: `You are in ${data.mode} mode now`,
         });
       },
-      ({ error }) => {
+      (error) => {
         this.testValue = this.isTest;
-        this.errorService.handleErrors(
-          error,
-          this.messageService,
-          null,
-          this.userService.changeMode
-        );
+        this.errorService.handleErrors(error, this.messageService);
       }
     );
   }
@@ -67,7 +62,7 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('refreshToken');
         this.router.navigate(['/signin']);
       },
-      ({ error }) => {
+      (error) => {
         this.errorService.handleErrors(error, this.messageService);
       }
     );

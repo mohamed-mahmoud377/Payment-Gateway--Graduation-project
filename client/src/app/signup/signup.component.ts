@@ -36,11 +36,12 @@ export class SignupComponent implements OnInit {
   initializeSignUpForm() {
     this.signUpCtr = this.fb.group({
       email: this.fb.control('', [Validators.required, Validators.email]),
-      password: this.fb.control('', [Validators.required, Validators.min(6)]),
+      password: this.fb.control('', [Validators.required, Validators.min(10)]),
       name: this.fb.control('', [Validators.required]),
     });
   }
 
+  // signup
   onSubmit() {
     this.loading = true;
     this.authService.signUp(this.signUpCtr.value).subscribe(
@@ -48,7 +49,7 @@ export class SignupComponent implements OnInit {
         this.loading = false;
         this.router.navigate([`/verify-email/${data.userId}`]);
       },
-      ({ error }) => {
+      (error) => {
         this.loading = false;
         this.handleErrorService.handleErrors(
           error,
@@ -58,6 +59,8 @@ export class SignupComponent implements OnInit {
       }
     );
   }
+
+  // check password validity
   checkPassword() {
     this.verifyLoading = true;
     this.authService
@@ -67,11 +70,13 @@ export class SignupComponent implements OnInit {
           this.verifyLoading = false;
           if (res.status === 'success') {
             this.passwordError = null;
+          } else {
+            this.passwordError = res.errors[0];
           }
         },
-        ({ error }) => {
+        (error) => {
           this.verifyLoading = false;
-          this.passwordError = error.errors[0];
+          this.handleErrorService.handleErrors(error, this.messageService);
         }
       );
   }

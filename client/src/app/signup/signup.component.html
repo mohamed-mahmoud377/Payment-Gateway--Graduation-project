@@ -67,11 +67,18 @@
             </div>
             <small
               class="p-1 error"
-              *ngIf="emailCtr.invalid && (emailCtr.dirty || emailCtr.touched)"
+              *ngIf="
+                emailCtr.invalid &&
+                (emailCtr.dirty || emailCtr.touched) &&
+                !(emailCtr.errors && emailCtr.errors['api'])
+              "
             >
               Please Enter a valid email
             </small>
-            <small class="p-1 error" *ngIf="emailCtr.errors">
+            <small
+              class="p-1 error"
+              *ngIf="emailCtr.errors && emailCtr.errors['api']"
+            >
               {{ emailCtr.errors["api"] }}
             </small>
             <div class="input-container mt-4">

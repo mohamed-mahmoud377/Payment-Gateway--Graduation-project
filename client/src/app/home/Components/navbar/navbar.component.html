@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container">
   <div class="row p-2 top-navbar">
     <div class="col-6">
       <a *ngIf="!isVerified">
@@ -7,19 +7,28 @@
       </a>
     </div>
     <div class="col-6 d-flex justify-content-end">
-      <div class="ms-4 notification" pTooltip="Notifications" tooltipPosition="bottom">
+      <div
+        class="ms-4 notification"
+        pTooltip="Notifications"
+        tooltipPosition="bottom"
+      >
         <i class="pi pi-bell"></i>
       </div>
       <div class="ms-4 settings" pTooltip="Settings" tooltipPosition="bottom">
         <i class="pi pi-cog"></i>
       </div>
-      <div class="ms-4 user" pTooltip="Profile" tooltipPosition="bottom" (click)="profile.toggle($event)">
+      <div
+        class="ms-4 user"
+        pTooltip="Profile"
+        tooltipPosition="bottom"
+        (click)="profile.toggle($event)"
+      >
         <i class="pi pi-user"></i>
       </div>
     </div>
   </div>
 
-  <div class=" bottom-nav">
+  <div class="bottom-nav">
     <div class="row">
       <div class="col-6 d-flex align-items-center">
         <ul class="links">
@@ -31,22 +40,39 @@
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
         <div>
-          <button pButton pRipple type="button" label="Developers" class="p-button-text"></button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="Developers"
+            class="p-button-text"
+          ></button>
         </div>
         <div class="mode d-flex align-items-center" *ngIf="isVerified">
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch (onChange)="handleChange($event)" [(ngModel)]="testValue"></p-inputSwitch>
+          <p-inputSwitch
+            (onChange)="handleChange($event)"
+            [(ngModel)]="testValue"
+          ></p-inputSwitch>
         </div>
-        <div class="mode d-flex align-items-center" *ngIf="!isVerified" tooltipPosition="bottom"
-          [pTooltip]="'You have to activate your account to change to live mode'">
+        <div
+          class="mode d-flex align-items-center"
+          *ngIf="!isVerified"
+          tooltipPosition="bottom"
+          [pTooltip]="
+            'You have to activate your account to change to live mode'
+          "
+        >
           <label class="me-2">Test Mode</label>
-          <p-inputSwitch [(ngModel)]="testValue" [readonly]="true"></p-inputSwitch>
+          <p-inputSwitch
+            [(ngModel)]="testValue"
+            [readonly]="true"
+          ></p-inputSwitch>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <p-overlayPanel #profile>
   <ng-template pTemplate>
@@ -57,11 +83,9 @@
         <a routerLink="/">Profile</a>
       </div>
       <div class="mt-2">
-        <a (click)="signOut()">Logout</a>
-
+        <a style="cursor: pointer" (click)="signOut()">Logout</a>
       </div>
     </div>
-
   </ng-template>
 </p-overlayPanel>
 <p-toast></p-toast>
