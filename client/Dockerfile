@@ -45,6 +45,6 @@ COPY . .
 RUN npm run build
 COPY . .
 
-RUN ls && cd ../ && ls
-RUN pwd && cp -r /dist/hash-pay/* /usr/share/nginx/html
+#RUN #ls && cd ../ && ls
+RUN pwd && cp -r /dist/hash-pay/* ../usr/share/nginx/html
 
