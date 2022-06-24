@@ -48,7 +48,7 @@ RUN npm run build
 
 RUN ls && cd ../ && ls && cd app
 #RUN ls /dist
-RUN pwd && ls && cp /app/dist/hash-pay /usr/share/nginx/html
+RUN pwd && ls && cp /dist/hash-pay /usr/share/nginx/html
 
 
 
