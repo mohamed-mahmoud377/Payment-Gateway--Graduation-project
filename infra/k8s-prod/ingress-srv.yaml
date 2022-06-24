@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: www.mohamed-ticketing.xyz
+    - host: www.hashcash.digital
       http:
         paths:
           - path: /api/users/?(.*)
@@ -61,7 +61,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
-    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.mohamed-ticketing.xyz'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.hashcash.digital'
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
@@ -87,6 +87,3 @@ spec:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/component: controller
-
-
-
