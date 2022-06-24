@@ -15,7 +15,7 @@ CMD ["npm","run", "build"]
 
 COPY /dist/hash-pay ./app/usr/share/nginx/html
 
-#RUN ls -laR .
+RUN ls -laR .
 
 EXPOSE 80
 
