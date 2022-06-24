@@ -6,12 +6,12 @@ COPY package.json .
 
 RUN    apt-get update -yq \
         && apt-get install curl gnupg -yq \
-        && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+        && curl -sL https://deb.nodesource.com/setup_16.x | bash \
         && apt-get install nodejs -yq
 
 Run npm install
 
-CMD ["npm","run","build"]
+Run npm run build
 
 COPY dist/hash-pay /usr/share/nginx/html
 
