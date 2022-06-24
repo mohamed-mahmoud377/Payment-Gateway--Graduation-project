@@ -47,3 +47,4 @@ COPY . .
 COPY nginx.conf ../etc/nginx/nginx.conf
 RUN ls && cd ../ && ls
 RUN cp -r /dist/hash-pay/* ../usr/share/nginx/html
+
