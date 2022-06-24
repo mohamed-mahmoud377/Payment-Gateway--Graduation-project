@@ -42,7 +42,7 @@ RUN npm install
 COPY nginx.conf ../etc/nginx/nginx.conf
 COPY . .
 
-CMD ["npm","run", "build"]
+RUN npm run build
 COPY . .
 
 RUN ls && cd ../ && ls
