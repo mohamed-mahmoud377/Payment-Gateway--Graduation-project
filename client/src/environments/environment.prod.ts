@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  Url: 'http://www.hashcash.digital',
 };

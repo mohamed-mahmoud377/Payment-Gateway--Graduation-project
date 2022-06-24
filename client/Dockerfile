@@ -1,8 +1,3 @@
-FROM node:17-alpine
+FROM nginx:alpine
 
-WORKDIR /app
-COPY package.json .
-RUN npm install
-COPY . .
-
-CMD ["npm", "run", "start"]
+COPY /dist/hash-pay /usr/share/eginx/html
