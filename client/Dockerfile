@@ -1,8 +1,9 @@
-FROM node:17-alpine
+FROM nginx:1.15.9-alpine
 
-WORKDIR /app
-COPY package.json .
-RUN npm install
-COPY . .
+COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["npm", "run", "start"]
+WORKDIR /usr/share/nginx/html
+
+COPY dist/hash-pay .
+RUN ls -laR .
+EXPOSE 80
