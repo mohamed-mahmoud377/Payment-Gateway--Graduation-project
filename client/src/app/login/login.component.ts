@@ -1,4 +1,3 @@
-import { CookieService } from 'ngx-cookie-service';
 import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -35,8 +34,7 @@ export class LoginComponent implements OnInit {
     private messageService: MessageService,
     private handleErrorService: HandelErrorService,
     private router: Router,
-    private route: ActivatedRoute,
-    private cookieService: CookieService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

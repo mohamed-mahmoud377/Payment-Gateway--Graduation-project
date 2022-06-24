@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -20,7 +21,7 @@ export class HeaderInterceptor implements HttpInterceptor {
   constructor(
     private refreshTokenService: RefreshTokenService,
     private authService: AuthService,
-    private errorService: HandelErrorService
+    private router: Router
   ) {}
 
   intercept(
@@ -38,6 +39,11 @@ export class HeaderInterceptor implements HttpInterceptor {
                 setHeaders: { Authorization: `Bearer ${token}` },
               });
               return next.handle(request);
+            }),
+            catchError((error) => {
+              this.authService.removeTokens();
+              this.router.navigate(['/signin']);
+              return throwError(error);
             })
           );
         }

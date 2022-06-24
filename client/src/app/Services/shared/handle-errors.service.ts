@@ -21,6 +21,9 @@ export class HandelErrorService {
     messageService: MessageService,
     formCtr?: FormGroup
   ) {
+    if (!error) {
+      return;
+    }
     // if there are error messages
     if (error.errors) {
       // error related to email input

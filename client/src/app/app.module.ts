@@ -17,8 +17,8 @@ import { CodeInputModule } from 'angular-code-input';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NavbarComponent } from './home/Components/navbar/navbar.component';
-import { CookieService } from 'ngx-cookie-service';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     ResetPasswordComponent,
     NavbarComponent,
     LoadingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
