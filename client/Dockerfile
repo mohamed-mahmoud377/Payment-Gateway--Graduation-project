@@ -21,7 +21,8 @@ COPY package.json /
 RUN npm install
 
 COPY . .
-RUN cd app
+RUN ls
+RUN cd /app
 RUN npm run build
 COPY nginx.conf ../etc/nginx/nginx.conf
 RUN ls
