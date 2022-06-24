@@ -22,7 +22,9 @@ RUN npm install
 
 COPY . .
 RUN pwd
-CMD["npm","run","build"]
+
+CMD ["npm","run","build"]
+
 COPY nginx.conf ../etc/nginx/nginx.conf
 RUN ls
 RUN cp -r /dist/hash-pay/* ../usr/share/nginx/html
