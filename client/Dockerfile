@@ -1,6 +1,6 @@
-FROM nginx:1.15.9
+FROM node:16
 
-COPY nginx.conf /etc/nginx/nginx.conf
+
 
 #COPY package.json .
 
@@ -12,7 +12,17 @@ COPY nginx.conf /etc/nginx/nginx.conf
 #COPY . .
 #
 #CMD ["npm","run", "build"]
+RUN apt-get update -y
+RUN apt-get install nginx -y
+RUN apt-get install curl -y
 
+COPY package.json .
+
+RUN npm install --only=prod
+
+COPY . .
+CMD ["npm","run", "build"]
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY /dist/hash-pay /usr/share/nginx/html
 
 RUN ls -laR .
