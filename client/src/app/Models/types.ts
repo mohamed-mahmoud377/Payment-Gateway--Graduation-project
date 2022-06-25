@@ -65,3 +65,24 @@ export interface changeModeInputs {
 export interface changeModeOutput extends GeneralOutput {
   data: any;
 }
+
+export interface userInfoOutput extends GeneralOutput {
+  data: User;
+}
+
+export interface User {
+  email: string;
+  isEmailVerified: boolean;
+  loginSession: LoginSessions;
+  name: string;
+  twoWayAuth: boolean;
+  verifiedMerchant: boolean;
+}
+
+export interface LoginSessions {
+  token: string;
+  device: string;
+  browser: string;
+  ip: string;
+  expired: boolean;
+}
