@@ -99,7 +99,11 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   resendOtp() {
-    this.authService.resendOTP(this.userId).subscribe(
+    let isSignUp = true;
+    if (this.rememberMe !== null) {
+      isSignUp = false;
+    }
+    this.authService.resendOTP(this.userId, isSignUp).subscribe(
       () => {
         this.messageService.add({
           severity: 'success',

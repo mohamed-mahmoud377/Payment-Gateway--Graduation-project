@@ -61,4 +61,14 @@ export class UserService {
       { headers }
     );
   }
+  getUserInfo(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.patch<any>(`${environment.Url}/api/users/me`, '', {
+      headers,
+    });
+  }
 }

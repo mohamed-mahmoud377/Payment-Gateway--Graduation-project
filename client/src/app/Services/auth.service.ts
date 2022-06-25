@@ -55,9 +55,13 @@ export class AuthService {
     );
   }
 
-  resendOTP(userId: string | null): Observable<OTPRegistrationOutput> {
+  resendOTP(
+    userId: string | null,
+    isSignUp: boolean
+  ): Observable<OTPRegistrationOutput> {
+    let forParam = isSignUp ? 'signup' : 'login';
     return this.httpClient.get<any>(
-      `${environment.Url}/api/users/resend-otp/${userId}?sendFor=signup`
+      `${environment.Url}/api/users/resend-otp/${userId}?sendFor=${forParam}`
     );
   }
 
