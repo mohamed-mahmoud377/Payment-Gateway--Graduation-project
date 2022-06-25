@@ -83,6 +83,14 @@
                 </td>
               </tr>
             </ng-template>
+
+            <ng-template pTemplate="emptymessage" let-columns>
+              <tr>
+                <td style="text-align: center" [attr.colspan]="4">
+                  No sessions found
+                </td>
+              </tr>
+            </ng-template>
           </p-table>
         </div>
       </div>

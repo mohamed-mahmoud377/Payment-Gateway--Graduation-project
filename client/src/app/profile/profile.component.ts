@@ -31,7 +31,10 @@ export class ProfileComponent implements OnInit {
     this.twoFactorLoading = true;
     this.userService.enableTwoFactorAuth().subscribe(
       (res) => {
-        console.log(res);
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Two factor authentication is enabled successfully',
+        });
       },
       (error) => {
         this.twoFactorLoading = false;
@@ -47,6 +50,7 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
         this.user = data;
         this.pushLast5(data.loginSession);
+        console.log(this.sessions);
       },
       (error) => {
         this.loading = false;
@@ -74,7 +78,9 @@ export class ProfileComponent implements OnInit {
 
   pushLast5(sessions: LoginSessions[]) {
     for (let i = sessions.length - 1; i > sessions.length - 5; i--) {
-      this.sessions.push(sessions[i]);
+      if (sessions[i]) {
+        this.sessions.push(sessions[i]);
+      }
     }
   }
 
