@@ -7,6 +7,7 @@ import {
   loginInputs,
   forgotPasswordInputs,
   resetPasswordInputs,
+  twoFactorSignInInput,
 } from './../Models/types';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -43,6 +44,13 @@ export class AuthService {
   ): Observable<OTPRegistrationOutput> {
     return this.httpClient.post<any>(
       `${environment.Url}/api/users/verify-email`,
+      inputs
+    );
+  }
+
+  twoFactorSignIn(inputs: twoFactorSignInInput): Observable<any> {
+    return this.httpClient.post<any>(
+      `${environment.Url}/api/users/otp-registration`,
       inputs
     );
   }
@@ -98,5 +106,8 @@ export class AuthService {
   }
   setToken(token: string) {
     localStorage.setItem('token', token);
+  }
+  setRefreshToken(refreshToken: string) {
+    localStorage.setItem('refreshToken', refreshToken);
   }
 }

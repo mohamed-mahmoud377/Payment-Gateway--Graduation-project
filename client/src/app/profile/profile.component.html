@@ -8,7 +8,7 @@
       <div class="col-4 mt-4">name</div>
       <div class="col-8 mt-4">salma yasser</div>
       <div class="col-4 mt-4">password</div>
-      <div class="col-8 mt-4">s••••••••</div>
+      <div class="col-8 mt-4">••••••••</div>
     </div>
     <p-divider></p-divider>
     <div class="mt-5">
@@ -22,7 +22,11 @@
           <p-checkbox></p-checkbox>
           <label class="ms-2">Enable two step authentication</label>
         </div>
-        <p-button label="save"></p-button>
+        <p-button
+          label="save"
+          [loading]="twoFactorLoading"
+          (click)="enableFactorAuth()"
+        ></p-button>
       </div>
     </div>
 

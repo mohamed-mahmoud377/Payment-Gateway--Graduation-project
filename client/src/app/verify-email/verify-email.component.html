@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 d-flex align-items-center img-container d-none d-lg-flex">
+    <div
+      class="col-md-6 d-flex align-items-center img-container d-none d-lg-flex"
+    >
       <img class="img-fluid" src="../../assets/images/otp.png" />
     </div>
     <div class="col-lg-6 content-container">
@@ -8,10 +10,20 @@
         <h1>Authentication Code</h1>
         <p>An OTP is sent to your Email, it's only valid for 10 minutes</p>
         <div class="btn-container">
-          <code-input [isCodeHidden]="false" [codeLength]="5" (codeCompleted)="codeCompletedHandler($event)">
+          <code-input
+            [isCodeHidden]="false"
+            [codeLength]="5"
+            (codeCompleted)="codeCompletedHandler($event)"
+          >
           </code-input>
-          <button [disabled]="disabled" pButton (click)="verifyEmail()" type="button" label="Verify"
-            class="w-100 mt-4"></button>
+          <button
+            [disabled]="disabled"
+            pButton
+            (click)="submit()"
+            type="button"
+            label="Verify"
+            class="w-100 mt-4"
+          ></button>
         </div>
         <div class="resend-otp">
           <p class="mt-2">
@@ -20,8 +32,16 @@
           </p>
         </div>
         <div>
-          <button style="font-size:14px ;" [icon]="'pi pi-arrow-left'" pButton pRipple type="button"
-            label="Go Back To Sign up" class="p-button-text" (click)="goBackToSignUp()"></button>
+          <button
+            style="font-size: 14px"
+            [icon]="'pi pi-arrow-left'"
+            pButton
+            pRipple
+            type="button"
+            label="Go Back To Sign up"
+            class="p-button-text"
+            (click)="goBackToSignUp()"
+          ></button>
         </div>
       </div>
     </div>

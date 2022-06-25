@@ -21,6 +21,10 @@ export interface OTPRegistrationInputs {
   userId: string;
   otp: string;
 }
+
+export interface twoFactorSignInInput extends OTPRegistrationInputs {
+  rememberMe: boolean;
+}
 export interface OTPRegistrationOutput extends GeneralOutput {
   data: any;
 }

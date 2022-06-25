@@ -48,4 +48,17 @@ export class UserService {
       { headers }
     );
   }
+
+  enableTwoFactorAuth(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.patch<any>(
+      `${environment.Url}/api/users/enable-factor-auth`,
+      '',
+      { headers }
+    );
+  }
 }
