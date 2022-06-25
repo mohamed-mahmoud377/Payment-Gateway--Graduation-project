@@ -110,3 +110,7 @@ p-password.p-inputtext {
 .p-overlaypanel:before {
   display: none;
 }
+.profile .p-checkbox .p-checkbox-box {
+  width: 18px;
+  height: 18px;
+}

@@ -66,10 +66,15 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.signInCtr.value).subscribe(
       ({ data }) => {
         this.loading = false;
-        localStorage.setItem('token', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-
-        this.router.navigate(['/']);
+        if (data.accessToken) {
+          localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          this.router.navigate(['/']);
+        } else if (data.userId) {
+          this.router.navigate([`/verify-email/${data.userId}`], {
+            queryParams: { rememberMe: this.rememberMeCtr.value },
+          });
+        }
       },
       (error) => {
         this.loading = false;

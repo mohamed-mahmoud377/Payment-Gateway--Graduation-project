@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
           this.getMode();
         }
       },
-      ({ error }) => {
+      (error) => {
         this.loading = false;
         this.errorService.handleErrors(error, this.messageService);
       }

@@ -1,3 +1,4 @@
+import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from './../Services/auth.service';
@@ -14,16 +15,24 @@ export class VerifyEmailComponent implements OnInit {
   public OTP!: string;
   private userId = localStorage.getItem('userId');
   public isLoggedIn = false;
+  public rememberMe: boolean | null = null;
   constructor(
     public authService: AuthService,
     private messageService: MessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorService: HandelErrorService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.userId = params.userId;
+    });
+
+    this.route.queryParams.subscribe((params: any) => {
+      params.rememberMe
+        ? (this.rememberMe = params.rememberMe)
+        : (this.rememberMe = null);
     });
     this.isLoggedIn = localStorage.getItem('token') ? true : false;
   }
@@ -33,6 +42,33 @@ export class VerifyEmailComponent implements OnInit {
     this.OTP = event;
   }
 
+  submit() {
+    if (this.rememberMe !== null) {
+      this.otpRegistration();
+    } else {
+      this.verifyEmail();
+    }
+  }
+
+  otpRegistration() {
+    let inputs = {
+      userId: this.userId,
+      otp: +this.OTP,
+      rememberMe: this.rememberMe,
+    };
+
+    this.authService.twoFactorSignIn(inputs as any).subscribe(
+      ({ data }) => {
+        this.authService.setToken(data.accessToken);
+        this.authService.setRefreshToken(data.refreshToken);
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
+  }
+
   verifyEmail() {
     let inputs = {
       userId: this.userId,
@@ -40,6 +76,11 @@ export class VerifyEmailComponent implements OnInit {
     };
     this.authService.OTPRegistration(inputs as any).subscribe(
       ({ data }) => {
+        if (data.accessToken) {
+          localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          this.router.navigate(['/']);
+        }
         if (localStorage.getItem('token')) {
           localStorage.removeItem('token');
           localStorage.removeItem('accessToken');
@@ -52,17 +93,17 @@ export class VerifyEmailComponent implements OnInit {
         });
       },
       (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error!',
-          detail: error.errors[0],
-        });
+        this.errorService.handleErrors(error, this.messageService);
       }
     );
   }
 
   resendOtp() {
-    this.authService.resendOTP(this.userId).subscribe(
+    let isSignUp = true;
+    if (this.rememberMe !== null) {
+      isSignUp = false;
+    }
+    this.authService.resendOTP(this.userId, isSignUp).subscribe(
       () => {
         this.messageService.add({
           severity: 'success',
@@ -71,11 +112,7 @@ export class VerifyEmailComponent implements OnInit {
         });
       },
       (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error!',
-          detail: error.errors[0],
-        });
+        this.errorService.handleErrors(error, this.messageService);
       }
     );
   }

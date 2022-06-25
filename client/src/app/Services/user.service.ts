@@ -1,3 +1,4 @@
+import { userInfoOutput } from './../Models/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -46,6 +47,32 @@ export class UserService {
       `${environment.Url}/api/apikey/mode`,
       inputs,
       { headers }
+    );
+  }
+
+  enableTwoFactorAuth(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.patch<any>(
+      `${environment.Url}/api/users/enable-factor-auth`,
+      '',
+      { headers }
+    );
+  }
+  getUserInfo(): Observable<userInfoOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<userInfoOutput>(
+      `${environment.Url}/api/users/me`,
+      {
+        headers,
+      }
     );
   }
 }
