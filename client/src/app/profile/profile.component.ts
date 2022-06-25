@@ -13,6 +13,7 @@ import moment from 'moment';
 export class ProfileComponent implements OnInit {
   public sessions: LoginSessions[] = [];
   public twoFactorLoading = false;
+  public logoutSessionLoading = false;
   public loading = false;
   public user: User | null = null;
 
@@ -45,8 +46,7 @@ export class ProfileComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.user = data;
-        this.pushFirst5(data.loginSession);
-        console.log(data);
+        this.pushLast5(data.loginSession);
       },
       (error) => {
         this.loading = false;
@@ -55,11 +55,27 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  pushFirst5(sessions: LoginSessions[]) {
-    for (let i = 0; i < 5; i++) {
+  logoutOtherSessions() {
+    this.logoutSessionLoading = true;
+    this.userService.clearSessions().subscribe(
+      (data) => {
+        this.logoutSessionLoading = false;
+        this.messageService.add({
+          severity: 'success',
+          detail: 'You logged out from all other sessions successfully',
+        });
+      },
+      (error) => {
+        this.logoutSessionLoading = false;
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
+  }
+
+  pushLast5(sessions: LoginSessions[]) {
+    for (let i = sessions.length - 1; i > sessions.length - 5; i--) {
       this.sessions.push(sessions[i]);
     }
-    console.log(this.sessions);
   }
 
   formatTime(time: string) {

@@ -41,8 +41,22 @@
 
       <div class="mt-5">
         <h4 class="heading">Login sessions</h4>
-        <p>Places where you're logged into Hashcash.</p>
-        <div>
+        <div class="d-flex justify-content-between">
+          <p>Places where you're logged into Hashcash.</p>
+          <div>
+            <button
+              style="font-size: 14px; padding: 9px"
+              pButton
+              pRipple
+              type="button"
+              label="Logout all other sessions"
+              class="p-button-raised p-button-text"
+              (click)="logoutOtherSessions()"
+              [loading]="logoutSessionLoading"
+            ></button>
+          </div>
+        </div>
+        <div class="mt-4">
           <p-table [value]="sessions" responsiveLayout="scroll">
             <ng-template pTemplate="header">
               <tr>

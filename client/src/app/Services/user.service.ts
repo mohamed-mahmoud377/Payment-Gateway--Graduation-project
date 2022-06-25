@@ -75,4 +75,18 @@ export class UserService {
       }
     );
   }
+
+  clearSessions(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.delete<any>(
+      `${environment.Url}/api/users/clear-sessions`,
+      {
+        headers,
+      }
+    );
+  }
 }
