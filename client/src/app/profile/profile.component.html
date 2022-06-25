@@ -46,14 +46,28 @@
           <p-table [value]="sessions" responsiveLayout="scroll">
             <ng-template pTemplate="header">
               <tr>
-                <th>Location</th>
                 <th>Device</th>
                 <th>IP Address</th>
                 <th>Time</th>
+                <th>Status</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-session>
-              <tr></tr>
+              <tr>
+                <td>
+                  {{ session.device | titlecase }}
+                  -
+                  {{ session.browser | titlecase }}
+                </td>
+                <td>{{ session.ip }}</td>
+                <td>{{ formatTime(session.createdAt) }}</td>
+                <td>
+                  <span class="expired" *ngIf="session.expired">Expired</span>
+                  <span class="valid" *ngIf="!session.expired"
+                    >Current Session
+                  </span>
+                </td>
+              </tr>
             </ng-template>
           </p-table>
         </div>

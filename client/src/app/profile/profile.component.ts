@@ -1,8 +1,9 @@
-import { User } from './../Models/types';
+import { LoginSessions, User } from './../Models/types';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Component, OnInit } from '@angular/core';
+import moment from 'moment';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  public sessions = [];
+  public sessions: LoginSessions[] = [];
   public twoFactorLoading = false;
   public loading = false;
   public user: User | null = null;
@@ -29,12 +30,11 @@ export class ProfileComponent implements OnInit {
     this.twoFactorLoading = true;
     this.userService.enableTwoFactorAuth().subscribe(
       (res) => {
-        this.twoFactorLoading = false;
         console.log(res);
       },
       (error) => {
         this.twoFactorLoading = false;
-        console.log(error);
+        this.errorService.handleErrors(error, this.messageService);
       }
     );
   }
@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.user = data;
+        this.pushFirst5(data.loginSession);
         console.log(data);
       },
       (error) => {
@@ -52,5 +53,16 @@ export class ProfileComponent implements OnInit {
         this.errorService.handleErrors(error, this.messageService);
       }
     );
+  }
+
+  pushFirst5(sessions: LoginSessions[]) {
+    for (let i = 0; i < 5; i++) {
+      this.sessions.push(sessions[i]);
+    }
+    console.log(this.sessions);
+  }
+
+  formatTime(time: string) {
+    return moment(time).fromNow();
   }
 }

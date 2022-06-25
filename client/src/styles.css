@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 * {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
@@ -31,6 +31,7 @@ a {
 
 .heading {
   color: #000 !important;
+  font-weight: 600;
 }
 
 .policy .p-checkbox .p-checkbox-box {

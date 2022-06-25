@@ -73,7 +73,7 @@ export interface userInfoOutput extends GeneralOutput {
 export interface User {
   email: string;
   isEmailVerified: boolean;
-  loginSession: LoginSessions;
+  loginSession: LoginSessions[];
   name: string;
   twoWayAuth: boolean;
   verifiedMerchant: boolean;
@@ -85,4 +85,6 @@ export interface LoginSessions {
   browser: string;
   ip: string;
   expired: boolean;
+  createdAt: string;
+  _id: string;
 }
