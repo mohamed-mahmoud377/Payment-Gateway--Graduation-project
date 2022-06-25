@@ -50,7 +50,6 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
         this.user = data;
         this.pushLast5(data.loginSession);
-        console.log(this.sessions);
       },
       (error) => {
         this.loading = false;
