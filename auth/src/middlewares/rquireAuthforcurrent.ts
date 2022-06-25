@@ -33,7 +33,7 @@ export const requireAuthForCurrent = (req:Request,res:Response,next:NextFunction
         token = req.cookies.jwt; // to be able to authenticate via cookie too
     }
     if (!token){ /// first check if there is req.session then check if there is req.session.jwt
-        throw new NotAuthorizedError()
+        throw new NotAuthorizedError(['Invalid access token'],ErrorCodes.invalidToken)
     }
     try{
         req.currentUser = jwt.verify(token, process.env.JWT_KEY!) as UserPayload;

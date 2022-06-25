@@ -28,7 +28,7 @@ router.post('/forgot-password',[
     //generate a rest token
     const resetToken = existingUser.createAndAssignPasswordResetToken();
     existingUser.save(); // save the token to and expires time the database
-    const resetURL = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
+    const resetURL = `${req.protocol}://${req.get('host')}/reset-password/${resetToken}`;
     //create the event
 
     const pubEvent = {
