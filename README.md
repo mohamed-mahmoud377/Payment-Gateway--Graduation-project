@@ -78,6 +78,7 @@ Payment-Gateway--Graduation-project
 │   │   │   └── runInDevelopment.ts
 │   │   ├── index.ts
 │   │   ├── middlewares
+│   │   │   ├── rquireAuthforcurrent.ts
 │   │   │   └── twoWayAuth.ts
 │   │   ├── models
 │   │   │   ├── loginSession.ts
@@ -125,6 +126,7 @@ Payment-Gateway--Graduation-project
 │   ├── angular.json
 │   ├── Dockerfile
 │   ├── karma.conf.js
+│   ├── nginx.conf
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── README.md
@@ -151,6 +153,12 @@ Payment-Gateway--Graduation-project
 │   │   │   │   ├── login.guard.ts
 │   │   │   │   └── verify-email.guard.ts
 │   │   │   ├── home
+│   │   │   │   ├── Components
+│   │   │   │   │   └── navbar
+│   │   │   │   │       ├── navbar.component.css
+│   │   │   │   │       ├── navbar.component.html
+│   │   │   │   │       ├── navbar.component.spec.ts
+│   │   │   │   │       └── navbar.component.ts
 │   │   │   │   ├── home.component.css
 │   │   │   │   ├── home.component.html
 │   │   │   │   ├── home.component.spec.ts
@@ -161,9 +169,15 @@ Payment-Gateway--Graduation-project
 │   │   │   │   ├── login.component.spec.ts
 │   │   │   │   └── login.component.ts
 │   │   │   ├── Models
+│   │   │   │   ├── errors.ts
 │   │   │   │   └── types.ts
 │   │   │   ├── primeng
 │   │   │   │   └── primeng.module.ts
+│   │   │   ├── profile
+│   │   │   │   ├── profile.component.css
+│   │   │   │   ├── profile.component.html
+│   │   │   │   ├── profile.component.spec.ts
+│   │   │   │   └── profile.component.ts
 │   │   │   ├── reset-password
 │   │   │   │   ├── reset-password.component.css
 │   │   │   │   ├── reset-password.component.html
@@ -172,8 +186,23 @@ Payment-Gateway--Graduation-project
 │   │   │   ├── Services
 │   │   │   │   ├── auth.service.spec.ts
 │   │   │   │   ├── auth.service.ts
-│   │   │   │   └── shared
-│   │   │   │       └── handel-error.service.ts
+│   │   │   │   ├── refresh-token.service.ts
+│   │   │   │   ├── shared
+│   │   │   │   │   └── handle-errors.service.ts
+│   │   │   │   └── user.service.ts
+│   │   │   ├── shared
+│   │   │   │   ├── interceptors
+│   │   │   │   │   └── header.interceptor.ts
+│   │   │   │   └── loading
+│   │   │   │       ├── component
+│   │   │   │       │   └── comp-loading
+│   │   │   │       │       ├── comp-loading.component.css
+│   │   │   │       │       ├── comp-loading.component.html
+│   │   │   │       │       └── comp-loading.component.ts
+│   │   │   │       └── html
+│   │   │   │           ├── loading.component.css
+│   │   │   │           ├── loading.component.html
+│   │   │   │           └── loading.component.ts
 │   │   │   ├── signup
 │   │   │   │   ├── signup.component.css
 │   │   │   │   ├── signup.component.html
@@ -197,6 +226,7 @@ Payment-Gateway--Graduation-project
 │   │   ├── index.html
 │   │   ├── main.ts
 │   │   ├── polyfills.ts
+│   │   ├── proxy.conf.json
 │   │   ├── styles.css
 │   │   └── test.ts
 │   ├── tsconfig.app.json
@@ -391,6 +421,7 @@ Payment-Gateway--Graduation-project
 │   │   └── utils
 │   │       └── validator.ts
 │   └── tsconfig.json
+├── push.ps1
 ├── push.sh
 ├── README.md
 ├── skaffold.yaml
@@ -422,8 +453,7 @@ Payment-Gateway--Graduation-project
     │       └── generateToken.ts
     └── tsconfig.json
 
-107 directories, 286 files
-
+116 directories, 308 files
 
 ```
 
