@@ -115,3 +115,12 @@ p-password.p-inputtext {
   width: 18px;
   height: 18px;
 }
+.keys input {
+  border-radius: 0px !important;
+}
+.keys p-password {
+  width: 90% !important;
+}
+.keys .p-disabled {
+  color: #000;
+}

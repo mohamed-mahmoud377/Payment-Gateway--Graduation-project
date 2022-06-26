@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 import moment from 'moment';
 
 @Component({
@@ -16,15 +18,18 @@ export class ProfileComponent implements OnInit {
   public logoutSessionLoading = false;
   public loading = false;
   public user: User | null = null;
+  public secretKey!: string;
 
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private clipboard: Clipboard
   ) {}
 
   ngOnInit(): void {
     this.getUserInfo();
+    this.getSecretKey();
   }
 
   enableFactorAuth() {
@@ -73,6 +78,31 @@ export class ProfileComponent implements OnInit {
         this.errorService.handleErrors(error, this.messageService);
       }
     );
+  }
+
+  getSecretKey() {
+    this.loading = true;
+    let mode = localStorage.getItem('mode');
+    if (mode) {
+      this.userService.getSecretKey(mode).subscribe(
+        ({ data }) => {
+          this.loading = false;
+          this.secretKey = data.key;
+        },
+        (error) => {
+          this.loading = false;
+          this.errorService.handleErrors(error, this.messageService);
+        }
+      );
+    }
+  }
+
+  copyKey(key: string) {
+    this.clipboard.copy(key);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Secret key is copied to clipboard successfully',
+    });
   }
 
   pushLast5(sessions: LoginSessions[]) {

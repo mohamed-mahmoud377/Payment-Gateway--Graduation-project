@@ -88,3 +88,9 @@ export interface LoginSessions {
   createdAt: string;
   _id: string;
 }
+
+export interface secretKeyOutput extends GeneralOutput {
+  data: {
+    key: string;
+  };
+}

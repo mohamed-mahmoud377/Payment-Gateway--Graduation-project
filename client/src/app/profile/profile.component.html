@@ -1,4 +1,4 @@
-<div class="container profile">
+<div class="container profile mb-4">
   <p-card>
     <div class="loading" *ngIf="loading">
       <app-comp-loading></app-comp-loading>
@@ -23,17 +23,10 @@
         </p>
         <div class="d-flex justify-content-between">
           <div class="d-flex align-items-center">
-            <p-checkbox
-              [(ngModel)]="user.twoWayAuth"
-              [binary]="true"
-            ></p-checkbox>
+            <p-checkbox [(ngModel)]="user.twoWayAuth" [binary]="true"></p-checkbox>
             <label class="ms-2">Enable two step authentication</label>
           </div>
-          <p-button
-            label="save"
-            [loading]="twoFactorLoading"
-            (click)="enableFactorAuth()"
-          ></p-button>
+          <p-button label="save" [loading]="twoFactorLoading" (click)="enableFactorAuth()"></p-button>
         </div>
       </div>
 
@@ -44,16 +37,9 @@
         <div class="d-flex justify-content-between">
           <p>Places where you're logged into Hashcash.</p>
           <div>
-            <button
-              style="font-size: 14px; padding: 9px"
-              pButton
-              pRipple
-              type="button"
-              label="Logout all other sessions"
-              class="p-button-raised p-button-text"
-              (click)="logoutOtherSessions()"
-              [loading]="logoutSessionLoading"
-            ></button>
+            <button style="font-size: 14px; padding: 9px" pButton pRipple type="button"
+              label="Logout all other sessions" class="p-button-raised p-button-text" (click)="logoutOtherSessions()"
+              [loading]="logoutSessionLoading"></button>
           </div>
         </div>
         <div class="mt-4">
@@ -77,8 +63,7 @@
                 <td>{{ formatTime(session.createdAt) }}</td>
                 <td>
                   <span class="expired" *ngIf="session.expired">Expired</span>
-                  <span class="valid" *ngIf="!session.expired"
-                    >Valid Session
+                  <span class="valid" *ngIf="!session.expired">Valid Session
                   </span>
                 </td>
               </tr>
@@ -92,6 +77,18 @@
               </tr>
             </ng-template>
           </p-table>
+        </div>
+
+        <div class="mt-5 keys">
+          <h4 class="heading">Keys</h4>
+          <label>Secret key</label>
+          <div class="d-flex align-items-center">
+            <p-password [disabled]="true" [(ngModel)]="secretKey" [toggleMask]="true"></p-password>
+            <span class="copy" (click)="copyKey(secretKey)">
+              <i class="pi pi-copy"></i>
+            </span>
+          </div>
+
         </div>
       </div>
     </div>

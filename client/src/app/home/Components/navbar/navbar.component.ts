@@ -42,6 +42,9 @@ export class NavbarComponent implements OnInit {
   changeMode(mode: string) {
     this.userService.changeMode({ mode }).subscribe(
       ({ data }) => {
+        localStorage.setItem('mode', data.mode);
+        console.log(localStorage.getItem('mode'));
+
         this.testValue = data.mode == 'test';
         this.messageService.add({
           severity: 'success',
