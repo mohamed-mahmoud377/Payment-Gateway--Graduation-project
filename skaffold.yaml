@@ -57,11 +57,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: jerry377/client2
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
+#    - image: jerry377/client2
+#      context: client
+#      docker:
+#        dockerfile: Dockerfile
+#      sync:
+#        manual:
+#          - src: 'src/**/*.ts'
+#            dest: .
