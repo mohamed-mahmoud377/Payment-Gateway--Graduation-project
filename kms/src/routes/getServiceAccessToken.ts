@@ -15,7 +15,7 @@ const router = express.Router();
 // this service is acutely authored or not
 // of course only admins are allowed to generate this token
 router.get('/service-access-token',
-    requireAuth,[query('service_name')
+    requireAuth(),[query('service_name')
         .notEmpty()
         .withMessage('service_name must be provided as query param')
     ],validateRequest,async (req:Request,res:Response)=>{

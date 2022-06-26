@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.delete('/tokens/:id',
-    requireAuth,async (req:Request,res:Response)=>{
+    requireAuth(),async (req:Request,res:Response)=>{
         const {id} = req.params;
         if (!mongoose.isValidObjectId(id)){
             throw new NotFoundError(['token not found']);

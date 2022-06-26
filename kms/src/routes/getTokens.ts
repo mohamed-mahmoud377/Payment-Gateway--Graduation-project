@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get('/tokens',
-    requireAuth,async (req:Request,res:Response)=>{
+    requireAuth(),async (req:Request,res:Response)=>{
 
     const tokens =await  Token.find({});
 

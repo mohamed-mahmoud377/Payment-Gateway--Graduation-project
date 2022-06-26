@@ -22,7 +22,7 @@ router.post('/generate-master',[
             .bail()
             .isNumeric()
             .withMessage('IVBytes must be a number')
-    ],validateRequest,requireAuth,
+    ],validateRequest,requireAuth(),
     async (req:Request,res:Response)=>{
 
         const {keyBytes,IVBytes} = req.body;

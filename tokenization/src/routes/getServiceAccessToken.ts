@@ -18,7 +18,7 @@ router.get('/service-token',[query('service_name')
         .notEmpty()
         .withMessage('service_name must be provided as query param')
     ],validateRequest,
-    requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
+    requireAuth(),restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const { service_name} = req.query;
         // creating a service token valid for 100 day
         const accessToken= jwtGenerator({serviceName:service_name},'100d',process.env.JWT_KEY_SERVICE_ACCESS!);

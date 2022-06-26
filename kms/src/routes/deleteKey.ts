@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 
-router.delete('/keys/:id',requireAuth,
+router.delete('/keys/:id',requireAuth(),
     async (req:Request,res:Response)=>{
         const {id} = req.params;
         // checking first if the user id is valid before going to database
