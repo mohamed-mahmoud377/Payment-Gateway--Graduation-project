@@ -18,7 +18,7 @@ import {body} from "express-validator";
 const router = express.Router();
 
 
-router.patch('/activation-requests/decline/:id',requireAuth,restrictTo([Roles.ADMIN]),[
+router.patch('/activation-requests/decline/:id',requireAuth(),restrictTo([Roles.ADMIN]),[
     body('reason')
         .notEmpty()
         .withMessage("reason field must be provided ")

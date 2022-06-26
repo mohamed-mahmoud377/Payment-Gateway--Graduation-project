@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 interface KeyDoc extends mongoose.Document {
+    _id?:string
     key:string,
     type:string,
     expiresAt:string,
@@ -43,4 +44,4 @@ const keyScheme = new mongoose.Schema({
 
 const Key = mongoose.model<KeyDoc>('Key',keyScheme);
 
-export {Key}
+export {Key,KeyDoc}

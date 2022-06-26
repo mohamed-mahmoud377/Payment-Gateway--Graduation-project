@@ -30,4 +30,4 @@ const tokensScheme = new mongoose.Schema({
 
 const Token = mongoose.model<tokensDoc>('Tokens',tokensScheme);
 
-export {Token}
+export {Token,tokensDoc}

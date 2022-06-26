@@ -4,6 +4,7 @@ import crypto from "crypto";
 import {generateKey} from "../utils/generateKey";
 import {Key} from "../models/key";
 import {Admin} from "../models/admin";
+import mongoose from "mongoose";
 
 //will run only in development mode
 const generateAccessToken =async ()=>{
@@ -31,7 +32,8 @@ const generateAdminUser = async ()=>{
         {
             email:'mohamedmahmoud3776@gmail.com',
             password:'admin',
-            name:'mohamed mahmoud'
+            name:'mohamed mahmoud',
+
         }
     )
 }
@@ -40,11 +42,12 @@ const generateMasterKey = async ()=>{
     const keys = await Key.find({});
     if (keys.length>0)
         return;
-    let key = new Key({
-        _id:"627b01f80a2341696785de85",
-        key:"84882661c1afc0247d645524b9dc3f9bc8d3828d0af4b9319d21d6a725b54beb.0ea052957387ac3979328d4357fc2257"
-    })
-    key =await key.save();
+    // let key = new Key({
+    //     _id:"627b01f80a2341696785de85",
+    //     key:"84882661c1afc0247d645524b9dc3f9bc8d3828d0af4b9319d21d6a725b54beb.0ea052957387ac3979328d4357fc2257"
+    // })
+    // key =await key.save();
+    let  key =  await Key.create({key:"84882661c1afc0247d645524b9dc3f9bc8d3828d0af4b9319d21d6a725b54beb.0ea052957387ac3979328d4357fc2257",_id: "627b01f80a2341696785de85"});
 
     // this first hash is going to be sent for the user because we will not send the real ID
     const hashedId  =crypto.createHash('sha256').update(key.id).digest('hex');

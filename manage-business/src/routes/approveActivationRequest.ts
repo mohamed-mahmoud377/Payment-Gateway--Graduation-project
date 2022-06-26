@@ -9,7 +9,7 @@ import {natsWrapper} from "../nats/nats-wrapper";
 const router = express.Router();
 
 
-router.patch('/activation-requests/approve/:id',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
+router.patch('/activation-requests/approve/:id',requireAuth(),restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const {id} = req.params;
     if (!mongoose.isValidObjectId(id))
         throw new NotFoundError(["This activation request does not exists"])

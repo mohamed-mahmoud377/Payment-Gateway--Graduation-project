@@ -52,6 +52,7 @@ router.post('/login',[ body('email')
         const payload = {
             id:existingAdmin.id,
             role:'admin',
+            isEmailVerified:true
         }
 
         const {accessToken} = jwtGenerator(payload,Number(process.env.JWT_ADMIN_EXPIRES_IN!)); //number because jwt lib if it was string it will be in milli sec

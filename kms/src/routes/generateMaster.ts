@@ -4,6 +4,8 @@ import {generateKey} from "../utils/generateKey";
 import {Key} from "../models/key";
 import {body} from "express-validator";
 import crypto from "crypto";
+import mongoose from "mongoose";
+
 
 
 const router = express.Router();
@@ -27,10 +29,8 @@ router.post('/generate-master',[
 
         const {keyBytes,IVBytes} = req.body;
     const key = generateKey(keyBytes,IVBytes);
-    let  keyDb =  new Key({
-        key
-    })
-     keyDb = await keyDb.save();
+    let  keyDb =  await Key.create({key,_id: new mongoose.Types.ObjectId().toHexString()})
+
 
 
     // this should be moved to keyDoc and be done there you

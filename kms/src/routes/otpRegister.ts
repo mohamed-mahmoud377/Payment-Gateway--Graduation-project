@@ -41,6 +41,7 @@ router.post('/otp-registration',[
     const payload = {
         id:admin.id,
         role:'admin',
+        isEmailVerified:true
     }
     console.log(payload);
 

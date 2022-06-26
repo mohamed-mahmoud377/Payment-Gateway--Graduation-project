@@ -9,7 +9,7 @@ import {RequestStatus} from "../types/RequestStatus";
 const router = express.Router();
 
 
-router.post("/submit-activation-request",requireAuth,restrictTo([Roles.MERCHANT]),[
+router.post("/submit-activation-request",requireAuth(),restrictTo([Roles.MERCHANT]),[
     body("businessInfo")
         .notEmpty()
         .withMessage("'businessInfo' field must be provided"),
