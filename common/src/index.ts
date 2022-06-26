@@ -12,7 +12,6 @@ export * from './events/eventTypes/userLoggingInEvent'
 export  * from './events/eventTypes/emailVerifiedEvent'
 export * from './events/eventTypes/merchantActivationEvent'
 
-
 export * from './events/Subjects'
 export * from  './events/publishers/publisher'
 export * from './events/listeners/listener'
@@ -29,6 +28,7 @@ export * from './utils/APIFilter'
 export * from './utils/encrypt'
 export * from './utils/decrypt'
 export * from './utils/jwtGenerator'
+export * from './utils/handlerFactory'
 
 
 export * from './models/events'
@@ -36,3 +36,4 @@ export * from './models/events'
 
 export * from './types/roles'
 export * from "./types/modes"
+export * from "./types/Payload"

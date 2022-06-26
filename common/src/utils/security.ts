@@ -29,7 +29,7 @@ export const secure = (app:Express,options={
         app.use(helmet());
 
     if(options.cors)
-        app.use(cors())
+        app.use(cors({credentials:true,origin:"http://localhost:4200",allowedHeaders:"*",},))
 
     if (options.xss)
         app.use(xss())

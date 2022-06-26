@@ -9,3 +9,4 @@ export const jwtGenerator=(payload:any,expiresIn:string |number,secret:string)=>
 
     return jwt.sign(payload, secret, tokenOption)
 }
+
