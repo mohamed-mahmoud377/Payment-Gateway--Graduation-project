@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 import moment from 'moment';
 
 @Component({
@@ -21,7 +23,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private errorService: HandelErrorService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private clipboard: Clipboard
   ) {}
 
   ngOnInit(): void {
@@ -92,6 +95,14 @@ export class ProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+  copyKey(key: string) {
+    this.clipboard.copy(key);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Secret key copied successfully',
+    });
   }
 
   pushLast5(sessions: LoginSessions[]) {

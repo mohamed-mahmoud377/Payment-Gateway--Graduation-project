@@ -1,4 +1,4 @@
-<div class="container profile">
+<div class="container profile mb-4">
   <p-card>
     <div class="loading" *ngIf="loading">
       <app-comp-loading></app-comp-loading>
@@ -79,8 +79,16 @@
           </p-table>
         </div>
 
-        <div class="mt-5">
+        <div class="mt-5 keys">
           <h4 class="heading">Keys</h4>
+          <label>Secret key</label>
+          <div class="d-flex align-items-center">
+            <p-password [disabled]="true" [(ngModel)]="secretKey" [toggleMask]="true"></p-password>
+            <span class="copy" (click)="copyKey(secretKey)">
+              <i class="pi pi-copy"></i>
+            </span>
+          </div>
+
         </div>
       </div>
     </div>
