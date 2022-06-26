@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {body} from "express-validator";
-import {validateRequest} from  "@hashcash/common";
+import {Payload, validateRequest} from "@hashcash/common";
 import {User} from "../models/user";
 
 import {PasswordManger} from "../utils/passwordManger";
@@ -51,13 +51,14 @@ router.post('/login',[
 
     //creating the sessionId manually so I can send it with the payload
     const sessionId = new mongoose.Types.ObjectId();
-    const payload = {
+    const payload:Payload = {
         sessionId:sessionId.toHexString(),
         id:existingUser.id,
         role:existingUser.role,
         email:existingUser.email,
         isEmailVerified:existingUser.isEmailVerified,
-        verifiedMerchant:existingUser.verifiedMerchant
+        verifiedMerchant:existingUser.verifiedMerchant,
+        name:existingUser.name
 
     }
     const {accessToken,refreshToken} = jwtGenerator(payload,rememberMe);

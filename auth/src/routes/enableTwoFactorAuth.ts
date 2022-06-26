@@ -5,7 +5,7 @@ import {User} from "../models/user";
 const router = express.Router();
 
 
-router.patch('/enable-factor-auth',requireAuth,async (req:Request,res:Response)=>{
+router.patch('/enable-factor-auth',requireAuth(),async (req:Request,res:Response)=>{
     const user  = await User.findById(req.currentUser?.id);
 
     if (!user){

@@ -10,7 +10,7 @@ import {APIFilter} from "@hashcash/common";
 const router = express.Router();
 
 
-router.get('/',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
+router.get('/',requireAuth(),restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
 
     const filters  = new APIFilter(User.find({}),req.query).filter().sort().limitFields().paginate();
 

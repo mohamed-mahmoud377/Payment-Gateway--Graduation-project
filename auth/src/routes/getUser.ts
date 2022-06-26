@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 const router = express.Router();
 
 
-router.get('/:id',requireAuth,restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
+router.get('/:id',requireAuth(),restrictTo([Roles.ADMIN]),async (req:Request,res:Response)=>{
     const {id} = req.params;
     if (!mongoose.isValidObjectId( id)){
         throw new NotFoundError(['user not found'])

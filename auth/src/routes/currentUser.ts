@@ -8,7 +8,7 @@ import {requireAuthForCurrent} from "../middlewares/rquireAuthforcurrent";
 const router = express.Router();
 
 
-router.get('/current-user',requireAuthForCurrent,(req:Request ,res:Response)=>{
+router.get('/current-user',requireAuth({requireEmailVerification:false,requireVerifiedMerchant:false}),(req:Request ,res:Response)=>{
     sendSuccess(res,200,{currentUser:req.currentUser})
 
 

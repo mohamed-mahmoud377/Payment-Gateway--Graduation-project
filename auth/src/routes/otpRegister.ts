@@ -2,7 +2,7 @@ import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import mongoose from "mongoose";
 import {BadRequestError} from  "@hashcash/common";
-import {sendSuccess} from  "@hashcash/common";
+import {sendSuccess,Payload} from  "@hashcash/common";
 import {User} from "../models/user";
 import {jwtGenerator} from "../utils/jwtGenerator";
 import {userAgentParser} from "../utils/userAgentParser";
@@ -45,13 +45,14 @@ router.post('/otp-registration',[
     const sessionId = new mongoose.Types.ObjectId();
 
     // now that the otp is right lets create the access and refresh token
-    const payload = {
+    const payload:Payload = {
         sessionId:sessionId.toHexString(),
         id:user.id,
         role:user.role,
         email:user.email,
         isEmailVerified:user.isEmailVerified,
-        verifiedMerchant:user.verifiedMerchant
+        verifiedMerchant:user.verifiedMerchant,
+        name:user.name
 
     }
 

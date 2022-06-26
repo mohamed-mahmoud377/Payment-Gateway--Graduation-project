@@ -7,7 +7,7 @@ import {sendSuccess} from  "@hashcash/common";
 const router = express.Router();
 
 
-router.delete('/clear-sessions',requireAuth,async (req:Request,res:Response)=>{
+router.delete('/clear-sessions',requireAuth(),async (req:Request,res:Response)=>{
     const user = await User.findById(req.currentUser?.id);
     if (!user){
         throw new NotFoundError();

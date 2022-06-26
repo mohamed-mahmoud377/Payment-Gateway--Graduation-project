@@ -9,7 +9,7 @@ import {NotFoundError} from  "@hashcash/common";
 const router = express.Router()
 
 
-router.get('/me',requireAuth,async (req:Request,res:Response)=>{
+router.get('/me',requireAuth(),async (req:Request,res:Response)=>{
 
 
     const currentuser = await User.showProfile(req.currentUser!.id)
