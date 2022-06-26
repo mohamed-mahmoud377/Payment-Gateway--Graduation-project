@@ -101,7 +101,7 @@ export class ProfileComponent implements OnInit {
     this.clipboard.copy(key);
     this.messageService.add({
       severity: 'success',
-      summary: 'Secret key copied successfully',
+      summary: 'Secret key is copied successfully',
     });
   }
 
