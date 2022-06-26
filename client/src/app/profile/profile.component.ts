@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   public logoutSessionLoading = false;
   public loading = false;
   public user: User | null = null;
+  public secretKey!: string;
 
   constructor(
     private userService: UserService,
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfo();
+    this.getSecretKey();
   }
 
   enableFactorAuth() {
@@ -73,6 +75,23 @@ export class ProfileComponent implements OnInit {
         this.errorService.handleErrors(error, this.messageService);
       }
     );
+  }
+
+  getSecretKey() {
+    this.loading = true;
+    let mode = localStorage.getItem('mode');
+    if (mode) {
+      this.userService.getSecretKey(mode).subscribe(
+        ({ data }) => {
+          this.loading = false;
+          this.secretKey = data.key;
+        },
+        (error) => {
+          this.loading = false;
+          this.errorService.handleErrors(error, this.messageService);
+        }
+      );
+    }
   }
 
   pushLast5(sessions: LoginSessions[]) {

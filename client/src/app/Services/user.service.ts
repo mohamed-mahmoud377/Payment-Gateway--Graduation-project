@@ -1,4 +1,4 @@
-import { userInfoOutput } from './../Models/types';
+import { secretKeyOutput, userInfoOutput } from './../Models/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -84,6 +84,20 @@ export class UserService {
 
     return this.httpClient.delete<any>(
       `${environment.Url}/api/users/clear-sessions`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getSecretKey(mode: string): Observable<secretKeyOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<secretKeyOutput>(
+      `${environment.Url}/api/apikey/key?mode=${mode}`,
       {
         headers,
       }
