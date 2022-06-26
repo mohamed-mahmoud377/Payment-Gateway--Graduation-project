@@ -9,7 +9,7 @@ router.post('/mode',[
     body('mode')
         .notEmpty()
         .withMessage("mode field must be provided")
-],validateRequest,requireAuth, async (req:Request,res:Response)=>{
+],validateRequest,requireAuth(), async (req:Request,res:Response)=>{
     const {mode} = req.body;
     if (mode!==Modes.TEST&& mode!==Modes.LIVE)
         throw new BadRequestError(["mode can only be test or live only"]);

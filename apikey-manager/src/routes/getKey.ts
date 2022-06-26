@@ -9,7 +9,7 @@ router.get('/key',[
     query("mode")
         .notEmpty()
         .withMessage("mode query param is required ")
-],validateRequest,requireAuth,async (req:Request,res:Response)=>{
+],validateRequest,requireAuth(),async (req:Request,res:Response)=>{
     const {mode} = req.query;
 
     if (mode!==Modes.TEST && mode!==Modes.LIVE)

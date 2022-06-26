@@ -4,7 +4,7 @@ import {Keys} from "../models/keys";
 
 const router = express.Router();
 
-router.get('/mode',requireAuth,async (req,res)=>{
+router.get('/mode',requireAuth(),async (req,res)=>{
 
     const keys =await Keys.findOne({
         userId:req.currentUser?.id
