@@ -57,6 +57,30 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: jerry377/checkout
+      context: checkout
+      docker:
+        dockerfile: docker/Dockerfile-dev
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: jerry377/customer
+      context: customer
+      docker:
+        dockerfile: docker/Dockerfile-dev
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: jerry377/payment2
+      context: payment
+      docker:
+        dockerfile: docker/Dockerfile-dev
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 #    - image: jerry377/client2
 #      context: client
 #      docker:
