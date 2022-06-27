@@ -61,26 +61,58 @@ export class HandelErrorService {
     }
   }
 
-  handleActivateError(error: APIError, ctrl: FormGroup) {
-    let errors = error.errors.map((error) => {
-      let message = error.split('|')[1];
-      let field = error.split('|')[0];
-      return { message, field };
-    });
-    for (let error of errors) {
-      if (
-        error.field == 'address' ||
-        error.field == 'type' ||
-        error.field == 'industry' ||
-        error.field == 'legalName' ||
-        error.field == 'registrationNumber' ||
-        error.field == 'website' ||
-        error.field == 'productDescription'
-      ) {
-        ctrl
-          .get(`businessInfo.${error.field}`)
-          ?.setErrors({ API: error.message });
+  handleActivateError(
+    error: APIError,
+    ctrl: FormGroup,
+    messageService: MessageService
+  ) {
+    if (error.errors) {
+      if (error.errorCode == ErrorCodes.badRequest) {
+        let errors = error.errors.map((error) => {
+          let message = error.split('|')[1];
+          let field = error.split('|')[0];
+          return { message, field };
+        });
+
+        for (let error of errors) {
+          if (
+            error.field == 'address' ||
+            error.field == 'type' ||
+            error.field == 'industry' ||
+            error.field == 'legalName' ||
+            error.field == 'registrationNumber' ||
+            error.field == 'website' ||
+            error.field == 'productDescription'
+          ) {
+            ctrl
+              .get(`businessInfo.${error.field}`)
+              ?.setErrors({ API: error.message });
+          } else if (
+            error.field == 'address' ||
+            error.field == 'firstName' ||
+            error.field == 'lastName' ||
+            error.field == 'email' ||
+            error.field == 'phoneNumber' ||
+            error.field == 'nationalId'
+          ) {
+            ctrl
+              .get(`businessOwner.${error.field}`)
+              ?.setErrors({ API: error.message });
+          } else if (error.field == 'IBAN') {
+            ctrl
+              .get(`bankAccount.${error.field}`)
+              ?.setErrors({ API: error.message });
+          }
+        }
+      } else {
+        this.handleErrors(error, messageService);
       }
+    } else {
+      messageService.add({
+        severity: 'warn',
+        summary: 'Service not available',
+        detail: 'Please try again later',
+      });
     }
   }
 }

@@ -173,6 +173,12 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="firstNameCtrl.errors && firstNameCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ firstNameCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
           <div class="mt-3 col-md-6">
@@ -186,6 +192,12 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="lastNameCtrl.errors && lastNameCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ lastNameCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
         </div>
@@ -199,6 +211,12 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="emailCtrl.errors && emailCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ emailCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
           <div class="mt-3 col-md-6">
@@ -208,11 +226,17 @@
             >
             <div class="mt-2">
               <input
-                formControlName="phone"
+                formControlName="phoneNumber"
                 class="w-100"
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="phoneCtrl.errors && phoneCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ phoneCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
           <div class="mt-3 col-md-6">
@@ -226,6 +250,12 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="nationalCtrl.errors && nationalCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ nationalCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
         </div>
@@ -245,6 +275,12 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="IBANCtrl.errors && IBANCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ IBANCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { omitBy } from 'lodash';
 import { UserService } from 'src/app/Services/user.service';
@@ -37,7 +38,8 @@ export class ActivateAccountComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private errorService: HandelErrorService
+    private errorService: HandelErrorService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class ActivateAccountComponent implements OnInit {
         firstName: this.fb.control(null, [Validators.required]),
         lastName: this.fb.control(null, [Validators.required]),
         email: this.fb.control(null, [Validators.required, Validators.email]),
-        phone: this.fb.control(null, [Validators.required]),
+        phoneNumber: this.fb.control(null, [Validators.required]),
         nationalId: this.fb.control(null, [Validators.required]),
       }),
       bankAccount: this.fb.group({
@@ -80,7 +82,11 @@ export class ActivateAccountComponent implements OnInit {
         console.log(res);
       },
       (error) => {
-        this.errorService.handleActivateError(error, this.activateCtrl);
+        this.errorService.handleActivateError(
+          error,
+          this.activateCtrl,
+          this.messageService
+        );
       }
     );
   }
@@ -121,21 +127,21 @@ export class ActivateAccountComponent implements OnInit {
     ) as FormControl;
   }
   get firstNameCtrl() {
-    return this.activateCtrl.get('firstName') as FormControl;
+    return this.activateCtrl.get('businessOwner.firstName') as FormControl;
   }
   get lastNameCtrl() {
-    return this.activateCtrl.get('lastName') as FormControl;
+    return this.activateCtrl.get('businessOwner.lastName') as FormControl;
   }
   get phoneCtrl() {
-    return this.activateCtrl.get('phone') as FormControl;
+    return this.activateCtrl.get('businessOwner.phoneNumber') as FormControl;
   }
   get emailCtrl() {
-    return this.activateCtrl.get('email') as FormControl;
+    return this.activateCtrl.get('businessOwner.email') as FormControl;
   }
   get nationalCtrl() {
-    return this.activateCtrl.get('nationalId') as FormControl;
+    return this.activateCtrl.get('businessOwner.nationalId') as FormControl;
   }
   get IBANCtrl() {
-    return this.activateCtrl.get('IBAN') as FormControl;
+    return this.activateCtrl.get('bankAccount.IBAN') as FormControl;
   }
 }
