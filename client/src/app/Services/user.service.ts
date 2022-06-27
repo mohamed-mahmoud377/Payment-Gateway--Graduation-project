@@ -122,4 +122,18 @@ export class UserService {
       }
     );
   }
+
+  getActivationStatus(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<secretKeyOutput>(
+      `${environment.Url}/api/manage-business/activation-request`,
+      {
+        headers,
+      }
+    );
+  }
 }

@@ -46,7 +46,7 @@
 
 .bottom-nav {
   font-size: 14px;
-  border-bottom: 1px solid #dfe2e4;
+  /* border-bottom: 1px solid #dfe2e4; */
 }
 
 .links li a.active {

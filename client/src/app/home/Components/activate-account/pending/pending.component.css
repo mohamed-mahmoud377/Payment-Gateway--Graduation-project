@@ -1,0 +1,12 @@
+.image img {
+  width: 474px;
+  height: 296px;
+}
+
+.content {
+  text-align: center;
+}
+.content h2 {
+  color: var(--primary-color);
+  font-weight: 600;
+}

@@ -21,6 +21,8 @@ import { LoadingComponent } from './shared/loading/html/loading.component';
 import { ProfileComponent } from './home/Components/profile/profile.component';
 import { CompLoadingComponent } from './shared/loading/component/comp-loading/comp-loading.component';
 import { ActivateAccountComponent } from './home/Components/activate-account/activate-account.component';
+import { ActivationFormComponent } from './home/Components/activate-account/activation-form/activation-form.component';
+import { PendingComponent } from './home/Components/activate-account/pending/pending.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ActivateAccountComponent } from './home/Components/activate-account/act
     ProfileComponent,
     CompLoadingComponent,
     ActivateAccountComponent,
+    ActivationFormComponent,
+    PendingComponent,
   ],
   imports: [
     BrowserModule,
