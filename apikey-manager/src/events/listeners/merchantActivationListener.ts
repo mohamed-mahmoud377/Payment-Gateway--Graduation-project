@@ -20,7 +20,9 @@ export class MerchantActivationListener extends Listener<MerchantActivationEvent
         }
         const keys =await  Keys.findOne({userId:data.userId});
         if (!keys){
-            throw new Error("some thing went wrong");
+            console.log("some thing went wrong");
+            msg.ack();
+            return;
         }
         keys!.verifiedMerchant = true;
         keys!.liveKey = generateKey(Modes.LIVE);

@@ -6,6 +6,7 @@ import {errorHandler, secure} from "@hashcash/common";
 import cookieParser from "cookie-parser";
 
 
+
 const app= express();
 
 app.set('trust proxy',true);
