@@ -33,6 +33,7 @@ export class ActivationFormComponent implements OnInit {
   ];
 
   public activateCtrl!: FormGroup;
+  public loading = false;
   @Output() changeStatus = new EventEmitter<string | null>();
 
   constructor(
@@ -54,7 +55,7 @@ export class ActivationFormComponent implements OnInit {
         industry: this.fb.control(Industries.software, [Validators.required]),
         legalName: this.fb.control(null, [Validators.required]),
         registrationNumber: this.fb.control(null, [Validators.required]),
-        website: this.fb.control('http://', [Validators.required]),
+        website: this.fb.control('www.', [Validators.required]),
         productDescription: this.fb.control(null, [Validators.required]),
       }),
       businessOwner: this.fb.group({
@@ -71,6 +72,7 @@ export class ActivationFormComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     const inputs = {
       businessInfo: cleanObject(this.businessInfoCtrl.value),
       businessOwner: cleanObject(this.businessOwnerCtrl.value),
@@ -80,9 +82,11 @@ export class ActivationFormComponent implements OnInit {
     this.userService.activateAccount(inputs).subscribe(
       (res) => {
         console.log(res);
+        this.loading = false;
         this.changeStatus.emit('pending');
       },
       (error) => {
+        this.loading = false;
         this.errorService.handleActivateError(
           error,
           this.activateCtrl,

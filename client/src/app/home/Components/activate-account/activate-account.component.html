@@ -1,9 +1,13 @@
 <div class="container profile mb-4">
-  <app-activation-form
-    (changeStatus)="changeStatusHandler($event)"
-    *ngIf="status == null || 'declined'"
-  ></app-activation-form>
-  <app-pending
-    *ngIf="status == 'pending' || status == 'approved'"
-  ></app-pending>
+  <app-comp-loading *ngIf="loading"></app-comp-loading>
+  <ng-container *ngIf="!loading">
+    <app-activation-form
+      (changeStatus)="changeStatusHandler($event)"
+      *ngIf="!status"
+    ></app-activation-form>
+    <app-pending
+      *ngIf="status == 'pending' || status == 'approved'"
+    ></app-pending>
+    <app-declined *ngIf="status == 'declined'"> </app-declined>
+  </ng-container>
 </div>

@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activate-account.component.css'],
 })
 export class ActivateAccountComponent implements OnInit {
-  public status: null | string = null;
+  public status!: string;
+  public loading = false;
   constructor(
     private userService: UserService,
     private messageService: MessageService,
@@ -21,13 +22,16 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   getActivationStatus() {
+    this.loading = true;
     this.userService.getActivationStatus().subscribe(
-      (res) => {
-        console.log(res);
+      ({ data }) => {
+        this.loading = false;
+        this.status = data.status;
       },
       (error) => {
+        this.loading = false;
         if (error.errorCode == 404) {
-          this.status = null;
+          return;
         } else {
           this.errorService.handleErrors(error, this.messageService);
         }

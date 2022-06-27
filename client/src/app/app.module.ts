@@ -23,6 +23,7 @@ import { CompLoadingComponent } from './shared/loading/component/comp-loading/co
 import { ActivateAccountComponent } from './home/Components/activate-account/activate-account.component';
 import { ActivationFormComponent } from './home/Components/activate-account/activation-form/activation-form.component';
 import { PendingComponent } from './home/Components/activate-account/pending/pending.component';
+import { DeclinedComponent } from './home/Components/activate-account/declined/declined.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PendingComponent } from './home/Components/activate-account/pending/pen
     ActivateAccountComponent,
     ActivationFormComponent,
     PendingComponent,
+    DeclinedComponent,
   ],
   imports: [
     BrowserModule,
