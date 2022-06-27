@@ -1,3 +1,5 @@
+import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
+import { omitBy } from 'lodash';
 import { UserService } from 'src/app/Services/user.service';
 import {
   FormBuilder,
@@ -7,6 +9,7 @@ import {
 } from '@angular/forms';
 import { BusinessTypes, Industries } from './../../../Models/types';
 import { Component, OnInit } from '@angular/core';
+import { cleanObject } from 'src/app/shared/utils/cleanObj';
 
 @Component({
   selector: 'app-activate-account',
@@ -31,7 +34,11 @@ export class ActivateAccountComponent implements OnInit {
 
   public activateCtrl!: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private errorService: HandelErrorService
+  ) {}
 
   ngOnInit(): void {
     this.initializeActivateForm();
@@ -62,38 +69,56 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   submit() {
-    this.userService.activateAccount(this.activateCtrl.value).subscribe(
+    const inputs = {
+      businessInfo: cleanObject(this.businessInfoCtrl.value),
+      businessOwner: cleanObject(this.businessOwnerCtrl.value),
+      bankAccount: cleanObject(this.backAccountCtrl.value),
+    };
+
+    this.userService.activateAccount(inputs).subscribe(
       (res) => {
         console.log(res);
       },
       (error) => {
-        console.log(error);
+        this.errorService.handleActivateError(error, this.activateCtrl);
       }
     );
-
-    console.log(this.activateCtrl.value);
   }
 
-  get addressCtr() {
-    return this.activateCtrl.get('address') as FormControl;
+  get businessInfoCtrl() {
+    return this.activateCtrl.get('businessInfo') as FormGroup;
+  }
+  get businessOwnerCtrl() {
+    return this.activateCtrl.get('businessOwner') as FormGroup;
+  }
+  get backAccountCtrl() {
+    return this.activateCtrl.get('bankAccount') as FormGroup;
+  }
+
+  get addressCtrl() {
+    return this.activateCtrl.get('businessInfo.address') as FormControl;
   }
   get typeCtrl() {
-    return this.activateCtrl.get('type') as FormControl;
+    return this.activateCtrl.get('businessInfo.type') as FormControl;
   }
   get industryCtrl() {
-    return this.activateCtrl.get('industry') as FormControl;
+    return this.activateCtrl.get('businessInfo.industry') as FormControl;
   }
   get legalNameCtrl() {
-    return this.activateCtrl.get('legalName') as FormControl;
+    return this.activateCtrl.get('businessInfo.legalName') as FormControl;
   }
   get registrationNumberCtrl() {
-    return this.activateCtrl.get('registrationNumber') as FormControl;
+    return this.activateCtrl.get(
+      'businessInfo.registrationNumber'
+    ) as FormControl;
   }
   get websiteCtrl() {
-    return this.activateCtrl.get('website') as FormControl;
+    return this.activateCtrl.get('businessInfo.website') as FormControl;
   }
   get descriptionCtrl() {
-    return this.activateCtrl.get('productDescription') as FormControl;
+    return this.activateCtrl.get(
+      'businessInfo.productDescription'
+    ) as FormControl;
   }
   get firstNameCtrl() {
     return this.activateCtrl.get('firstName') as FormControl;

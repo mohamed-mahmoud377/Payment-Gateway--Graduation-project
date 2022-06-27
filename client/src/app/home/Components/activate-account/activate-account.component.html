@@ -8,14 +8,48 @@
       </p-divider>
       <!-- Business information -->
       <ng-container formGroupName="businessInfo">
-        <div>
-          <label><strong>Address </strong> <span class="error">*</span></label>
-          <div class="mt-2">
-            <textarea
-              formControlName="address"
-              pInputTextarea
-              class="w-100"
-            ></textarea>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Legal Name </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input
+                formControlName="legalName"
+                class="w-100"
+                type="text"
+                pInputText
+              />
+              <small
+                *ngIf="legalNameCtrl.errors && legalNameCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ legalNameCtrl.errors["API"] }}</small
+              >
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Registration Number </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input
+                formControlName="registrationNumber"
+                class="w-100"
+                type="text"
+                pInputText
+              />
+              <small
+                *ngIf="
+                  registrationNumberCtrl.errors &&
+                  registrationNumberCtrl.errors['API']
+                "
+                class="p-2"
+                class="error"
+                >{{ registrationNumberCtrl.errors["API"] }}</small
+              >
+            </div>
           </div>
         </div>
         <div class="row">
@@ -31,6 +65,12 @@
                 optionLabel="name"
                 optionValue="value"
               ></p-dropdown>
+              <small
+                *ngIf="typeCtrl.errors && typeCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ typeCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
           <div class="mt-3 col-md-6">
@@ -45,39 +85,16 @@
                 optionLabel="name"
                 optionValue="value"
               ></p-dropdown>
+              <small
+                *ngIf="industryCtrl.errors && industryCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ industryCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="mt-3 col-md-6">
-            <label
-              ><strong>Legal Name </strong> <span class="error">*</span></label
-            >
-            <div class="mt-2">
-              <input
-                formControlName="legalName"
-                class="w-100"
-                type="text"
-                pInputText
-              />
-            </div>
-          </div>
-          <div class="mt-3 col-md-6">
-            <label
-              ><strong>Registration Number </strong>
-              <span class="error">*</span></label
-            >
-            <div class="mt-2">
-              <input
-                formControlName="registrationNumber"
-                class="w-100"
-                type="text"
-                pInputText
-              />
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="mt-3 col-md-6">
             <label
@@ -90,9 +107,34 @@
                 type="text"
                 pInputText
               />
+              <small
+                *ngIf="websiteCtrl.errors && websiteCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ websiteCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
           <div class="mt-3 col-md-6">
+            <label
+              ><strong>Address </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <textarea
+                formControlName="address"
+                pInputTextarea
+                class="w-100"
+                [rows]="1"
+              ></textarea>
+              <small
+                *ngIf="addressCtrl.errors && addressCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ addressCtrl.errors["API"] }}</small
+              >
+            </div>
+          </div>
+          <div class="mt-3 col-md-12">
             <label
               ><strong>Product Description </strong>
               <span class="error">*</span></label
@@ -103,12 +145,20 @@
                 pInputTextarea
                 class="w-100"
               ></textarea>
+              <small
+                *ngIf="descriptionCtrl.errors && descriptionCtrl.errors['API']"
+                class="p-2"
+                class="error"
+                >{{ descriptionCtrl.errors["API"] }}</small
+              >
             </div>
           </div>
         </div>
       </ng-container>
+
+      <!-- business owner -->
       <p-divider align="center">
-        <span class="p-tag">Personal Information</span>
+        <span class="p-tag">Business Owner Information</span>
       </p-divider>
       <ng-container formGroupName="businessOwner">
         <div class="row">

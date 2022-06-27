@@ -1,10 +1,11 @@
 import { AuthService } from 'src/app/Services/auth.service';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorCodes, APIError } from '../../Models/errors';
 import { MessageService } from 'primeng/api';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { RefreshTokenService } from '../refresh-token.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +58,29 @@ export class HandelErrorService {
         summary: 'Service not available',
         detail: 'Please try again later',
       });
+    }
+  }
+
+  handleActivateError(error: APIError, ctrl: FormGroup) {
+    let errors = error.errors.map((error) => {
+      let message = error.split('|')[1];
+      let field = error.split('|')[0];
+      return { message, field };
+    });
+    for (let error of errors) {
+      if (
+        error.field == 'address' ||
+        error.field == 'type' ||
+        error.field == 'industry' ||
+        error.field == 'legalName' ||
+        error.field == 'registrationNumber' ||
+        error.field == 'website' ||
+        error.field == 'productDescription'
+      ) {
+        ctrl
+          .get(`businessInfo.${error.field}`)
+          ?.setErrors({ API: error.message });
+      }
     }
   }
 }
