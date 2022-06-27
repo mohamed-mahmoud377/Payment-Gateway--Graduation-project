@@ -1,4 +1,8 @@
-import { secretKeyOutput, userInfoOutput } from './../Models/types';
+import {
+  activateAccountInputs,
+  secretKeyOutput,
+  userInfoOutput,
+} from './../Models/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -98,6 +102,21 @@ export class UserService {
 
     return this.httpClient.get<secretKeyOutput>(
       `${environment.Url}/api/apikey/key?mode=${mode}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  activateAccount(inputs: activateAccountInputs): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.post<secretKeyOutput>(
+      `${environment.Url}/api/manage-business/submit-activation-request`,
+      inputs,
       {
         headers,
       }

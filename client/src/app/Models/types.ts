@@ -110,3 +110,25 @@ export interface secretKeyOutput extends GeneralOutput {
     key: string;
   };
 }
+
+export interface activateAccountInputs {
+  businessInfo: {
+    address: string;
+    type: string;
+    industry: string;
+    legalName: string;
+    registrationNumber: string;
+    website: string;
+    productDescription: string;
+  };
+  businessOwner: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    nationalId: string;
+  };
+  bankAccount: {
+    IBAN: string;
+  };
+}

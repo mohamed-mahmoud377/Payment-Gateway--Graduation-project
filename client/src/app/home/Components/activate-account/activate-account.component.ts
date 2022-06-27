@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/Services/user.service';
 import {
   FormBuilder,
   FormControl,
@@ -30,7 +31,7 @@ export class ActivateAccountComponent implements OnInit {
 
   public activateCtrl!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
     this.initializeActivateForm();
@@ -38,7 +39,7 @@ export class ActivateAccountComponent implements OnInit {
 
   initializeActivateForm() {
     this.activateCtrl = this.fb.group({
-      businessInformation: this.fb.group({
+      businessInfo: this.fb.group({
         address: this.fb.control(null, [Validators.required]),
         type: this.fb.control(BusinessTypes.company, [Validators.required]),
         industry: this.fb.control(Industries.software, [Validators.required]),
@@ -61,6 +62,15 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   submit() {
+    this.userService.activateAccount(this.activateCtrl.value).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
     console.log(this.activateCtrl.value);
   }
 
