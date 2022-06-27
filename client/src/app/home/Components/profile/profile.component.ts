@@ -1,4 +1,4 @@
-import { LoginSessions, User } from './../Models/types';
+import { LoginSessions, User } from '../../../Models/types';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';

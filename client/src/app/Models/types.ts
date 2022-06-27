@@ -56,6 +56,7 @@ export interface currentUser {
   role: string;
   sessionId: string;
   verifiedMerchant: true;
+  name: string;
 }
 
 export interface changeModeInputs {

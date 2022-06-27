@@ -18,8 +18,9 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NavbarComponent } from './home/Components/navbar/navbar.component';
 import { LoadingComponent } from './shared/loading/html/loading.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './home/Components/profile/profile.component';
 import { CompLoadingComponent } from './shared/loading/component/comp-loading/comp-loading.component';
+import { ActivateAccountComponent } from './home/Components/activate-account/activate-account.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CompLoadingComponent } from './shared/loading/component/comp-loading/co
     LoadingComponent,
     ProfileComponent,
     CompLoadingComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,

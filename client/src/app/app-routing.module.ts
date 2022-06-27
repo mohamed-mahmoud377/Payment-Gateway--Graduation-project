@@ -1,4 +1,5 @@
-import { ProfileComponent } from './profile/profile.component';
+import { ActivateAccountComponent } from './home/Components/activate-account/activate-account.component';
+import { ProfileComponent } from './home/Components/profile/profile.component';
 import { LoginGuard } from './guards/login.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: 'activate-account',
+        component: ActivateAccountComponent,
       },
     ],
   },
