@@ -124,3 +124,6 @@ p-password.p-inputtext {
 .keys .p-disabled {
   color: #000;
 }
+.p-dropdown {
+  width: 100% !important;
+}

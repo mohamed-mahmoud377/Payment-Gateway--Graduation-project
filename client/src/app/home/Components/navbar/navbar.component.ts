@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   @Input() isTest!: boolean;
   @Input() isVerified!: boolean | undefined;
-  @Input() name!: string;
+  @Input() name!: string | null;
   public testValue!: boolean | undefined;
 
   constructor(

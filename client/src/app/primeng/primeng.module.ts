@@ -15,6 +15,9 @@ import { ListboxModule } from 'primeng/listbox';
 import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
 
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -34,6 +37,8 @@ import { TableModule } from 'primeng/table';
     ListboxModule,
     DividerModule,
     TableModule,
+    InputTextareaModule,
+    DropdownModule,
   ],
 })
 export class PrimengModule {}

@@ -2,7 +2,7 @@
   <app-navbar
     [isVerified]="currentUser?.verifiedMerchant"
     [isTest]="isTest"
-    [name]="currentUser.name"
+    [name]="currentUser?.name || null"
   ></app-navbar>
   <router-outlet></router-outlet>
 </div>

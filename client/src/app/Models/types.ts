@@ -1,3 +1,18 @@
+export enum BusinessTypes {
+  individual = 'individual',
+  company = 'company',
+}
+export enum Industries {
+  software = 'software',
+  clothing = 'clothing',
+  digitalProducts = 'digital products',
+  food = 'food and drink',
+  education = 'education',
+  travel = 'travel',
+  entertainment = 'entertainment',
+  medical = 'medical services',
+}
+
 export interface signUpInputs {
   name: string;
   email: string;

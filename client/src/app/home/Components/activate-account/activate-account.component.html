@@ -1,1 +1,153 @@
-<p>activate-account works!</p>
+<div class="container profile mb-4">
+  <p-card>
+    <h1>Activate your account</h1>
+    <p>Please Enter the required information to activate your account</p>
+    <form>
+      <p-divider align="center">
+        <span class="p-tag">Business Information</span>
+      </p-divider>
+      <!-- Business information -->
+      <ng-container>
+        <div>
+          <label><strong>Address </strong> <span class="error">*</span></label>
+          <div class="mt-2">
+            <textarea pInputTextarea class="w-100"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Business type </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <p-dropdown
+                [options]="types"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Industry type </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <p-dropdown
+                [options]="industries"
+                optionLabel="name"
+                optionValue="value"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Legal Name </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Registration Number </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Website </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Product Description </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <textarea pInputTextarea class="w-100"></textarea>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <p-divider align="center">
+        <span class="p-tag">Personal Information</span>
+      </p-divider>
+      <ng-container>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>First Name </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Last Name </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label><strong>Email </strong> <span class="error">*</span></label>
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>Phone Number </strong>
+              <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+          <div class="mt-3 col-md-6">
+            <label
+              ><strong>National ID </strong> <span class="error">*</span></label
+            >
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <p-divider align="center">
+        <span class="p-tag">Bank Account</span>
+      </p-divider>
+
+      <ng-container>
+        <div class="row">
+          <div class="mt-3 col-md-6">
+            <label><strong>IBAN </strong> <span class="error">*</span></label>
+            <div class="mt-2">
+              <input class="w-100" type="text" pInputText />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="mt-4 d-flex justify-content-end">
+        <button pButton label="Activate"></button>
+      </div>
+    </form>
+  </p-card>
+</div>
