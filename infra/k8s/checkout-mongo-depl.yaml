@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkout-mongo
+  template:
+    metadata:
+      labels:
+        app: checkout-mongo
+    spec:
+      containers:
+        - name: checkout-mongo
+          image: mongo # the name of the image from docker hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkout-mongo-srv
+spec:
+  selector:
+    app: checkout-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

@@ -48,6 +48,27 @@ spec:
                 name: apikey-manager-srv
                 port:
                   number: 3000
+          - path: /api/checkout/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: checkout-srv
+                port:
+                  number: 3000
+          - path: /api/customer/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: customer-srv
+                port:
+                  number: 3000
+          - path: /api/payment/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-srv
+                port:
+                  number: 3000
           - path: /?(.*)
             pathType: Prefix
             backend:
