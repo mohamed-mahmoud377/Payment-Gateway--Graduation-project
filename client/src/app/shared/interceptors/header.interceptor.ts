@@ -22,8 +22,7 @@ export class HeaderInterceptor implements HttpInterceptor {
     private refreshTokenService: RefreshTokenService,
     private authService: AuthService,
     private router: Router,
-    private errorService: HandelErrorService,
-    private messageService: MessageService
+    private errorService: HandelErrorService
   ) {}
 
   intercept(
@@ -43,7 +42,10 @@ export class HeaderInterceptor implements HttpInterceptor {
               return next.handle(request);
             }),
             catchError((error) => {
-              this.errorService.handleErrors(error, this.messageService);
+              if (error == ErrorCodes.invalidToken) {
+                this.authService.removeTokens();
+                this.router.navigate(['/signin']);
+              }
               return throwError(error);
             })
           );
