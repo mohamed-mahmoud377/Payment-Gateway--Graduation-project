@@ -6,21 +6,23 @@
 
 $WORKING_DIR = pwd # to work in right directory #
 
-
 <# Array to store the needed directories to update their packages #>
 $DIRECTORIES = @("apikey-manager","auth","checkout","customer","emailing","kms","manage-business","payment","tokenization")
 
-
 Write-Host ""
-Write-Host "##########################"
-Write-Host "# Update Packages Script #"
-Write-Host "##########################"
+Write-Host "##########################" -ForegroundColor DarkBlue
+Write-Host "# Update Packages Script #" -ForegroundColor DarkBlue
+Write-Host "##########################" -ForegroundColor DarkBlue
 Write-Host ""
 
 <# here we loop in all directories one by one and update their packages #>
 foreach ($DIR in $DIRECTORIES) {
-
-    cd $WORKING_DIR/$DIR && npm run update:common
+    
+    Write-Host " updating packages in $DIR " -ForegroundColor Red
+    cd $WORKING_DIR/$DIR
+    npm run update:common
+    Write-Host "$DIR packages updated successfully!" -ForegroundColor Green
+    Write-Host ""
 
 }
 
@@ -28,6 +30,6 @@ foreach ($DIR in $DIRECTORIES) {
 cd $WORKING_DIR # Return to working directory #
 
 Write-Host ""
-Write-Host "#####################"
-Write-Host "#      D O N E      #"
-Write-Host "#####################"
+Write-Host "#####################" -ForegroundColor Green
+Write-Host "#      D O N E      #" -ForegroundColor Green
+Write-Host "#####################" -ForegroundColor Green
