@@ -16,12 +16,12 @@ Write-Host "##########################" -ForegroundColor DarkBlue
 Write-Host ""
 
 <# here we loop in all directories one by one and update their packages #>
-foreach ($PACKAGES in $DIRECTORIES) {
+foreach ($PACKAGE in $DIRECTORIES) {
     
-    Write-Host " updating packages in $PACKAGES " -ForegroundColor Red
-    cd $WORKING_DIR/$PACKAGES
+    Write-Host " updating packages in $PACKAGE " -ForegroundColor Red
+    cd $WORKING_DIR/$PACKAGE
     npm run update:common
-    Write-Host "$PACKAGES packages updated successfully!" -ForegroundColor Green
+    Write-Host "$PACKAGE packages updated successfully!" -ForegroundColor Green
     Write-Host ""
 
 }
