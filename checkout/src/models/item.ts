@@ -28,7 +28,8 @@ const itemScheme = new mongoose.Schema({
         type:String
     },
     quantity:{
-        type:Number
+        type:Number,
+        default:1
     }
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 
