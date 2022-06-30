@@ -1,6 +1,6 @@
 <p align="center">
-  <img align="center" width="130" hight="130" src="/Images/Logo/Asset logo 2 2.svg" />
-<p/>
+  <a href="http://www.hashcash.digital/"><img src="/Images/Logo/Asset logo 2 2.svg" height="200" width="200" alt="Archcraft"></a>
+</p>
 
 </br></br>
 
