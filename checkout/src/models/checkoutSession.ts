@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import {CustomerAttrs, CustomerDoc, customerScheme} from "./customer";
 import {ItemAttrs, itemScheme} from "./item";
+import * as crypto from "crypto";
 
 
 interface CheckoutSessionDoc extends  mongoose.Document{
@@ -11,19 +12,25 @@ interface CheckoutSessionDoc extends  mongoose.Document{
     liveMode:boolean;
     clientReferenceId?:string;
     currency:string;
-    checkoutCode:string;
     checkoutUrl?:string;
     successUrl:string;
     cancelUrl:string;
+    hash:string;
     customer:CustomerAttrs,
     items:[ItemAttrs],
-    relatedCustomerPaymentCards:[string]
+    relatedCustomerPaymentCards:[string];
+    calculateTotalAmount():number;
 }
+
+interface CheckoutSessionModel extends mongoose.Model<CheckoutSessionDoc>{
+
+}
+
+
 
 const checkoutSessionScheme = new mongoose.Schema({
     status:{
         type:String,
-        required:true
     },
     merchantId:{
         type:String,
@@ -40,11 +47,11 @@ const checkoutSessionScheme = new mongoose.Schema({
     clientReferenceId:{
         type:String
     },
+    hash:{
+      type:String
+    },
     currency:{
         type:String
-    },
-    checkoutCode:{
-        type:String,
     },
     checkoutUrl:{
         type:String
@@ -62,8 +69,23 @@ const checkoutSessionScheme = new mongoose.Schema({
     }]
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 
+checkoutSessionScheme.methods.calculateTotalAmount= function (){
+    this.amountTotal= 0;
+    this.items.forEach((val: { amount: number; quantity: number; } )=>{
+        this.amountTotal+=val.amount * val.quantity
+    })
 
-const CheckoutSession = mongoose.model<CheckoutSessionDoc>('CheckoutSession',checkoutSessionScheme);
+}
+
+checkoutSessionScheme.pre<CheckoutSessionDoc>('save',function (next) {
+    if (this.hash!==undefined) next();
+    this.hash = crypto.createHash('sha256').update(this.id).digest('hex');
+    next();
+
+})
+
+
+const CheckoutSession = mongoose.model<CheckoutSessionDoc,CheckoutSessionModel>('CheckoutSession',checkoutSessionScheme);
 
 
 export{

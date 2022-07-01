@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
 
 
-
-
 const start = async ()=>{
     console.log('Starting up checkout service...')
 
@@ -23,6 +21,7 @@ const start = async ()=>{
     if (!process.env.NATS_CLUSTER_ID){
         throw new Error("NATS_CLUSTER_ID must be defined !")
     }
+
     try{
         await natsWrapper.connect(process.env.NATS_CLUSTER_ID,process.env.NATS_CLIENT_ID,process.env.NATS_URL)
         natsWrapper.client.on('close',()=>{

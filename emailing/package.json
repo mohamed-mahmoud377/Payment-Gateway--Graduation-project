@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
-    "start:dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
+    "start:dev": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts",
     "start:prod": "cross-env NODE_ENV=production ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache ",
     "test:ci": "jest",

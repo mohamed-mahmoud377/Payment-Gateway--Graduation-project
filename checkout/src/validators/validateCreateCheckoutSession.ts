@@ -15,10 +15,10 @@ export const createCheckoutValidator =[
     body('items')
         .notEmpty()
         .withMessage("items field must be provided"),
-    body('items.name')
+    body('items.*.name')
         .notEmpty()
         .withMessage("items.name field must be provided"),
-    body('items.amount')
+    body('items.*.amount')
         .notEmpty()
         .withMessage("items.amount field must be provided"),
     body('currency')

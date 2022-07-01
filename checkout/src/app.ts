@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import {errorHandler, secure} from "@hashcash/common";
 
 import cookieParser from "cookie-parser";
+import {createCheckoutSessionRoute} from "./routes/createCheckoutSession";
 
 
 
@@ -23,6 +24,8 @@ secure(app,{
     xss: true
 })
 
+
+
 // app.use(cookieSession({
 //     sameSite:"lax",
 //     signed:false,
@@ -34,6 +37,10 @@ secure(app,{
 app.use(cookieParser())
 
 
+
+app.use('/api/checkout',
+
+    createCheckoutSessionRoute)
 
 
 app.use(errorHandler)
