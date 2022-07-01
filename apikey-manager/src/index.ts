@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
 import {EmailVerifiedListener} from "./events/listeners/emailVerifiedListener";
 import {MerchantActivationListener} from "./events/listeners/merchantActivationListener";
+import {VerifyAPIKeyListener} from "./events/listeners/verifyAPIKeyListener";
 
 
 
@@ -46,6 +47,7 @@ const start = async ()=>{
 
         new EmailVerifiedListener(natsWrapper.client).listen();
         new MerchantActivationListener(natsWrapper.client).listen();
+        new VerifyAPIKeyListener(natsWrapper.client).listen();
 
 
 

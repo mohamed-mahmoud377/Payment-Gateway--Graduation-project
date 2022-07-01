@@ -6,7 +6,7 @@ import * as crypto from "crypto";
 
 interface CheckoutSessionDoc extends  mongoose.Document{
     status:string;
-    MerchantId:string;
+    merchantId:string;
     expiresAt:Date;
     amountTotal:Number;
     liveMode:boolean;

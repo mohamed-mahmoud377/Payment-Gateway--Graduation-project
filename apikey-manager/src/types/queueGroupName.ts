@@ -1,1 +1,1 @@
-export const queueGroupName = 'a'
+export const queueGroupName = 'apikey-manager'

@@ -1,6 +1,7 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
+import {APIKeyVerifiedListeners} from "./events/listeners/APIKeyVerifiedListeners";
 
 
 const start = async ()=>{
@@ -42,7 +43,7 @@ const start = async ()=>{
         console.log("connected to database successfully")
 
 
-
+        new APIKeyVerifiedListeners(natsWrapper.client).listen();
 
 
 
