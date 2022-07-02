@@ -4,6 +4,8 @@ import {Message} from "node-nats-streaming";
 import {queueGroupName} from "../../types/queueGroupName";
 import {CheckoutSession} from "../../models/checkoutSession";
 import {CheckoutStatus} from "../../types/chckoutStatus";
+import {CheckoutSessionCreatedPublisher} from "../publishers/checkoutSessionCreatedPublisher";
+import {natsWrapper} from "../../nats/nats-wrapper";
 
 export class APIKeyVerifiedListeners extends Listener<APIKeyVerifiedEvent>{
     queueGroupName: string= queueGroupName;
@@ -12,20 +14,37 @@ export class APIKeyVerifiedListeners extends Listener<APIKeyVerifiedEvent>{
     async onMessage(data: APIKeyVerifiedEvent["data"], msg: Message) {
         const {isValid,merchantId,checkoutSessionId} =data;
 
-        const checkoutSession = await CheckoutSession.findById(checkoutSessionId);
+        const checkout = await CheckoutSession.findById(checkoutSessionId);
 
-        if (!checkoutSession){
+        if (!checkout){
             console.log('Something seriously went wrong here checkoutSession is not found');
             return;
         }
         if (isValid){
-            checkoutSession.status= CheckoutStatus.VALID_APIKEY;
-            checkoutSession.merchantId= merchantId;
+            checkout.status= CheckoutStatus.VALID_APIKEY;
+            checkout.merchantId= merchantId;
+
+            await new CheckoutSessionCreatedPublisher(natsWrapper.client).publish({
+                amountTotal: checkout.amountTotal, checkoutSessionId: checkout.id, clientReferenceId: checkout.clientReferenceId, currency: checkout.currency
+                ,liveMode:checkout.liveMode,customer:{
+                    email:checkout.customer.email,
+                    name:checkout.customer.name,
+                    phoneNumber:checkout.customer.phoneNumber,
+                    address:checkout.customer.address
+                },
+                items:checkout.items,
+                expiresAt: checkout.expiresAt,
+                merchantId: checkout.merchantId
+
+
+            })
+
+
         }else{
-            checkoutSession.status= CheckoutStatus.INVALID_APIKEY;
+            checkout.status= CheckoutStatus.INVALID_APIKEY;
         }
 
-        await checkoutSession.save();
+        await checkout.save();
 
         msg.ack();
 

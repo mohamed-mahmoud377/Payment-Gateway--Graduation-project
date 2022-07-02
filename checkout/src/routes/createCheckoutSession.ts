@@ -28,8 +28,13 @@ router.post("/",createCheckoutValidator,validateRequest,async (req:Request, res:
     // creating checkout link
     checkoutSession.checkoutUrl=`${req.protocol}://${req.hostname}/checkout/pay/${checkoutSession.hash}`;
 
+
+    //setting the expiresAt prop to half hour
+    checkoutSession.expiresAt=Date.now()+ 30 *60 * 1000;
+
     //saving all of these changes
     await checkoutSession.save();
+
 
     // publishing an event to apikey-manager service to verify the apikey-is correct
      await new VerifyAPIKeyPublisher(natsWrapper.client).publish({
@@ -37,10 +42,9 @@ router.post("/",createCheckoutValidator,validateRequest,async (req:Request, res:
          apikey:secretKey
      })
 
-    sendSuccess(res,201,{
-        doc:checkoutSession,
-        checkoutSession:checkoutSession.hash
-    });
+    sendSuccess(res,201,
+        checkoutSession.id
+    );
 })
 
 

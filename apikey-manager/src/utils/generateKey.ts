@@ -7,5 +7,6 @@ export const generateKey = (mode:string)=>{
     if (mode===Modes.LIVE)
         return `sk_Live_${randomBytes(64).toString('hex')}`
 
+
     throw new Error("wrong mode is entered")
 }

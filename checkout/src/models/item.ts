@@ -13,6 +13,8 @@ interface ItemDoc extends mongoose.Document{
     amount:number;
     description?:string;
     quantity:number;
+    createdAt:Date;
+    updatedAt:Date;
 
 }
 

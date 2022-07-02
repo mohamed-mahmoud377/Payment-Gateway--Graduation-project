@@ -6,6 +6,7 @@ import {errorHandler, secure} from "@hashcash/common";
 import cookieParser from "cookie-parser";
 import {createCheckoutSessionRoute} from "./routes/createCheckoutSession";
 import {getCheckoutSessionRoute} from "./routes/getCheckoutSeeion";
+import {initRoute} from "./routes/init";
 
 
 
@@ -41,7 +42,8 @@ app.use(cookieParser())
 
 app.use('/api/checkout',
     createCheckoutSessionRoute
-    ,getCheckoutSessionRoute)
+    ,getCheckoutSessionRoute
+    ,initRoute   )
 
 
 app.use(errorHandler)

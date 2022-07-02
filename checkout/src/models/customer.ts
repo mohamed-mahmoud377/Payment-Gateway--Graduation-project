@@ -12,6 +12,8 @@ interface CustomerDoc extends mongoose.Document{
     name?:string;
     phoneNumber?:string;
     address?:string;
+    createdAt:Date;
+    updatedAt:Date;
 
 }
 

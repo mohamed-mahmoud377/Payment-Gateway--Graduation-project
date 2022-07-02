@@ -12,6 +12,7 @@ export class VerifyAPIKeyListener extends Listener<VerifyAPIKeyEvent>{
     subject: VerifyAPIKeyEvent["subject"]=Subjects.verifyAPIKey;
 
     async onMessage(data: VerifyAPIKeyEvent["data"], msg: Message) {
+        console.log(data)
         let isLiveMode:boolean;
         let isValid=false;
         let query:any;
@@ -25,7 +26,10 @@ export class VerifyAPIKeyListener extends Listener<VerifyAPIKeyEvent>{
         else
             query= {testKey:data.apikey}
 
+
+
         const apiKey = await Keys.findOne(query);
+
 
         if (apiKey){
             isValid= true;

@@ -6,11 +6,12 @@ import * as crypto from "crypto";
 
 interface CheckoutSessionDoc extends  mongoose.Document{
     status:string;
+    paidFor:boolean;
     merchantId:string;
     expiresAt:Date;
     amountTotal:Number;
     liveMode:boolean;
-    clientReferenceId?:string;
+    clientReferenceId:string;
     currency:string;
     checkoutUrl?:string;
     successUrl:string;
@@ -20,6 +21,9 @@ interface CheckoutSessionDoc extends  mongoose.Document{
     items:[ItemAttrs],
     relatedCustomerPaymentCards:[string];
     calculateTotalAmount():number;
+    showForUser():CheckoutSessionDoc;
+    createdAt:Date;
+    updatedAt:Date;
 }
 
 interface CheckoutSessionModel extends mongoose.Model<CheckoutSessionDoc>{
@@ -62,6 +66,10 @@ const checkoutSessionScheme = new mongoose.Schema({
     cancelUrl:{
         type:String
     },
+    paidFor:{
+      type:Boolean,
+        default:false
+    },
     customer:customerScheme,
     items:[itemScheme],
     relatedCustomerPaymentCards:[{
@@ -75,6 +83,21 @@ checkoutSessionScheme.methods.calculateTotalAmount= function (){
         this.amountTotal+=val.amount * val.quantity
     })
 
+}
+
+checkoutSessionScheme.methods.showForUser= function () {
+    this.status= undefined;
+    this.hash= undefined;
+    this.createdAt= undefined;
+    this.updatedAt =undefined;
+    this.__v=undefined;
+    this.items.forEach((val: { createdAt: undefined; updatedAt: undefined; }) => {
+        val.createdAt=undefined;
+        val.updatedAt=undefined;
+    });
+    this.customer.createdAt=undefined;
+    this.customer.updatedAt=undefined;
+    return this
 }
 
 checkoutSessionScheme.pre<CheckoutSessionDoc>('save',function (next) {
