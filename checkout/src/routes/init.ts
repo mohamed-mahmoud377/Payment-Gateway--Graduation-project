@@ -18,7 +18,7 @@ router.get("/init/:hash",async (req:Request, res:Response, next:NextFunction) =>
 
     if (checkout.expiresAt< new Date(Date.now()))
         throw new BadRequestError(['This checkout link has expired']);
-    
+
     sendSuccess(res,200,{checkout})
 
 })

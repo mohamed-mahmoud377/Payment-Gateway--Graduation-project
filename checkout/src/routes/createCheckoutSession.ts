@@ -30,7 +30,7 @@ router.post("/",createCheckoutValidator,validateRequest,async (req:Request, res:
 
 
     //setting the expiresAt prop to half hour
-    checkoutSession.expiresAt=Date.now()+ 30 *60 * 1000;
+    checkoutSession.expiresAt=new Date(Date.now()+ 30 *60 * 1000);
 
     //saving all of these changes
     await checkoutSession.save();
