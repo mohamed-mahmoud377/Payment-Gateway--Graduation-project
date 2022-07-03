@@ -127,3 +127,15 @@ p-password.p-inputtext {
 .p-dropdown {
   width: 100% !important;
 }
+.visa-list .p-panel .p-panel-content {
+  display: none !important;
+}
+
+.checkout .p-panel .p-panel-header {
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.p-calendar {
+  width: 100%;
+}

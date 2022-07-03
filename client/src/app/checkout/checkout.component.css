@@ -1,8 +1,115 @@
-.input-container {
-  display: flex;
-  flex-direction: column;
+/* body {
+  color: #000;
+  overflow-x: hidden;
+  height: 100%;
+  background-color: #ef5350;
+  background-repeat: no-repeat;
 }
-.input-container input {
-  border-radius: 5px;
-  padding: 5px;
+
+.card {
+  padding: 30px 25px 35px 50px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px 0px #b71c1c;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.border-line {
+  border-right: 1px solid #bdbdbd;
+}
+
+.text-sm {
+  font-size: 13px;
+}
+
+.text-md {
+  font-size: 18px;
+}
+
+.image {
+  width: 60px;
+  height: 30px;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: grey;
+}
+
+::-ms-input-placeholder {
+  color: grey;
+}
+
+input {
+  padding: 2px 0px;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  box-sizing: border-box;
+  color: #000;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+input:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid #ef5350;
+  outline-width: 0;
+}
+
+button:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0;
+}
+
+.btn-red {
+  background-color: #ef5350;
+  color: #fff;
+  padding: 8px 25px;
+  border-radius: 50px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  border: 2px solid #fff;
+}
+
+.btn-red:hover {
+  box-shadow: 0 0 0 2px #ef5350;
+}
+
+.btn-red:focus {
+  box-shadow: 0 0 0 2px #ef5350 !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #ef5350;
+}
+
+@media screen and (max-width: 575px) {
+  .border-line {
+    border-right: none;
+    border-bottom: 1px solid #eeeeee;
+  }
+} */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.container .checkout {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  box-shadow: 0px 0px 0px 0px #dee2e6;
 }

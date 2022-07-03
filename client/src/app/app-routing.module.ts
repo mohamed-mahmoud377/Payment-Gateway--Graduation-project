@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './checkout/checkout.component';
 import { ActivateAccountComponent } from './home/Components/activate-account/activate-account.component';
 import { ProfileComponent } from './home/Components/profile/profile.component';
 import { LoginGuard } from './guards/login.guard';
@@ -45,6 +46,11 @@ const routes: Routes = [
         component: ActivateAccountComponent,
       },
     ],
+  },
+  {
+    path: 'checkout/pay/:hash',
+    component: CheckoutComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

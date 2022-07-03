@@ -17,6 +17,9 @@ import { TableModule } from 'primeng/table';
 
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { PanelModule } from 'primeng/panel';
+import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [],
@@ -39,6 +42,9 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     InputTextareaModule,
     DropdownModule,
+    PanelModule,
+    RadioButtonModule,
+    CalendarModule,
   ],
 })
 export class PrimengModule {}
