@@ -36,8 +36,6 @@ secure(app,{
 
 app.use(cookieParser())
 
-
-
 app.use('/api/apikey',
     getModeRoute
     ,changeModeRoute
