@@ -139,6 +139,10 @@ p-password.p-inputtext {
   padding: 10px !important;
 }
 
+.checkout p-card {
+  width: 100% !important;
+}
+
 .p-calendar {
   width: 100%;
 }
