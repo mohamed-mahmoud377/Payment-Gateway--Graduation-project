@@ -15,7 +15,6 @@ import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'signin', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   {
@@ -34,24 +33,15 @@ const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'activate-account',
-        component: ActivateAccountComponent,
-      },
-    ],
-  },
-  {
     path: 'checkout/pay/:hash',
     component: CheckoutComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./home/home.module').then((model) => model.HomeModule),
   },
   {
     path: '**',

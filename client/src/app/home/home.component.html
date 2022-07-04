@@ -1,9 +1,6 @@
 <div class="wrapper">
-  <app-navbar
-    [isVerified]="currentUser?.verifiedMerchant"
-    [isTest]="isTest"
-    [name]="currentUser?.name || null"
-  ></app-navbar>
+  <app-navbar [isVerified]="currentUser?.verifiedMerchant" [isTest]="isTest" [name]="currentUser?.name || null">
+  </app-navbar>
   <router-outlet></router-outlet>
 </div>
 <app-loading *ngIf="loading"></app-loading>
