@@ -1,0 +1,17 @@
+h1 {
+  font-size: 6.5em;
+  margin: 15px 0px;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.content {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

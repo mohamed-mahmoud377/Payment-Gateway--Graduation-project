@@ -24,6 +24,7 @@ import { ActivateAccountComponent } from './home/Components/activate-account/act
 import { ActivationFormComponent } from './home/Components/activate-account/activation-form/activation-form.component';
 import { PendingComponent } from './home/Components/activate-account/pending/pending.component';
 import { DeclinedComponent } from './home/Components/activate-account/declined/declined.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DeclinedComponent } from './home/Components/activate-account/declined/d
     ActivationFormComponent,
     PendingComponent,
     DeclinedComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
