@@ -9,6 +9,8 @@
 }
 ul {
   margin: 0px !important;
+  padding: 0px;
+  padding-left: 0px !important;
 }
 ul li {
   list-style: none;
@@ -134,6 +136,7 @@ p-password.p-inputtext {
 .checkout .p-panel .p-panel-header {
   border-top-right-radius: 0px !important;
   border-top-left-radius: 0px !important;
+  padding: 10px !important;
 }
 
 .p-calendar {
