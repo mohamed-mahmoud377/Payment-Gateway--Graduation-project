@@ -20,6 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PanelModule } from 'primeng/panel';
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [],
@@ -45,6 +46,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     PanelModule,
     RadioButtonModule,
     CalendarModule,
+    TagModule,
   ],
 })
 export class PrimengModule {}
