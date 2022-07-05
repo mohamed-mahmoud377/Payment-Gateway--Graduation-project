@@ -136,4 +136,18 @@ export class UserService {
       }
     );
   }
+  getCheckoutSession(inputs: string): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.post<any>(
+      `${environment.Url}/api/checkout/my-checkout`,
+      inputs,
+      {
+        headers,
+      }
+    );
+  }
 }
