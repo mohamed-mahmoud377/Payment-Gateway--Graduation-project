@@ -144,7 +144,7 @@ export class UserService {
 
     return this.httpClient.post<any>(
       `${environment.Url}/api/checkout/my-checkout`,
-      inputs,
+      { checkoutSession: inputs },
       {
         headers,
       }

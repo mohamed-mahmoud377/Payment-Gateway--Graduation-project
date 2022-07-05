@@ -8,6 +8,7 @@ import { UserService } from '../Services/user.service';
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
+  providers: [MessageService],
 })
 export class CheckoutComponent implements OnInit {
   selectedPayment = 'new';
@@ -22,8 +23,8 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((param: any) => {
-      console.log(param.hash);
       this.hash = param.hash;
+      this.getPaymentSummary();
     });
   }
 
