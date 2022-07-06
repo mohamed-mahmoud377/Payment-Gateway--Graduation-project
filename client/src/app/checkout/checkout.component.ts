@@ -13,6 +13,8 @@ import { UserService } from '../Services/user.service';
 export class CheckoutComponent implements OnInit {
   selectedPayment = 'new';
   private hash!: string;
+  public error!: null | string;
+  public loading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,11 +31,15 @@ export class CheckoutComponent implements OnInit {
   }
 
   getPaymentSummary() {
+    this.loading = true;
     this.userService.getCheckoutSession(this.hash).subscribe(
       (data: any) => {
+        this.loading = false;
         console.log(data);
       },
       (error) => {
+        this.loading = false;
+        this.error = error.errors[0];
         this.errorService.handleErrors(error, this.messageService);
       }
     );

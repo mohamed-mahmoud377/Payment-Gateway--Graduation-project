@@ -1,6 +1,9 @@
 <div class="container checkout">
+  <div *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
 
-  <p-card>
+  <p-card *ngIf="!error && !loading">
     <div class="content">
       <div class="row">
         <div class="col-md-6 ">
@@ -113,4 +116,8 @@
       </div>
     </div>
   </p-card>
+
+  <div *ngIf="error && !loading" class="w-100">
+    <app-error [msg]="error"></app-error>
+  </div>
 </div>

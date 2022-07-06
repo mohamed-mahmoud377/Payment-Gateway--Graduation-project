@@ -42,7 +42,6 @@ export class ActivateAccountComponent implements OnInit {
   changeStatusHandler(event: any) {
     if (event) {
       this.status = event;
-      console.log(this.status);
     }
   }
 }

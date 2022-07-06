@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
+import { ErrorComponent } from '../shared/error/error.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
     PendingComponent,
     DeclinedComponent,
     NotFoundComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -46,8 +48,4 @@ import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
     },
   ],
 })
-export class HomeModule {
-  constructor() {
-    console.log('kk');
-  }
-}
+export class HomeModule {}

@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit {
 
         if (data.currentUser.verifiedMerchant) {
           this.getMode();
+        } else {
+          localStorage.setItem('mode', 'test');
         }
       },
       (error) => {

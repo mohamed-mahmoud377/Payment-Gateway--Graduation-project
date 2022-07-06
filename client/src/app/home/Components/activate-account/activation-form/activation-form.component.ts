@@ -81,7 +81,6 @@ export class ActivationFormComponent implements OnInit {
 
     this.userService.activateAccount(inputs).subscribe(
       (res) => {
-        console.log(res);
         this.loading = false;
         this.changeStatus.emit('pending');
       },

@@ -1,0 +1,10 @@
+.content {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.content img {
+  width: 400px;
+}
