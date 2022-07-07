@@ -3,9 +3,9 @@ import {body} from "express-validator";
 import {BadRequestError, NotAuthorizedError, NotFoundError, sendSuccess, validateRequest} from "@hashcash/common";
 import {CheckoutSession} from "../models/checkoutSession";
 import {CheckoutStatus} from "../types/chckoutStatus";
-import {InternalServerError} from "@hashcash/common/build/errors/InternalServerError";
 import {PaymentRequestPublisher} from "../events/publishers/paymentRequestPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
+import {InternalServerError} from "@hashcash/common/build/errors/InternalServerError";
 
 const router = express.Router();
 
@@ -52,17 +52,10 @@ router.post("/pay",[
     if (checkout.status===CheckoutStatus.PAID_FOR)
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
 
-    await new PaymentRequestPublisher(natsWrapper.client).publish({
-        CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
+     // await new PaymentRequestPublisher(natsWrapper.client).publish({
+     //    CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
 
     sendSuccess(res);
-
-
-
-
-
-
-
 
 })
 

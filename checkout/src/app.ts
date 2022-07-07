@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import {createCheckoutSessionRoute} from "./routes/createCheckoutSession";
 import {getCheckoutSessionRoute} from "./routes/getCheckoutSeeion";
 import {initRoute} from "./routes/init";
+import {payRoute} from "./routes/pay";
 
 
 
@@ -43,7 +44,8 @@ app.use(cookieParser())
 app.use('/api/checkout',
     createCheckoutSessionRoute
     ,getCheckoutSessionRoute
-    ,initRoute   )
+    ,initRoute
+    ,payRoute)
 
 
 app.use(errorHandler)

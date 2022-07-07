@@ -2,6 +2,7 @@ import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
 import {CheckoutCreatedListener} from "./events/listeners/checkoutCreatedListener";
+import {PaymentRequestListener} from "./events/listeners/paymentRequestListener";
 
 
 
@@ -45,6 +46,7 @@ const start = async ()=>{
         console.log("connected to database successfully")
 
         new CheckoutCreatedListener(natsWrapper.client).listen();
+        new PaymentRequestListener(natsWrapper.client).listen();
 
 
 
