@@ -4,17 +4,38 @@ import {BadRequestError, NotAuthorizedError, NotFoundError, sendSuccess, validat
 import {CheckoutSession} from "../models/checkoutSession";
 import {CheckoutStatus} from "../types/chckoutStatus";
 import {InternalServerError} from "@hashcash/common/build/errors/InternalServerError";
+import {PaymentRequestPublisher} from "../events/publishers/paymentRequestPublisher";
+import {natsWrapper} from "../nats/nats-wrapper";
 
 const router = express.Router();
 
-router.post("/my-checkout",[
-
-    body('checkoutSession')
+router.post("/pay",[
+    body('panNumber')
         .notEmpty()
-        .withMessage("checkoutSession must be provided")
+        .withMessage("Pan number must be provided"),
+    body("month")
+        .notEmpty()
+        .withMessage('month must be provided'),
+    body("year")
+        .notEmpty()
+        .withMessage('year must be provided'),
+    body("cardHoldName")
+        .notEmpty()
+        .withMessage('card hold name must be provided'),
+    body('CVC')
+        .notEmpty()
+        .withMessage("CVC number must be provided"),
+    body('checkoutId')
+        .notEmpty()
+        .withMessage("checkoutId must be provided")
+
 ],validateRequest,async (req:Request, res:Response, next:NextFunction) => {
-    const {checkoutSession}= req.body;
-    let checkout = await CheckoutSession.findById(checkoutSession);
+
+    const {pan,year,month,CVC,cardHoldName, checkoutId} = req.body;
+
+    const checkout =await CheckoutSession.findById(checkoutId);
+    if (!checkout)
+        throw new NotFoundError();
 
     if (!checkout)
         throw new NotFoundError(['the provided checkoutSession does not exists']);
@@ -31,11 +52,20 @@ router.post("/my-checkout",[
     if (checkout.status===CheckoutStatus.PAID_FOR)
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
 
+    await new PaymentRequestPublisher(natsWrapper.client).publish({
+        CVC, checkoutId, month, pan, totalAmount:checkout.amountTotal, year, cardHoldName})
+
+    sendSuccess(res);
 
 
-    sendSuccess(res,200,checkout.showForUser());
+
+
+
+
+
+
 })
 
 export {
-    router as getCheckoutSessionRoute
+    router as payRoute
 }

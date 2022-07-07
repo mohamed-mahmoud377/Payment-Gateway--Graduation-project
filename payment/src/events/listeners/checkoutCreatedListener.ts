@@ -20,8 +20,8 @@ export class CheckoutCreatedListener extends Listener<CheckoutSessionCreatedEven
             clientReferenceId:data.clientReferenceId,
             clientEmail:data.customer.email,
             isLive:data.liveMode,
-            totalAmount:data.amountTotal
-
+            totalAmount:data.amountTotal,
+            
         })
         console.log("new payment created in incomplete status");
         msg.ack();

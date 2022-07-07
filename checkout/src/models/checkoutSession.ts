@@ -9,7 +9,7 @@ interface CheckoutSessionDoc extends  mongoose.Document{
     paidFor:boolean;
     merchantId:string;
     expiresAt:Date;
-    amountTotal:Number;
+    amountTotal:number;
     liveMode:boolean;
     clientReferenceId:string;
     currency:string;
