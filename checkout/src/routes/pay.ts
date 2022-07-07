@@ -31,7 +31,7 @@ router.post("/pay",[
 
 ],validateRequest,async (req:Request, res:Response, next:NextFunction) => {
 
-    const {pan,year,month,CVC,cardHoldName, checkoutId} = req.body;
+    const {panNumber,year,month,CVC,cardHoldName, checkoutId} = req.body;
 
     const checkout =await CheckoutSession.findById(checkoutId);
     if (!checkout)
@@ -53,7 +53,7 @@ router.post("/pay",[
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
 
     await new PaymentRequestPublisher(natsWrapper.client).publish({
-        CVC, checkoutId, month, pan, totalAmount:checkout.amountTotal, year, cardHoldName})
+        CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
 
     sendSuccess(res);
 
