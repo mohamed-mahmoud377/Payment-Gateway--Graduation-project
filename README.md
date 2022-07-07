@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://www.hashcash.digital/"><img src="/Images/Logo/Asset logo 2 2.svg" height="200" width="200" alt="Archcraft"></a>
+  <a href="http://www.hashcash.digital/"><img src="/Images/Logo/Asset logo 2 2.svg" height="200" width="200"></a>
 </p>
 
 
@@ -18,6 +18,8 @@
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
 #### We are focusing on implementing the actual service and APIs the merchant is going to use and the PCI requirements that comes with it not focusing on the system as a whole.
 
+#### see [wiki](https://github.com/mohamed-mahmoud377/Payment-Gateway--Graduation-project/wiki) pages for more info.
+
 <!-- Code Tree (files structure) -->
 
 <details>
@@ -25,7 +27,6 @@
 
 
 ```bash
-
 Payment-Gateway--Graduation-project
 ├── apikey-manager
 │   ├── docker
@@ -36,9 +37,15 @@ Payment-Gateway--Graduation-project
 │   ├── src
 │   │   ├── app.ts
 │   │   ├── events
-│   │   │   └── listeners
-│   │   │       ├── emailVerifiedListener.ts
-│   │   │       └── merchantActivationListener.ts
+│   │   │   ├── eventTypes
+│   │   │   │   ├── APIKeyVerifiedEvent.ts
+│   │   │   │   └── verifyAPIKeyEvent.ts
+│   │   │   ├── listeners
+│   │   │   │   ├── emailVerifiedListener.ts
+│   │   │   │   ├── merchantActivationListener.ts
+│   │   │   │   └── verifyAPIKeyListener.ts
+│   │   │   └── publishers
+│   │   │       └── APIKeyVerifiedPublisher.ts
 │   │   ├── index.ts
 │   │   ├── models
 │   │   │   └── keys.ts
@@ -121,6 +128,41 @@ Payment-Gateway--Graduation-project
 │   │       ├── passwordManger.ts
 │   │       └── userAgentParser.ts
 │   └── tsconfig.json
+├── checkout
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   ├── eventsTypes
+│   │   │   │   ├── APIKeyVerifiedEvent.ts
+│   │   │   │   ├── checkoutSessionCreated.ts
+│   │   │   │   └── verifyAPIKeyEvent.ts
+│   │   │   ├── listeners
+│   │   │   │   └── APIKeyVerifiedListeners.ts
+│   │   │   └── publishers
+│   │   │       ├── checkoutSessionCreatedPublisher.ts
+│   │   │       └── verifyAPIKeyPublisher.ts
+│   │   ├── index.ts
+│   │   ├── models
+│   │   │   ├── checkoutSession.ts
+│   │   │   ├── customer.ts
+│   │   │   └── item.ts
+│   │   ├── nats
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── createCheckoutSession.ts
+│   │   │   ├── getCheckoutSeeion.ts
+│   │   │   └── init.ts
+│   │   ├── types
+│   │   │   ├── chckoutStatus.ts
+│   │   │   └── queueGroupName.ts
+│   │   └── validators
+│   │       └── validateCreateCheckoutSession.ts
+│   └── tsconfig.json
 ├── client
 │   ├── angular.json
 │   ├── Dockerfile
@@ -153,15 +195,42 @@ Payment-Gateway--Graduation-project
 │   │   │   │   └── verify-email.guard.ts
 │   │   │   ├── home
 │   │   │   │   ├── Components
-│   │   │   │   │   └── navbar
-│   │   │   │   │       ├── navbar.component.css
-│   │   │   │   │       ├── navbar.component.html
-│   │   │   │   │       ├── navbar.component.spec.ts
-│   │   │   │   │       └── navbar.component.ts
+│   │   │   │   │   ├── activate-account
+│   │   │   │   │   │   ├── activate-account.component.css
+│   │   │   │   │   │   ├── activate-account.component.html
+│   │   │   │   │   │   ├── activate-account.component.spec.ts
+│   │   │   │   │   │   ├── activate-account.component.ts
+│   │   │   │   │   │   ├── activation-form
+│   │   │   │   │   │   │   ├── activation-form.component.css
+│   │   │   │   │   │   │   ├── activation-form.component.html
+│   │   │   │   │   │   │   ├── activation-form.component.spec.ts
+│   │   │   │   │   │   │   └── activation-form.component.ts
+│   │   │   │   │   │   ├── declined
+│   │   │   │   │   │   │   ├── declined.component.css
+│   │   │   │   │   │   │   ├── declined.component.html
+│   │   │   │   │   │   │   ├── declined.component.spec.ts
+│   │   │   │   │   │   │   └── declined.component.ts
+│   │   │   │   │   │   └── pending
+│   │   │   │   │   │       ├── pending.component.css
+│   │   │   │   │   │       ├── pending.component.html
+│   │   │   │   │   │       ├── pending.component.spec.ts
+│   │   │   │   │   │       └── pending.component.ts
+│   │   │   │   │   ├── navbar
+│   │   │   │   │   │   ├── navbar.component.css
+│   │   │   │   │   │   ├── navbar.component.html
+│   │   │   │   │   │   ├── navbar.component.spec.ts
+│   │   │   │   │   │   └── navbar.component.ts
+│   │   │   │   │   └── profile
+│   │   │   │   │       ├── profile.component.css
+│   │   │   │   │       ├── profile.component.html
+│   │   │   │   │       ├── profile.component.spec.ts
+│   │   │   │   │       └── profile.component.ts
 │   │   │   │   ├── home.component.css
 │   │   │   │   ├── home.component.html
 │   │   │   │   ├── home.component.spec.ts
-│   │   │   │   └── home.component.ts
+│   │   │   │   ├── home.component.ts
+│   │   │   │   ├── home.module.ts
+│   │   │   │   └── home-routing.module.ts
 │   │   │   ├── login
 │   │   │   │   ├── login.component.css
 │   │   │   │   ├── login.component.html
@@ -170,13 +239,13 @@ Payment-Gateway--Graduation-project
 │   │   │   ├── Models
 │   │   │   │   ├── errors.ts
 │   │   │   │   └── types.ts
+│   │   │   ├── not-found
+│   │   │   │   ├── not-found.component.css
+│   │   │   │   ├── not-found.component.html
+│   │   │   │   ├── not-found.component.spec.ts
+│   │   │   │   └── not-found.component.ts
 │   │   │   ├── primeng
 │   │   │   │   └── primeng.module.ts
-│   │   │   ├── profile
-│   │   │   │   ├── profile.component.css
-│   │   │   │   ├── profile.component.html
-│   │   │   │   ├── profile.component.spec.ts
-│   │   │   │   └── profile.component.ts
 │   │   │   ├── reset-password
 │   │   │   │   ├── reset-password.component.css
 │   │   │   │   ├── reset-password.component.html
@@ -190,18 +259,25 @@ Payment-Gateway--Graduation-project
 │   │   │   │   │   └── handle-errors.service.ts
 │   │   │   │   └── user.service.ts
 │   │   │   ├── shared
+│   │   │   │   ├── error
+│   │   │   │   │   ├── error.component.css
+│   │   │   │   │   ├── error.component.html
+│   │   │   │   │   ├── error.component.spec.ts
+│   │   │   │   │   └── error.component.ts
 │   │   │   │   ├── interceptors
 │   │   │   │   │   └── header.interceptor.ts
-│   │   │   │   └── loading
-│   │   │   │       ├── component
-│   │   │   │       │   └── comp-loading
-│   │   │   │       │       ├── comp-loading.component.css
-│   │   │   │       │       ├── comp-loading.component.html
-│   │   │   │       │       └── comp-loading.component.ts
-│   │   │   │       └── html
-│   │   │   │           ├── loading.component.css
-│   │   │   │           ├── loading.component.html
-│   │   │   │           └── loading.component.ts
+│   │   │   │   ├── loading
+│   │   │   │   │   ├── component
+│   │   │   │   │   │   └── comp-loading
+│   │   │   │   │   │       ├── comp-loading.component.css
+│   │   │   │   │   │       ├── comp-loading.component.html
+│   │   │   │   │   │       └── comp-loading.component.ts
+│   │   │   │   │   └── html
+│   │   │   │   │       ├── loading.component.css
+│   │   │   │   │       ├── loading.component.html
+│   │   │   │   │       └── loading.component.ts
+│   │   │   │   └── utils
+│   │   │   │       └── cleanObj.ts
 │   │   │   ├── signup
 │   │   │   │   ├── signup.component.css
 │   │   │   │   ├── signup.component.html
@@ -214,10 +290,14 @@ Payment-Gateway--Graduation-project
 │   │   │       └── verify-email.component.ts
 │   │   ├── assets
 │   │   │   └── images
+│   │   │       ├── declined.png
+│   │   │       ├── error.png
 │   │   │       ├── haeder.png
 │   │   │       ├── logo.png
+│   │   │       ├── not-found.png
 │   │   │       ├── otp.jpg
-│   │   │       └── otp.png
+│   │   │       ├── otp.png
+│   │   │       └── pending.png
 │   │   ├── environments
 │   │   │   ├── environment.prod.ts
 │   │   │   └── environment.ts
@@ -267,15 +347,29 @@ Payment-Gateway--Graduation-project
 │   │   │   └── events.ts
 │   │   ├── types
 │   │   │   ├── modes.ts
+│   │   │   ├── Payload.ts
 │   │   │   └── roles.ts
 │   │   └── utils
 │   │       ├── APIFilter.ts
 │   │       ├── decrypt.ts
 │   │       ├── encrypt.ts
+│   │       ├── handlerFactory.ts
 │   │       ├── jwtGenerator.ts
 │   │       ├── passwordManger.ts
 │   │       ├── security.ts
 │   │       └── sendSuccess.ts
+│   └── tsconfig.json
+├── customer
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── index.ts
+│   │   └── nats
+│   │       └── nats-wrapper.ts
 │   └── tsconfig.json
 ├── emailing
 │   ├── docker
@@ -321,13 +415,18 @@ Payment-Gateway--Graduation-project
 │   │   ├── apikey-manager-mongo-depl.yaml
 │   │   ├── authentication-depl.yaml
 │   │   ├── authentication-mongo-depl.yaml
-│   │   ├── client-deply.yaml
+│   │   ├── checkout-depl.yaml
+│   │   ├── checkout-mongo-depl.yaml
+│   │   ├── customer-depl.yaml
+│   │   ├── customer-mongo-depl.yaml
 │   │   ├── emailing-depl.yaml
 │   │   ├── kms-depl.yaml
 │   │   ├── kms-mongo-depl.yaml
 │   │   ├── manage-business-depl.yaml
 │   │   ├── manage-businessmongo-depl.yaml
 │   │   ├── nats-depl.yaml
+│   │   ├── payment-depl.yaml
+│   │   ├── payment-mongo-depl.yaml
 │   │   ├── tokenization-depl.yaml
 │   │   └── tokenization-mongo-depl.yaml
 │   ├── k8s-accounts
@@ -337,6 +436,7 @@ Payment-Gateway--Graduation-project
 │   │   ├── mongo-authentication-nodePort.yaml
 │   │   └── mongo-kms-nodeport.yaml
 │   └── k8s-prod
+│       ├── client-deply.yaml
 │       └── ingress-srv.yaml
 ├── kms
 │   ├── docker
@@ -420,39 +520,66 @@ Payment-Gateway--Graduation-project
 │   │   └── utils
 │   │       └── validator.ts
 │   └── tsconfig.json
+├── payment
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── events
+│   │   │   ├── eventsTypes
+│   │   │   │   ├── APIKeyVerifiedEvent.ts
+│   │   │   │   ├── checkoutSessionCreated.ts
+│   │   │   │   └── verifyAPIKeyEvent.ts
+│   │   │   └── listeners
+│   │   │       └── checkoutCreatedListener.ts
+│   │   ├── index.ts
+│   │   ├── models
+│   │   │   ├── Item.ts
+│   │   │   └── payment.ts
+│   │   ├── nats
+│   │   │   └── nats-wrapper.ts
+│   │   └── types
+│   │       ├── paymentStatus.ts
+│   │       └── queueGroupName.ts
+│   └── tsconfig.json
 ├── push.ps1
 ├── push.sh
 ├── README.md
 ├── skaffold.yaml
-└── tokenization
-    ├── docker
-    │   ├── Dockerfile-dev
-    │   └── Dockerfile-prod
-    ├── package.json
-    ├── package-lock.json
-    ├── src
-    │   ├── app.ts
-    │   ├── helpers
-    │   │   └── runInDevelopment.ts
-    │   ├── index.ts
-    │   ├── middlewares
-    │   │   └── protect.ts
-    │   ├── models
-    │   │   ├── accessToken.ts
-    │   │   └── token.ts
-    │   ├── nats
-    │   │   ├── __mocks__
-    │   │   │   └── nats-wrapper.ts
-    │   │   └── nats-wrapper.ts
-    │   ├── routes
-    │   │   ├── deTokenize.ts
-    │   │   ├── getServiceAccessToken.ts
-    │   │   └── tokenize.ts
-    │   └── utils
-    │       └── generateToken.ts
-    └── tsconfig.json
+├── tokenization
+│   ├── docker
+│   │   ├── Dockerfile-dev
+│   │   └── Dockerfile-prod
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── app.ts
+│   │   ├── helpers
+│   │   │   └── runInDevelopment.ts
+│   │   ├── index.ts
+│   │   ├── middlewares
+│   │   │   └── protect.ts
+│   │   ├── models
+│   │   │   ├── accessToken.ts
+│   │   │   └── token.ts
+│   │   ├── nats
+│   │   │   ├── __mocks__
+│   │   │   │   └── nats-wrapper.ts
+│   │   │   └── nats-wrapper.ts
+│   │   ├── routes
+│   │   │   ├── deTokenize.ts
+│   │   │   ├── getServiceAccessToken.ts
+│   │   │   └── tokenize.ts
+│   │   └── utils
+│   │       └── generateToken.ts
+│   └── tsconfig.json
+└── updatePackages.ps1
 
-116 directories, 308 files
+150 directories, 399 files
+
 
 ```
 
