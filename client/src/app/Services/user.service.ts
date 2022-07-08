@@ -142,9 +142,8 @@ export class UserService {
       `Bearer ${localStorage.getItem('token')}`
     );
 
-    return this.httpClient.post<any>(
-      `${environment.Url}/api/checkout/my-checkout`,
-      { checkoutSession: inputs },
+    return this.httpClient.get<any>(
+      `${environment.Url}/api/checkout/init/${inputs}`,
       {
         headers,
       }

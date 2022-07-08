@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit {
   private hash!: string;
   public error!: null | string;
   public loading = false;
+  public checkoutData: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,9 +34,10 @@ export class CheckoutComponent implements OnInit {
   getPaymentSummary() {
     this.loading = true;
     this.userService.getCheckoutSession(this.hash).subscribe(
-      (data: any) => {
+      ({ data }) => {
         this.loading = false;
-        console.log(data);
+        this.checkoutData = data.checkout;
+        console.log(this.checkoutData);
       },
       (error) => {
         this.loading = false;
