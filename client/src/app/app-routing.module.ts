@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: 'signin', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
+  { path: 'checkout/pay/:hash', component: CheckoutComponent },
   {
     path: 'verify-email/:userId',
     component: VerifyEmailComponent,
