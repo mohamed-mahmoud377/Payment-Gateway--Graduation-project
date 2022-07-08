@@ -1,5 +1,6 @@
 import {
   activateAccountInputs,
+  CheckoutData,
   secretKeyOutput,
   userInfoOutput,
 } from './../Models/types';
@@ -136,14 +137,14 @@ export class UserService {
       }
     );
   }
-  getCheckoutSession(inputs: string): Observable<any> {
+  getCheckoutData(hash: string): Observable<CheckoutData> {
     const headers = new HttpHeaders().set(
       'authorization',
       `Bearer ${localStorage.getItem('token')}`
     );
 
-    return this.httpClient.get<any>(
-      `${environment.Url}/api/checkout/init/${inputs}`,
+    return this.httpClient.get<CheckoutData>(
+      `${environment.Url}/api/checkout/init/${hash}`,
       {
         headers,
       }

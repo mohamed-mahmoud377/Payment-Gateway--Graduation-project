@@ -132,3 +132,47 @@ export interface activateAccountInputs {
     IBAN: string;
   };
 }
+
+export interface CheckoutData extends GeneralOutput {
+  data: {
+    checkout: Checkout;
+  };
+}
+
+export interface Checkout {
+  id: string;
+  clientReferenceId: string;
+  currency: string;
+  successUrl: string;
+  cancelUrl: string;
+  paidFor: false;
+  customer: Customer;
+  items: Item[];
+  relatedCustomerPaymentCards: any[];
+  createdAt: string;
+  updatedAt: string;
+  hash: string;
+  __v: 0;
+  amountTotal: number;
+  checkoutUrl: string;
+  expiresAt: string;
+  liveMode: boolean;
+  status: string;
+  merchantId: string;
+}
+
+export interface Customer {
+  email: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Item {
+  name: string;
+  amount: number;
+  quantity: number;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+}

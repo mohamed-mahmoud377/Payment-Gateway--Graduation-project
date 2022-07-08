@@ -1,3 +1,4 @@
+import { Checkout } from './../Models/types';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -15,7 +16,7 @@ export class CheckoutComponent implements OnInit {
   private hash!: string;
   public error!: null | string;
   public loading = false;
-  public checkoutData: any;
+  public checkoutData!: Checkout;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,11 +34,10 @@ export class CheckoutComponent implements OnInit {
 
   getPaymentSummary() {
     this.loading = true;
-    this.userService.getCheckoutSession(this.hash).subscribe(
+    this.userService.getCheckoutData(this.hash).subscribe(
       ({ data }) => {
         this.loading = false;
         this.checkoutData = data.checkout;
-        console.log(this.checkoutData);
       },
       (error) => {
         this.loading = false;
