@@ -21,12 +21,16 @@ import { PanelModule } from 'primeng/panel';
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
     CommonModule,
+    AvatarModule,
+    AvatarGroupModule,
     CardModule,
     InputTextModule,
     ButtonModule,

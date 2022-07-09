@@ -129,16 +129,28 @@
               <ul>
                 <li class="item" *ngFor="let item of checkoutData.items">
                   <div class="d-flex justify-content-between">
-                    <h6>
-                      {{ item.name | titlecase }} <span class="main">(</span>
-                      {{ item.quantity }}
-                      <span class="main">)</span>
-                    </h6>
+                    <div class="d-flex">
+                      <div class="me-2">
+                        <p-avatar
+                          size="xlarge"
+                          image="../../assets/images/placeholder.png"
+                        ></p-avatar>
+                      </div>
+                      <div>
+                        <h6>
+                          {{ item.name | titlecase }}
+                          <span class="main">(</span>
+                          {{ item.quantity }}
+                          <span class="main">)</span>
+                        </h6>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </p>
+                      </div>
+                    </div>
                     <h6>{{ item.amount | currency: checkoutData.currency }}</h6>
                   </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </p>
                 </li>
               </ul>
             </div>
