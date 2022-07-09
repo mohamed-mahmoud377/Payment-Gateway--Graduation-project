@@ -37,7 +37,7 @@
             </ng-template>
 
             <div class="card-form">
-              <form>
+              <form [formGroup]="paymentForm" (ngSubmit)="submit()">
                 <div class="mt-2">
                   <label
                     ><strong>Card number</strong>
@@ -45,10 +45,12 @@
                   >
                   <br />
                   <input
+                    formControlName="panNumber"
                     type="text"
                     pInputText
                     placeholder="0000 0000 0000 0000"
                     class="w-100"
+                    maxlength="16"
                   />
                 </div>
 
@@ -56,11 +58,12 @@
                   <div class="col-6">
                     <div class="mt-2">
                       <label
-                        ><strong>Expire date</strong>
+                        ><strong>Expiry date</strong>
                         <span class="error"> * </span></label
                       >
                       <br />
                       <p-calendar
+                        formControlName="expiryDate"
                         view="month"
                         dateFormat="mm/yy"
                         inputId="monthpicker"
@@ -77,10 +80,12 @@
                       >
                       <br />
                       <input
+                        formControlName="CVV"
                         type="text"
                         pInputText
                         placeholder="000"
                         class="w-100"
+                        maxlength="3"
                       />
                     </div>
                   </div>
@@ -92,7 +97,12 @@
                     <span class="error"> * </span></label
                   >
                   <br />
-                  <input type="text" pInputText class="w-100" />
+                  <input
+                    formControlName="cardHolder"
+                    type="text"
+                    pInputText
+                    class="w-100"
+                  />
                 </div>
 
                 <div class="mt-5">
@@ -107,7 +117,7 @@
                   <button
                     class="w-100"
                     pButton
-                    type="button"
+                    type="submit"
                     label="{{
                       checkoutData.amountTotal | currency: checkoutData.currency
                     }}"
