@@ -8,11 +8,12 @@ interface PaymentDoc{
     Items:[ItemAttrs];
     totalAmount:number;
     merchantId:string;
-    paymentDescription:string;
+    description:string;
     cardType:string;
     clientReferenceId:string;
     clientEmail:string;
     isLive:boolean;
+    currency:string;
     createdAt:Date;
     updatedAt:Date;
 }
@@ -29,7 +30,7 @@ const paymentScheme = new mongoose.Schema({
     merchantId: {
         type:String
     },
-    paymentDescription:{
+    description:{
         type:String,
         default:"No description"
     },
@@ -49,7 +50,10 @@ const paymentScheme = new mongoose.Schema({
     },
     isLive:{
         type:Boolean
-    }
+    },
+    currency:{
+        type:String
+    },
 
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})

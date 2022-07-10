@@ -21,6 +21,9 @@ export class CheckoutCreatedListener extends Listener<CheckoutSessionCreatedEven
             clientEmail:data.customer.email,
             isLive:data.liveMode,
             totalAmount:data.amountTotal,
+            currency:data.currency,
+            description:"Payment for checkout"
+
             
         })
         console.log("new payment created in incomplete status");
