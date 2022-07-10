@@ -42,10 +42,15 @@ export class CheckoutComponent implements OnInit {
       panNumber: this.fb.control('', [
         Validators.required,
         Validators.minLength(16),
+        Validators.pattern('^[0-9]*$'),
       ]),
       expiryDate: this.fb.control('', [Validators.required]),
       cardHoldName: this.fb.control('', [Validators.required]),
-      CVC: this.fb.control('', [Validators.required, Validators.maxLength(3)]),
+      CVC: this.fb.control('', [
+        Validators.required,
+        Validators.maxLength(3),
+        Validators.pattern(/^\d{3}$/),
+      ]),
       checkoutId: this.fb.control(this.hash, [Validators.required]),
     });
   }
@@ -92,15 +97,27 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  get expiryDate() {
-    return this.paymentForm.get('expiryDate');
-  }
-
   removeLeadingZero(month: string) {
     if (month.startsWith('0')) {
       month = month.substring(1);
       return month;
     }
     return month;
+  }
+
+  get panNumber() {
+    return this.paymentForm.get('panNumber');
+  }
+
+  get expiryDate() {
+    return this.paymentForm.get('expiryDate');
+  }
+
+  get CVCCtrl() {
+    return this.panNumber?.get('CVC');
+  }
+
+  get cardHolderCtrl() {
+    return this.paymentForm.get('cardHoldName');
   }
 }
