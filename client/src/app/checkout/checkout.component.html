@@ -62,14 +62,16 @@
                         <span class="error"> * </span></label
                       >
                       <br />
-                      <p-calendar
+
+                      <input
                         formControlName="expiryDate"
-                        view="month"
-                        dateFormat="mm/yy"
-                        inputId="monthpicker"
+                        type="text"
+                        pInputText
                         placeholder="MM/YY"
-                      >
-                      </p-calendar>
+                        class="w-100"
+                        maxlength="7"
+                        (keyup)="addSlash($event)"
+                      />
                     </div>
                   </div>
                   <div class="col-6">

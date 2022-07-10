@@ -69,4 +69,12 @@ export class CheckoutComponent implements OnInit {
     moment(this.paymentForm.value.expiryDate, 'MM/YY').format('MM');
     console.log(this.paymentForm.value);
   }
+
+  addSlash(e: any) {
+    let monthRegex = /^\d\d$/;
+    var isMonthEntered = monthRegex.exec(e.target.value);
+    if (e.key >= 0 && e.key <= 9 && isMonthEntered) {
+      e.target.value = e.target.value + ' / ';
+    }
+  }
 }
