@@ -52,9 +52,9 @@ router.post("/pay",[
     if (checkout.status===CheckoutStatus.PAID_FOR)
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
 
-     // await new PaymentRequestPublisher(natsWrapper.client).publish({
-     //    CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
-
+     await new PaymentRequestPublisher(natsWrapper.client).publish({
+        CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
+    console.log("here")
     sendSuccess(res);
 
 })
