@@ -31,7 +31,6 @@ export class CheckoutCreatedListener extends Listener<CheckoutSessionCreatedEven
         console.log("New customer created !")
         msg.ack();
 
-
     }
 
 }
