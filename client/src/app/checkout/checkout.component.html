@@ -77,12 +77,12 @@
                   <div class="col-6">
                     <div class="mt-2">
                       <label
-                        ><strong>CVV</strong>
+                        ><strong>CVC</strong>
                         <span class="error"> * </span></label
                       >
                       <br />
                       <input
-                        formControlName="CVV"
+                        formControlName="CVC"
                         type="text"
                         pInputText
                         placeholder="000"
@@ -100,7 +100,7 @@
                   >
                   <br />
                   <input
-                    formControlName="cardHolder"
+                    formControlName="cardHoldName"
                     type="text"
                     pInputText
                     class="w-100"
@@ -176,3 +176,4 @@
     <app-error [msg]="error"></app-error>
   </div>
 </div>
+<p-toast></p-toast>

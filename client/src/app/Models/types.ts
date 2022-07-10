@@ -176,3 +176,12 @@ export interface Item {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface payInputs {
+  panNumber: string;
+  month: number;
+  year: number;
+  cardHoldName: string;
+  CVC: number;
+  checkoutId: string;
+}
