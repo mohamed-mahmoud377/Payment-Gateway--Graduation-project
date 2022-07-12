@@ -13,13 +13,18 @@ interface PaymentDoc{
     clientReferenceId:string;
     clientEmail:string;
     isLive:boolean;
+    checkoutId:string;
     currency:string;
+
     createdAt:Date;
     updatedAt:Date;
 }
 
 const paymentScheme = new mongoose.Schema({
     status:{
+        type:String,
+    },
+    checkoutId:{
         type:String,
     },
     cardToken:{
