@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Checkout } from './../Models/types';
+import { Checkout, payInputs } from './../Models/types';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -42,10 +42,15 @@ export class CheckoutComponent implements OnInit {
       panNumber: this.fb.control('', [
         Validators.required,
         Validators.minLength(16),
+        Validators.pattern('^[0-9]*$'),
       ]),
       expiryDate: this.fb.control('', [Validators.required]),
-      cardHolder: this.fb.control('', [Validators.required]),
-      CVV: this.fb.control('', [Validators.required, Validators.maxLength(3)]),
+      cardHoldName: this.fb.control('', [Validators.required]),
+      CVC: this.fb.control('', [
+        Validators.required,
+        Validators.maxLength(3),
+        Validators.pattern(/^\d{3}$/),
+      ]),
       checkoutId: this.fb.control(this.hash, [Validators.required]),
     });
   }
@@ -56,6 +61,7 @@ export class CheckoutComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.checkoutData = data.checkout;
+        console.log(this.checkoutData);
       },
       (error) => {
         this.loading = false;
@@ -66,7 +72,53 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit() {
-    moment(this.paymentForm.value.expiryDate, 'MM/YY').format('MM');
-    console.log(this.paymentForm.value);
+    let month = +this.removeLeadingZero(this.expiryDate?.value.split(' / ')[0]);
+    let year = +this.expiryDate?.value.split(' / ')[1];
+    this.paymentForm.removeControl('expiryDate');
+    let inputs = { ...this.paymentForm.value, month, year };
+    this.pay(inputs);
+  }
+
+  pay(inputs: payInputs) {
+    this.userService.pay(inputs).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
+  }
+
+  addSlash(e: any) {
+    let monthRegex = /^\d\d$/;
+    var isMonthEntered = monthRegex.exec(e.target.value);
+    if (e.key >= 0 && e.key <= 9 && isMonthEntered) {
+      e.target.value = e.target.value + ' / ';
+    }
+  }
+
+  removeLeadingZero(month: string) {
+    if (month.startsWith('0')) {
+      month = month.substring(1);
+      return month;
+    }
+    return month;
+  }
+
+  get panNumber() {
+    return this.paymentForm.get('panNumber');
+  }
+
+  get expiryDate() {
+    return this.paymentForm.get('expiryDate');
+  }
+
+  get CVCCtrl() {
+    return this.panNumber?.get('CVC');
+  }
+
+  get cardHolderCtrl() {
+    return this.paymentForm.get('cardHoldName');
   }
 }

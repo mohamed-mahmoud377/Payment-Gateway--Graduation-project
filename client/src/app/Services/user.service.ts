@@ -1,6 +1,7 @@
 import {
   activateAccountInputs,
   CheckoutData,
+  payInputs,
   secretKeyOutput,
   userInfoOutput,
 } from './../Models/types';
@@ -148,6 +149,13 @@ export class UserService {
       {
         headers,
       }
+    );
+  }
+
+  pay(inputs: payInputs): Observable<any> {
+    return this.httpClient.post<CheckoutData>(
+      `${environment.Url}/api/checkout/pay/`,
+      inputs
     );
   }
 }

@@ -175,4 +175,15 @@ export interface Item {
   _id: string;
   createdAt: string;
   updatedAt: string;
+  image: string;
+  description: string;
+}
+
+export interface payInputs {
+  panNumber: string;
+  month: number;
+  year: number;
+  cardHoldName: string;
+  CVC: number;
+  checkoutId: string;
 }
