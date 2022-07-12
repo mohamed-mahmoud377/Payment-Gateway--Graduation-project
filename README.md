@@ -10,10 +10,12 @@
   <img src="https://img.shields.io/github/issues/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
   <img src="https://img.shields.io/github/stars/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/forks/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
-  <img src="https://badges.pufler.dev/visits/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=9D3480"/>
+  <img src="https://visitor-badge-reloaded.herokuapp.com/badge?color=9D3480&page_id=mohamed-mahmoud377/Payment-Gateway--Graduation-project&style=for-the-badge&lcolor=555555"/>
 </p>
 
 <!-- shields -->
+
+https://visitor-badge-reloaded.herokuapp.com/badge?color=A7D9B2&page_id=mohamed-mahmoud377/Payment-Gateway--Graduation-project&style=for-the-badge&lcolor=555555
 
 #### HashCash is a gradation project which aims to build a [payment gateway](https://en.wikipedia.org/wiki/Payment_gateway) for small merchants to start accepting payment really easy throw API integration without worrying about any [PCI](https://www.pcisecuritystandards.org/) requirements and merchant account details.
 #### We are focusing on implementing the actual service and APIs the merchant is going to use and the PCI requirements that comes with it not focusing on the system as a whole.
