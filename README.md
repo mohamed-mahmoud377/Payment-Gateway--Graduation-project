@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/github/issues/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=deeppink&style=for-the-badge">
   <img src="https://img.shields.io/github/stars/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/forks/mohamed-mahmoud377/Payment-Gateway--Graduation-project?color=blueviolet&style=for-the-badge">
-  <img src="https://badges.pufler.dev/visits/mohamed-mahmoud377/Payment-Gateway--Graduation-project?style=for-the-badge&color=9D3480"/>
+  <img src="https://visitor-badge-reloaded.herokuapp.com/badge?color=9D3480&page_id=mohamed-mahmoud377/Payment-Gateway--Graduation-project&style=for-the-badge&lcolor=555555"/>
 </p>
 
 <!-- shields -->
