@@ -175,6 +175,8 @@ export interface Item {
   _id: string;
   createdAt: string;
   updatedAt: string;
+  image: string;
+  description: string;
 }
 
 export interface payInputs {

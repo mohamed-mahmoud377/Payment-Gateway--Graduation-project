@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.checkoutData = data.checkout;
+        console.log(this.checkoutData);
       },
       (error) => {
         this.loading = false;

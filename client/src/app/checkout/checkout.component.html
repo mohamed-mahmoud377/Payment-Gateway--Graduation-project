@@ -163,11 +163,8 @@
                 <li class="item" *ngFor="let item of checkoutData.items">
                   <div class="d-flex justify-content-between">
                     <div class="d-flex">
-                      <div class="me-2">
-                        <p-avatar
-                          size="xlarge"
-                          image="../../assets/images/placeholder.png"
-                        ></p-avatar>
+                      <div class="me-2" *ngIf="item.image">
+                        <p-avatar size="xlarge" [image]="item.image"></p-avatar>
                       </div>
                       <div>
                         <h6>
@@ -176,9 +173,8 @@
                           {{ item.quantity }}
                           <span class="main">)</span>
                         </h6>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
+                        <p *ngIf="item.description">
+                          {{ item.description }}
                         </p>
                       </div>
                     </div>
