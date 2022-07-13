@@ -6,6 +6,7 @@ import {CheckoutStatus} from "../types/chckoutStatus";
 import {PaymentRequestPublisher} from "../events/publishers/paymentRequestPublisher";
 import {natsWrapper} from "../nats/nats-wrapper";
 import {InternalServerError} from "@hashcash/common/build/errors/InternalServerError";
+import validator from "validator";
 
 const router = express.Router();
 
@@ -37,6 +38,9 @@ router.post("/pay",[
 
     if (!checkout)
         throw new NotFoundError(['the provided checkoutSession does not exists']);
+
+    if (!validator.isCreditCard(panNumber))
+        throw new BadRequestError(['pan number is not valid']);
 
     if (checkout.status===CheckoutStatus.PENDING_APIKEY_AUTH)
         throw new InternalServerError(["your request has not been processed yet, Please try again "]);
