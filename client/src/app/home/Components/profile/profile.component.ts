@@ -36,9 +36,7 @@ export class ProfileComponent implements OnInit {
     this.twoFactorLoading = true;
     this.userService.enableTwoFactorAuth().subscribe(
       (res) => {
-        console.log(res);
         this.twoFactorLoading = false;
-
         this.messageService.add({
           severity: 'success',
           detail: 'Two factor authentication is enabled successfully',
