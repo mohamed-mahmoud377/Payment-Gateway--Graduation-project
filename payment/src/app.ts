@@ -5,8 +5,8 @@ import {errorHandler, secure} from "@hashcash/common";
 
 
 import cookieParser from "cookie-parser";
-import {getPaymentsRoute} from "./routes/payments";
-import {getPaymentRoute} from "./routes/getPayment";
+import {getPaymentsRoute} from "./routes";
+import {getPaymentRoute} from "./routes/show";
 
 
 const app= express();
