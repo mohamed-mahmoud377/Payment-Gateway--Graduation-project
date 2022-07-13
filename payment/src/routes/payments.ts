@@ -14,7 +14,9 @@ router.get('/payments',[
     const {isLive} = req.query;
     const features = new APIFilter(Payment.find({merchantId:req.currentUser?.id}),req.query).filter().sort().limitFields().paginate();
 
-    const paymentsNumber= await Payment.find({merchantId:req.currentUser?.id,isLive}).countDocuments({});
+    const features2 = new APIFilter(Payment.find({merchantId:req.currentUser?.id}),req.query).filter().sort().limitFields();
+    const paymentsNumber =await features2.query.countDocuments();
+
 
     const payments = await features.query;
 
