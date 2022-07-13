@@ -28,7 +28,7 @@ router.post("/my-checkout",[
     if (checkout.expiresAt< new Date(Date.now()))
         throw new BadRequestError(['the checkout session you are looking for has been expired']);
 
-    if (checkout.status===CheckoutStatus.PAID_FOR)
+    if (checkout.status===CheckoutStatus.PAID_SUCCEEDED)
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
 
 
