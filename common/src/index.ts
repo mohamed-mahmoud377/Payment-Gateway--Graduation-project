@@ -11,6 +11,13 @@ export * from './events/eventTypes/forgotPasswordEvent'
 export * from './events/eventTypes/userLoggingInEvent'
 export  * from './events/eventTypes/emailVerifiedEvent'
 export * from './events/eventTypes/merchantActivationEvent'
+export * from './events/eventTypes/APIKeyVerifiedEvent'
+export * from './events/eventTypes/paymentFailedEvent'
+export * from './events/eventTypes/checkoutSessionCreated'
+export * from './events/eventTypes/paymentSucceedEvent'
+export * from './events/eventTypes/verifyAPIKeyEvent'
+export * from './events/eventTypes/paymentRequestEvent'
+
 
 export * from './events/Subjects'
 export * from  './events/publishers/publisher'
