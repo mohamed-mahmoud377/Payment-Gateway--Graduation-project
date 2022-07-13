@@ -16,7 +16,15 @@ export class PaymentSucceededListeners extends Listener<PaymentSucceedEvent>{
             console.log("something really wrong happened");
             return;
         }
-        customer.payments.push(data.payment.)
+        customer.payments.push({
+            totalAmount:data.payment.totalAmount,
+            currency: data.payment.currency,
+            paymentDate: data.payment.createdAt,
+            description: data.payment.description
+        });
+        await customer.save();
+        console.log("payment has been added to customer successfully ");
+        msg.ack();
 
 
     }
