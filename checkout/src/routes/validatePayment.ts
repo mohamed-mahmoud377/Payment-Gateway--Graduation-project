@@ -20,7 +20,7 @@ router.post("/validate",[
     if (checkout.status===CheckoutStatus.PAID_FAILED){
        return res.status(402).send({
            status: "fail",
-           errorCode: 400,
+           errorCode: 100,
            errors: [
                checkout.failingReason
            ]
