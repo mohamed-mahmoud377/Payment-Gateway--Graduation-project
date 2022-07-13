@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   public loading = false;
   public checkoutData!: Checkout;
   public paymentForm!: FormGroup;
-
+  public payBtnLoading = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -58,7 +58,6 @@ export class CheckoutComponent implements OnInit {
         Validators.maxLength(3),
         Validators.pattern(/^\d{3}$/),
       ]),
-      checkoutId: this.fb.control(this.hash, [Validators.required]),
     });
   }
 
@@ -81,17 +80,26 @@ export class CheckoutComponent implements OnInit {
   submit() {
     let month = +this.removeLeadingZero(this.expiryDate?.value.split(' / ')[0]);
     let year = +this.expiryDate?.value.split(' / ')[1];
-    this.paymentForm.removeControl('expiryDate');
-    let inputs = { ...this.paymentForm.value, month, year };
+    let inputs = {
+      panNumber: this.panNumber?.value,
+      month,
+      year,
+      cardHoldName: this.cardHolderCtrl?.value,
+      CVC: this.CVCCtrl?.value,
+      checkoutId: this.checkoutData._id,
+    };
     this.pay(inputs);
   }
 
   pay(inputs: payInputs) {
+    this.payBtnLoading = true;
     this.userService.pay(inputs).subscribe(
       (res) => {
+        this.payBtnLoading = false;
         console.log(res);
       },
       (error) => {
+        this.payBtnLoading = false;
         this.errorService.handleErrors(error, this.messageService);
       }
     );
@@ -122,7 +130,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   get CVCCtrl() {
-    return this.panNumber?.get('CVC');
+    return this.paymentForm?.get('CVC');
   }
 
   get cardHolderCtrl() {

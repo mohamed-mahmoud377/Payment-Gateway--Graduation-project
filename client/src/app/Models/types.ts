@@ -140,7 +140,7 @@ export interface CheckoutData extends GeneralOutput {
 }
 
 export interface Checkout {
-  id: string;
+  _id: string;
   clientReferenceId: string;
   currency: string;
   successUrl: string;
