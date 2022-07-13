@@ -4,7 +4,7 @@
   </div>
 
   <p-card>
-    <div class="content" *ngIf="!error && !loading && !isPaymentSucceeded">
+    <div class="content" *ngIf="!error && !loading && !isPaymentSucceeded &&checkoutData">
       <div class="row">
         <div class="col-md-6">
           <h2 class="pb-3">Payment Methods</h2>
@@ -139,11 +139,12 @@
       <p> Thank you for choosing HashCash</p>
 
     </div>
+    <div *ngIf="error && !loading  || !loading&& !checkoutData" class="w-100">
+      <app-error [msg]="error ||'service not available please try again later'"></app-error>
+    </div>
   </p-card>
 
-  <div *ngIf="error && !loading " class="w-100">
-    <app-error [msg]="error"></app-error>
-  </div>
+
 </div>
 
 
