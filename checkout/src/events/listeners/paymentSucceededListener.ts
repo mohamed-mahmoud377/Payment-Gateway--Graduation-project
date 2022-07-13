@@ -17,6 +17,7 @@ export class PaymentSucceededListener extends Listener<PaymentSucceedEvent>{
             return;
         }
         checkout.status= CheckoutStatus.PAID_SUCCEEDED;
+        checkout.paidFor= true;
         checkout.save();
         msg.ack();
 
