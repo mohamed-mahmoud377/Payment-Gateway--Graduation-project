@@ -24,7 +24,7 @@ router.post("/validate",[
         return sendSuccess(res);
     }
     if (checkout.status===CheckoutStatus.PENDING_PAYMENT_REQUEST) {
-        return sendSuccess(res, 101);
+        return sendSuccess(res, 102);
     }
 
 })
