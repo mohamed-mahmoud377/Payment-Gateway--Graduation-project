@@ -1,11 +1,17 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Checkout, payInputs } from './../Models/types';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { UserService } from '../Services/user.service';
-import moment from 'moment';
+import { luhnValidator } from '../shared/utils/ccValidator';
 
 @Component({
   selector: 'app-checkout',
@@ -43,6 +49,7 @@ export class CheckoutComponent implements OnInit {
         Validators.required,
         Validators.minLength(16),
         Validators.pattern('^[0-9]*$'),
+        luhnValidator(),
       ]),
       expiryDate: this.fb.control('', [Validators.required]),
       cardHoldName: this.fb.control('', [Validators.required]),

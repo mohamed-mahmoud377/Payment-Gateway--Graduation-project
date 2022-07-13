@@ -12,11 +12,7 @@
             <p-panel>
               <ng-template pTemplate="header">
                 <div class="d-flex align-items-center">
-                  <p-radioButton
-                    [(ngModel)]="selectedPayment"
-                    name="payment"
-                    value="exist"
-                  ></p-radioButton>
+                  <p-radioButton [(ngModel)]="selectedPayment" name="payment" value="exist"></p-radioButton>
                   <i class="pi pi-credit-card ms-3 me-3"></i>
                   <p class="mb-0">Visa ****2447</p>
                 </div>
@@ -26,11 +22,7 @@
           <p-panel>
             <ng-template pTemplate="header">
               <div class="d-flex align-items-center">
-                <p-radioButton
-                  [(ngModel)]="selectedPayment"
-                  name="payment"
-                  value="new"
-                ></p-radioButton>
+                <p-radioButton [(ngModel)]="selectedPayment" name="payment" value="new"></p-radioButton>
                 <i class="pi pi-credit-card ms-3 me-3"></i>
                 <p class="mb-0">Credit/Debit Card</p>
               </div>
@@ -39,68 +31,36 @@
             <div class="card-form">
               <form [formGroup]="paymentForm" (ngSubmit)="submit()">
                 <div class="mt-2">
-                  <label
-                    ><strong>Card number</strong>
-                    <span class="error"> * </span></label
-                  >
+                  <label><strong>Card number</strong>
+                    <span class="error"> * </span></label>
                   <br />
-                  <input
-                    formControlName="panNumber"
-                    type="text"
-                    pInputText
-                    placeholder="0000 0000 0000 0000"
-                    class="w-100"
-                    maxlength="16"
-                    pattern="[0-9]*"
-                  />
-                  <small
-                    class="error"
-                    *ngIf="panNumber?.errors && panNumber?.touched"
-                  >
+                  <input formControlName="panNumber" type="text" pInputText placeholder="0000 0000 0000 0000"
+                    class="w-100" maxlength="16" pattern="[0-9]*" />
+                  <small class="error" *ngIf="panNumber?.errors && panNumber?.touched">
                     Please Enter a valid card number.
                   </small>
+
                 </div>
 
                 <div class="row">
                   <div class="col-6">
                     <div class="mt-2">
-                      <label
-                        ><strong>Expiry date</strong>
-                        <span class="error"> * </span></label
-                      >
+                      <label><strong>Expiry date</strong>
+                        <span class="error"> * </span></label>
                       <br />
 
-                      <input
-                        formControlName="expiryDate"
-                        type="text"
-                        pInputText
-                        placeholder="MM/YY"
-                        class="w-100"
-                        maxlength="7"
-                        (keyup)="addSlash($event)"
-                        pattern="[0-9]*"
-                      />
+                      <input formControlName="expiryDate" type="text" pInputText placeholder="MM/YY" class="w-100"
+                        maxlength="7" (keyup)="addSlash($event)" pattern="[0-9]*" />
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="mt-2">
-                      <label
-                        ><strong>CVC</strong>
-                        <span class="error"> * </span></label
-                      >
+                      <label><strong>CVC</strong>
+                        <span class="error"> * </span></label>
                       <br />
-                      <input
-                        formControlName="CVC"
-                        type="text"
-                        pInputText
-                        placeholder="000"
-                        class="w-100"
-                        maxlength="3"
-                      />
-                      <small
-                        class="error"
-                        *ngIf="CVCCtrl?.errors && CVCCtrl?.touched"
-                      >
+                      <input formControlName="CVC" type="text" pInputText placeholder="000" class="w-100"
+                        maxlength="3" />
+                      <small class="error" *ngIf="CVCCtrl?.errors && CVCCtrl?.touched">
                         Please Enter a valid CVC.
                       </small>
                     </div>
@@ -108,21 +68,11 @@
                 </div>
 
                 <div class="mt-2">
-                  <label
-                    ><strong>Name on card</strong>
-                    <span class="error"> * </span></label
-                  >
+                  <label><strong>Name on card</strong>
+                    <span class="error"> * </span></label>
                   <br />
-                  <input
-                    formControlName="cardHoldName"
-                    type="text"
-                    pInputText
-                    class="w-100"
-                  />
-                  <small
-                    class="error"
-                    *ngIf="cardHolderCtrl?.errors && cardHolderCtrl?.touched"
-                  >
+                  <input formControlName="cardHoldName" type="text" pInputText class="w-100" />
+                  <small class="error" *ngIf="cardHolderCtrl?.errors && cardHolderCtrl?.touched">
                     Please Enter the name on card
                   </small>
                 </div>
@@ -136,15 +86,9 @@
                   </div>
                 </div>
                 <div class="mt-3">
-                  <button
-                    [disabled]="!paymentForm.valid"
-                    class="w-100"
-                    pButton
-                    type="submit"
-                    label="{{
+                  <button [disabled]="!paymentForm.valid" class="w-100" pButton type="submit" label="{{
                       checkoutData.amountTotal | currency: checkoutData.currency
-                    }}"
-                  ></button>
+                    }}"></button>
                 </div>
               </form>
             </div>
