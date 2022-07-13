@@ -71,7 +71,9 @@ export class CheckoutComponent implements OnInit {
       },
       (error) => {
         this.loading = false;
-        this.error = error.errors[0];
+        if (error.errors) {
+          this.error = error?.errors[0];
+        }
         this.errorService.handleErrors(error, this.messageService);
       }
     );
@@ -109,6 +111,8 @@ export class CheckoutComponent implements OnInit {
   validatePayment() {
     this.userService.validatePayment(this.checkoutData._id).subscribe(
       (res) => {
+        console.log(res);
+
         this.payBtnLoading = false;
         if (res.status == 'success') {
           this.isPaymentSucceeded = true;
