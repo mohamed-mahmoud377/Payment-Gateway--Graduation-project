@@ -91,7 +91,8 @@ export class PaymentRequestListener extends Listener<PaymentRequestEvent>{
             isLive: payment.isLive,
             merchantId:  payment.merchantId,
             status: payment.status,
-            totalAmount: payment.totalAmount
+            totalAmount: payment.totalAmount,
+            createdAt:payment.createdAt,
         }
 
         if (isSucceeded){
