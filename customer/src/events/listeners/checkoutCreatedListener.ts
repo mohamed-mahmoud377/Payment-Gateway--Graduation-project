@@ -1,7 +1,7 @@
 import {Listener, Subjects} from "@hashcash/common";
 import {queueGroupName} from "../../types/queueGroupName";
 import {Message} from "node-nats-streaming";
-import {CheckoutSessionCreatedEvent} from "../eventTypes/checkoutSessionCreated";
+import {CheckoutSessionCreatedEvent} from "@hashcash/common";
 import {Customer} from "../../models/customer";
 
 export class CheckoutCreatedListener extends Listener<CheckoutSessionCreatedEvent>{

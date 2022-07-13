@@ -1,5 +1,5 @@
-import {Subjects} from "@hashcash/common";
-import {ItemAttrs} from "../../models/Item";
+import {Subjects} from "../Subjects";
+import {ItemAttrs} from "../../models/items";
 
 
 export interface PaymentFailedEvent {

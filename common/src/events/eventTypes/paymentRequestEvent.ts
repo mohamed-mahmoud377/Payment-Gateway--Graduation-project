@@ -1,4 +1,4 @@
-import {Subjects} from "@hashcash/common";
+import {Subjects} from "../Subjects";
 
 
 export interface PaymentRequestEvent {

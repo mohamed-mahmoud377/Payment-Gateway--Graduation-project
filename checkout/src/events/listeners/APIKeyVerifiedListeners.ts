@@ -1,5 +1,5 @@
 import {Listener, Subjects} from "@hashcash/common";
-import {APIKeyVerifiedEvent} from "../eventsTypes/APIKeyVerifiedEvent";
+import {APIKeyVerifiedEvent} from "@hashcash/common";
 import {Message} from "node-nats-streaming";
 import {queueGroupName} from "../../types/queueGroupName";
 import {CheckoutSession} from "../../models/checkoutSession";

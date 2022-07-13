@@ -1,7 +1,7 @@
 import {Listener, Subjects} from "@hashcash/common";
 import {queueGroupName} from "../../types/queueGroupName";
 import {Message} from "node-nats-streaming";
-import {PaymentRequestEvent} from "../eventsTypes/paymentRequestEvent";
+import {PaymentRequestEvent} from "@hashcash/common";
 import axios from 'axios';
 import {Payment} from "../../models/payment";
 import {testCreditCardPan} from "../../types/testCreditCard";
