@@ -1,7 +1,7 @@
 import {Listener, Subjects} from "@hashcash/common";
 import {Message} from "node-nats-streaming";
 import {queueGroupName} from "../../types/queueGroupName";
-import {PaymentSucceedEvent} from "../eventsTypes/paymentSucceedEvent";
+import {PaymentSucceedEvent} from "@hashcash/common";
 import {CheckoutSession} from "../../models/checkoutSession";
 import {CheckoutStatus} from "../../types/chckoutStatus";
 
