@@ -187,3 +187,7 @@ export interface payInputs {
   CVC: number;
   checkoutId: string;
 }
+
+export interface paymentOutput extends GeneralOutput {
+  data: {};
+}

@@ -2,6 +2,7 @@ import {
   activateAccountInputs,
   CheckoutData,
   payInputs,
+  paymentOutput,
   secretKeyOutput,
   userInfoOutput,
 } from './../Models/types';
@@ -152,15 +153,15 @@ export class UserService {
     );
   }
 
-  pay(inputs: payInputs): Observable<any> {
-    return this.httpClient.post<CheckoutData>(
+  pay(inputs: payInputs): Observable<paymentOutput> {
+    return this.httpClient.post<paymentOutput>(
       `${environment.Url}/api/checkout/pay/`,
       inputs
     );
   }
 
-  validatePayment(checkoutId: string): Observable<any> {
-    return this.httpClient.post<CheckoutData>(
+  validatePayment(checkoutId: string): Observable<paymentOutput> {
+    return this.httpClient.post<paymentOutput>(
       `${environment.Url}/api/checkout/validate`,
       { checkoutId }
     );

@@ -1,10 +1,10 @@
 <div class="container checkout">
-  <div *ngIf="loading">
+  <div *ngIf="loading && !isPaymentSucceeded">
     <app-loading></app-loading>
   </div>
 
-  <p-card *ngIf="!error && !loading">
-    <div class="content">
+  <p-card>
+    <div class="content" *ngIf="!error && !loading && !isPaymentSucceeded">
       <div class="row">
         <div class="col-md-6">
           <h2 class="pb-3">Payment Methods</h2>
@@ -132,10 +132,20 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="isPaymentSucceeded" class="text-center success">
+      <img src="../../assets/images/success.png">
+      <h1>Payment has been done successfully</h1>
+      <p> Thank you for choosing HashCash</p>
+
+    </div>
   </p-card>
 
-  <div *ngIf="error && !loading" class="w-100">
+  <div *ngIf="error && !loading " class="w-100">
     <app-error [msg]="error"></app-error>
   </div>
 </div>
+
+
+
 <p-toast></p-toast>

@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit {
   public checkoutData!: Checkout;
   public paymentForm!: FormGroup;
   public payBtnLoading = false;
+  public isPaymentSucceeded = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -67,7 +68,6 @@ export class CheckoutComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.checkoutData = data.checkout;
-        console.log(this.checkoutData);
       },
       (error) => {
         this.loading = false;
@@ -110,7 +110,14 @@ export class CheckoutComponent implements OnInit {
     this.userService.validatePayment(this.checkoutData._id).subscribe(
       (res) => {
         this.payBtnLoading = false;
-        console.log(res);
+        if (res.status == 'success') {
+          this.isPaymentSucceeded = true;
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            detail: 'Something went wrong please try again',
+          });
+        }
       },
       (error) => {
         this.payBtnLoading = false;
