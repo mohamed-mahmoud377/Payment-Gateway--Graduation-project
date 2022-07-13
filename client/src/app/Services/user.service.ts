@@ -158,4 +158,11 @@ export class UserService {
       inputs
     );
   }
+
+  validatePayment(checkoutId: string): Observable<any> {
+    return this.httpClient.post<CheckoutData>(
+      `${environment.Url}/api/checkout/validate`,
+      { checkoutId }
+    );
+  }
 }

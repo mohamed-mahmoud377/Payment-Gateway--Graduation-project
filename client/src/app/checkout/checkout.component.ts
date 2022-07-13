@@ -94,6 +94,20 @@ export class CheckoutComponent implements OnInit {
   pay(inputs: payInputs) {
     this.payBtnLoading = true;
     this.userService.pay(inputs).subscribe(
+      () => {
+        setTimeout(() => {
+          this.validatePayment();
+        }, 3000);
+      },
+      (error) => {
+        this.payBtnLoading = false;
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
+  }
+
+  validatePayment() {
+    this.userService.validatePayment(this.checkoutData._id).subscribe(
       (res) => {
         this.payBtnLoading = false;
         console.log(res);
