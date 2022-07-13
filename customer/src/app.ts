@@ -4,6 +4,8 @@ import bodyParser from 'body-parser'
 import {errorHandler, secure} from "@hashcash/common";
 
 import cookieParser from "cookie-parser";
+import {indexRoute} from "./routes";
+import {showRoute} from "./routes/show";
 
 
 const app= express();
@@ -32,7 +34,8 @@ secure(app,{
 
 app.use(cookieParser())
 
-
+app.use('/api/customer',indexRoute
+,showRoute)
 
 
 app.use(errorHandler)

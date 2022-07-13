@@ -11,7 +11,7 @@ interface CustomerDoc extends mongoose.Document{
     payments:[PaymentAttr];
     createdAt:Date;
     updatedAt:Date;
-    LiveCustomer:boolean;
+    isLive:boolean;
 
 
 }
@@ -39,7 +39,7 @@ const customerScheme = new mongoose.Schema({
         type:String
     },
     payments:[paymentScheme],
-    liveCustomer:Boolean
+    isLive:Boolean
 
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
