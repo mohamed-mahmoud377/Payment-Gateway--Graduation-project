@@ -8,6 +8,7 @@ import {createCheckoutSessionRoute} from "./routes/createCheckoutSession";
 import {getCheckoutSessionRoute} from "./routes/getCheckoutSeeion";
 import {initRoute} from "./routes/init";
 import {payRoute} from "./routes/pay";
+import {ValidatePaymentRoute} from "./routes/validatePayment";
 
 
 
@@ -45,7 +46,8 @@ app.use('/api/checkout',
     createCheckoutSessionRoute
     ,getCheckoutSessionRoute
     ,initRoute
-    ,payRoute)
+    ,payRoute
+,ValidatePaymentRoute)
 
 
 app.use(errorHandler)

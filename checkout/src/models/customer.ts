@@ -15,6 +15,7 @@ interface CustomerDoc extends mongoose.Document{
     createdAt:Date;
     updatedAt:Date;
 
+
 }
 
 const customerScheme = new mongoose.Schema({
@@ -31,7 +32,8 @@ const customerScheme = new mongoose.Schema({
     },
     address:{
         type:String
-    }
+    },
+
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 
 const Customer = mongoose.model<CustomerDoc>('Customer',customerScheme);

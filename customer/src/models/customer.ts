@@ -11,6 +11,9 @@ interface CustomerDoc extends mongoose.Document{
     payments:[PaymentAttr];
     createdAt:Date;
     updatedAt:Date;
+    LiveCustomer:boolean;
+
+
 }
 
 const customerScheme = new mongoose.Schema({
@@ -35,7 +38,9 @@ const customerScheme = new mongoose.Schema({
     merchantId:{
         type:String
     },
-    payments:[paymentScheme]
+    payments:[paymentScheme],
+    liveCustomer:Boolean
+
 
 },{timestamps:{createdAt:'createdAt',updatedAt:'updatedAt'}})
 

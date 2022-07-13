@@ -22,6 +22,7 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/ua-parser-js": "^0.7.36",
     "@types/validator": "^13.7.1",
+    "axios": "^0.27.2",
     "cookie-parser": "^1.4.6",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",

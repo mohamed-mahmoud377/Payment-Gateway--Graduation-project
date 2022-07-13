@@ -34,8 +34,6 @@ router.post("/pay",[
     const {panNumber,year,month,CVC,cardHoldName, checkoutId} = req.body;
 
     const checkout =await CheckoutSession.findById(checkoutId);
-    if (!checkout)
-        throw new NotFoundError();
 
     if (!checkout)
         throw new NotFoundError(['the provided checkoutSession does not exists']);
@@ -49,12 +47,15 @@ router.post("/pay",[
     if (checkout.expiresAt< new Date(Date.now()))
         throw new BadRequestError(['the checkout session you are looking for has been expired']);
 
-    if (checkout.status===CheckoutStatus.PAID_FOR)
+    if (checkout.status===CheckoutStatus.PAID_SUCCEEDED)
         throw new BadRequestError(['the checkout session you are looking had already been paid for']);
+    if (checkout.status===CheckoutStatus.PENDING_PAYMENT_REQUEST)
+        throw new BadRequestError(['the checkout is pending processing']);
 
+    checkout.status=CheckoutStatus.PENDING_PAYMENT_REQUEST;
+    checkout.save();
      await new PaymentRequestPublisher(natsWrapper.client).publish({
         CVC, checkoutId, month, pan:panNumber, totalAmount:checkout.amountTotal, year, cardHoldName})
-    console.log("here")
     sendSuccess(res);
 
 })

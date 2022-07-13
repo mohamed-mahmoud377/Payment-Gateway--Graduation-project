@@ -2,6 +2,8 @@ import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
 import {APIKeyVerifiedListeners} from "./events/listeners/APIKeyVerifiedListeners";
+import {PaymentFailedListener} from "./events/listeners/paymentFailedListener";
+import {PaymentSucceededListener} from "./events/listeners/paymentSucceededListener";
 
 
 const start = async ()=>{
@@ -44,6 +46,8 @@ const start = async ()=>{
 
 
         new APIKeyVerifiedListeners(natsWrapper.client).listen();
+        new PaymentFailedListener(natsWrapper.client).listen();
+        new PaymentSucceededListener(natsWrapper.client).listen();
 
 
 

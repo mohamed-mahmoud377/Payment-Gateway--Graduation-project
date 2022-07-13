@@ -27,6 +27,8 @@ export class CheckoutCreatedListener extends Listener<CheckoutSessionCreatedEven
             address:data.customer.address,
             clientReferenceId:data.clientReferenceId,
             merchantId:data.merchantId,
+            LiveCustomer:data.liveMode
+
         })
         console.log("New customer created !")
         msg.ack();

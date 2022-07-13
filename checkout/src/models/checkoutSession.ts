@@ -19,6 +19,7 @@ interface CheckoutSessionDoc extends  mongoose.Document{
     hash:string;
     customer:CustomerAttrs,
     items:[ItemAttrs],
+    failingReason?:string;
     relatedCustomerPaymentCards:[string];
     calculateTotalAmount():number;
     showForUser():CheckoutSessionDoc;
@@ -41,6 +42,9 @@ const checkoutSessionScheme = new mongoose.Schema({
     },
     expiresAt:{
         type:Date,
+    },
+    failingReason:{
+      type:String
     },
     amountTotal:{
         type:Number
