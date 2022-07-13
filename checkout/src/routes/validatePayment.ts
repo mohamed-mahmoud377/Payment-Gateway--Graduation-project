@@ -18,7 +18,13 @@ router.post("/validate",[
         throw new NotFoundError(['the provided checkoutSession does not exists']);
 
     if (checkout.status===CheckoutStatus.PAID_FAILED){
-        throw new BadRequestError([checkout.failingReason!],402);
+       return res.status(402).send({
+           status: "fail",
+           errorCode: 400,
+           errors: [
+               checkout.failingReason
+           ]
+       })
     }
     if (checkout.status===CheckoutStatus.PAID_SUCCEEDED){
         return sendSuccess(res);
