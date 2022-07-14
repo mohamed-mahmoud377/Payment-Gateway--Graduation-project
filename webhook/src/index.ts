@@ -5,7 +5,7 @@ import {natsWrapper} from "./nats/nats-wrapper";
 
 
 const start = async ()=>{
-    console.log('Starting up checkout service...')
+    console.log('Starting up webhook service...')
 
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
@@ -50,7 +50,7 @@ const start = async ()=>{
     }
 
     app.listen(3000,()=>{
-        console.log('checkout srv is up and running on port 3000  ')
+        console.log('webhook srv is up and running on port 3000  ')
     })
 }
 
