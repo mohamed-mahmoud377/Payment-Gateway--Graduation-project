@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhook-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webhook-mongo
+  template:
+    metadata:
+      labels:
+        app: webhook-mongo
+    spec:
+      containers:
+        - name: webhook-mongo
+          image: mongo # the name of the image from docker hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webhook-mongo-srv
+spec:
+  selector:
+    app: webhook-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
