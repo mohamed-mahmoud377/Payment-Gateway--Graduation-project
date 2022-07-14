@@ -5,6 +5,8 @@ import {errorHandler, secure} from "@hashcash/common";
 
 
 import cookieParser from "cookie-parser";
+import {getPaymentsRoute} from "./routes";
+import {getPaymentRoute} from "./routes/show";
 
 
 const app= express();
@@ -23,16 +25,15 @@ secure(app,{
     xss: true
 })
 
-// app.use(cookieSession({
-//     sameSite:"lax",
-//     signed:false,
-//     httpOnly:false,
-//     secure: false,// note that even in production you will have to disable it because we are not https in prod yet
-//
-// }))
 
 app.use(cookieParser())
 
+
+
+app.use('/api/payment',
+getPaymentsRoute
+    ,getPaymentRoute
+)
 
 
 

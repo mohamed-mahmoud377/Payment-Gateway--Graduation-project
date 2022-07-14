@@ -16,6 +16,6 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save k8s-1-22-8-do-1-ams3-1655241509862
+      - run: doctl kubernetes cluster kubeconfig save hashcash-ams
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
 

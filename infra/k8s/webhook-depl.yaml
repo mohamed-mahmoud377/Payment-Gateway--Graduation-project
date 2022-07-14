@@ -1,28 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apikey-manager-depl
+  name: webhook-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apikey-manager
+      app: webhook
   template:
     metadata:
       labels:
-        app: apikey-manager
+        app: webhook
     spec:
       containers:
-        - name: apikey-manager
-          image: jerry377/apikey-manager
+        - name: webhook
+          image: jerry377/webhook
           env:
-            - name: MONGO_URI
-              value: 'mongodb://apikey-manager-mongo-srv:27017/apikey-manager'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: jwt-secret
+                  name: jwt-secret-admin
                   key: JWT_KEY
+            - name: JWT_KEY_SERVICE_ACCESS
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret-service-access-kms
+                  key: JWT_KEY_SERVICE_ACCESS
+            - name: MONGO_URI
+              value: 'mongodb://webhook-mongo-srv:27017/webhook'
+            - name: JWT_ADMIN_EXPIRES_IN
+              value: "900"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
@@ -38,12 +45,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: apikey-manager-srv
+  name: webhook-srv
 spec:
   selector:
-    app: apikey-manager
+    app: webhook
   ports:
-    - name: apikey-manager
+    - name: webhook
       protocol: TCP
       port: 3000
       targetPort: 3000

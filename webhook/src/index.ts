@@ -1,15 +1,11 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
-import {CheckoutCreatedListener} from "./events/listeners/checkoutCreatedListener";
-import {PaymentSucceededListeners} from "./events/listeners/paymentSucceededListeners";
-
-
 
 
 
 const start = async ()=>{
-    console.log('Starting up customer service...')
+    console.log('Starting up webhook service...')
 
     if (!process.env.JWT_KEY){
         throw new Error('JWT_KEY must be defined')
@@ -26,6 +22,7 @@ const start = async ()=>{
     if (!process.env.NATS_CLUSTER_ID){
         throw new Error("NATS_CLUSTER_ID must be defined !")
     }
+
     try{
         await natsWrapper.connect(process.env.NATS_CLUSTER_ID,process.env.NATS_CLIENT_ID,process.env.NATS_URL)
         natsWrapper.client.on('close',()=>{
@@ -45,14 +42,6 @@ const start = async ()=>{
         await mongoose.connect(process.env.MONGO_URI!);
         console.log("connected to database successfully")
 
-        new CheckoutCreatedListener(natsWrapper.client).listen();
-        new PaymentSucceededListeners(natsWrapper.client).listen();
-
-
-
-
-
-
 
 
     }catch (e) {
@@ -61,7 +50,7 @@ const start = async ()=>{
     }
 
     app.listen(3000,()=>{
-        console.log('customer srv is up and running on port 3000  ')
+        console.log('webhook srv is up and running on port 3000  ')
     })
 }
 
