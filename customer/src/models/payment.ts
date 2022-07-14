@@ -4,6 +4,7 @@ interface PaymentAttr {
     currency:string;
     paymentDate:Date;
     description:string;
+    status:string;
 }
 
 interface PaymentDoc extends mongoose.Document{
@@ -11,12 +12,14 @@ interface PaymentDoc extends mongoose.Document{
     currency:string;
     paymentDate:Date;
     description:string;
+    status:string;
     createdAt:Date;
     updatedAt:Date;
 }
 
 const paymentScheme = new mongoose.Schema({
     totalAmount:Number,
+    status:String,
     currency:String,
     paymentDate:Date,
     description:String
