@@ -16,20 +16,13 @@ spec:
         - name: webhook
           image: jerry377/webhook
           env:
+            - name: MONGO_URI
+              value: 'mongodb://webhook-mongo-srv:27017/webhook'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: jwt-secret-admin
+                  name: jwt-secret
                   key: JWT_KEY
-            - name: JWT_KEY_SERVICE_ACCESS
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret-service-access-kms
-                  key: JWT_KEY_SERVICE_ACCESS
-            - name: MONGO_URI
-              value: 'mongodb://webhook-mongo-srv:27017/webhook'
-            - name: JWT_ADMIN_EXPIRES_IN
-              value: "900"
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
