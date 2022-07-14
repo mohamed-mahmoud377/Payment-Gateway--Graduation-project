@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Checkout, payInputs } from './../Models/types';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from '../Services/shared/handle-errors.service';
 import { UserService } from '../Services/user.service';
@@ -33,7 +33,8 @@ export class CheckoutComponent implements OnInit {
     private userService: UserService,
     private errorService: HandelErrorService,
     private messageService: MessageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +117,9 @@ export class CheckoutComponent implements OnInit {
         this.payBtnLoading = false;
         if (res.status == 'success') {
           this.isPaymentSucceeded = true;
+          setTimeout(() => {
+            document.location.href = this.checkoutData.successUrl;
+          }, 1000);
         } else {
           this.messageService.add({
             severity: 'error',
