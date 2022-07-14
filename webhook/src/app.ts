@@ -4,6 +4,9 @@ import bodyParser from 'body-parser'
 import {errorHandler, secure} from "@hashcash/common";
 
 import cookieParser from "cookie-parser";
+import {newRoute} from "./routes/new";
+import {indexRoute} from "./routes";
+import {deleteRoute} from "./routes/delete";
 
 
 
@@ -37,8 +40,10 @@ secure(app,{
 app.use(cookieParser())
 
 
+app.use('/api/webhook',newRoute
+                    ,indexRoute
+                    ,deleteRoute)
 
-app.use('/api/webhook')
 
 
 app.use(errorHandler)
