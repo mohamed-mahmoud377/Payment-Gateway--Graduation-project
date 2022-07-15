@@ -22,7 +22,7 @@ router.get("/stats/payments",[
     const balance = await Payment.aggregate().match({
         merchantId:req.currentUser!.id,isLive:bool,status:PaymentStatus.SUCCEEDED,
         createdAt:{
-           $gte:new Date(date),
+
         $lte: new Date(date)
         }
 
