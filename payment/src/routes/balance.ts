@@ -7,11 +7,7 @@ import {query} from "express-validator";
 const router = express.Router();
 
 
-router.get("/my-balance",[
-    query('isLive')
-        .notEmpty()
-        .withMessage("isLive query param must be provided")
-],validateRequest,requireAuth(),async (req:Request,res:Response)=>{
+router.get("/my-balance",requireAuth(),async (req:Request,res:Response)=>{
     const {isLive} = req.query;
     const balance = await Payment.aggregate().match({
         merchantId:req.currentUser!.id,status:PaymentStatus.SUCCEEDED
@@ -23,7 +19,7 @@ router.get("/my-balance",[
     })
 
 
-    sendSuccess(res,201,{balance});
+    sendSuccess(res,200,balance);
 
 })
 export{
