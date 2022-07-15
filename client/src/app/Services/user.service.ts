@@ -1,5 +1,7 @@
 import {
   activateAccountInputs,
+  AllPaymentsInputs,
+  AllPaymentsOutput,
   CheckoutData,
   payInputs,
   paymentOutput,
@@ -164,6 +166,20 @@ export class UserService {
     return this.httpClient.post<paymentOutput>(
       `${environment.Url}/api/checkout/validate`,
       { checkoutId }
+    );
+  }
+
+  getPayments(inputs: AllPaymentsInputs): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt`,
+      {
+        headers,
+      }
     );
   }
 }

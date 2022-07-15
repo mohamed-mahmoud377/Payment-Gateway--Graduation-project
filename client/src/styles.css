@@ -26,6 +26,7 @@ body {
 }
 a {
   text-decoration: none !important;
+  color: #000 !important;
 }
 .error {
   color: var(--error);
@@ -145,4 +146,13 @@ p-password.p-inputtext {
 
 .p-calendar {
   width: 100%;
+}
+.payments-list .p-fluid .p-inputnumber .p-inputnumber-input {
+  padding: 3px !important;
+}
+.payments-list .p-card .p-card-body {
+  padding: 0px !important;
+}
+.payments-list .p-card .p-card-content {
+  padding: 0px !important;
 }

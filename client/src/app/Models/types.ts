@@ -191,3 +191,25 @@ export interface payInputs {
 export interface paymentOutput extends GeneralOutput {
   data: {};
 }
+
+export interface AllPaymentsInputs {
+  isLive: boolean;
+  page: number;
+  limit: number;
+}
+
+export interface AllPaymentsOutput extends GeneralOutput {
+  data: {
+    paymentsNumber: number;
+    payments: Payments[];
+  };
+}
+export interface Payments {
+  _id: string;
+  status: string;
+  description: string;
+  clientEmail: string;
+  createdAt: string;
+  currency: string;
+  totalAmount: number;
+}

@@ -17,6 +17,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
 import { ErrorComponent } from '../shared/error/error.component';
+import { PaymentsComponent } from './Components/payments/payments.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ErrorComponent } from '../shared/error/error.component';
     DeclinedComponent,
     NotFoundComponent,
     ErrorComponent,
+    PaymentsComponent,
   ],
   imports: [
     CommonModule,

@@ -53,7 +53,7 @@
   background-color: var(--primary-500);
   padding: 7px 15px;
   border-radius: 23px;
-  color: #fff;
+  color: #fff !important;
 }
 .links li a:active {
   padding: 10px 15px;
