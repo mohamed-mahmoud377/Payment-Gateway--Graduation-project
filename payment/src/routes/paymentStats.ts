@@ -13,17 +13,22 @@ router.get("/stats/payments",[
         .withMessage("isLive query param must be provided")
 ],requireAuth(),async (req:Request,res:Response)=>{
     const {isLive} = req.query;
-    const day = new Date().getDay();
-    const month= new Date().getMonth();
-    const year = new Date().getFullYear();
-    const date = `${year}-${month}-${day}`;
-    console.log(date);
+    const day = Number(new Date(Date.now()).getDate());
+    console.log(day);
+    console.log(Date.now())
+    const month=Number( new Date(Date.now()).getMonth());
+    const year = Number(new Date(Date.now()).getFullYear());
+    const start = new Date(year,month,day,0,0,0,0);
+    const end = new Date(year,month,day,23,59,59,999);
+    console.log(start.toUTCString());
+    console.log(end.toUTCString());
+
     let bool = isLive==='true'
     const balance = await Payment.aggregate().match({
         merchantId:req.currentUser!.id,isLive:bool,status:PaymentStatus.SUCCEEDED,
         createdAt:{
-
-        $lte: new Date(date)
+            $gte:new Date (start),
+             $lte: new Date(end)
         }
 
     }).group({
