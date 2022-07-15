@@ -1,3 +1,4 @@
+import { PaymentsComponent } from './Components/payments/payments.component';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivateAccountComponent } from './Components/activate-account/activate-account.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'activate-account', component: ActivateAccountComponent },
+      { path: 'payments', component: PaymentsComponent },
     ],
   },
 ];
