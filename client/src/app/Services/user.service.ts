@@ -244,6 +244,7 @@ export class UserService {
       }
     );
   }
+
   getCustomers(inputs: AllCustomersInputs): Observable<any> {
     const headers = new HttpHeaders().set(
       'authorization',

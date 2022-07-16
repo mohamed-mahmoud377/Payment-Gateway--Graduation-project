@@ -159,9 +159,24 @@ p-password.p-inputtext {
 .payments-list .p-tabview .p-tabview-panels {
   padding: 0px !important;
 }
+.customers-list .p-fluid .p-inputnumber .p-inputnumber-input {
+  padding: 3px !important;
+}
+.customers-list .p-card .p-card-body {
+  padding: 0px !important;
+}
+.customers-list .p-card .p-card-content {
+  padding: 0px !important;
+}
+.customers-list .p-tabview .p-tabview-panels {
+  padding: 0px !important;
+}
 .payment .p-card .p-card-content {
   padding: 0px;
 }
 .payment h5 {
   color: #000 !important;
+}
+.p-column-filter-buttonbar {
+  display: none !important;
 }
