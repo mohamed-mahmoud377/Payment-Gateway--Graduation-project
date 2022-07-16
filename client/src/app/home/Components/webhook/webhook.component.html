@@ -1,4 +1,4 @@
-<div class="container mt-3 mb-4">
+<div class="container mt-3 mb-4 webhook">
   <p-card>
     <app-loading *ngIf="loading"></app-loading>
     <app-create-webhook *ngIf="!webhook"></app-create-webhook>
@@ -17,6 +17,8 @@
             label="Delete webhook"
             class="p-button-outlined p-button-danger"
             [icon]="'pi pi-trash'"
+            [loading]="deleteLoading"
+            (click)="deleteWebhook()"
           ></button>
         </div>
 
@@ -27,7 +29,7 @@
           </div>
           <div class="col-4 mt-4">Status</div>
           <div class="col-8 mt-4">
-            <span *ngIf="webhook.status == 'Active'" class="active">
+            <span class="active">
               <i class="pi pi-check me-2" style="font-size: 10px"></i>
               {{ webhook.status }}
             </span>
@@ -35,6 +37,24 @@
           <div class="col-4 mt-4">Description</div>
           <div class="col-8 mt-4">
             {{ webhook.description }}
+          </div>
+          <div class="col-4 mt-4">Event</div>
+          <div class="col-8 mt-4">
+            {{ webhook.event }}
+          </div>
+
+          <div class="col-4 mt-4">Secret Key</div>
+          <div class="col-8 mt-4">
+            <div class="d-flex align-items-center">
+              <p-password
+                [disabled]="true"
+                [(ngModel)]="secretKey"
+                [toggleMask]="true"
+              ></p-password>
+              <span class="copy" (click)="copyKey(secretKey)">
+                <i class="pi pi-copy"></i>
+              </span>
+            </div>
           </div>
           <div class="col-4 mt-4">Created At</div>
           <div class="col-8 mt-4">

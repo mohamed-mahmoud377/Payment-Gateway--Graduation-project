@@ -38,4 +38,15 @@ export class WebhookService {
       }
     );
   }
+
+  deleteWebhook(): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.delete<any>(`${environment.Url}api/webhook/`, {
+      headers,
+    });
+  }
 }

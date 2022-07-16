@@ -180,3 +180,10 @@ p-password.p-inputtext {
 .p-column-filter-buttonbar {
   display: none !important;
 }
+.webhook p-password {
+  width: 55% !important;
+}
+.webhook .p-input-icon-right > .p-inputtext {
+  border-radius: 0px !important;
+  color: #000;
+}

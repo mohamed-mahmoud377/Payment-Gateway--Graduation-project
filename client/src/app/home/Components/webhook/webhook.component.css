@@ -23,3 +23,10 @@
   font-weight: 700;
   font-size: 14px;
 }
+
+.copy {
+  padding: 6px 10px;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+}
