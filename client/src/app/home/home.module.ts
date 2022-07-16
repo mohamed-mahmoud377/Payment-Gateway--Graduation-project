@@ -24,6 +24,8 @@ import { IncompleteComponent } from './Components/payments/incomplete/incomplete
 import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
 import { SingleCustomerComponent } from './Components/customers/single-customer/single-customer.component';
 import { SucceededComponent } from './Components/payments/succeeded/succeeded.component';
+import { WebhookComponent } from './Components/webhook/webhook.component';
+import { CreateWebhookComponent } from './Components/webhook/create-webhook/create-webhook.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { SucceededComponent } from './Components/payments/succeeded/succeeded.co
     SinglePaymentComponent,
     SingleCustomerComponent,
     SucceededComponent,
+    WebhookComponent,
+    CreateWebhookComponent,
   ],
   imports: [
     CommonModule,

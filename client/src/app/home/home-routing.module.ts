@@ -1,3 +1,4 @@
+import { WebhookComponent } from './Components/webhook/webhook.component';
 import { SingleCustomerComponent } from './Components/customers/single-customer/single-customer.component';
 import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
 import { CustomersComponent } from './Components/customers/customers.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'payment/:id', component: SinglePaymentComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'customer/:id', component: SingleCustomerComponent },
+      { path: 'webhook', component: WebhookComponent },
     ],
   },
 ];
