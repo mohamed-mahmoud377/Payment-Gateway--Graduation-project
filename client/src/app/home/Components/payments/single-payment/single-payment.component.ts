@@ -34,6 +34,7 @@ export class SinglePaymentComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.payment = data.payment;
+        console.log(this.payment);
       },
       (error) => {
         this.loading = false;

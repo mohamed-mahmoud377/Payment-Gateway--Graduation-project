@@ -52,7 +52,7 @@
             width="33px"
             src="../../../../../assets/images/master.png"
           />
-          ***********{{ payment?.cardToken | slice: 11:15 }}
+          ***********{{ payment?.cardToken | slice: -4 }}
         </div>
         <div class="col-4 mt-4">Client Email</div>
         <div class="col-8 mt-4">{{ payment?.clientEmail }}</div>
