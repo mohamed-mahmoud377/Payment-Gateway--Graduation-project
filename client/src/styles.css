@@ -156,3 +156,12 @@ p-password.p-inputtext {
 .payments-list .p-card .p-card-content {
   padding: 0px !important;
 }
+.payments-list .p-tabview .p-tabview-panels {
+  padding: 0px !important;
+}
+.payment .p-card .p-card-content {
+  padding: 0px;
+}
+.payment h5 {
+  color: #000 !important;
+}

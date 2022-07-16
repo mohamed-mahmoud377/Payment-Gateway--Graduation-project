@@ -18,6 +18,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
 import { ErrorComponent } from '../shared/error/error.component';
 import { PaymentsComponent } from './Components/payments/payments.component';
+import { CustomersComponent } from './Components/customers/customers.component';
+import { SuccededComponent } from './Components/customers/succeded/succeded.component';
+import { SucceededComponent } from './Components/payments/succeeded/succeeded.component';
+import { FailedComponent } from './Components/payments/failed/failed.component';
+import { IncompleteComponent } from './Components/payments/incomplete/incomplete.component';
+import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,12 @@ import { PaymentsComponent } from './Components/payments/payments.component';
     NotFoundComponent,
     ErrorComponent,
     PaymentsComponent,
+    CustomersComponent,
+    SuccededComponent,
+    SucceededComponent,
+    FailedComponent,
+    IncompleteComponent,
+    SinglePaymentComponent,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,5 @@
+import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
+import { CustomersComponent } from './Components/customers/customers.component';
 import { PaymentsComponent } from './Components/payments/payments.component';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +15,8 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'activate-account', component: ActivateAccountComponent },
       { path: 'payments', component: PaymentsComponent },
+      { path: 'payment/:id', component: SinglePaymentComponent },
+      { path: 'customers', component: CustomersComponent },
     ],
   },
 ];

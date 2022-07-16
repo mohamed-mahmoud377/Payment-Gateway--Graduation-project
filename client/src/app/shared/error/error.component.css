@@ -1,5 +1,5 @@
 .content {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,4 +7,7 @@
 }
 .content img {
   width: 400px;
+}
+.content p {
+  font-size: 18px;
 }

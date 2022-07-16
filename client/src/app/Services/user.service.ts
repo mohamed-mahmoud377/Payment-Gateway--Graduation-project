@@ -1,5 +1,6 @@
 import {
   activateAccountInputs,
+  AllCustomersInputs,
   AllPaymentsInputs,
   AllPaymentsOutput,
   CheckoutData,
@@ -177,6 +178,84 @@ export class UserService {
 
     return this.httpClient.get<AllPaymentsOutput>(
       `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt`,
+      {
+        headers,
+      }
+    );
+  }
+  getSucceededPayments(
+    inputs: AllPaymentsInputs
+  ): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=succeeded`,
+      {
+        headers,
+      }
+    );
+  }
+  getIncompletePayments(
+    inputs: AllPaymentsInputs
+  ): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=incomplete`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getFailedPayments(inputs: AllPaymentsInputs): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=failed`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getPayment(_id: string): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<any>(
+      `${environment.Url}/api/payment/payments/${_id}`,
+      {
+        headers,
+      }
+    );
+  }
+  getCustomers(inputs: AllCustomersInputs): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    if (inputs.email) {
+      return this.httpClient.get<any>(
+        `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&email=${inputs.email}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
+        {
+          headers,
+        }
+      );
+    }
+    return this.httpClient.get<any>(
+      `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
       {
         headers,
       }

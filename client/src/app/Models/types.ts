@@ -213,3 +213,10 @@ export interface Payments {
   currency: string;
   totalAmount: number;
 }
+
+export interface AllCustomersInputs {
+  isLive: boolean;
+  page: number;
+  limit: number;
+  email?: string;
+}
