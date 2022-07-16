@@ -21,7 +21,7 @@ export class PaymentSucceededListeners extends Listener<PaymentSucceedEvent>{
         }
 
 
-
+        console.log(data.payment.Items)
         try{
             const response = await axios.post(webhook.url,{
                 ...data,

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.delete("/",requireAuth(),async (req:Request,res:Response)=>{
    // write code here
-
+    const webhook = await WebHook.deleteOne({ merchantId:req.currentUser?.id})
     sendSuccess(res,204);
 
 })
