@@ -253,14 +253,14 @@ export class UserService {
     );
     if (inputs.email) {
       return this.httpClient.get<AllCustomersOutput>(
-        `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&email=${inputs.email}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
+        `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&email=${inputs.email}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt`,
         {
           headers,
         }
       );
     }
     return this.httpClient.get<AllCustomersOutput>(
-      `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
+      `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt`,
       {
         headers,
       }
