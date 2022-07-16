@@ -76,53 +76,50 @@
               </th>
               <th>
                 <div class="flex justify-content-between align-items-center">
-                  Payment Method
+                  Name
                 </div>
               </th>
 
               <th>
                 <div class="flex justify-content-between align-items-center">
-                  Created At
+                  Phone Number
                 </div>
               </th>
               <th>
                 <div class="flex justify-content-between align-items-center">
-                  Created At
+                  Address
                 </div>
               </th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-payment>
-            <tr style="cursor: pointer" routerLink="/payment/{{ payment._id }}">
+          <ng-template pTemplate="body" let-customer>
+            <tr
+              style="cursor: pointer"
+              routerLink="/payment/{{ customer.clientReferenceId }}"
+            >
               <td>
-                {{ payment.totalAmount | currency: payment.currency }}
+                {{ customer?.clientReferenceId }}
               </td>
               <td>
-                <span
-                  [ngClass]="{
-                    succeeded: payment.status == 'succeeded',
-                    failed: payment.status == 'failed',
-                    incomplete: payment.status == 'incomplete'
-                  }"
-                >
-                  {{ payment.status }}
-                </span>
+                {{ customer?.email }}
               </td>
               <td>
-                {{ payment.clientEmail }}
+                {{ customer?.name }}
               </td>
 
               <td>
-                {{ payment.description }}
+                {{ customer?.phoneNumber }}
               </td>
               <td>
-                {{ payment.createdAt | date: "MMM d, y, h:mm:ss a" }}
+                {{ customer?.address }}
               </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td style="text-align: center" colspan="6">No Payments found.</td>
+              <td style="text-align: center" colspan="6">
+                No Customers found.
+              </td>
             </tr>
           </ng-template>
         </p-table>
