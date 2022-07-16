@@ -33,6 +33,10 @@ export class SucceededComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.mode.subscribe((mode) => {
+      this.inputs.isLive = mode === 'live' ? true : false;
+      this.getAllPayments(this.inputs);
+    });
     this.getAllPayments(this.inputs);
   }
 

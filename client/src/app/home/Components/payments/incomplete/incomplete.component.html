@@ -1,4 +1,4 @@
-<div *ngIf="payments.length">
+<div>
   <p-table
     #paymentsTable
     [value]="payments"
@@ -75,7 +75,9 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr class="text-center">
-        <td colspan="8">No Payments found.</td>
+        <td style="text-align: center" colspan="8">
+          No Incomplete Payments found.
+        </td>
       </tr>
     </ng-template>
   </p-table>
