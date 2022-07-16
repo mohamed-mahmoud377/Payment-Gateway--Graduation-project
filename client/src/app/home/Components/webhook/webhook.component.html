@@ -1,5 +1,6 @@
 <div class="container mt-3 mb-4">
   <p-card>
+    <app-loading *ngIf="loading"></app-loading>
     <app-create-webhook *ngIf="!webhook"></app-create-webhook>
 
     <div *ngIf="webhook">

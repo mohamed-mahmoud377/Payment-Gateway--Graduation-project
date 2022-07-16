@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebhookComponent implements OnInit {
   public webhook!: Webhook;
+  public loading = false;
   constructor(
     private webhookService: WebhookService,
     private errorService: HandelErrorService,
@@ -24,12 +25,15 @@ export class WebhookComponent implements OnInit {
   }
 
   getWebhook() {
+    this.loading = true;
     this.webhookService.getWebhook().subscribe(
       ({ data }) => {
+        this.loading = false;
         this.webhook = data.webhook;
         console.log(this.webhook);
       },
       (error) => {
+        this.loading = false;
         this.errorService.handleErrors(error, this.messageService);
       }
     );
