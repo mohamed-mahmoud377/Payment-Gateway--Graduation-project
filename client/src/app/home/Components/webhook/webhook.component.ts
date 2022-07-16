@@ -57,14 +57,19 @@ export class WebhookComponent implements OnInit {
   deleteWebhook() {
     this.deleteLoading = true;
     this.webhookService.deleteWebhook().subscribe(
-      (res) => {
+      () => {
         this.deleteLoading = false;
-        console.log(res);
+        this.getWebhook();
       },
       (error) => {
         this.deleteLoading = false;
         this.errorService.handleErrors(error, this.messageService);
       }
     );
+  }
+
+  createWebhook(event: Webhook) {
+    this.webhook = event;
+    this.secretKey = this.webhook.secretKey;
   }
 }

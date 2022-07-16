@@ -1,7 +1,8 @@
+import { Webhook } from './../../../../Services/webhook/webhook.model';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from 'src/app/Services/shared/handle-errors.service';
 import { WebhookService } from './../../../../Services/webhook/webhook.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-webhook',
@@ -12,6 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class CreateWebhookComponent implements OnInit {
   public loading = false;
   public url: string | null = null;
+  public description!: string | null;
+  @Output() onCreateWebhook = new EventEmitter<Webhook>();
 
   constructor(
     private webhookService: WebhookService,
@@ -24,9 +27,14 @@ export class CreateWebhookComponent implements OnInit {
   createWebhook() {
     this.loading = true;
     if (this.url) {
-      this.webhookService.createWebhook(this.url).subscribe(
+      let inputs: any = { url: this.url };
+      if (this.description) {
+        inputs.description = this.description;
+      }
+      this.webhookService.createWebhook(inputs).subscribe(
         (res) => {
           this.loading = false;
+          this.onCreateWebhook.emit(res.data.webhook);
           console.log(res);
         },
         (error) => {

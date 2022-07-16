@@ -11,7 +11,7 @@ import { AllCustomersOutput } from '../customer/customers.model';
 export class WebhookService {
   constructor(private httpClient: HttpClient) {}
 
-  createWebhook(url: string): Observable<any> {
+  createWebhook(inputs: any): Observable<any> {
     const headers = new HttpHeaders().set(
       'authorization',
       `Bearer ${localStorage.getItem('token')}`
@@ -19,7 +19,7 @@ export class WebhookService {
 
     return this.httpClient.post<any>(
       `${environment.Url}/api/webhook/add`,
-      { url },
+      inputs,
       {
         headers,
       }

@@ -1,7 +1,10 @@
 <div class="container mt-3 mb-4 webhook">
   <p-card>
     <app-loading *ngIf="loading"></app-loading>
-    <app-create-webhook *ngIf="!webhook"></app-create-webhook>
+    <app-create-webhook
+      (onCreateWebhook)="createWebhook($event)"
+      *ngIf="!webhook"
+    ></app-create-webhook>
 
     <div *ngIf="webhook">
       <p-header>

@@ -1,5 +1,5 @@
 <div class="container">
-  <img src="../../../../../assets/images/webhook.png" width="300px" />
+  <img src="../../../../../assets/images/webhook.png" width="200px" />
   <h3>You Still Don't have any webhook yet</h3>
   <input
     style="width: 40%"
@@ -9,6 +9,14 @@
     class="d-block m-auto"
     [(ngModel)]="url"
   />
+  <textarea
+    pInputTextarea
+    rows="2"
+    class="d-block m-auto mt-2"
+    style="width: 40%"
+    placeholder="Enter webhook description"
+    [(ngModel)]="description"
+  ></textarea>
   <button
     pButton
     label="Create a webhook"
