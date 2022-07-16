@@ -1,6 +1,7 @@
 import {
   activateAccountInputs,
   AllCustomersInputs,
+  AllCustomersOutput,
   AllPaymentsInputs,
   AllPaymentsOutput,
   CheckoutData,
@@ -245,20 +246,20 @@ export class UserService {
     );
   }
 
-  getCustomers(inputs: AllCustomersInputs): Observable<any> {
+  getCustomers(inputs: AllCustomersInputs): Observable<AllCustomersOutput> {
     const headers = new HttpHeaders().set(
       'authorization',
       `Bearer ${localStorage.getItem('token')}`
     );
     if (inputs.email) {
-      return this.httpClient.get<any>(
+      return this.httpClient.get<AllCustomersOutput>(
         `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&email=${inputs.email}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
         {
           headers,
         }
       );
     }
-    return this.httpClient.get<any>(
+    return this.httpClient.get<AllCustomersOutput>(
       `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt/`,
       {
         headers,

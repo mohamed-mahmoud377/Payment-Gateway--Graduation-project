@@ -24,6 +24,7 @@ import { SucceededComponent } from './Components/payments/succeeded/succeeded.co
 import { FailedComponent } from './Components/payments/failed/failed.component';
 import { IncompleteComponent } from './Components/payments/incomplete/incomplete.component';
 import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
+import { SingleCustomerComponent } from './Components/customers/single-customer/single-customer.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SinglePaymentComponent } from './Components/payments/single-payment/sin
     FailedComponent,
     IncompleteComponent,
     SinglePaymentComponent,
+    SingleCustomerComponent,
   ],
   imports: [
     CommonModule,

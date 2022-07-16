@@ -1,11 +1,7 @@
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from './../../../Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
-import {
-  AllCustomersInputs,
-  AllPaymentsInputs,
-  Payments,
-} from './../../../Models/types';
+import { AllPaymentsInputs, Customers } from './../../../Models/types';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -32,7 +28,7 @@ export class CustomersComponent implements OnInit {
     { label: 'Succeeded', value: 'succeeded' },
   ];
 
-  public payments: Payments[] = [];
+  public customers: Customers[] = [];
 
   constructor(
     private userService: UserService,
@@ -45,19 +41,16 @@ export class CustomersComponent implements OnInit {
       this.inputs.isLive = mode === 'live' ? true : false;
       this.getAllCustomers(this.inputs);
     });
-
-    this.getAllCustomers(this.inputs);
   }
 
   getAllCustomers(inputs: AllPaymentsInputs) {
     this.loading = true;
     this.userService.getCustomers(inputs).subscribe(
       ({ data }) => {
-        console.log(data);
-
         this.loading = false;
-        this.payments = data.payments;
-        this.totalRecords = data.paymentsNumber;
+        this.customers = data.customers;
+        this.totalRecords = data.customersNumber;
+        console.log(data);
       },
       (error) => {
         this.loading = false;
@@ -83,8 +76,8 @@ export class CustomersComponent implements OnInit {
       this.userService.getCustomers(newInputs).subscribe(
         ({ data }) => {
           this.filterLoading = false;
-          this.payments = data.payments;
-          this.totalRecords = data.paymentsNumber;
+          this.customers = data.customers;
+          this.totalRecords = data.customersNumber;
         },
         (error) => {
           this.filterLoading = false;
@@ -99,9 +92,9 @@ export class CustomersComponent implements OnInit {
       this.clearLoading = true;
       this.userService.getCustomers(this.inputs).subscribe(
         ({ data }) => {
-          this.filterLoading = false;
-          this.payments = data.payments;
-          this.totalRecords = data.paymentsNumber;
+          this.clearLoading = false;
+          this.customers = data.customers;
+          this.totalRecords = data.customersNumber;
         },
         (error) => {
           this.clearLoading = false;

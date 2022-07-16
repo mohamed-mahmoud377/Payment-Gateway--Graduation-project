@@ -8,7 +8,7 @@
       <div>
         <p-table
           #paymentsTable
-          [value]="[]"
+          [value]="customers"
           [rowHover]="true"
           [rows]="inputs.limit"
           [showCurrentPageReport]="true"
@@ -95,7 +95,7 @@
           <ng-template pTemplate="body" let-customer>
             <tr
               style="cursor: pointer"
-              routerLink="/payment/{{ customer.clientReferenceId }}"
+              routerLink="/customer/{{ customer.clientReferenceId }}"
             >
               <td>
                 {{ customer?.clientReferenceId }}

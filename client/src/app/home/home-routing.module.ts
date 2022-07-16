@@ -1,3 +1,4 @@
+import { SingleCustomerComponent } from './Components/customers/single-customer/single-customer.component';
 import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
 import { CustomersComponent } from './Components/customers/customers.component';
 import { PaymentsComponent } from './Components/payments/payments.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'payments', component: PaymentsComponent },
       { path: 'payment/:id', component: SinglePaymentComponent },
       { path: 'customers', component: CustomersComponent },
+      { path: 'customer/:id', component: SingleCustomerComponent },
     ],
   },
 ];
