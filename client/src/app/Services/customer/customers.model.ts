@@ -10,11 +10,11 @@ export interface AllCustomersInputs {
 export interface AllCustomersOutput extends GeneralOutput {
   data: {
     customersNumber: number;
-    customers: Customers[];
+    customers: Customer[];
   };
 }
 
-export interface Customers {
+export interface Customer {
   address: string;
   clientReferenceId: string;
   createdAt: string;
@@ -25,4 +25,9 @@ export interface Customers {
   payments: Payments[];
   phoneNumber: string;
   updatedAt: string;
+}
+export interface CustomerOutput extends GeneralOutput {
+  data: {
+    customer: Customer;
+  };
 }

@@ -4,7 +4,7 @@ import { HandelErrorService } from './../../../Services/shared/handle-errors.ser
 import { UserService } from 'src/app/Services/user.service';
 import { AllPaymentsInputs } from './../../../Models/types';
 import { Component, OnInit } from '@angular/core';
-import { Customers } from 'src/app/Services/customer/customers.model';
+import { Customer } from 'src/app/Services/customer/customers.model';
 
 @Component({
   selector: 'app-customers',
@@ -30,7 +30,7 @@ export class CustomersComponent implements OnInit {
     { label: 'Succeeded', value: 'succeeded' },
   ];
 
-  public customers: Customers[] = [];
+  public customers: Customer[] = [];
 
   constructor(
     private customerService: CustomersService,

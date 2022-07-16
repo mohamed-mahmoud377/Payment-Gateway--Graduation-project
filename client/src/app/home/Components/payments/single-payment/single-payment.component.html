@@ -1,4 +1,4 @@
-<div class="container payment mt-3">
+<div class="container payment mt-3 mb-4">
   <p-card>
     <app-loading *ngIf="loading"></app-loading>
 
@@ -62,7 +62,7 @@
 
       <p-divider></p-divider>
       <div class="mt-5">
-        <h5 style="font-weight: 800">Checkout summary</h5>
+        <h4 style="font-weight: 800">Checkout summary</h4>
       </div>
       <ul class="mt-5">
         <li class="item" *ngFor="let item of payment.Items">
