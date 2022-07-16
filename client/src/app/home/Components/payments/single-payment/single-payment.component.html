@@ -34,12 +34,24 @@
         <div class="col-8 mt-4">{{ payment?.createdAt | date }}</div>
         <div class="col-4 mt-4">Customer Reference ID</div>
         <div class="col-8 mt-4">
-          <a routerLink="/customer/{{ payment.clientReferenceId }}">{{
-            payment?.clientReferenceId
-          }}</a>
+          <a
+            style="color: #495057"
+            routerLink="/customer/{{ payment.clientReferenceId }}"
+            >{{ payment?.clientReferenceId }}</a
+          >
         </div>
         <div class="col-4 mt-4">Payment Method</div>
         <div class="col-8 mt-4">
+          <img
+            *ngIf="payment.cardType == 'Visa credit card'"
+            width="33px"
+            src="../../../../../assets/images/visa.png"
+          />
+          <img
+            *ngIf="payment.cardType == 'Mastercard credit card'"
+            width="33px"
+            src="../../../../../assets/images/master.png"
+          />
           ***********{{ payment?.cardToken | slice: 11:15 }}
         </div>
         <div class="col-4 mt-4">Client Email</div>
