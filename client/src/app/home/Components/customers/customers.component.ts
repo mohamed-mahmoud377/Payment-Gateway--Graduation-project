@@ -1,8 +1,10 @@
+import { CustomersService } from './../../../Services/customer/customers.service';
 import { MessageService } from 'primeng/api';
 import { HandelErrorService } from './../../../Services/shared/handle-errors.service';
 import { UserService } from 'src/app/Services/user.service';
-import { AllPaymentsInputs, Customers } from './../../../Models/types';
+import { AllPaymentsInputs } from './../../../Models/types';
 import { Component, OnInit } from '@angular/core';
+import { Customers } from 'src/app/Services/customer/customers.model';
 
 @Component({
   selector: 'app-customers',
@@ -31,9 +33,10 @@ export class CustomersComponent implements OnInit {
   public customers: Customers[] = [];
 
   constructor(
-    private userService: UserService,
+    private customerService: CustomersService,
     private errorService: HandelErrorService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +48,7 @@ export class CustomersComponent implements OnInit {
 
   getAllCustomers(inputs: AllPaymentsInputs) {
     this.loading = true;
-    this.userService.getCustomers(inputs).subscribe(
+    this.customerService.getCustomers(inputs).subscribe(
       ({ data }) => {
         this.loading = false;
         this.customers = data.customers;
@@ -73,7 +76,7 @@ export class CustomersComponent implements OnInit {
     if (this.filterEmailInp) {
       let newInputs = { ...this.inputs, email: this.filterEmailInp };
       this.filterLoading = true;
-      this.userService.getCustomers(newInputs).subscribe(
+      this.customerService.getCustomers(newInputs).subscribe(
         ({ data }) => {
           this.filterLoading = false;
           this.customers = data.customers;
@@ -90,7 +93,7 @@ export class CustomersComponent implements OnInit {
   clearFilterEmail() {
     if (this.filterEmailInp) {
       this.clearLoading = true;
-      this.userService.getCustomers(this.inputs).subscribe(
+      this.customerService.getCustomers(this.inputs).subscribe(
         ({ data }) => {
           this.clearLoading = false;
           this.customers = data.customers;
