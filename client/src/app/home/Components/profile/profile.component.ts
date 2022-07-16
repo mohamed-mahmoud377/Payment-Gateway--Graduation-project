@@ -28,6 +28,9 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.mode.subscribe((mode) => {
+      this.getSecretKey();
+    });
     this.getUserInfo();
     this.getSecretKey();
   }

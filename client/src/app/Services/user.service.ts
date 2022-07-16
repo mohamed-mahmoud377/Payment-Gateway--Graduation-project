@@ -10,7 +10,7 @@ import {
   userInfoOutput,
 } from './../Models/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
@@ -23,6 +23,9 @@ import {
   providedIn: 'root',
 })
 export class UserService {
+  public mode = new BehaviorSubject<string | null>(
+    localStorage.getItem('mode')
+  );
   constructor(private httpClient: HttpClient) {}
 
   getCurrentUser(): Observable<any> {
