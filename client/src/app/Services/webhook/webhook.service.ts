@@ -45,7 +45,7 @@ export class WebhookService {
       `Bearer ${localStorage.getItem('token')}`
     );
 
-    return this.httpClient.delete<any>(`${environment.Url}api/webhook/`, {
+    return this.httpClient.delete<any>(`${environment.Url}/api/webhook/`, {
       headers,
     });
   }

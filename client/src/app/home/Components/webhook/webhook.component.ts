@@ -12,7 +12,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
   providers: [MessageService],
 })
 export class WebhookComponent implements OnInit {
-  public webhook!: Webhook;
+  public webhook!: Webhook | null;
   public loading = false;
   public deleteLoading = false;
   public secretKey!: string;
@@ -38,7 +38,11 @@ export class WebhookComponent implements OnInit {
       },
       (error) => {
         this.loading = false;
-        this.errorService.handleErrors(error, this.messageService);
+        if (error.errorCode == 404) {
+          this.webhook = null;
+        } else {
+          this.errorService.handleErrors(error, this.messageService);
+        }
       }
     );
   }
@@ -53,9 +57,9 @@ export class WebhookComponent implements OnInit {
   deleteWebhook() {
     this.deleteLoading = true;
     this.webhookService.deleteWebhook().subscribe(
-      ({ data }) => {
+      (res) => {
         this.deleteLoading = false;
-        console.log(data);
+        console.log(res);
       },
       (error) => {
         this.deleteLoading = false;
