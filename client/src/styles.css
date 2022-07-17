@@ -80,14 +80,14 @@ p-password.p-inputtext {
 }
 .p-inputswitch {
   width: 32px !important;
-  height: 17px !important;
+  height: 19px !important;
 }
 
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
-  transform: translateX(11px) !important;
+  transform: translateX(10px) !important;
 }
 .p-inputswitch-slider:before {
-  top: 68% !important;
+  top: 62% !important;
 }
 
 .p-inputswitch .p-inputswitch-slider:before {

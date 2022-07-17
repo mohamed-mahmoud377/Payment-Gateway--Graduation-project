@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.name = localStorage.getItem('name');
     this.userService.mode.subscribe((mode) => {
       this.isLive = mode == 'live';
       this.getPaymentsStats(this.isLive);
@@ -36,8 +37,9 @@ export class DashboardComponent implements OnInit {
   getBalance() {
     this.dashboardService.getBalance().subscribe(
       ({ data }) => {
-        if (data == []) {
+        if (data.length == 0) {
           this.testBalance = 0;
+          this.liveBalance = 0;
           return;
         }
         for (let entry of data) {
