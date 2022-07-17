@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   public balance!: number;
   public paymentsNumber!: number;
   public loading = false;
+  public testBalance!: number;
+  public liveBalance!: number;
   public name = localStorage.getItem('name');
   constructor(
     private dashboardService: DashboardService,
@@ -28,6 +30,24 @@ export class DashboardComponent implements OnInit {
       this.isLive = mode == 'live';
       this.getPaymentsStats(this.isLive);
     });
+    this.getBalance();
+  }
+
+  getBalance() {
+    this.dashboardService.getBalance().subscribe(
+      ({ data }) => {
+        for (let entry of data) {
+          if (entry._id == false) {
+            this.testBalance = entry.balance | 0;
+          } else {
+            this.liveBalance = entry.balance | 0;
+          }
+        }
+      },
+      (error) => {
+        this.errorService.handleErrors(error, this.messageService);
+      }
+    );
   }
 
   getPaymentsStats(isLive: boolean) {
@@ -35,8 +55,8 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getPaymentStats(isLive).subscribe(
       ({ data }) => {
         this.loading = false;
-        this.balance = data[0].balance;
-        this.paymentsNumber = data[0].PaymentsNumber;
+        this.balance = data[0]?.balance | 0;
+        this.paymentsNumber = data[0]?.PaymentsNumber | 0;
       },
       (error) => {
         this.loading = false;
