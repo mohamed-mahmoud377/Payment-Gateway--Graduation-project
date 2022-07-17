@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 interface PaymentAttr {
+    id?:string;
     totalAmount:number;
     currency:string;
     paymentDate:Date;
@@ -8,6 +9,7 @@ interface PaymentAttr {
 }
 
 interface PaymentDoc extends mongoose.Document{
+    id:string;
     totalAmount:number;
     currency:string;
     paymentDate:Date;
