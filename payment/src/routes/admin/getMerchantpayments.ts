@@ -26,5 +26,5 @@ router.get('/admin/payments/:merchantId',[
 
 
 export{
-    router as getPaymentsRoute
+    router as getMerchantPayments
 }
