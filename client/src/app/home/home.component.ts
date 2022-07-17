@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.currentUser = data.currentUser;
+        localStorage.setItem('name', this.currentUser.name);
 
         // check if the email is verified
         this.isEmailVerified();
@@ -54,7 +55,6 @@ export class HomeComponent implements OnInit {
     this.userService.getMode().subscribe(
       ({ data }) => {
         localStorage.setItem('mode', data.mode);
-        localStorage.setItem('name', this.currentUser.name);
         this.userService.mode.next(data.mode);
 
         if (data.mode == 'test') {

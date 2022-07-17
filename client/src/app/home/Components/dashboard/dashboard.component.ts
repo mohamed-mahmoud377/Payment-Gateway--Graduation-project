@@ -36,11 +36,15 @@ export class DashboardComponent implements OnInit {
   getBalance() {
     this.dashboardService.getBalance().subscribe(
       ({ data }) => {
+        if (data == []) {
+          this.testBalance = 0;
+          return;
+        }
         for (let entry of data) {
           if (entry._id == false) {
-            this.testBalance = entry.balance | 0;
+            this.testBalance = entry?.balance;
           } else {
-            this.liveBalance = entry.balance | 0;
+            this.liveBalance = entry?.balance;
           }
         }
       },
