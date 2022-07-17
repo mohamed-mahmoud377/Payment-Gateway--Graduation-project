@@ -9,6 +9,7 @@ import {getPaymentsRoute} from "./routes";
 import {getPaymentRoute} from "./routes/show";
 import { getBalanceRoute} from "./routes/balance";
 import {paymentStatsRoute} from "./routes/paymentStats";
+import {getMerchantPayments} from "./routes/admin/getMerchantpayments";
 
 
 const app= express();
@@ -37,6 +38,7 @@ getPaymentsRoute
     ,getPaymentRoute
     ,getBalanceRoute
     ,paymentStatsRoute
+    ,getMerchantPayments
 )
 
 
