@@ -80,6 +80,7 @@ export class PaymentRequestListener extends Listener<PaymentRequestEvent>{
         await payment.save();
 
         const paymentToSend = {
+            id:payment.id,
             Items: payment.Items,
             cardToken: token,
             cardType: payment.cardType,

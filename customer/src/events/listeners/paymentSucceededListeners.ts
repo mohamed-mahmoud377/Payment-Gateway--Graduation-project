@@ -17,6 +17,7 @@ export class PaymentSucceededListeners extends Listener<PaymentSucceedEvent>{
             return;
         }
         customer.payments.push({
+            _id:data.payment.id,
             totalAmount:data.payment.totalAmount,
             currency: data.payment.currency,
             paymentDate: data.payment.createdAt,
