@@ -1,22 +1,27 @@
 import mongoose from "mongoose";
 interface PaymentAttr {
+    _id?:string;
     totalAmount:number;
     currency:string;
     paymentDate:Date;
     description:string;
+    status:string;
 }
 
 interface PaymentDoc extends mongoose.Document{
+    _id:string;
     totalAmount:number;
     currency:string;
     paymentDate:Date;
     description:string;
+    status:string;
     createdAt:Date;
     updatedAt:Date;
 }
 
 const paymentScheme = new mongoose.Schema({
     totalAmount:Number,
+    status:String,
     currency:String,
     paymentDate:Date,
     description:String

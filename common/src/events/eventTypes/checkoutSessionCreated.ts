@@ -19,6 +19,7 @@ export interface CheckoutSessionCreatedEvent {
         },
         items:[
             {
+                ID:string;
                 name:string;
                 amount:number;
                 quantity:number;

@@ -26,6 +26,7 @@ body {
 }
 a {
   text-decoration: none !important;
+  color: #000 !important;
 }
 .error {
   color: var(--error);
@@ -145,4 +146,44 @@ p-password.p-inputtext {
 
 .p-calendar {
   width: 100%;
+}
+.payments-list .p-fluid .p-inputnumber .p-inputnumber-input {
+  padding: 3px !important;
+}
+.payments-list .p-card .p-card-body {
+  padding: 0px !important;
+}
+.payments-list .p-card .p-card-content {
+  padding: 0px !important;
+}
+.payments-list .p-tabview .p-tabview-panels {
+  padding: 0px !important;
+}
+.customers-list .p-fluid .p-inputnumber .p-inputnumber-input {
+  padding: 3px !important;
+}
+.customers-list .p-card .p-card-body {
+  padding: 0px !important;
+}
+.customers-list .p-card .p-card-content {
+  padding: 0px !important;
+}
+.customers-list .p-tabview .p-tabview-panels {
+  padding: 0px !important;
+}
+.payment .p-card .p-card-content {
+  padding: 0px;
+}
+.payment h5 {
+  color: #000 !important;
+}
+.p-column-filter-buttonbar {
+  display: none !important;
+}
+.webhook p-password {
+  width: 55% !important;
+}
+.webhook .p-input-icon-right > .p-inputtext {
+  border-radius: 0px !important;
+  color: #000;
 }

@@ -1,0 +1,85 @@
+<div>
+  <p-table
+    #paymentsTable
+    [value]="payments"
+    [rowHover]="true"
+    [rows]="inputs.limit"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [totalRecords]="totalRecords || 0"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [lazy]="true"
+    [loading]="loading"
+    (onLazyLoad)="loadMorePayments($event)"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Total Amount
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Status
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Client Email
+          </div>
+        </th>
+
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Description
+          </div>
+        </th>
+        <th>
+          <div class="flex justify-content-between align-items-center">
+            Created At
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-payment>
+      <tr style="cursor: pointer" routerLink="/payment/{{ payment._id }}">
+        <td>
+          {{ payment.totalAmount | currency: payment.currency }}
+        </td>
+        <td>
+          <span
+            [ngClass]="{
+              succeeded: payment.status == 'succeeded',
+              failed: payment.status == 'failed',
+              incomplete: payment.status == 'incomplete'
+            }"
+          >
+            {{ payment.status }}
+          </span>
+        </td>
+        <td>
+          {{ payment.clientEmail }}
+        </td>
+
+        <td>
+          {{ payment.description }}
+        </td>
+        <td>
+          {{ payment.createdAt | date: "MMM d, y, h:mm:ss a" }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td style="text-align: center" [attr.colspan]="6">
+          No Failed Payments found
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-toast></p-toast>

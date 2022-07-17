@@ -84,6 +84,7 @@ export class VerifyEmailComponent implements OnInit {
         if (localStorage.getItem('token')) {
           localStorage.removeItem('token');
           localStorage.removeItem('accessToken');
+          localStorage.removeItem('name');
         }
         this.router.navigate(['/signin'], {
           queryParams: {

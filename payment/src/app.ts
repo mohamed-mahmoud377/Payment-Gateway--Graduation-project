@@ -7,6 +7,8 @@ import {errorHandler, secure} from "@hashcash/common";
 import cookieParser from "cookie-parser";
 import {getPaymentsRoute} from "./routes";
 import {getPaymentRoute} from "./routes/show";
+import { getBalanceRoute} from "./routes/balance";
+import {paymentStatsRoute} from "./routes/paymentStats";
 
 
 const app= express();
@@ -33,6 +35,8 @@ app.use(cookieParser())
 app.use('/api/payment',
 getPaymentsRoute
     ,getPaymentRoute
+    ,getBalanceRoute
+    ,paymentStatsRoute
 )
 
 

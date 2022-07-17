@@ -1,0 +1,29 @@
+.failed {
+  padding: 4px 11px;
+  color: #c3002f;
+  background: rgba(255, 190, 190, 0.8);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.incomplete {
+  padding: 4px 11px;
+  color: #313131;
+  background-color: #cccccc;
+  border: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.succeeded {
+  padding: 4px 11px;
+  color: #557847;
+  background-color: #d3ebd4;
+  border: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+h2 {
+  padding: 20px 16px;
+  color: var(--primary-color);
+}

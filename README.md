@@ -111,10 +111,10 @@ Payment-Gateway--Graduation-project
 │   │   │   ├── signout.ts
 │   │   │   ├── signup.ts
 │   │   │   ├── __test__
-│   │   │   │   ├── checkPassword.test.ts
+│   │   │   │   ├── checkPassword.test.ts.old
 │   │   │   │   ├── login.test.ts
 │   │   │   │   ├── otpRegister.test.ts.old
-│   │   │   │   └── signup.test.ts
+│   │   │   │   └── signup.test.ts.old
 │   │   │   └── verifyEmail.ts
 │   │   ├── test
 │   │   │   └── setup.ts

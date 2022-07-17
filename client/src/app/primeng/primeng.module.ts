@@ -23,6 +23,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -51,6 +52,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     RadioButtonModule,
     CalendarModule,
     TagModule,
+    TabViewModule,
   ],
 })
 export class PrimengModule {}

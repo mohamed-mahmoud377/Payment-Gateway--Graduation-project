@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit {
     this.userService.changeMode({ mode }).subscribe(
       ({ data }) => {
         localStorage.setItem('mode', data.mode);
+        this.userService.mode.next(data.mode);
 
         this.testValue = data.mode == 'test';
         this.messageService.add({
@@ -63,6 +64,7 @@ export class NavbarComponent implements OnInit {
       () => {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('name');
         this.router.navigate(['/signin']);
       },
       (error) => {

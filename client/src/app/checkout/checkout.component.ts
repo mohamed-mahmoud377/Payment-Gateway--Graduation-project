@@ -112,8 +112,6 @@ export class CheckoutComponent implements OnInit {
   validatePayment() {
     this.userService.validatePayment(this.checkoutData._id).subscribe(
       (res) => {
-        console.log(res);
-
         this.payBtnLoading = false;
         if (res.status == 'success') {
           this.isPaymentSucceeded = true;

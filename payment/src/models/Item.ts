@@ -6,6 +6,7 @@ interface ItemAttrs{
     description?:string;
     quantity:number;
     image?:string;
+    ID:string;
 
 }
 
@@ -15,12 +16,16 @@ interface ItemDoc extends mongoose.Document{
     image?:string;
     description?:string;
     quantity:number;
+    ID:string;
     createdAt:Date;
     updatedAt:Date;
 
 }
 
 const itemScheme = new mongoose.Schema({
+    ID:{
+      type:String,
+    },
     name:{
         type:String,
         required:true

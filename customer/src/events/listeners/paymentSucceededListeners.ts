@@ -17,10 +17,12 @@ export class PaymentSucceededListeners extends Listener<PaymentSucceedEvent>{
             return;
         }
         customer.payments.push({
+            _id:data.payment.id,
             totalAmount:data.payment.totalAmount,
             currency: data.payment.currency,
             paymentDate: data.payment.createdAt,
-            description: data.payment.description
+            description: data.payment.description,
+            status:data.payment.status
         });
         await customer.save();
         console.log("payment has been added to customer successfully ");

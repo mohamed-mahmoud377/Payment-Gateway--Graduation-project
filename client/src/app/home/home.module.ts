@@ -17,7 +17,16 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from '../shared/interceptors/header.interceptor';
 import { ErrorComponent } from '../shared/error/error.component';
-import { PaymentsListComponent } from './Components/payments-list/payments-list.component';
+import { PaymentsComponent } from './Components/payments/payments.component';
+import { CustomersComponent } from './Components/customers/customers.component';
+import { FailedComponent } from './Components/payments/failed/failed.component';
+import { IncompleteComponent } from './Components/payments/incomplete/incomplete.component';
+import { SinglePaymentComponent } from './Components/payments/single-payment/single-payment.component';
+import { SingleCustomerComponent } from './Components/customers/single-customer/single-customer.component';
+import { SucceededComponent } from './Components/payments/succeeded/succeeded.component';
+import { WebhookComponent } from './Components/webhook/webhook.component';
+import { CreateWebhookComponent } from './Components/webhook/create-webhook/create-webhook.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,16 @@ import { PaymentsListComponent } from './Components/payments-list/payments-list.
     DeclinedComponent,
     NotFoundComponent,
     ErrorComponent,
-    PaymentsListComponent,
+    PaymentsComponent,
+    CustomersComponent,
+    FailedComponent,
+    IncompleteComponent,
+    SinglePaymentComponent,
+    SingleCustomerComponent,
+    SucceededComponent,
+    WebhookComponent,
+    CreateWebhookComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

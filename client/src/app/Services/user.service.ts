@@ -1,5 +1,7 @@
 import {
   activateAccountInputs,
+  AllPaymentsInputs,
+  AllPaymentsOutput,
   CheckoutData,
   payInputs,
   paymentOutput,
@@ -7,7 +9,7 @@ import {
   userInfoOutput,
 } from './../Models/types';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
@@ -20,6 +22,9 @@ import {
   providedIn: 'root',
 })
 export class UserService {
+  public mode = new BehaviorSubject<string | null>(
+    localStorage.getItem('mode')
+  );
   constructor(private httpClient: HttpClient) {}
 
   getCurrentUser(): Observable<any> {
@@ -164,6 +169,78 @@ export class UserService {
     return this.httpClient.post<paymentOutput>(
       `${environment.Url}/api/checkout/validate`,
       { checkoutId }
+    );
+  }
+
+  getPayments(inputs: AllPaymentsInputs): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt`,
+      {
+        headers,
+      }
+    );
+  }
+  getSucceededPayments(
+    inputs: AllPaymentsInputs
+  ): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=succeeded`,
+      {
+        headers,
+      }
+    );
+  }
+  getIncompletePayments(
+    inputs: AllPaymentsInputs
+  ): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=incomplete`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getFailedPayments(inputs: AllPaymentsInputs): Observable<AllPaymentsOutput> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<AllPaymentsOutput>(
+      `${environment.Url}/api/payment/payments/?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&select=totalAmount,currency,status,description,clientEmail,createdAt&sort=-createdAt&status=failed`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getPayment(_id: string): Observable<any> {
+    const headers = new HttpHeaders().set(
+      'authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+
+    return this.httpClient.get<any>(
+      `${environment.Url}/api/payment/payments/${_id}`,
+      {
+        headers,
+      }
     );
   }
 }

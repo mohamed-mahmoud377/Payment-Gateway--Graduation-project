@@ -1,6 +1,7 @@
 import {app} from './app'
 import mongoose from "mongoose";
 import {natsWrapper} from "./nats/nats-wrapper";
+import {PaymentSucceededListeners} from "./events/listeners/paymentSucceededListeners";
 
 
 
@@ -41,6 +42,8 @@ const start = async ()=>{
 
         await mongoose.connect(process.env.MONGO_URI!);
         console.log("connected to database successfully")
+
+        new PaymentSucceededListeners(natsWrapper.client).listen();
 
 
 
