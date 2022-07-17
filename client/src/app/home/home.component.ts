@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
     this.userService.getMode().subscribe(
       ({ data }) => {
         localStorage.setItem('mode', data.mode);
+        localStorage.setItem('name', this.currentUser.name);
         this.userService.mode.next(data.mode);
 
         if (data.mode == 'test') {

@@ -64,6 +64,7 @@ export class NavbarComponent implements OnInit {
       () => {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('name');
         this.router.navigate(['/signin']);
       },
       (error) => {

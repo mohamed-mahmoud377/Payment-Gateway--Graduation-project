@@ -26,6 +26,7 @@ import { SingleCustomerComponent } from './Components/customers/single-customer/
 import { SucceededComponent } from './Components/payments/succeeded/succeeded.component';
 import { WebhookComponent } from './Components/webhook/webhook.component';
 import { CreateWebhookComponent } from './Components/webhook/create-webhook/create-webhook.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CreateWebhookComponent } from './Components/webhook/create-webhook/crea
     SucceededComponent,
     WebhookComponent,
     CreateWebhookComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

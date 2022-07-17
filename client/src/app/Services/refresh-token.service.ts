@@ -21,6 +21,7 @@ export class RefreshTokenService {
       () => {
         localStorage.removeItem('token');
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('name');
         this.router.navigate(['/signin']);
       }
     );
