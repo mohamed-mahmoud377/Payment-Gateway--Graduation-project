@@ -21,7 +21,7 @@ router.post('/refresh-access', [
 ],validateRequest, async (req: Request, res: Response) => {
     let hashedRefreshToken:string;
     const {refreshToken} = req.body
-    let isValid=false;
+    let isValid=true;
     let oldPayload:Payload;
 
 
@@ -44,27 +44,35 @@ router.post('/refresh-access', [
 
     }catch (e) {
         if (e instanceof  jwt.TokenExpiredError){
-            user!.loginSession.forEach(val => {
-                if (val.token===hashedRefreshToken)
-                    val.expired=true;
-            })
+            // user!.loginSession.forEach(val => {
+            //     if (val.token===hashedRefreshToken)
+            //         val.expired=true;
+            // })
+           let loginSession =  user!.loginSession.find(loginSession => loginSession.token===hashedRefreshToken)
+            if (loginSession)
+                loginSession.expired= true;
             await user!.save()
         }
         console.log(e)
 
         throw new  NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
     }
+        //
+        // user!.loginSession.forEach(val => {
+        //     if (val.token===hashedRefreshToken){
+        //         if (val.expired===false){
+        //             isValid=true
+        //         }
+        //     }
+        // })
+       let loginSession =  user!.loginSession.find(loginSession=>loginSession.token===hashedRefreshToken );
+        if (loginSession){
+            if (loginSession.expired===true)
+                isValid= false
+        }
 
-        user!.loginSession.forEach(val => {
-            if (val.token===hashedRefreshToken){
-                if (val.expired===false){
-                    isValid=true
-                }
-            }
-        })
 
-
-        if (!isValid){
+        if (isValid){
             // console.log('here')
             throw new  NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
         }
