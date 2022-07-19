@@ -37,7 +37,7 @@ spec:
             - name: NATS_CLUSTER_ID
               value: hashCash
             - name: JWT_ACCESS_EXPIRES_IN
-              value: "100"
+              value: "900"
             - name: JWT_REFERSH_EXPIRES_IN
               value: "3h"
             - name: JWT_REFERSH_EXPIRES_IN_REMEMBER
