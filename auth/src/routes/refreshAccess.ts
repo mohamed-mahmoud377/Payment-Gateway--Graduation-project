@@ -33,6 +33,7 @@ router.post('/refresh-access', [
        throw new NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
    }
     const user = await User.findById(userId!);
+    console.log(user)
     if (!user){
         throw new BadRequestError();
     }
@@ -41,17 +42,15 @@ router.post('/refresh-access', [
     console.log(hashedRefreshToken);
     try{
          oldPayload =await  jwt.verify(refreshToken,process.env.JWT_KEY_REFRESH!) as Payload;
+        console.log("here")
 
     }catch (e) {
         if (e instanceof  jwt.TokenExpiredError){
-            // user!.loginSession.forEach(val => {
-            //     if (val.token===hashedRefreshToken)
-            //         val.expired=true;
-            // })
-           let loginSession =  user!.loginSession.find(loginSession => loginSession.token===hashedRefreshToken)
-            if (loginSession)
-                loginSession.expired= true;
-            await user!.save()
+            user!.loginSession.forEach(val => {
+                if (val.token===hashedRefreshToken)
+                    val.expired=true;
+            })
+
         }
         console.log(e)
 
@@ -66,13 +65,14 @@ router.post('/refresh-access', [
         //     }
         // })
        let loginSession =  user!.loginSession.find(loginSession=>loginSession.token===hashedRefreshToken );
+    console.log(loginSession);
         if (loginSession){
             if (loginSession.expired===true)
                 isValid= false
         }
 
 
-        if (isValid){
+        if (!isValid){
             // console.log('here')
             throw new  NotAuthorizedError(["Invalid refresh token"],ErrorCodes.invalidToken)
         }

@@ -12,7 +12,7 @@ export const jwtGenerator=(payload:any,rememberMe:boolean=false)=>{
         accessOptions = {expiresIn:Number(process.env.JWT_ACCESS_EXPIRES_IN)}
 
     }else{
-        accessOptions = {expiresIn:30 *60}
+        accessOptions = {expiresIn:1.5 *60}
         refreshOptions = {expiresIn:'1h'}
     }
 
