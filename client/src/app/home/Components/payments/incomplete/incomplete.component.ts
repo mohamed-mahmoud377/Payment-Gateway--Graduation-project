@@ -55,11 +55,14 @@ export class IncompleteComponent implements OnInit {
   }
 
   loadMorePayments(event: any) {
-    this.currentPaginationSettings = event;
-    let currentPage = event.first / event.rows + 1;
+    let currentPage;
+    if (event) {
+      this.currentPaginationSettings = event;
+      currentPage = event.first / event.rows + 1;
+    }
     this.getAllPayments({
       ...this.inputs,
-      page: currentPage,
+      page: currentPage || this.inputs.page,
       limit: event.rows || this.inputs.limit,
     });
   }
