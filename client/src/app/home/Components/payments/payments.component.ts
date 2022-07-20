@@ -36,10 +36,8 @@ export class PaymentsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.mode.subscribe((mode) => {
       this.inputs.isLive = mode === 'live' ? true : false;
-      this.getAllPayments(this.inputs);
+      this.loadMorePayments;
     });
-
-    this.getAllPayments(this.inputs);
   }
 
   getAllPayments(inputs: AllPaymentsInputs) {

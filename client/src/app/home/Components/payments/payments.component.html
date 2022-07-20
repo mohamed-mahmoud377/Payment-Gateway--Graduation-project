@@ -105,14 +105,20 @@
             </p-table>
           </div>
         </p-tabPanel>
-        <p-tabPanel header="Succeeded">
-          <app-succeeded></app-succeeded>
+        <p-tabPanel header="Succeeded" [cache]="false">
+          <ng-template pTemplate="content">
+            <app-succeeded></app-succeeded>
+          </ng-template>
         </p-tabPanel>
-        <p-tabPanel header=" Failed">
-          <app-failed></app-failed>
+        <p-tabPanel header=" Failed" [cache]="false">
+          <ng-template pTemplate="content">
+            <app-failed></app-failed>
+          </ng-template>
         </p-tabPanel>
-        <p-tabPanel header=" incomplete">
-          <app-incomplete></app-incomplete>
+        <p-tabPanel header=" incomplete" [cache]="false">
+          <ng-template pTemplate="content">
+            <app-incomplete></app-incomplete>
+          </ng-template>
         </p-tabPanel>
       </p-tabView>
 
