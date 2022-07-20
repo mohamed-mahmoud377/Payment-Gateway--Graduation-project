@@ -12,6 +12,7 @@ import {MerchantActivationListener} from "./events/listeners/merchantActivationL
 
 const start = async ()=>{
     console.log('Starting up auth...')
+    console.log("last commit good job !")
     if (!process.env.JWT_KEY_REFRESH){
         throw new Error('JWT_KEY_REFRESH must be defined')
     }
