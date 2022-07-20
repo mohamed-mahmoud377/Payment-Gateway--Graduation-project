@@ -35,7 +35,6 @@ export class CreateWebhookComponent implements OnInit {
         (res) => {
           this.loading = false;
           this.onCreateWebhook.emit(res.data.webhook);
-          console.log(res);
         },
         (error) => {
           this.loading = false;

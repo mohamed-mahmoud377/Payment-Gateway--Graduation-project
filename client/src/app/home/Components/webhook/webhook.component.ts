@@ -34,7 +34,6 @@ export class WebhookComponent implements OnInit {
         this.loading = false;
         this.webhook = data.webhook;
         this.secretKey = this.webhook.secretKey;
-        console.log(this.webhook);
       },
       (error) => {
         this.loading = false;

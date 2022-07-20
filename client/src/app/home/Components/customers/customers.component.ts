@@ -53,7 +53,6 @@ export class CustomersComponent implements OnInit {
         this.loading = false;
         this.customers = data.customers;
         this.totalRecords = data.customersNumber;
-        console.log(data);
       },
       (error) => {
         this.loading = false;

@@ -22,7 +22,6 @@ export class SingleCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
-      console.log(params.id);
       this.getCustomer(params.id);
     });
   }
@@ -33,7 +32,6 @@ export class SingleCustomerComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.customer = data.customer;
-        console.log(this.customer);
       },
       (error) => {
         this.loading = false;
