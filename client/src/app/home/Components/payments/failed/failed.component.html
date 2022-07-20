@@ -12,6 +12,7 @@
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [lazy]="true"
     [loading]="loading"
+    [lazyLoadOnInit]="false"
     (onLazyLoad)="loadMorePayments($event)"
   >
     <ng-template pTemplate="header">
