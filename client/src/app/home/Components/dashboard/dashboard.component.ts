@@ -26,7 +26,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.name = localStorage.getItem('name');
+    this.userService.name.subscribe((name) => {
+      this.name = name;
+    });
     this.userService.mode.subscribe((mode) => {
       this.isLive = mode == 'live';
       this.getPaymentsStats(this.isLive);

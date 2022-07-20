@@ -23,6 +23,7 @@ export class CustomersService {
         }
       );
     }
+
     return this.httpClient.get<AllCustomersOutput>(
       `${environment.Url}/api/customer/customers?isLive=${inputs.isLive}&page=${inputs.page}&limit=${inputs.limit}&sort=-createdAt`,
       {
@@ -30,6 +31,7 @@ export class CustomersService {
       }
     );
   }
+
   getCustomer(_id: string): Observable<any> {
     const headers = new HttpHeaders().set(
       'authorization',

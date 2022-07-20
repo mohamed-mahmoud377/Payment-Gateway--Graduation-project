@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
-import { HandelErrorService } from './shared/handle-errors.service';
 
 @Injectable({
   providedIn: 'root',

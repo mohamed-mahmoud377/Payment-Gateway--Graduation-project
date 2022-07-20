@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
       ({ data }) => {
         this.loading = false;
         this.currentUser = data.currentUser;
+        this.userService.name.next(data.currentUser.name);
         localStorage.setItem('name', this.currentUser.name);
 
         // check if the email is verified

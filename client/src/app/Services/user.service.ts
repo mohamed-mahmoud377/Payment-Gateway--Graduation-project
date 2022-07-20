@@ -25,6 +25,7 @@ export class UserService {
   public mode = new BehaviorSubject<string | null>(
     localStorage.getItem('mode')
   );
+  public name = new BehaviorSubject<string>('');
   constructor(private httpClient: HttpClient) {}
 
   getCurrentUser(): Observable<any> {
